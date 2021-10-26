@@ -15,6 +15,5 @@ class MainViewController: UIViewController {
         self.view.backgroundColor = .systemBackground
     }
 
-
 }
 
