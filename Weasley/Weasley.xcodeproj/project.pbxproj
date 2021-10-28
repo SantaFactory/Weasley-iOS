@@ -13,6 +13,8 @@
 		7F4302652726D89400FA594F /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F4302642726D89400FA594F /* MainViewController.swift */; };
 		7F43026A2726D89900FA594F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7F4302692726D89900FA594F /* Assets.xcassets */; };
 		7F43026D2726D89900FA594F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7F43026B2726D89900FA594F /* LaunchScreen.storyboard */; };
+		7F46B8E027280C1E002B2E78 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F46B8DF27280C1E002B2E78 /* LoginViewController.swift */; };
+		7FA1C8A8272A867B00D2B4E0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7FA1C8A7272A867A00D2B4E0 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,6 +27,8 @@
 		7F4302692726D89900FA594F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7F43026C2726D89900FA594F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7F43026E2726D89900FA594F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7F46B8DF27280C1E002B2E78 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		7FA1C8A7272A867A00D2B4E0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../../Downloads/GoogleServie/Weasley/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A9873566C8D513FA6A965F78 /* Pods_Weasley.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Weasley.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -80,10 +84,12 @@
 			children = (
 				7F4302602726D89400FA594F /* AppDelegate.swift */,
 				7F4302622726D89400FA594F /* SceneDelegate.swift */,
+				7F46B8DF27280C1E002B2E78 /* LoginViewController.swift */,
 				7F4302642726D89400FA594F /* MainViewController.swift */,
 				7F4302692726D89900FA594F /* Assets.xcassets */,
 				7F43026B2726D89900FA594F /* LaunchScreen.storyboard */,
 				7F43026E2726D89900FA594F /* Info.plist */,
+				7FA1C8A7272A867A00D2B4E0 /* GoogleService-Info.plist */,
 			);
 			path = Weasley;
 			sourceTree = "<group>";
@@ -149,6 +155,7 @@
 			files = (
 				7F43026D2726D89900FA594F /* LaunchScreen.storyboard in Resources */,
 				7F43026A2726D89900FA594F /* Assets.xcassets in Resources */,
+				7FA1C8A8272A867B00D2B4E0 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -202,6 +209,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7F4302652726D89400FA594F /* MainViewController.swift in Sources */,
+				7F46B8E027280C1E002B2E78 /* LoginViewController.swift in Sources */,
 				7F4302612726D89400FA594F /* AppDelegate.swift in Sources */,
 				7F4302632726D89400FA594F /* SceneDelegate.swift in Sources */,
 			);
