@@ -47,14 +47,24 @@ extension LoginViewController {
                 return
             }
             guard let user = user else { return }
-            //guard let accessToken = user.authentication.idToken else { return }
             
             user.authentication.do { authentication, error in
                 guard error == nil else { return }
                 guard let authentication = authentication else { return }
 
-                let idToken = authentication.idToken
-
+                guard let idToken = authentication.idToken else {
+                    print("Control idToken is nil")
+                    return
+                }
+                let token = Token(idToken: idToken)
+                APIManager().performLogin(token: token) { tokenData in
+                    print(tokenData)
+                    DispatchQueue.main.async {
+                        let destinationVC = MainViewController()
+                        destinationVC.modalPresentationStyle = .fullScreen
+                        self.present(destinationVC, animated: true, completion: nil)
+                    }
+                }
             }
         }
     }

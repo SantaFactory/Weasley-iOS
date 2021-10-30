@@ -39,13 +39,13 @@ class APIManager {
         }
     }
 
-    func performPost(completion: @escaping (Result<[TestModel], APIError>) -> Void) {
+    func performLogin(token: Token, completion: @escaping (Result<[Token], APIError>) -> Void) {
         guard let url = URL(string: url) else {
             completion(.failure(.urlNotSupport))
             return
         }
-        let resultData = TestModel(test: "")
-        let resource = Resource<TestModel>(url: url, method: .post(resultData))
+        let resultData = token
+        let resource = Resource<Token>(url: url, method: .post(resultData))
         session.load(resource) { resultData, _ in
             guard let data = resultData else {
                 completion(.failure(.noData))
@@ -54,26 +54,7 @@ class APIManager {
             completion(.success([data]))
         }
     }
-//    func performPostToken(idToken: String, completion: @escaping () -> Void) {
-//        guard let authData = try? JSONEncoder().encode(["idToken": idToken]) else {
-//            return
-//        }
-//        var request = URLRequest(url: url)
-//        request.httpMethod = "POST"
-//        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-//
-//        let task = URLSession.shared.uploadTask(with: request, from: authData) { data, response, error in
-//            // Handle response from your backend.
-//        }
-//        task.resume()
-//    }
 }
-
-//extension URLSession {
-//    func load<T>(_ resource: Resource<T>, completion: @escaping (T?, Bool) -> Void) {
-//
-//    }
-//}
 
 extension URLSession {
     func load<T>(_ resource: Resource<T>, completion: @escaping (T?, Bool) -> Void) {
@@ -84,6 +65,7 @@ extension URLSession {
             completion(data.flatMap(resource.parseData), true)
         }.resume()
     }
+
 }
 
 struct Resource<T> {
@@ -184,4 +166,8 @@ extension Resource where T: Decodable {
 
 struct TestModel: Codable {
     let test: String
+}
+
+struct Token: Codable {
+    let idToken: String
 }
