@@ -16,6 +16,7 @@
 		7F46B8E027280C1E002B2E78 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F46B8DF27280C1E002B2E78 /* LoginViewController.swift */; };
 		7FA1C8A8272A867B00D2B4E0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7FA1C8A7272A867A00D2B4E0 /* GoogleService-Info.plist */; };
 		7FA1C8AA272B83E800D2B4E0 /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FA1C8A9272B83E800D2B4E0 /* APIManager.swift */; };
+		7FA1C8AC272CF46500D2B4E0 /* ClockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FA1C8AB272CF46500D2B4E0 /* ClockView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +32,7 @@
 		7F46B8DF27280C1E002B2E78 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		7FA1C8A7272A867A00D2B4E0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../../Downloads/GoogleServie/Weasley/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		7FA1C8A9272B83E800D2B4E0 /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
+		7FA1C8AB272CF46500D2B4E0 /* ClockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClockView.swift; sourceTree = "<group>"; };
 		A9873566C8D513FA6A965F78 /* Pods_Weasley.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Weasley.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -93,6 +95,7 @@
 				7F43026E2726D89900FA594F /* Info.plist */,
 				7FA1C8A7272A867A00D2B4E0 /* GoogleService-Info.plist */,
 				7FA1C8A9272B83E800D2B4E0 /* APIManager.swift */,
+				7FA1C8AB272CF46500D2B4E0 /* ClockView.swift */,
 			);
 			path = Weasley;
 			sourceTree = "<group>";
@@ -212,6 +215,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7F4302652726D89400FA594F /* MainViewController.swift in Sources */,
+				7FA1C8AC272CF46500D2B4E0 /* ClockView.swift in Sources */,
 				7F46B8E027280C1E002B2E78 /* LoginViewController.swift in Sources */,
 				7FA1C8AA272B83E800D2B4E0 /* APIManager.swift in Sources */,
 				7F4302612726D89400FA594F /* AppDelegate.swift in Sources */,
