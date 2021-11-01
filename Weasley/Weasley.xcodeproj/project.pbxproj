@@ -14,6 +14,7 @@
 		7F43026A2726D89900FA594F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7F4302692726D89900FA594F /* Assets.xcassets */; };
 		7F43026D2726D89900FA594F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7F43026B2726D89900FA594F /* LaunchScreen.storyboard */; };
 		7F46B8E027280C1E002B2E78 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F46B8DF27280C1E002B2E78 /* LoginViewController.swift */; };
+		7F8A4FCE272FA8A900656E0A /* NeedleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F8A4FCD272FA8A900656E0A /* NeedleView.swift */; };
 		7FA1C8A8272A867B00D2B4E0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7FA1C8A7272A867A00D2B4E0 /* GoogleService-Info.plist */; };
 		7FA1C8AA272B83E800D2B4E0 /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FA1C8A9272B83E800D2B4E0 /* APIManager.swift */; };
 		7FA1C8AC272CF46500D2B4E0 /* ClockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FA1C8AB272CF46500D2B4E0 /* ClockView.swift */; };
@@ -30,6 +31,7 @@
 		7F43026C2726D89900FA594F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7F43026E2726D89900FA594F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7F46B8DF27280C1E002B2E78 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		7F8A4FCD272FA8A900656E0A /* NeedleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NeedleView.swift; sourceTree = "<group>"; };
 		7FA1C8A7272A867A00D2B4E0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../../Downloads/GoogleServie/Weasley/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		7FA1C8A9272B83E800D2B4E0 /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
 		7FA1C8AB272CF46500D2B4E0 /* ClockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClockView.swift; sourceTree = "<group>"; };
@@ -96,6 +98,7 @@
 				7FA1C8A7272A867A00D2B4E0 /* GoogleService-Info.plist */,
 				7FA1C8A9272B83E800D2B4E0 /* APIManager.swift */,
 				7FA1C8AB272CF46500D2B4E0 /* ClockView.swift */,
+				7F8A4FCD272FA8A900656E0A /* NeedleView.swift */,
 			);
 			path = Weasley;
 			sourceTree = "<group>";
@@ -220,6 +223,7 @@
 				7FA1C8AA272B83E800D2B4E0 /* APIManager.swift in Sources */,
 				7F4302612726D89400FA594F /* AppDelegate.swift in Sources */,
 				7F4302632726D89400FA594F /* SceneDelegate.swift in Sources */,
+				7F8A4FCE272FA8A900656E0A /* NeedleView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

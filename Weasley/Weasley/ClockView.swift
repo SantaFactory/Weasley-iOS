@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ClockView: UIView {
+class Clock: UIView {
     
     var startAngle: CGFloat = (-(.pi) / 2)
     var endAngle: CGFloat = 0.0
