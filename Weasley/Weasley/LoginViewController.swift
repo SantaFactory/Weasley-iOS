@@ -56,6 +56,7 @@ extension LoginViewController {
                     print("Control idToken is nil")
                     return
                 }
+                print("Token is: \(idToken)\nEnd.")
                 let token = Token(idToken: idToken)
                 APIManager().performLogin(token: token) { tokenData in
                     print(tokenData)

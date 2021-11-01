@@ -20,6 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             } else {
                 print("Signed-In State")
                 let destinationVC = MainViewController()
+                destinationVC.modalPresentationStyle = .fullScreen
                 UIApplication.shared.windows.first?.rootViewController?.present(destinationVC, animated: false, completion: nil)
             }
         }

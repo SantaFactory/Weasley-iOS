@@ -26,7 +26,7 @@ class Clock: UIView {
                         endAngle: startAngle + endAngle,
                         clockwise: true
             )
-            value % 2 == 0 ? UIColor.blue.withAlphaComponent(0.3).set() : UIColor.yellow.withAlphaComponent(0.3).set()
+            UIColor.yellow.set()
             path.fill()
             path.close()
             startAngle = endAngle
