@@ -6,32 +6,17 @@
 //
 
 import UIKit
-import Firebase
-import GoogleSignIn
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
 
-
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: windowScene)
-
-        GIDSignIn.sharedInstance.restorePreviousSignIn { user, error in
-            if error != nil || user == nil {
-                print("Signed-Out State")
-                let initialViewController = LoginViewController()
-                self.window?.rootViewController = initialViewController
-                self.window?.makeKeyAndVisible()
-            } else {
-                print("Signed-In State")
-                let initialViewController = MainViewController()
-                self.window?.rootViewController = initialViewController
-                self.window?.makeKeyAndVisible()
-                // Show the app's signed-in state.
-            }
-        }
+        let initialViewController = LoginViewController()
+        self.window?.rootViewController = initialViewController
+        self.window?.makeKeyAndVisible()
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

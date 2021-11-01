@@ -14,7 +14,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         FirebaseApp.configure()
-        
+        GIDSignIn.sharedInstance.restorePreviousSignIn { user, error in
+            if error != nil || user == nil {
+                print("Signed-Out State")
+            } else {
+                print("Signed-In State")
+                let destinationVC = MainViewController()
+                UIApplication.shared.windows.first?.rootViewController?.present(destinationVC, animated: false, completion: nil)
+            }
+        }
         return true
     }
     
