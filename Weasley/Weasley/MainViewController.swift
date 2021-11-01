@@ -6,11 +6,14 @@
 //
 
 import UIKit
+import CoreLocation
 import GoogleSignIn
 import SnapKit
 
 class MainViewController: UIViewController {
 
+    let locationManager = CLLocationManager()
+    
     private lazy var clockView: Clock = {
         let view = Clock(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
         view.backgroundColor = .clear
@@ -27,6 +30,9 @@ class MainViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        locationManager.delegate = self
+        locationManager.requestWhenInUseAuthorization()
+        
         view.backgroundColor = .secondarySystemBackground
         self.view.addSubview(clockView)
         self.view.addSubview(signOutButton)
@@ -53,4 +59,21 @@ extension MainViewController {
         GIDSignIn.sharedInstance.signOut()
         dismiss(animated: true, completion: nil)
     }
+}
+
+extension MainViewController: CLLocationManagerDelegate {
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        if let location = locations.last {
+            locationManager.stopUpdatingLocation()
+            let lat = location.coordinate.latitude
+            let lon = location.coordinate.longitude
+            print("Latitude: \(lat)\nLongitude: \(lon)")
+        }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print("Error: \(error.localizedDescription)")
+    }
+    
 }
