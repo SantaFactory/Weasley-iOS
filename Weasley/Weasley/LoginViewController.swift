@@ -51,23 +51,27 @@ extension LoginViewController {
             user.authentication.do { authentication, error in
                 guard error == nil else { return }
                 guard let authentication = authentication else { return }
-
+                
                 guard let idToken = authentication.idToken else {
                     print("Control idToken is nil")
                     return
                 }
-                print("Token is: \(idToken)\nEnd.")
-                let token = Token(idToken: idToken)
-                APIManager().performLogin(token: token) { tokenData in
-                    print(tokenData)
+                //MARK: Sample Code [성공]
+                APIManager().signInExample(idToken: idToken) { userInfo in
+                    //TODO: 서버로 응답받은 데이터 가공하기
                     DispatchQueue.main.async {
                         let destinationVC = MainViewController()
                         destinationVC.modalPresentationStyle = .fullScreen
                         self.present(destinationVC, animated: true, completion: nil)
                     }
                 }
+//MARK: 모듈화된 메소드 사용해보기
+//                let token = Token(token: idToken)
+//                APIManager().performLogin(token: token) { tokenData in
+//                    //TODO: 서버로 응답받은 데이터 가공하기
+//
+//                }
             }
         }
     }
-    
 }

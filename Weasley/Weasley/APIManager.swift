@@ -19,41 +19,95 @@ class APIManager {
             }
         }
     }
-
-    let url = ""
+    
+    let url = "http://ec2-13-125-188-145.ap-northeast-2.compute.amazonaws.com:9000/tokensignin"
     
     private lazy var session = URLSession(configuration: .default)
     
-    func performGet(completion: @escaping (Result<[TestModel], APIError>) -> Void) {
+    func performGet(completion: @escaping (Result<User, APIError>) -> Void) {
         guard let url = URL(string: url) else {
             completion(.failure(.urlNotSupport))
             return
         }
-        let resource = Resource<[TestModel]>(url: url)
+        let resource = Resource<User>(url: url)
         session.load(resource) { resultDatas, _ in
-            guard let data = resultDatas, !data.isEmpty else {
+            guard let data = resultDatas else {
                 completion(.failure(.noData))
                 return
             }
             completion(.success(data))
         }
     }
-
-    func performLogin(token: Token, completion: @escaping (Result<[Token], APIError>) -> Void) {
+    
+    func performLogin(token: Token, completion: @escaping (Result<User, APIError>) -> Void) {
         guard let url = URL(string: url) else {
             completion(.failure(.urlNotSupport))
             return
         }
-        let resultData = token
-        let resource = Resource<Token>(url: url, method: .post(resultData))
+        let resource = Resource<User>(url: url, method: .post(token))
         session.load(resource) { resultData, _ in
             guard let data = resultData else {
                 completion(.failure(.noData))
                 return
             }
-            completion(.success([data]))
+            completion(.success(data))
         }
     }
+    
+    /**
+     구글에서 제공된 Post 샘플 코드
+     
+    모듈화 되지 않은 평상시에 사용하던 형태입니다.
+        
+     ## 구글 공식 문서
+     [바로가기](https://developers.google.com/identity/sign-in/ios/backend-auth)
+     
+     
+     - parameters:
+        - idToken: FireBase에서 제공받은 idToken
+        - completion: response 데이터 가공하기
+     */
+    func signInExample(idToken: String, completion: @escaping (User) -> Void) {
+        guard let authData = try? JSONEncoder().encode(Token(token: idToken)) else {
+            return
+        }
+        let url = URL(string: url)!
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        let task = URLSession.shared.uploadTask(with: request, from: authData) { data, response, error in
+            // Handle response from your backend.
+            guard let resultData = data else {
+                print("Can't Parsing")
+                return
+            }
+            let result = self.userParseExample(resultData)
+            completion(result!)
+        }
+        task.resume()
+    }
+    
+    /**
+     데이터 파싱 메소드
+     
+    - 모듈화되지않은 로그인을 위한 데이터 파싱하는 작업입니다.
+     - 모듈화된 메소드에서는 URLSession 확장에서 load<T>에서 실행됩니다.
+    
+     - parameters:
+        - data: 파싱할 데이터
+     */
+    func userParseExample(_ data: Data) -> User? {
+        let decoder = JSONDecoder()
+        do {
+            let response = try decoder.decode(User.self, from: data)
+            return response
+        } catch let error {
+            print("Error: \(error.localizedDescription)")
+            return nil
+        }
+    }
+    
 }
 
 extension URLSession {
@@ -162,12 +216,4 @@ extension Resource where T: Decodable {
             try? JSONDecoder().decode(T.self, from: data)
         }
     }
-}
-
-struct TestModel: Codable {
-    let test: String
-}
-
-struct Token: Codable {
-    let idToken: String
 }
