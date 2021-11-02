@@ -9,8 +9,7 @@ import Foundation
 
 struct Member {
     let user: String //MARK: User로 변경
-    let location = [1,2,3,4,5,6,7,8] //MARK: Location으로 변경
-    let currentLoction: Int
+    let currentLoction: Location
 }
 
 struct Group {
