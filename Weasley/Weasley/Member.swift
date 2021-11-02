@@ -8,11 +8,11 @@
 import Foundation
 
 struct Member {
-    let user: String //MARK: User로 변경
-    let currentLoction: Location
+    var user: String //MARK: User로 변경
+    var currentLoction: Location
 }
 
 struct Group {
     let id: Int
-    let members: [Member]
+    var members: [Member]
 }

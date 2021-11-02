@@ -11,6 +11,7 @@ class Needle: UILabel {
     
     var totalAngle: CGFloat = 360
     var rotation: CGFloat = 360
+    var id = ""
     var value = 0 {
         didSet {
             let needlePosition: CGFloat = CGFloat(value) / 360

@@ -14,8 +14,9 @@ class MainViewController: UIViewController {
 
     let locationManager = CLLocationManager()
     
-    //MARK: Sample members parameters
-    let members = [Member(user: "doyoung lee", currentLoction: .home), Member(user: "jasper oh", currentLoction: .home), Member(user: "designer", currentLoction: .lost), Member(user: "investor", currentLoction: .travel), Member(user: "Android Dev", currentLoction: .work), Member(user: "analyst", currentLoction: .lost)]
+    //MARK: Sample members&needle properties
+    var members = [Member(user: "doyoung lee", currentLoction: .home), Member(user: "jasper oh", currentLoction: .home), Member(user: "designer", currentLoction: .lost), Member(user: "investor", currentLoction: .travel), Member(user: "Android Dev", currentLoction: .work), Member(user: "analyst", currentLoction: .lost)]
+    var needles = [Needle]()
     
     private lazy var clockView: Clock = {
         let view = Clock(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
@@ -27,12 +28,14 @@ class MainViewController: UIViewController {
         for member in members {
             let needle = Needle()
             needle.text = "\t\(member.user.uppercased())"
+            needle.id = member.user
             needle.value = member.currentLoction.location
             self.view.addSubview(needle)
             needle.snp.makeConstraints { make in
                 make.centerX.equalTo(clockView.snp.centerX)
                 make.centerY.equalTo(clockView.snp.centerY)
             }
+            needles.append(needle)
         }
     }
     
@@ -41,6 +44,14 @@ class MainViewController: UIViewController {
         button.setImage(UIImage(systemName: "escape"), for: .normal)
         button.tintColor = .systemRed
         button.addTarget(self, action: #selector(signOut), for: .touchUpInside)
+        return button
+    }()
+    
+    private lazy var relocateButton: UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage(systemName: "safari.fill"), for: .normal)
+        button.tintColor = .systemRed
+        button.addTarget(self, action: #selector(reLocate), for: .touchUpInside)
         return button
     }()
     
@@ -65,6 +76,13 @@ class MainViewController: UIViewController {
             make.trailing.equalToSuperview().offset(-20)
             make.top.equalTo(self.view.safeArea.top).offset(20)
         }
+        self.view.addSubview(relocateButton)
+        relocateButton.snp.makeConstraints { make in
+            make.height.equalTo(50)
+            make.width.equalTo(50)
+            make.centerX.equalTo(clockView.snp.centerX)
+            make.centerY.equalTo(clockView.snp.centerY)
+        }
     }
 
 }
@@ -75,6 +93,22 @@ extension MainViewController {
         print("Sign Out")
         GIDSignIn.sharedInstance.signOut()
         dismiss(animated: true, completion: nil)
+    }
+    
+    //MARK: Sample Method
+    @objc func reLocate() {
+        var me = members.first {
+            $0.user == "doyoung lee"
+        }
+        let needle = needles.first {
+            $0.id == me?.user
+        }
+        me!.currentLoction = .move
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            UIView.animate(withDuration: 1) {
+                needle?.value = me!.currentLoction.location
+            }
+        }
     }
 }
 
