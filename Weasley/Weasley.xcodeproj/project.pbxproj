@@ -17,6 +17,7 @@
 		7F8A4FCE272FA8A900656E0A /* NeedleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F8A4FCD272FA8A900656E0A /* NeedleView.swift */; };
 		7F8A4FD0272FB0F600656E0A /* View+SafeArea.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F8A4FCF272FB0F600656E0A /* View+SafeArea.swift */; };
 		7F8A4FD22730C3F300656E0A /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F8A4FD12730C3F300656E0A /* User.swift */; };
+		7F8A4FD92730D8A600656E0A /* Member.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F8A4FD82730D8A600656E0A /* Member.swift */; };
 		7FA1C8A8272A867B00D2B4E0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7FA1C8A7272A867A00D2B4E0 /* GoogleService-Info.plist */; };
 		7FA1C8AA272B83E800D2B4E0 /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FA1C8A9272B83E800D2B4E0 /* APIManager.swift */; };
 		7FA1C8AC272CF46500D2B4E0 /* ClockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FA1C8AB272CF46500D2B4E0 /* ClockView.swift */; };
@@ -36,6 +37,7 @@
 		7F8A4FCD272FA8A900656E0A /* NeedleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NeedleView.swift; sourceTree = "<group>"; };
 		7F8A4FCF272FB0F600656E0A /* View+SafeArea.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+SafeArea.swift"; sourceTree = "<group>"; };
 		7F8A4FD12730C3F300656E0A /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		7F8A4FD82730D8A600656E0A /* Member.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Member.swift; sourceTree = "<group>"; };
 		7FA1C8A7272A867A00D2B4E0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../../Downloads/GoogleServie/Weasley/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		7FA1C8A9272B83E800D2B4E0 /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
 		7FA1C8AB272CF46500D2B4E0 /* ClockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClockView.swift; sourceTree = "<group>"; };
@@ -102,6 +104,7 @@
 				7F43026E2726D89900FA594F /* Info.plist */,
 				7FA1C8A7272A867A00D2B4E0 /* GoogleService-Info.plist */,
 				7F8A4FCF272FB0F600656E0A /* View+SafeArea.swift */,
+				7F8A4FD82730D8A600656E0A /* Member.swift */,
 			);
 			path = Weasley;
 			sourceTree = "<group>";
@@ -256,6 +259,7 @@
 				7F4302612726D89400FA594F /* AppDelegate.swift in Sources */,
 				7F4302632726D89400FA594F /* SceneDelegate.swift in Sources */,
 				7F8A4FCE272FA8A900656E0A /* NeedleView.swift in Sources */,
+				7F8A4FD92730D8A600656E0A /* Member.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
