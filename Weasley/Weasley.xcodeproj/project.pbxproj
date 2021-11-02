@@ -94,19 +94,43 @@
 			children = (
 				7F4302602726D89400FA594F /* AppDelegate.swift */,
 				7F4302622726D89400FA594F /* SceneDelegate.swift */,
-				7F46B8DF27280C1E002B2E78 /* LoginViewController.swift */,
-				7F4302642726D89400FA594F /* MainViewController.swift */,
+				7F8A4FD62730D69200656E0A /* Util */,
+				7F8A4FD52730D60F00656E0A /* Login */,
+				7F8A4FD72730D6D700656E0A /* WeasleyClock */,
 				7F4302692726D89900FA594F /* Assets.xcassets */,
 				7F43026B2726D89900FA594F /* LaunchScreen.storyboard */,
 				7F43026E2726D89900FA594F /* Info.plist */,
 				7FA1C8A7272A867A00D2B4E0 /* GoogleService-Info.plist */,
-				7FA1C8A9272B83E800D2B4E0 /* APIManager.swift */,
-				7FA1C8AB272CF46500D2B4E0 /* ClockView.swift */,
-				7F8A4FCD272FA8A900656E0A /* NeedleView.swift */,
 				7F8A4FCF272FB0F600656E0A /* View+SafeArea.swift */,
-				7F8A4FD12730C3F300656E0A /* User.swift */,
 			);
 			path = Weasley;
+			sourceTree = "<group>";
+		};
+		7F8A4FD52730D60F00656E0A /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				7F8A4FD12730C3F300656E0A /* User.swift */,
+				7F46B8DF27280C1E002B2E78 /* LoginViewController.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		7F8A4FD62730D69200656E0A /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				7FA1C8A9272B83E800D2B4E0 /* APIManager.swift */,
+			);
+			path = Util;
+			sourceTree = "<group>";
+		};
+		7F8A4FD72730D6D700656E0A /* WeasleyClock */ = {
+			isa = PBXGroup;
+			children = (
+				7FA1C8AB272CF46500D2B4E0 /* ClockView.swift */,
+				7F8A4FCD272FA8A900656E0A /* NeedleView.swift */,
+				7F4302642726D89400FA594F /* MainViewController.swift */,
+			);
+			path = WeasleyClock;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
