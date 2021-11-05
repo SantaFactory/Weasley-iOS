@@ -21,11 +21,7 @@ class Needle: UILabel {
             transform = CGAffineTransform(rotationAngle: deg2rad(needleRotation))
         }
     }
-    
-    func deg2rad(_ number: CGFloat) -> CGFloat {
-        return number * .pi / 180
-    }
-    
+
     func setUp() {
         textColor = .systemGreen
         font = .systemFont(ofSize: 30, weight: .bold)

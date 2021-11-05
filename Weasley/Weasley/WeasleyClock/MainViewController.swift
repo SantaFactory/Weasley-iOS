@@ -18,6 +18,12 @@ class MainViewController: UIViewController {
     var members = [Member(user: "doyoung lee", currentLoction: .home), Member(user: "jasper oh", currentLoction: .home), Member(user: "designer", currentLoction: .lost), Member(user: "investor", currentLoction: .travel), Member(user: "Android Dev", currentLoction: .work), Member(user: "analyst", currentLoction: .lost)]
     var needles = [Needle]()
     
+    private lazy var arcLocationLabel: LocationLabel = {
+        let label = LocationLabel()
+        label.backgroundColor = .clear
+        return label
+    }()
+    
     private lazy var clockView: Clock = {
         let view = Clock(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
         view.backgroundColor = .clear
@@ -32,8 +38,8 @@ class MainViewController: UIViewController {
             needle.value = member.currentLoction.location
             self.view.addSubview(needle)
             needle.snp.makeConstraints { make in
-                make.centerX.equalTo(clockView.snp.centerX)
-                make.centerY.equalTo(clockView.snp.centerY)
+                make.centerX.equalTo(arcLocationLabel.snp.centerX)
+                make.centerY.equalTo(arcLocationLabel.snp.centerY)
             }
             needles.append(needle)
         }
@@ -61,13 +67,19 @@ class MainViewController: UIViewController {
         locationManager.requestWhenInUseAuthorization()
         
         view.backgroundColor = .secondarySystemBackground
-        self.view.addSubview(clockView)
-        clockView.snp.makeConstraints { make in
-            make.top.equalToSuperview()
-            make.bottom.equalToSuperview()
-            make.leading.equalToSuperview()
-            make.trailing.equalToSuperview()
+        self.view.addSubview(arcLocationLabel)
+        arcLocationLabel.snp.makeConstraints { make in
+            make.height.equalTo(self.view.frame.width)
+            make.width.equalToSuperview()
+            make.centerY.equalToSuperview()
         }
+//        self.view.addSubview(clockView)
+//        clockView.snp.makeConstraints { make in
+//            make.top.equalToSuperview()
+//            make.bottom.equalToSuperview()
+//            make.leading.equalToSuperview()
+//            make.trailing.equalToSuperview()
+//        }
         loadNeeles()
         self.view.addSubview(signOutButton)
         signOutButton.snp.makeConstraints { make in
@@ -80,8 +92,8 @@ class MainViewController: UIViewController {
         relocateButton.snp.makeConstraints { make in
             make.height.equalTo(50)
             make.width.equalTo(50)
-            make.centerX.equalTo(clockView.snp.centerX)
-            make.centerY.equalTo(clockView.snp.centerY)
+            make.centerX.equalTo(arcLocationLabel.snp.centerX)
+            make.centerY.equalTo(arcLocationLabel.snp.centerY)
         }
     }
 
