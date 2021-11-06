@@ -110,7 +110,6 @@
 				7F43026E2726D89900FA594F /* Info.plist */,
 				7FA1C8A7272A867A00D2B4E0 /* GoogleService-Info.plist */,
 				7F8A4FCF272FB0F600656E0A /* View+SafeArea.swift */,
-				7F8A4FD82730D8A600656E0A /* Member.swift */,
 			);
 			path = Weasley;
 			sourceTree = "<group>";
@@ -135,6 +134,7 @@
 		7F8A4FD72730D6D700656E0A /* WeasleyClock */ = {
 			isa = PBXGroup;
 			children = (
+				7F8A4FD82730D8A600656E0A /* Member.swift */,
 				7FA1C8AB272CF46500D2B4E0 /* ClockView.swift */,
 				7F8A4FCD272FA8A900656E0A /* NeedleView.swift */,
 				7F8A500D2734D5F700656E0A /* LocationLabel.swift */,

@@ -24,6 +24,7 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        autoLogin()
         self.view.backgroundColor = .systemBackground
         self.view.addSubview(googleLoginButton)
         googleLoginButton.snp.makeConstraints { make in
@@ -31,6 +32,19 @@ class LoginViewController: UIViewController {
             make.bottom.equalToSuperview().offset(-40)
             make.leading.equalToSuperview().offset(20)
             make.trailing.equalToSuperview().offset(-20)
+        }
+    }
+    
+    func autoLogin() {
+        GIDSignIn.sharedInstance.restorePreviousSignIn { user, error in
+            if error == nil || user != nil {
+                print("Signed-In State")
+                let destinationVC = MainViewController()
+                destinationVC.modalPresentationStyle = .fullScreen
+                self.present(destinationVC, animated: true, completion: nil)
+            } else {
+                print("Signed-Out State")
+            }
         }
     }
 
@@ -47,7 +61,6 @@ extension LoginViewController {
                 return
             }
             guard let user = user else { return }
-            
             user.authentication.do { authentication, error in
                 guard error == nil else { return }
                 guard let authentication = authentication else { return }
@@ -60,9 +73,14 @@ extension LoginViewController {
                 APIManager().signInExample(idToken: idToken) { userInfo in
                     //TODO: 서버로 응답받은 데이터 가공하기
                     DispatchQueue.main.async {
-                        let destinationVC = MainViewController()
-                        destinationVC.modalPresentationStyle = .fullScreen
-                        self.present(destinationVC, animated: true, completion: nil)
+                        switch userInfo {
+                        case .failure:
+                            GIDSignIn.sharedInstance.signOut()
+                        case .success:
+                            let destinationVC = MainViewController()
+                            destinationVC.modalPresentationStyle = .fullScreen
+                            self.present(destinationVC, animated: true, completion: nil)
+                        }
                     }
                 }
 //MARK: 모듈화된 메소드 사용해보기

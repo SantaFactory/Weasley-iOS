@@ -67,7 +67,7 @@ class APIManager {
         - idToken: FireBase에서 제공받은 idToken
         - completion: response 데이터 가공하기
      */
-    func signInExample(idToken: String, completion: @escaping (User) -> Void) {
+    func signInExample(idToken: String, completion: @escaping (Result<User, APIError>) -> Void) {
         guard let authData = try? JSONEncoder().encode(Token(token: idToken)) else {
             return
         }
@@ -78,12 +78,18 @@ class APIManager {
         
         let task = URLSession.shared.uploadTask(with: request, from: authData) { data, response, error in
             // Handle response from your backend.
+            guard error != nil else {
+                completion(.failure(.urlNotSupport))
+                print("Error: \(error!.localizedDescription)")
+                return
+            }
             guard let resultData = data else {
                 print("Can't Parsing")
+                completion(.failure(.noData))
                 return
             }
             let result = self.userParseExample(resultData)
-            completion(result!)
+            completion(.success(result!))
         }
         task.resume()
     }
