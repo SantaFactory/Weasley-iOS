@@ -38,7 +38,6 @@ class LoginViewController: UIViewController {
     func autoLogin() {
         GIDSignIn.sharedInstance.restorePreviousSignIn { user, error in
             if error == nil || user != nil {
-                print("Signed-In State")
                 let destinationVC = MainViewController()
                 destinationVC.modalPresentationStyle = .fullScreen
                 self.present(destinationVC, animated: true, completion: nil)
@@ -71,24 +70,34 @@ extension LoginViewController {
                 }
                 //MARK: Sample Code [성공]
                 APIManager().signInExample(idToken: idToken) { userInfo in
-                    //TODO: 서버로 응답받은 데이터 가공하기
                     DispatchQueue.main.async {
                         switch userInfo {
                         case .failure:
+                            print("fail")
                             GIDSignIn.sharedInstance.signOut()
                         case .success:
-                            let destinationVC = MainViewController()
-                            destinationVC.modalPresentationStyle = .fullScreen
-                            self.present(destinationVC, animated: true, completion: nil)
+                            print("success")
+                            do {
+                                let value = try userInfo.get()
+                                APIManager().performSendUser(user: value) {
+                                    DispatchQueue.main.async {
+                                        let destinationVC = MainViewController()
+                                        destinationVC.modalPresentationStyle = .fullScreen
+                                        self.present(destinationVC, animated: true, completion: nil)
+                                    }
+                                }
+                            } catch {
+                                print("Error retrieving the value: \(error)")
+                            }
                         }
                     }
                 }
-//MARK: 모듈화된 메소드 사용해보기
-//                let token = Token(token: idToken)
-//                APIManager().performLogin(token: token) { tokenData in
-//                    //TODO: 서버로 응답받은 데이터 가공하기
-//
-//                }
+                //MARK: 모듈화된 메소드 사용해보기
+                //                let token = Token(token: idToken)
+                //                APIManager().performLogin(token: token) { tokenData in
+                //                    //TODO: 서버로 응답받은 데이터 가공하기
+                //
+                //                }
             }
         }
     }

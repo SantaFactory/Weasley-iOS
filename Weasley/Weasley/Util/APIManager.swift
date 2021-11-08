@@ -54,6 +54,23 @@ class APIManager {
         }
     }
     
+    let postUrl = "http://ec2-13-125-188-145.ap-northeast-2.compute.amazonaws.com:9000/posts/users"
+    
+    func performSendUser(user: User, completion: @escaping () -> Void) {
+        guard let url = URL(string: postUrl) else {
+            print("url not support")
+            return
+        }
+        print(url)
+        let resource = Resource<User>(url: url, method: .post(user))
+        session.load(resource) { resultData, _ in
+            guard let data = resultData else {
+                print("no data")
+                return
+            }
+            completion()
+        }
+    }
     /**
      구글에서 제공된 Post 샘플 코드
      
@@ -78,9 +95,10 @@ class APIManager {
         
         let task = URLSession.shared.uploadTask(with: request, from: authData) { data, response, error in
             // Handle response from your backend.
-            guard error != nil else {
+            print(error)
+            guard error == nil else {
                 completion(.failure(.urlNotSupport))
-                print("Error: \(error!.localizedDescription)")
+                print("Error: \(error?.localizedDescription ?? "Error Cant find")")
                 return
             }
             guard let resultData = data else {
