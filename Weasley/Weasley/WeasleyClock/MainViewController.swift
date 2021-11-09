@@ -13,7 +13,8 @@ import SnapKit
 class MainViewController: UIViewController {
 
     let locationManager = CLLocationManager()
-    
+    //MARK: Sample Location
+    var currentLocation: String? = nil
     //MARK: Sample members&needle properties
     var members = [Member(user: "doyoung lee", currentLoction: .home), Member(user: "jasper oh", currentLoction: .home), Member(user: "designer", currentLoction: .lost), Member(user: "investor", currentLoction: .travel), Member(user: "Android Dev", currentLoction: .work), Member(user: "analyst", currentLoction: .lost)]
     var needles = [Needle]()
@@ -64,7 +65,8 @@ class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         locationManager.delegate = self
-        locationManager.requestWhenInUseAuthorization()
+        locationManager.requestWhenInUseAuthorization() // 위치 서비스를 사용하기 위한 사용자 권한 요청
+        locationManager.requestLocation() // 사용자의 현재 위치에 대한 일회성 전달을 요청
         
         view.backgroundColor = .secondarySystemBackground
         self.view.addSubview(arcLocationLabel)
@@ -129,6 +131,13 @@ extension MainViewController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if let location = locations.last {
             locationManager.stopUpdatingLocation()
+            guard let currentLocation = currentLocation else {
+                let destinationVC = MapPinViewController()
+                destinationVC.modalPresentationStyle = .overFullScreen
+                present(destinationVC, animated: true, completion: nil)
+                return
+            }
+            print(currentLocation)
             let lat = location.coordinate.latitude
             let lon = location.coordinate.longitude
             print("Latitude: \(lat)\nLongitude: \(lon)")
@@ -136,6 +145,7 @@ extension MainViewController: CLLocationManagerDelegate {
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print("Cancel Location")
         print("Error: \(error.localizedDescription)")
     }
     
