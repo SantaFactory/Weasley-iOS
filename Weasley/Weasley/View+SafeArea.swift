@@ -14,4 +14,9 @@ extension UIView {
         return safeAreaLayoutGuide.snp
     }
     
+    func rounded(_ radius: CGFloat) {
+        self.layer.cornerRadius = radius
+    }
+ 
 }
+

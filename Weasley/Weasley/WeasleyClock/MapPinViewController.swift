@@ -9,16 +9,18 @@ import UIKit
 import SnapKit
 
 class MapPinViewController: UIViewController {
-
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    var buttonHeight: CGFloat = 40
+    
+    override func loadView() {
+        super.loadView()
         self.view.addSubview(backgroundBView)
         self.view.addSubview(welcomeLabel)
         self.view.addSubview(setHomeButton)
         self.view.addSubview(setSchoolButton)
         self.view.addSubview(setWorkButton)
-        self.view.addSubview(doneButton)
+        self.view.addSubview(skipButton)
+        
         backgroundBView.snp.makeConstraints { make in
             make.top.equalToSuperview()
             make.bottom.equalToSuperview()
@@ -31,33 +33,39 @@ class MapPinViewController: UIViewController {
             make.trailing.equalToSuperview().offset(-20)
         }
         setHomeButton.snp.makeConstraints { make in
-            make.bottom.equalTo(self.setSchoolButton.snp.top).offset(-20)
+            make.bottom.equalTo(self.setSchoolButton.snp.top).offset(-10)
             make.leading.equalToSuperview().offset(20)
             make.trailing.equalToSuperview().offset(-20)
-            make.height.equalTo(60)
+            make.height.equalTo(buttonHeight)
         }
         setSchoolButton.snp.makeConstraints { make in
-            make.bottom.equalTo(self.setWorkButton.snp.top).offset(-20)
+            make.bottom.equalTo(self.setWorkButton.snp.top).offset(-10)
             make.leading.equalToSuperview().offset(20)
             make.trailing.equalToSuperview().offset(-20)
-            make.height.equalTo(60)
+            make.height.equalTo(buttonHeight)
         }
         setWorkButton.snp.makeConstraints { make in
-            make.bottom.equalTo(self.doneButton.snp.top).offset(-20)
+            make.bottom.equalTo(self.skipButton.snp.top).offset(-10)
             make.leading.equalToSuperview().offset(20)
             make.trailing.equalToSuperview().offset(-20)
-            make.height.equalTo(60)
+            make.height.equalTo(buttonHeight)
         }
-        doneButton.snp.makeConstraints { make in
-            make.bottom.equalTo(self.view.safeArea.bottom).offset(20)
+        skipButton.snp.makeConstraints { make in
+            make.bottom.equalTo(self.view.safeArea.bottom).offset(-20)
             make.leading.equalToSuperview().offset(20)
             make.trailing.equalToSuperview().offset(-20)
-            make.height.equalTo(60)
+            make.height.equalTo(buttonHeight)
         }
+
     }
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+    }
     private lazy var welcomeLabel: UILabel = {
         let label = UILabel()
+        label.numberOfLines = 0
         label.text = "Where your current loaction?"
         label.textColor = .white
         label.font = UIFont.systemFont(ofSize: 40, weight: .bold)
@@ -72,37 +80,46 @@ class MapPinViewController: UIViewController {
     
     private lazy var setHomeButton: UIButton = {
         let button = UIButton()
-        button.setTitle("Home", for: .normal)
-        button.setTitleColor(.white, for: .normal)
-        button.addTarget(self, action: #selector(setHome), for: .touchUpInside)
         button.backgroundColor = .blue
+        button.setTitleColor(.white, for: .normal)
+        button.setTitle("Home", for: .normal)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 18, weight: .semibold)
+        button.addTarget(self, action: #selector(setHome), for: .touchUpInside)
+        button.rounded(buttonHeight / 2)
         return button
     }()
     
     
     private lazy var setSchoolButton: UIButton = {
         let button = UIButton()
-        button.backgroundColor = .yellow
+        button.backgroundColor = .blue
         button.setTitleColor(.white, for: .normal)
         button.setTitle("School", for: .normal)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 18, weight: .semibold)
         button.addTarget(self, action: #selector(setSchool), for: .touchUpInside)
+        button.rounded(buttonHeight / 2)
         return button
     }()
     
     private lazy var setWorkButton: UIButton = {
         let button = UIButton()
-        button.backgroundColor = .orange
+        button.backgroundColor = .blue
         button.setTitleColor(.white, for: .normal)
         button.setTitle("Work", for: .normal)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 18, weight: .semibold)
         button.addTarget(self, action: #selector(setWork), for: .touchUpInside)
+        button.rounded(buttonHeight / 2)
         return button
     }()
     
-    private lazy var doneButton: UIButton = {
+    private lazy var skipButton: UIButton = {
         let button = UIButton()
         button.backgroundColor = .black
         button.setTitleColor(.white, for: .normal)
-        button.addTarget(self, action: #selector(doneSet), for: .touchUpInside)
+        button.setTitle("Skip", for: .normal)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 18, weight: .semibold)
+        button.addTarget(self, action: #selector(skipSet), for: .touchUpInside)
+        button.rounded(buttonHeight / 2)
         return button
     }()
 
@@ -111,19 +128,18 @@ class MapPinViewController: UIViewController {
 extension MapPinViewController {
     
     @objc private func setHome(_ sender: UIButton) {
-        print("Home")
+     
     }
     
     @objc private func setSchool(_ sender: UIButton) {
-        print("School")
+      
     }
     
     @objc private func setWork(_ sender: UIButton) {
-        print("Work")
+     
     }
     
-    @objc private func doneSet() {
-        //TODO: Set API Post
+    @objc private func skipSet() {
         dismiss(animated: true, completion: nil)
     }
 }
