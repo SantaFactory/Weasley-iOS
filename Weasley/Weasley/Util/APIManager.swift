@@ -7,6 +7,8 @@
 
 import Foundation
 
+fileprivate let url = "http://ec2-13-125-188-145.ap-northeast-2.compute.amazonaws.com:9000/"
+
 class APIManager {
     
     enum APIError: LocalizedError {
@@ -20,12 +22,11 @@ class APIManager {
         }
     }
     
-    let url = "http://ec2-13-125-188-145.ap-northeast-2.compute.amazonaws.com:9000/tokensignin"
     
     private lazy var session = URLSession(configuration: .default)
     
     func performGet(completion: @escaping (Result<User, APIError>) -> Void) {
-        guard let url = URL(string: url) else {
+        guard let url = URL(string: "\(url)tokensignin") else {
             completion(.failure(.urlNotSupport))
             return
         }
@@ -54,10 +55,9 @@ class APIManager {
         }
     }
     
-    let postUrl = "http://ec2-13-125-188-145.ap-northeast-2.compute.amazonaws.com:9000/posts/users"
     
     func performSendUser(user: User, completion: @escaping () -> Void) {
-        guard let url = URL(string: postUrl) else {
+        guard let url = URL(string: "\(url)posts/users") else {
             print("url not support")
             return
         }
