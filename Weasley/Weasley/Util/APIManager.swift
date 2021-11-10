@@ -25,13 +25,13 @@ class APIManager {
     
     private lazy var session = URLSession(configuration: .default)
     
-    func performGetLocation(lat: String, long: String, completion: @escaping (Result<User, APIError>) -> Void) {
+    func performGetLocation(lat: String, long: String, completion: @escaping (Result<UserInfo, APIError>) -> Void) {
 //        guard let url = URL(string: "\(url)tokensignin") else {
 //            completion(.failure(.urlNotSupport))
 //            return
 //        }
         let location = ["lat": lat, "lon": long]
-        let resource = Resource<User>(url: url, parameters: location)
+        let resource = Resource<UserInfo>(url: url, parameters: location)
         session.load(resource) { resultDatas, _ in
             guard let data = resultDatas else {
                 completion(.failure(.noData))
@@ -41,12 +41,12 @@ class APIManager {
         }
     }
     
-    func performLogin(token: Token, completion: @escaping (Result<User, APIError>) -> Void) {
+    func performLogin(token: Token, completion: @escaping (Result<UserInfo, APIError>) -> Void) {
         guard let url = URL(string: "\(url)/tokensignin") else {
             completion(.failure(.urlNotSupport))
             return
         }
-        let resource = Resource<User>(url: url, method: .post(token))
+        let resource = Resource<UserInfo>(url: url, method: .post(token))
         session.load(resource) { resultData, _ in
             guard let data = resultData else {
                 completion(.failure(.noData))
@@ -57,13 +57,13 @@ class APIManager {
     }
     
     
-    func performRequestUser(user: User, completion: @escaping () -> Void) {
+    func performRequestUser(user: UserInfo, completion: @escaping () -> Void) {
         guard let url = URL(string: "\(url)/posts/users") else {
             print("url not support")
             return
         }
         print(url)
-        let resource = Resource<User>(url: url, method: .post(user))
+        let resource = Resource<UserInfo>(url: url, method: .post(user))
         session.load(resource) { resultData, _ in
             guard let data = resultData else {
                 print("no data")
