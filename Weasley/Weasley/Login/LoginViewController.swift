@@ -107,7 +107,7 @@ extension LoginViewController {
                         //TODO: User default에 sub & email 저장
                         do {
                             let value = try tokenData.get()
-                            APIManager().performSendUser(user: value) {
+                            APIManager().performRequestUser(user: value) {
                                 DispatchQueue.main.async {
                                     //TODO: reponse data 저장
                                     let destinationVC = MainViewController()

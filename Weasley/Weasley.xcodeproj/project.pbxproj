@@ -111,7 +111,6 @@
 				7F43026B2726D89900FA594F /* LaunchScreen.storyboard */,
 				7F43026E2726D89900FA594F /* Info.plist */,
 				7FA1C8A7272A867A00D2B4E0 /* GoogleService-Info.plist */,
-				7F8A4FCF272FB0F600656E0A /* View+SafeArea.swift */,
 			);
 			path = Weasley;
 			sourceTree = "<group>";
@@ -130,6 +129,7 @@
 			children = (
 				7FA1C8A9272B83E800D2B4E0 /* APIManager.swift */,
 				7F8A500F2734D65D00656E0A /* DegreesToRadians.swift */,
+				7F8A4FCF272FB0F600656E0A /* View+SafeArea.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";

@@ -13,8 +13,40 @@ import SnapKit
 class MainViewController: UIViewController {
 
     let locationManager = CLLocationManager()
-    //MARK: Sample Location
-    var currentLocation: String? = nil
+    
+    override func loadView() {
+        super.loadView()
+        view.backgroundColor = .secondarySystemBackground
+        self.view.addSubview(arcLocationLabel)
+        arcLocationLabel.snp.makeConstraints { make in
+            make.height.equalTo(self.view.frame.width)
+            make.width.equalToSuperview()
+            make.centerY.equalToSuperview()
+        }
+        self.view.addSubview(signOutButton)
+        signOutButton.snp.makeConstraints { make in
+            make.height.equalTo(50)
+            make.width.equalTo(50)
+            make.trailing.equalToSuperview().offset(-20)
+            make.top.equalTo(self.view.safeArea.top).offset(20)
+        }
+        self.view.addSubview(relocateButton)
+        relocateButton.snp.makeConstraints { make in
+            make.height.equalTo(50)
+            make.width.equalTo(50)
+            make.centerX.equalTo(arcLocationLabel.snp.centerX)
+            make.centerY.equalTo(arcLocationLabel.snp.centerY)
+        }
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        locationManager.delegate = self
+        locationManager.requestWhenInUseAuthorization() // 위치 서비스를 사용하기 위한 사용자 권한 요청
+        locationManager.requestLocation() // 사용자의 현재 위치에 대한 일회성 전달을 요청
+        loadNeeles()
+    }
+    
     //MARK: Sample members&needle properties
     var members = [Member(user: "doyoung lee", currentLoction: .home), Member(user: "jasper oh", currentLoction: .home), Member(user: "designer", currentLoction: .lost), Member(user: "investor", currentLoction: .travel), Member(user: "Android Dev", currentLoction: .work), Member(user: "analyst", currentLoction: .lost)]
     var needles = [Needle]()
@@ -62,42 +94,6 @@ class MainViewController: UIViewController {
         return button
     }()
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        locationManager.delegate = self
-        locationManager.requestWhenInUseAuthorization() // 위치 서비스를 사용하기 위한 사용자 권한 요청
-        locationManager.requestLocation() // 사용자의 현재 위치에 대한 일회성 전달을 요청
-        
-        view.backgroundColor = .secondarySystemBackground
-        self.view.addSubview(arcLocationLabel)
-        arcLocationLabel.snp.makeConstraints { make in
-            make.height.equalTo(self.view.frame.width)
-            make.width.equalToSuperview()
-            make.centerY.equalToSuperview()
-        }
-//        self.view.addSubview(clockView)
-//        clockView.snp.makeConstraints { make in
-//            make.top.equalToSuperview()
-//            make.bottom.equalToSuperview()
-//            make.leading.equalToSuperview()
-//            make.trailing.equalToSuperview()
-//        }
-        loadNeeles()
-        self.view.addSubview(signOutButton)
-        signOutButton.snp.makeConstraints { make in
-            make.height.equalTo(50)
-            make.width.equalTo(50)
-            make.trailing.equalToSuperview().offset(-20)
-            make.top.equalTo(self.view.safeArea.top).offset(20)
-        }
-        self.view.addSubview(relocateButton)
-        relocateButton.snp.makeConstraints { make in
-            make.height.equalTo(50)
-            make.width.equalTo(50)
-            make.centerX.equalTo(arcLocationLabel.snp.centerX)
-            make.centerY.equalTo(arcLocationLabel.snp.centerY)
-        }
-    }
 
 }
 
