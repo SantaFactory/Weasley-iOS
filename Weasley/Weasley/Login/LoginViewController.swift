@@ -12,6 +12,22 @@ import GoogleSignIn
 
 class LoginViewController: UIViewController {
 
+    override func loadView() {
+        super.loadView()
+        self.view.backgroundColor = .systemBackground
+        self.view.addSubview(googleLoginButton)
+        googleLoginButton.snp.makeConstraints { make in
+            make.height.equalTo(50)
+            make.bottom.equalToSuperview().offset(-40)
+            make.leading.equalToSuperview().offset(20)
+            make.trailing.equalToSuperview().offset(-20)
+        }
+    }
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        autoLogin()
+    }
+    
     private lazy var googleLoginButton: UIButton = {
         let button = UIButton()
         button.backgroundColor = #colorLiteral(red: 0.2745098039, green: 0.5333333333, blue: 0.9333333333, alpha: 1)
@@ -22,20 +38,7 @@ class LoginViewController: UIViewController {
         return button
     }()
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        autoLogin()
-        self.view.backgroundColor = .systemBackground
-        self.view.addSubview(googleLoginButton)
-        googleLoginButton.snp.makeConstraints { make in
-            make.height.equalTo(50)
-            make.bottom.equalToSuperview().offset(-40)
-            make.leading.equalToSuperview().offset(20)
-            make.trailing.equalToSuperview().offset(-20)
-        }
-    }
-    
-    func autoLogin() {
+    private func autoLogin() {
         GIDSignIn.sharedInstance.restorePreviousSignIn { user, error in
             if error == nil || user != nil {
                 let destinationVC = MainViewController()
@@ -69,35 +72,54 @@ extension LoginViewController {
                     return
                 }
                 //MARK: Sample Code [성공]
-                APIManager().signInExample(idToken: idToken) { userInfo in
-                    DispatchQueue.main.async {
-                        switch userInfo {
-                        case .failure:
-                            print("fail")
-                            GIDSignIn.sharedInstance.signOut()
-                        case .success:
-                            print("success")
-                            do {
-                                let value = try userInfo.get()
-                                APIManager().performSendUser(user: value) {
-                                    DispatchQueue.main.async {
-                                        let destinationVC = MainViewController()
-                                        destinationVC.modalPresentationStyle = .fullScreen
-                                        self.present(destinationVC, animated: true, completion: nil)
-                                    }
+                //                APIManager().signInExample(idToken: idToken) { userInfo in
+                //                    DispatchQueue.main.async {
+                //                        switch userInfo {
+                //                        case .failure:
+                //                            print("fail")
+                //                            GIDSignIn.sharedInstance.signOut()
+                //                        case .success:
+                //                            print("success")
+                //                            do {
+                //                                let value = try userInfo.get()
+                //                                APIManager().performSendUser(user: value) {
+                //                                    DispatchQueue.main.async {
+                //                                        let destinationVC = MainViewController()
+                //                                        destinationVC.modalPresentationStyle = .fullScreen
+                //                                        self.present(destinationVC, animated: true, completion: nil)
+                //                                    }
+                //                                }
+                //                            } catch {
+                //                                print("Error retrieving the value: \(error)")
+                //                            }
+                //                        }
+                //                    }
+                //                }
+                //MARK: 모듈화된 메소드 사용해보기
+                let token = Token(token: idToken)
+                APIManager().performLogin(token: token) { tokenData in
+                    //TODO: 서버로 응답받은 데이터 가공하기
+                    switch tokenData {
+                    case .failure:
+                        print("fail")
+                        GIDSignIn.sharedInstance.signOut()
+                    case .success:
+                        //TODO: User default에 sub & email 저장
+                        do {
+                            let value = try tokenData.get()
+                            APIManager().performSendUser(user: value) {
+                                DispatchQueue.main.async {
+                                    //TODO: reponse data 저장
+                                    let destinationVC = MainViewController()
+                                    destinationVC.modalPresentationStyle = .fullScreen
+                                    self.present(destinationVC, animated: true, completion: nil)
                                 }
-                            } catch {
-                                print("Error retrieving the value: \(error)")
                             }
+                        } catch {
+                            print("Error retrieving the value: \(error)")
                         }
                     }
                 }
-                //MARK: 모듈화된 메소드 사용해보기
-                //                let token = Token(token: idToken)
-                //                APIManager().performLogin(token: token) { tokenData in
-                //                    //TODO: 서버로 응답받은 데이터 가공하기
-                //
-                //                }
             }
         }
     }
