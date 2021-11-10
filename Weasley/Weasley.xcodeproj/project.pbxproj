@@ -129,6 +129,7 @@
 			isa = PBXGroup;
 			children = (
 				7FA1C8A9272B83E800D2B4E0 /* APIManager.swift */,
+				7F8A500F2734D65D00656E0A /* DegreesToRadians.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -142,7 +143,6 @@
 				7F8A500D2734D5F700656E0A /* LocationLabel.swift */,
 				7F4302642726D89400FA594F /* MainViewController.swift */,
 				7F8A4FDA2730F02000656E0A /* Location.swift */,
-				7F8A500F2734D65D00656E0A /* DegreesToRadians.swift */,
 				7FE879E02738E9FE00301A94 /* MapPinViewController.swift */,
 			);
 			path = WeasleyClock;
