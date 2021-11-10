@@ -12,6 +12,7 @@ import GoogleSignIn
 class Login {
     
     let userDefault = UserDefaults.standard
+    
     func autoLogin(completion: @escaping () -> Void) {
         GIDSignIn.sharedInstance.restorePreviousSignIn { user, error in
             if error == nil || user != nil {
