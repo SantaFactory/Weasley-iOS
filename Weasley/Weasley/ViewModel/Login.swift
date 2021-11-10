@@ -56,6 +56,7 @@ class Login {
                                 }
                             }
                         } catch {
+                            GIDSignIn.sharedInstance.signOut()
                             print("Error retrieving the value: \(error)")
                         }
                     }
