@@ -7,7 +7,7 @@
 
 import Foundation
 
-fileprivate let url = "http://ec2-13-125-188-145.ap-northeast-2.compute.amazonaws.com:9000/"
+fileprivate let url = "http://ec2-13-125-188-145.ap-northeast-2.compute.amazonaws.com:9000"
 
 class APIManager {
     
@@ -25,12 +25,13 @@ class APIManager {
     
     private lazy var session = URLSession(configuration: .default)
     
-    func performGet(completion: @escaping (Result<User, APIError>) -> Void) {
-        guard let url = URL(string: "\(url)tokensignin") else {
-            completion(.failure(.urlNotSupport))
-            return
-        }
-        let resource = Resource<User>(url: url)
+    func performGetLocation(lat: String, long: String, completion: @escaping (Result<User, APIError>) -> Void) {
+//        guard let url = URL(string: "\(url)tokensignin") else {
+//            completion(.failure(.urlNotSupport))
+//            return
+//        }
+        let location = ["lat": lat, "lon": long]
+        let resource = Resource<User>(url: url, parameters: location)
         session.load(resource) { resultDatas, _ in
             guard let data = resultDatas else {
                 completion(.failure(.noData))
@@ -41,7 +42,7 @@ class APIManager {
     }
     
     func performLogin(token: Token, completion: @escaping (Result<User, APIError>) -> Void) {
-        guard let url = URL(string: url) else {
+        guard let url = URL(string: "\(url)/tokensignin") else {
             completion(.failure(.urlNotSupport))
             return
         }
@@ -56,8 +57,8 @@ class APIManager {
     }
     
     
-    func performSendUser(user: User, completion: @escaping () -> Void) {
-        guard let url = URL(string: "\(url)posts/users") else {
+    func performRequestUser(user: User, completion: @escaping () -> Void) {
+        guard let url = URL(string: "\(url)/posts/users") else {
             print("url not support")
             return
         }
@@ -88,7 +89,7 @@ class APIManager {
         guard let authData = try? JSONEncoder().encode(Token(token: idToken)) else {
             return
         }
-        let url = URL(string: url)!
+        let url = URL(string: "\(url)/tokensignin")!
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")

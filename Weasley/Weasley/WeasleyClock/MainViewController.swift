@@ -131,16 +131,20 @@ extension MainViewController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if let location = locations.last {
             locationManager.stopUpdatingLocation()
-            guard let currentLocation = currentLocation else {
-                let destinationVC = MapPinViewController()
-                destinationVC.modalPresentationStyle = .overFullScreen
-                present(destinationVC, animated: true, completion: nil)
-                return
+            let lat = String(format: "%.4f", location.coordinate.latitude)
+            let long = String(format: "%.4f", location.coordinate.longitude)
+            APIManager().performGetLocation(lat: lat, long: long) { _ in
+                print("Get Data")
+                /*
+                 if _ == nil {
+                 let destinationVC = MapPinViewController()
+                 destinationVC.modalPresentationStyle = .overFullScreen
+                 present(destinationVC, animated: true, completion: nil)
+                 } else {
+                 //MARK: Update View
+                 }
+                 */
             }
-            print(currentLocation)
-            let lat = location.coordinate.latitude
-            let lon = location.coordinate.longitude
-            print("Latitude: \(lat)\nLongitude: \(lon)")
         }
     }
     
