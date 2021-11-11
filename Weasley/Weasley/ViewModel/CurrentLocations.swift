@@ -24,7 +24,7 @@ class CurrentLocations {
     }
     //TODO: 맴버들 가져오기
     func getMember() {
-        groupMembers.append(Member(user: <#T##User#>, currentLoction: <#T##Location#>))
+    
     }
     //TODO: 맴버들 위치 가져오기
     

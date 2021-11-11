@@ -13,7 +13,7 @@ import SnapKit
 class MainViewController: UIViewController {
 
     let locationManager = CLLocationManager()
-    let viewModel = CurrentLocations()
+    let viewModel = CurrentLocations().share
     lazy var members = viewModel.groupMembers
     
     override func loadView() {
