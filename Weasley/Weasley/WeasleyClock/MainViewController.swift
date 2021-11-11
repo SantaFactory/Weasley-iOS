@@ -13,6 +13,8 @@ import SnapKit
 class MainViewController: UIViewController {
 
     let locationManager = CLLocationManager()
+    let viewModel = CurrentLocations()
+    lazy var members = viewModel.groupMembers
     
     override func loadView() {
         super.loadView()
@@ -47,8 +49,21 @@ class MainViewController: UIViewController {
         loadNeeles()
     }
     
+    func loadNeeles() {
+        for member in members {
+            let needle = Needle()
+            needle.text = member.user.email
+            needle.id = member.user.sub
+            needle.value = member.currentLoction.location
+            self.view.addSubview(needle)
+            needle.snp.makeConstraints { make in
+                make.centerX.equalTo(arcLocationLabel.snp.centerX)
+                make.centerY.equalTo(arcLocationLabel.snp.centerY)
+            }
+            needles.append(needle)
+        }
+    }
     //MARK: Sample members&needle properties
-    var members = [Member(user: "doyoung lee", currentLoction: .home), Member(user: "jasper oh", currentLoction: .home), Member(user: "designer", currentLoction: .lost), Member(user: "investor", currentLoction: .travel), Member(user: "Android Dev", currentLoction: .work), Member(user: "analyst", currentLoction: .lost)]
     var needles = [Needle]()
     
     private lazy var arcLocationLabel: LocationLabel = {
@@ -62,21 +77,6 @@ class MainViewController: UIViewController {
         view.backgroundColor = .clear
         return view
     }()
-    
-    func loadNeeles() {
-        for member in members {
-            let needle = Needle()
-            needle.text = "\t\(member.user.uppercased())"
-            needle.id = member.user
-            needle.value = member.currentLoction.location
-            self.view.addSubview(needle)
-            needle.snp.makeConstraints { make in
-                make.centerX.equalTo(arcLocationLabel.snp.centerX)
-                make.centerY.equalTo(arcLocationLabel.snp.centerY)
-            }
-            needles.append(needle)
-        }
-    }
     
     private lazy var signOutButton: UIButton = {
         let button = UIButton()
@@ -106,19 +106,17 @@ extension MainViewController {
     
     //MARK: Sample Method
     @objc func reLocate() {
-        var me = members.first {
-            $0.user == "doyoung lee"
+        
         }
-        let needle = needles.first {
-            $0.id == me?.user
-        }
-        me!.currentLoction = .move
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-            UIView.animate(withDuration: 1) {
-                needle?.value = me!.currentLoction.location
-            }
-        }
-    }
+//        let needle = needles.first {
+//            $0.id == me?.user
+//        }
+//        me!.currentLoction =
+//        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+//            UIView.animate(withDuration: 1) {
+//                needle?.value = me!.currentLoction.location
+//            }
+//        }
 }
 
 extension MainViewController: CLLocationManagerDelegate {
@@ -128,7 +126,7 @@ extension MainViewController: CLLocationManagerDelegate {
             locationManager.stopUpdatingLocation()
             let lat = String(format: "%.4f", location.coordinate.latitude)
             let long = String(format: "%.4f", location.coordinate.longitude)
-            APIManager().performGetLocation(lat: lat, long: long) { _ in
+            viewModel.getLocation(latitude: lat, longitude: long) {
                 print("Get Data")
                 /*
                  if _ == nil {

@@ -8,8 +8,7 @@
 import Foundation
 
 struct Member {
-    var user: String //MARK: User로 변경
-    //var locations: [Location]
+    var user: UserInfo
     var currentLoction: Location
 }
 
