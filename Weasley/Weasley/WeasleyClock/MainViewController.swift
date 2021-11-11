@@ -53,18 +53,17 @@ class MainViewController: UIViewController {
         for member in members {
             let needle = Needle()
             needle.text = member.user.email
-            needle.id = member.user.sub
             needle.value = member.currentLoction.location
             self.view.addSubview(needle)
             needle.snp.makeConstraints { make in
                 make.centerX.equalTo(arcLocationLabel.snp.centerX)
                 make.centerY.equalTo(arcLocationLabel.snp.centerY)
             }
-            needles.append(needle)
+            needles.updateValue(needle, forKey: member.user.sub)
         }
     }
     //MARK: Sample members&needle properties
-    var needles = [Needle]()
+    var needles = [String : Needle]()
     
     private lazy var arcLocationLabel: LocationLabel = {
         let label = LocationLabel()
