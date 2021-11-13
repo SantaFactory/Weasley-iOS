@@ -7,14 +7,14 @@
 
 import UIKit
 import CoreLocation
-import GoogleSignIn
 import SnapKit
 
 class MainViewController: UIViewController {
 
     let locationManager = CLLocationManager()
-    let viewModel = CurrentLocations().share
+    let viewModel = CurrentLocations.share
     lazy var members = viewModel.groupMembers
+    var needles = [String : Needle]()
     
     override func loadView() {
         super.loadView()
@@ -39,17 +39,18 @@ class MainViewController: UIViewController {
             make.centerX.equalTo(arcLocationLabel.snp.centerX)
             make.centerY.equalTo(arcLocationLabel.snp.centerY)
         }
+        print("Load View")
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        loadNeedles()
         locationManager.delegate = self
         locationManager.requestWhenInUseAuthorization() // 위치 서비스를 사용하기 위한 사용자 권한 요청
         locationManager.requestLocation() // 사용자의 현재 위치에 대한 일회성 전달을 요청
-        loadNeeles()
     }
     
-    func loadNeeles() {
+    func loadNeedles() {
         for member in members {
             let needle = Needle()
             needle.text = member.user.email
@@ -62,15 +63,24 @@ class MainViewController: UIViewController {
             needles.updateValue(needle, forKey: member.user.sub)
         }
     }
-    //MARK: Sample members&needle properties
-    var needles = [String : Needle]()
+
+    //MARK: Sample load view
+    func moveNeedle(_ member: Member) {
+        DispatchQueue.main.async {
+            UIView.animate(withDuration: 1) {
+                self.needles[member.user.sub]?.value = member.currentLoction.location
+            }
+        }
+    }
     
+    //MARK: UIView
     private lazy var arcLocationLabel: LocationLabel = {
         let label = LocationLabel()
         label.backgroundColor = .clear
         return label
     }()
     
+    //MARK: Clock Background
     private lazy var clockView: Clock = {
         let view = Clock(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
         view.backgroundColor = .clear
@@ -98,24 +108,14 @@ class MainViewController: UIViewController {
 extension MainViewController {
     
     @objc func signOut() {
-        print("Sign Out")
-        GIDSignIn.sharedInstance.signOut()
+        Login().signOut()
         dismiss(animated: true, completion: nil)
     }
     
     //MARK: Sample Method
     @objc func reLocate() {
-        
-        }
-//        let needle = needles.first {
-//            $0.id == me?.user
-//        }
-//        me!.currentLoction =
-//        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-//            UIView.animate(withDuration: 1) {
-//                needle?.value = me!.currentLoction.location
-//            }
-//        }
+        locationManager.requestLocation()
+    }
 }
 
 extension MainViewController: CLLocationManagerDelegate {
@@ -125,17 +125,34 @@ extension MainViewController: CLLocationManagerDelegate {
             locationManager.stopUpdatingLocation()
             let lat = String(format: "%.4f", location.coordinate.latitude)
             let long = String(format: "%.4f", location.coordinate.longitude)
-            viewModel.getLocation(latitude: lat, longitude: long) {
-                print("Get Data")
-                /*
-                 if _ == nil {
-                 let destinationVC = MapPinViewController()
-                 destinationVC.modalPresentationStyle = .overFullScreen
-                 present(destinationVC, animated: true, completion: nil)
-                 } else {
-                 //MARK: Update View
-                 }
-                 */
+            print("\(lat) & \(long)")
+//            viewModel.getLocation(latitude: lat, longitude: long) {
+//                print("Get Data")
+//                /*
+//                 if _ == nil {
+//                 let destinationVC = MapPinViewController()
+//                 destinationVC.modalPresentationStyle = .overFullScreen
+//                 present(destinationVC, animated: true, completion: nil)
+//                 } else {
+//                 //MARK: Update View
+//                 }
+//                 */
+//            }
+            //MARK: Sample Updata Location
+            var member = viewModel.currentMember
+            if member != nil {
+                switch [lat:long] {
+                case ["37.2422":"127.0599"]:
+                    member?.currentLoction = .home
+                    print("at home")
+                case ["37.3654":"127.1075"]:
+                    member?.currentLoction = .work
+                    print("working")
+                default:
+                    member?.currentLoction = .move
+                    print("move to anywhere")
+                }
+                moveNeedle(member!)
             }
         }
     }

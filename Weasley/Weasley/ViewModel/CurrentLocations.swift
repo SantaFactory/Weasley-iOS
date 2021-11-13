@@ -9,11 +9,13 @@ import Foundation
 
 class CurrentLocations {
     
-    let share = CurrentLocations()
+    static var share = CurrentLocations()
     init() {    }
-    var groupMembers = [Member]()
-    let currentUser: UserInfo = UserDefaults.standard.object(forKey: "userLogin") as! UserInfo
-    
+    var groupMembers = [Member(user: UserInfo(sub: "111", email: "qwerty@apple.com"), currentLoction: .lost)] //MARK: Sample Data
+//    let currentUser: UserInfo = UserDefaults.standard.object(forKey: "userLogin") as! UserInfo
+    lazy var currentMember = groupMembers.first {
+        $0.user.sub == "111"//currentUser.sub
+    }
     // 사용자 위치 업데이트하기
     func getLocation(latitude: String, longitude: String, completion: @escaping () -> Void) {
         APIManager().performGetLocation(lat: latitude, long: longitude) { _ in
