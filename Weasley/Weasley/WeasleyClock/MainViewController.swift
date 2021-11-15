@@ -11,6 +11,10 @@ import SnapKit
 
 class MainViewController: UIViewController {
 
+    //MARK: Sample Property
+    var latitude = ""
+    var longitude = ""
+    
     let locationManager = CLLocationManager()
     let viewModel = CurrentLocations.share
     lazy var members = viewModel.groupMembers
@@ -42,7 +46,14 @@ class MainViewController: UIViewController {
             make.centerX.equalTo(arcLocationLabel.snp.centerX)
             make.centerY.equalTo(arcLocationLabel.snp.centerY)
         }
-        print("Load View")
+        //MARK: Sample UI
+        self.view.addSubview(editButton)
+        editButton.snp.makeConstraints { make in
+            make.top.equalTo(arcLocationLabel.snp.bottom).offset(10)
+            make.leading.equalToSuperview().offset(20)
+            make.height.equalTo(50)
+            make.width.equalTo(50)
+        }
     }
     
     override func viewDidLoad() {
@@ -56,7 +67,7 @@ class MainViewController: UIViewController {
     func loadNeedles() {
         for member in members {
             let needle = Needle()
-            needle.text = member.user.email
+            needle.text = "Doyoung"
             needle.value = member.currentLoction.location
             self.view.addSubview(needle)
             needle.snp.makeConstraints { make in
@@ -106,6 +117,13 @@ class MainViewController: UIViewController {
         return button
     }()
     
+    //MARK: Sample Button
+    private lazy var editButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("Edit", for: .normal)
+        button.addTarget(self, action: #selector(goEdit), for: .touchUpInside)
+        return button
+    }()
 }
 
 extension MainViewController {
@@ -119,6 +137,14 @@ extension MainViewController {
     @objc func reLocate() {
         locationManager.requestLocation()
     }
+    
+    @objc func goEdit() {
+        let destinationVC = MapPinViewController()
+        destinationVC.lat = latitude
+        destinationVC.long = longitude
+        destinationVC.modalPresentationStyle = .overFullScreen
+        present(destinationVC, animated: true, completion: nil)
+    }
 }
 
 extension MainViewController: CLLocationManagerDelegate {
@@ -126,43 +152,58 @@ extension MainViewController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if let location = locations.last {
             locationManager.stopUpdatingLocation()
-            let lat = String(format: "%.4f", location.coordinate.latitude)
-            let long = String(format: "%.4f", location.coordinate.longitude)
+            let digit: Double = pow(10, 3)
+            let lat = String(round(location.coordinate.latitude * digit) / digit)
+            let long = String(round(location.coordinate.longitude * digit) / digit)
+            self.latitude = lat
+            self.longitude = long
             print("\(lat) & \(long)")
-//            viewModel.getLocation(latitude: lat, longitude: long) {
-//                print("Get Data")
-//                /*
-//                 if _ == nil {
-//                 let destinationVC = MapPinViewController()
-//                 destinationVC.modalPresentationStyle = .overFullScreen
-//                 present(destinationVC, animated: true, completion: nil)
-//                 } else {
-//                 //MARK: Update View
-//                 }
-//                 */
-//            }
-            //MARK: Sample Updata Location
-            var member = viewModel.currentMember
-            if member != nil {
-                switch [lat:long] {
-                case ["37.2422":"127.0599"]:
-                    member?.currentLoction = .home
-                    print("at home")
-                case ["37.3654":"127.1075"]:
-                    member?.currentLoction = .work
-                    print("working")
-                default:
-                    member?.currentLoction = .move
-                    print("move to anywhere")
-                }
-                moveNeedle(member!)
+            viewModel.postLocation(latitude: lat, longitude: long) {
+                print("Success Post Data")
+                /*
+                 if _ == nil {
+                 let destinationVC = MapPinViewController()
+                 destinationVC.modalPresentationStyle = .overFullScreen
+                 present(destinationVC, animated: true, completion: nil)
+                 } else {
+                 //MARK: Update View
+                 }
+                 */
             }
+            //MARK: Sample Updata Location
+//            var member = viewModel.currentMember
+//            if member != nil {
+//                switch [lat:long] {
+//                case ["37.2422":"127.0599"]:
+//                    member?.currentLoction = .home
+//                    print("at home")
+//                case ["37.3654":"127.1075"]:
+//                    member?.currentLoction = .work
+//                    print("working")
+//                default:
+//                    member?.currentLoction = .move
+//                    print("move to anywhere")
+//                }
+//                moveNeedle(member!)
+//            }
         }
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         print("Cancel Location")
         print("Error: \(error.localizedDescription)")
+//        viewModel.postLocation(latitude: "?", longitude: "?") {
+//            print("Success Post Data")
+//            /*
+//             if _ == nil {
+//             let destinationVC = MapPinViewController()
+//             destinationVC.modalPresentationStyle = .overFullScreen
+//             present(destinationVC, animated: true, completion: nil)
+//             } else {
+//             //MARK: Update View
+//             }
+//             */
+//        }
     }
     
 }

@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum Location {
+enum Location: Codable {
     case home
     case school
     case work
@@ -39,4 +39,18 @@ extension Location {
             return .random(in: 226..<270)
         }
     }
+}
+
+struct SampleLoc: Codable {
+    let sub: String
+    let status: String
+    let lat: String
+    let long: String
+}
+
+struct UserLocation: Codable {
+    let location: String
+}
+struct SaveRes: Codable {
+    let task: String
 }

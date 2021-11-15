@@ -42,7 +42,7 @@ class LoginViewController: UIViewController {
     }()
     
     @objc private func googleLogin() {
-        viewModel.googleLogin {
+        viewModel.googleLogin(vc: self) {
             self.presentMain()
         }
     }

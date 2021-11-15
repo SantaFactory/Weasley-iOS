@@ -25,15 +25,63 @@ class APIManager {
     
     private lazy var session = URLSession(configuration: .default)
     
-    func performGetLocation(lat: String, long: String, completion: @escaping (Result<UserInfo, APIError>) -> Void) {
-//        guard let url = URL(string: "\(url)tokensignin") else {
-//            completion(.failure(.urlNotSupport))
-//            return
+//    func performGetLocation(user: String, lat: String, long: String, completion: @escaping (Result<UserInfo, APIError>) -> Void) {
+////        guard let url = URL(string: "\(url)tokensignin") else {
+////            completion(.failure(.urlNotSupport))
+////            return
+////        }
+//        let location = ["sub": user, "lat": lat, "lon": long]
+//        let resource = Resource<UserInfo>(url: url, parameters: location)
+//        session.load(resource) { resultDatas, _ in
+//            guard let data = resultDatas else {
+//                completion(.failure(.noData))
+//                return
+//            }
+//            completion(.success(data))
 //        }
-        let location = ["lat": lat, "lon": long]
-        let resource = Resource<UserInfo>(url: url, parameters: location)
-        session.load(resource) { resultDatas, _ in
-            guard let data = resultDatas else {
+//    }
+    
+    //MARK: User 생성
+    func performMakeUser(completion: @escaping () -> Void) {
+        guard let url = URL(string: "\(url)/posts/usersloc") else {
+            return
+        }
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        let task = URLSession.shared.dataTask(with: request) { _, _, error in
+            guard error == nil else {
+                print("Error: \(error?.localizedDescription ?? "Error Cant find")")
+                return
+            }
+            completion()
+        }
+        task.resume()
+    }
+    
+    func performPostLocation(sample: Sample, completion: @escaping (Result<UserLocation, APIError>) -> Void) {
+        guard let url = URL(string: "\(url)/posts/userCurloc") else {
+            completion(.failure(.urlNotSupport))
+            return
+        }
+        let resource = Resource<UserLocation>(url: url, method: .post(sample))
+        session.load(resource) { resultData, _ in
+            guard let data = resultData else {
+                completion(.failure(.noData))
+                return
+            }
+            completion(.success(data))
+        }
+    }
+    
+    func performSetLocation(sample: SampleLoc, completion: @escaping (Result<SaveRes, APIError>) -> Void) {
+        guard let url = URL(string: "\(url)/posts/userSaveLoc") else {
+            completion(.failure(.urlNotSupport))
+            return
+        }
+        let resource = Resource<SaveRes>(url: url, method: .post(sample))
+        session.load(resource) { resultData, _ in
+            guard let data = resultData else {
                 completion(.failure(.noData))
                 return
             }
@@ -58,20 +106,20 @@ class APIManager {
     
     
     func performRequestUser(user: UserInfo, completion: @escaping () -> Void) {
-        guard let url = URL(string: "\(url)/posts/users") else {
-            print("url not support")
-            return
-        }
-        print(url)
-        let resource = Resource<UserInfo>(url: url, method: .post(user))
-        session.load(resource) { resultData, _ in
-            guard let data = resultData else {
-                print("no data")
+            guard let url = URL(string: "\(url)/posts/usersloc") else {
+                print("url not support")
                 return
             }
-            completion()
+            print(url)
+            let resource = Resource<UserInfo>(url: url, method: .post(user))
+            session.load(resource) { resultData, _ in
+//                guard let data = resultData else {
+//                    print("no data")
+//                    return
+//                }
+                completion()
+            }
         }
-    }
     /**
      구글에서 제공된 Post 샘플 코드
      

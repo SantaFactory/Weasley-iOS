@@ -11,19 +11,38 @@ class CurrentLocations {
     
     static var share = CurrentLocations()
     init() {    }
-    var groupMembers = [Member(user: UserInfo(sub: "111", email: "qwerty@apple.com"), currentLoction: .lost)] //MARK: Sample Data
-//    let currentUser: UserInfo = UserDefaults.standard.object(forKey: "userLogin") as! UserInfo
+    var groupMembers = [Member(user: UserInfo(sub: "111"), currentLoction: .lost)] //MARK: Sample Data
+    let currentUser = UserDefaults.standard.object(forKey: "userLogin") as! String
     lazy var currentMember = groupMembers.first {
-        $0.user.sub == "111"//currentUser.sub
+        $0.user.sub == currentUser
     }
-    // 사용자 위치 업데이트하기
-    func getLocation(latitude: String, longitude: String, completion: @escaping () -> Void) {
-        APIManager().performGetLocation(lat: latitude, long: longitude) { _ in
-            DispatchQueue.main.async {
-                completion()
+    
+    //MARK: 위치 전송
+    func postLocation(latitude: String, longitude: String, completion: @escaping () -> Void) {
+        APIManager().performPostLocation(sample: Sample(sub: currentUser, lat: latitude, long: longitude)) { res in
+            print(res)
+        }
+    }
+    
+    //MARK: 위치 등록
+    func setLocation(loc: String, latitude: String, longitude: String, completion: @escaping (SaveRes) -> Void) {
+        APIManager().performSetLocation(sample: SampleLoc(sub: currentUser, status: loc, lat: latitude, long: longitude)) { res in
+            switch res {
+            case .success:
+                do {
+                    let result = try res.get()
+                    DispatchQueue.main.async {
+                        completion(result)
+                    }
+                } catch {
+                    print("Error retrieving the value: \(error)")
+                }
+            case .failure:
+                print("Error")
             }
         }
     }
+    
     //TODO: 맴버들 가져오기
     func getMember() {
     

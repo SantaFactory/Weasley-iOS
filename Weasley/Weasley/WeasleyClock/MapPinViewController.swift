@@ -10,7 +10,10 @@ import SnapKit
 
 class MapPinViewController: UIViewController {
     
+    let viewModel = CurrentLocations.share
     var buttonHeight: CGFloat = 40
+    var lat = ""
+    var long = ""
     
     override func loadView() {
         super.loadView()
@@ -128,7 +131,13 @@ class MapPinViewController: UIViewController {
 extension MapPinViewController {
     
     @objc private func setHome(_ sender: UIButton) {
-     
+        viewModel.setLocation(loc: "home", latitude: lat, longitude: long) { result in
+            if result.task == "success" {
+                self.dismiss(animated: true, completion: nil)
+            } else {
+                print("Error!!!!")
+            }
+        }
     }
     
     @objc private func setSchool(_ sender: UIButton) {

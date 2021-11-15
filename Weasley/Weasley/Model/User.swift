@@ -13,9 +13,16 @@ struct User: Codable {
 
 struct UserInfo: Codable {
     let sub: String
-    let email: String
+    //let email: String
 }
 
 struct Token: Codable {
     let token: String
+}
+
+//MARK: Sample Model for Post Location
+struct Sample: Codable {
+    let sub: String
+    let lat: String
+    let long: String
 }

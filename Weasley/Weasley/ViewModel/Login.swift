@@ -23,10 +23,10 @@ class Login {
         }
     }
     
-    func googleLogin(completion: @escaping () -> Void) {
+    func googleLogin(vc: UIViewController, completion: @escaping () -> Void) {
         guard let clientID = FirebaseApp.app()?.options.clientID else { return }
         let config = GIDConfiguration(clientID: clientID)
-        GIDSignIn.sharedInstance.signIn(with: config, presenting: LoginViewController()) { user, error in
+        GIDSignIn.sharedInstance.signIn(with: config, presenting: vc) { user, error in
             guard error == nil else {
                 print("Error\(error?.localizedDescription ?? "Can't find error")")
                 return
@@ -49,7 +49,7 @@ class Login {
                     case .success:
                         do {
                             let value = try tokenData.get()
-                            self.userDefault.set(value, forKey: "userLogin")
+                            self.userDefault.set(value.sub, forKey: "userLogin")// Local에 sub저장
                             APIManager().performRequestUser(user: value) {
                                 DispatchQueue.main.async {
                                     completion()
