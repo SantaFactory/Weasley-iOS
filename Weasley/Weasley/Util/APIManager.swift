@@ -44,7 +44,7 @@ class APIManager {
     /**
     사용자 현재 위치 정보를 제공받는 URLSession 메소드
      
-     Post 방식으로 sub, lat, long를 제공하여, Resource(= location, ex: 'home', 'work', 'school', 'loast')를 얻습니다.
+     Post 방식으로 sub, lat, long를 제공하여, Resource(= location, ex: 'home', 'work', 'school', 'loast')를 획득
      - parameters:
         - coordinate: 유저 좌표정보(sub, 위도, 경도)
         - completion: response시 실행될 메소드
@@ -65,13 +65,19 @@ class APIManager {
     }
     
     /**
+     사용자 현재 좌표를 서버에 위치 설정 URLSession 메소드
+      
+      Post 방식으로 sub, lat, long, status를 제공하여, Resource(success or fail)을 얻어 위치정보 저장
+      - parameters:
+         - loc: 유저 좌표정보(sub, 위도, 경도, 지역)
+         - completion: response시 실행될 메소드
      */
-    func performSetLocation(sample: SampleLoc, completion: @escaping (Result<SaveRes, APIError>) -> Void) {
+    func performSetLocation(loc: UserLoc, completion: @escaping (Result<SaveRes, APIError>) -> Void) {
         guard let url = URL(string: "\(url)/posts/userSaveLoc") else {
             completion(.failure(.urlNotSupport))
             return
         }
-        let resource = Resource<SaveRes>(url: url, method: .post(sample))
+        let resource = Resource<SaveRes>(url: url, method: .post(loc))
         session.load(resource) { resultData, _ in
             guard let data = resultData else {
                 completion(.failure(.noData))

@@ -26,7 +26,7 @@ class CurrentLocations {
     
     //MARK: 위치 등록
     func setLocation(loc: String, latitude: String, longitude: String, completion: @escaping (SaveRes) -> Void) {
-        APIManager().performSetLocation(sample: SampleLoc(sub: currentUser, status: loc, lat: latitude, long: longitude)) { res in
+        APIManager().performSetLocation(loc: UserLoc(sub: currentUser, status: loc, lat: latitude, long: longitude)) { res in
             switch res {
             case .success:
                 do {

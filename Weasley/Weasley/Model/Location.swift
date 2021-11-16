@@ -41,7 +41,7 @@ extension Location {
     }
 }
 
-struct SampleLoc: Codable {
+struct UserLoc: Codable {
     let sub: String
     let status: String
     let lat: String
