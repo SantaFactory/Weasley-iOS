@@ -88,7 +88,12 @@ class APIManager {
     }
     
     /**
-     
+     로그인 URLSession 메소드
+      
+      Post 방식으로 토큰을 제공하여, 서버로 부터 유효성 검사
+      - parameters:
+         - token: 로그인을 위한 토큰
+         - completion: response시 실행될 메소드
      */
     func performLogin(token: Token, completion: @escaping (Result<UserInfo, APIError>) -> Void) {
         guard let url = URL(string: "\(url)/tokensignin") else {
