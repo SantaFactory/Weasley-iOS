@@ -112,14 +112,18 @@ class APIManager {
     
     
     /**
-     
+     사용자 요청 URLSession 메소드
+      
+      유효성 검사로 제공받은 데이터로 사용자 정보 제공 받음
+      - parameters:
+         - user: 유효성 검사를 통해 제공받은 데이터
+         - completion: response시 실행될 메소드
      */
     func performRequestUser(user: UserInfo, completion: @escaping (Result<String, APIError>) -> Void) {
             guard let url = URL(string: "\(url)/posts/usersloc") else {
                 completion(.failure(.urlNotSupport))
                 return
             }
-            print(url)
             let resource = Resource<UserInfo>(url: url, method: .post(user))
             session.load(resource) { resultData, _ in
                 completion(.success("Success Load"))
