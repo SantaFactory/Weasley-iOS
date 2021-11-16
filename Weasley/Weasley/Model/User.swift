@@ -20,9 +20,3 @@ struct Token: Codable {
     let token: String
 }
 
-//MARK: Sample Model for Post Location
-struct Sample: Codable {
-    let sub: String
-    let lat: String
-    let long: String
-}

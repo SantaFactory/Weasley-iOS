@@ -41,30 +41,20 @@ class APIManager {
 //        }
 //    }
     
-    //MARK: User 생성
-    func performMakeUser(completion: @escaping () -> Void) {
-        guard let url = URL(string: "\(url)/posts/usersloc") else {
-            return
-        }
-        var request = URLRequest(url: url)
-        request.httpMethod = "POST"
-        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        let task = URLSession.shared.dataTask(with: request) { _, _, error in
-            guard error == nil else {
-                print("Error: \(error?.localizedDescription ?? "Error Cant find")")
-                return
-            }
-            completion()
-        }
-        task.resume()
-    }
-    
-    func performPostLocation(sample: Sample, completion: @escaping (Result<UserLocation, APIError>) -> Void) {
+    /**
+    사용자 현재 위치 정보를 제공받는 URLSession 메소드
+     
+     Post 방식으로 sub, lat, long를 제공하여, Resource(= location, ex: 'home', 'work', 'school', 'loast')를 얻습니다.
+     - parameters:
+        - coordinate: 유저 좌표정보(sub, 위도, 경도)
+        - completion: response시 실행될 메소드
+     */
+    func performPostLocation(coordinate: UserLocCoordinate, completion: @escaping (Result<UserArea, APIError>) -> Void) {
         guard let url = URL(string: "\(url)/posts/userCurloc") else {
             completion(.failure(.urlNotSupport))
             return
         }
-        let resource = Resource<UserLocation>(url: url, method: .post(sample))
+        let resource = Resource<UserArea>(url: url, method: .post(coordinate))
         session.load(resource) { resultData, _ in
             guard let data = resultData else {
                 completion(.failure(.noData))
@@ -74,6 +64,8 @@ class APIManager {
         }
     }
     
+    /**
+     */
     func performSetLocation(sample: SampleLoc, completion: @escaping (Result<SaveRes, APIError>) -> Void) {
         guard let url = URL(string: "\(url)/posts/userSaveLoc") else {
             completion(.failure(.urlNotSupport))
@@ -89,6 +81,9 @@ class APIManager {
         }
     }
     
+    /**
+     
+     */
     func performLogin(token: Token, completion: @escaping (Result<UserInfo, APIError>) -> Void) {
         guard let url = URL(string: "\(url)/tokensignin") else {
             completion(.failure(.urlNotSupport))
@@ -105,6 +100,9 @@ class APIManager {
     }
     
     
+    /**
+     
+     */
     func performRequestUser(user: UserInfo, completion: @escaping (Result<String, APIError>) -> Void) {
             guard let url = URL(string: "\(url)/posts/usersloc") else {
                 completion(.failure(.urlNotSupport))
@@ -166,16 +164,16 @@ class APIManager {
      - parameters:
         - data: 파싱할 데이터
      */
-    func userParseExample(_ data: Data) -> User? {
-        let decoder = JSONDecoder()
-        do {
-            let response = try decoder.decode(User.self, from: data)
-            return response
-        } catch let error {
-            print("Error: \(error.localizedDescription)")
-            return nil
-        }
-    }
+//    func userParseExample(_ data: Data) -> User? {
+//        let decoder = JSONDecoder()
+//        do {
+//            let response = try decoder.decode(User.self, from: data)
+//            return response
+//        } catch let error {
+//            print("Error: \(error.localizedDescription)")
+//            return nil
+//        }
+//    }
     
 }
 

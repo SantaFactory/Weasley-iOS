@@ -48,7 +48,13 @@ struct SampleLoc: Codable {
     let long: String
 }
 
-struct UserLocation: Codable {
+struct UserLocCoordinate: Codable {
+    let sub: String
+    let lat: String
+    let long: String
+}
+
+struct UserArea: Codable {
     let location: String
 }
 struct SaveRes: Codable {

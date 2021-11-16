@@ -19,7 +19,7 @@ class CurrentLocations {
     
     //MARK: 위치 전송
     func postLocation(latitude: String, longitude: String, completion: @escaping () -> Void) {
-        APIManager().performPostLocation(sample: Sample(sub: currentUser, lat: latitude, long: longitude)) { res in
+        APIManager().performPostLocation(coordinate: UserLocCoordinate(sub: currentUser, lat: latitude, long: longitude)) { res in
             print(res)
         }
     }
