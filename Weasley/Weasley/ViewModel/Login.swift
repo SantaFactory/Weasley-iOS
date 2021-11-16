@@ -16,7 +16,22 @@ class Login {
     func autoLogin(completion: @escaping () -> Void) {
         GIDSignIn.sharedInstance.restorePreviousSignIn { user, error in
             if error == nil || user != nil {
-                completion()
+                guard let sub = UserDefaults.standard.string(forKey: "userLogin") else {
+                    GIDSignIn.sharedInstance.signOut()
+                    return
+                }
+                APIManager().performRequestUser(user: UserInfo(sub: sub)) { res in
+                    switch res {
+                    case .failure(let message):
+                        print(message)
+                        self.signOut()
+                    case .success(let message):
+                        print(message)
+                        DispatchQueue.main.async {
+                            completion()
+                        }
+                    }
+                }
             } else {
                 print("Signed-Out State")
             }
@@ -50,9 +65,16 @@ class Login {
                         do {
                             let value = try tokenData.get()
                             self.userDefault.set(value.sub, forKey: "userLogin")// Local에 sub저장
-                            APIManager().performRequestUser(user: value) {
-                                DispatchQueue.main.async {
-                                    completion()
+                            APIManager().performRequestUser(user: value) { res in
+                                switch res {
+                                case .failure(let message):
+                                    print(message)
+                                    self.signOut()
+                                case .success(let message):
+                                    print(message)
+                                    DispatchQueue.main.async {
+                                        completion()
+                                    }
                                 }
                             }
                         } catch {

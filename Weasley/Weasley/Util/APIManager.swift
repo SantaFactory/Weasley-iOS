@@ -105,19 +105,15 @@ class APIManager {
     }
     
     
-    func performRequestUser(user: UserInfo, completion: @escaping () -> Void) {
+    func performRequestUser(user: UserInfo, completion: @escaping (Result<String, APIError>) -> Void) {
             guard let url = URL(string: "\(url)/posts/usersloc") else {
-                print("url not support")
+                completion(.failure(.urlNotSupport))
                 return
             }
             print(url)
             let resource = Resource<UserInfo>(url: url, method: .post(user))
             session.load(resource) { resultData, _ in
-//                guard let data = resultData else {
-//                    print("no data")
-//                    return
-//                }
-                completion()
+                completion(.success("Success Load"))
             }
         }
     /**
@@ -133,33 +129,33 @@ class APIManager {
         - idToken: FireBase에서 제공받은 idToken
         - completion: response 데이터 가공하기
      */
-    func signInExample(idToken: String, completion: @escaping (Result<User, APIError>) -> Void) {
-        guard let authData = try? JSONEncoder().encode(Token(token: idToken)) else {
-            return
-        }
-        let url = URL(string: "\(url)/tokensignin")!
-        var request = URLRequest(url: url)
-        request.httpMethod = "POST"
-        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        
-        let task = URLSession.shared.uploadTask(with: request, from: authData) { data, response, error in
-            // Handle response from your backend.
-            print(error)
-            guard error == nil else {
-                completion(.failure(.urlNotSupport))
-                print("Error: \(error?.localizedDescription ?? "Error Cant find")")
-                return
-            }
-            guard let resultData = data else {
-                print("Can't Parsing")
-                completion(.failure(.noData))
-                return
-            }
-            let result = self.userParseExample(resultData)
-            completion(.success(result!))
-        }
-        task.resume()
-    }
+//    func signInExample(idToken: String, completion: @escaping (Result<User, APIError>) -> Void) {
+//        guard let authData = try? JSONEncoder().encode(Token(token: idToken)) else {
+//            return
+//        }
+//        let url = URL(string: "\(url)/tokensignin")!
+//        var request = URLRequest(url: url)
+//        request.httpMethod = "POST"
+//        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+//
+//        let task = URLSession.shared.uploadTask(with: request, from: authData) { data, response, error in
+//            // Handle response from your backend.
+//            print(error)
+//            guard error == nil else {
+//                completion(.failure(.urlNotSupport))
+//                print("Error: \(error?.localizedDescription ?? "Error Cant find")")
+//                return
+//            }
+//            guard let resultData = data else {
+//                print("Can't Parsing")
+//                completion(.failure(.noData))
+//                return
+//            }
+//            let result = self.userParseExample(resultData)
+//            completion(.success(result!))
+//        }
+//        task.resume()
+//    }
     
     /**
      데이터 파싱 메소드

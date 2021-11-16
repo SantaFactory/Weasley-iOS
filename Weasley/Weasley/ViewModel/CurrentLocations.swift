@@ -12,7 +12,7 @@ class CurrentLocations {
     static var share = CurrentLocations()
     init() {    }
     var groupMembers = [Member(user: UserInfo(sub: "111"), currentLoction: .lost)] //MARK: Sample Data
-    let currentUser = UserDefaults.standard.object(forKey: "userLogin") as! String
+    let currentUser = UserDefaults.standard.string(forKey: "userLogin") ?? ""
     lazy var currentMember = groupMembers.first {
         $0.user.sub == currentUser
     }
