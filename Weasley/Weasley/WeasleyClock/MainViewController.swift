@@ -16,8 +16,7 @@ class MainViewController: UIViewController {
     var longitude = ""
     
     let locationManager = CLLocationManager()
-    let viewModel = CurrentLocations.share
-    lazy var members = viewModel.groupMembers
+    //let viewModel = CurrentLocations.share
     /**
         [Sub : Needle View]
      */
@@ -25,12 +24,19 @@ class MainViewController: UIViewController {
     
     override func loadView() {
         super.loadView()
-        view.backgroundColor = .secondarySystemBackground
-        self.view.addSubview(arcLocationLabel)
-        arcLocationLabel.snp.makeConstraints { make in
+        view.backgroundColor = .systemBackground
+        self.view.addSubview(clockView)
+        clockView.snp.makeConstraints { make in
             make.height.equalTo(self.view.frame.width)
             make.width.equalToSuperview()
-            make.centerY.equalToSuperview()
+            make.top.equalToSuperview().offset(20)
+        }
+        self.view.addSubview(arcLocationLabel)
+        arcLocationLabel.snp.makeConstraints { make in
+            make.top.equalTo(clockView.snp.top)
+            make.bottom.equalTo(clockView.snp.bottom)
+            make.leading.equalTo(clockView.snp.leading)
+            make.trailing.equalTo(clockView.snp.trailing)
         }
         self.view.addSubview(signOutButton)
         signOutButton.snp.makeConstraints { make in
@@ -49,7 +55,7 @@ class MainViewController: UIViewController {
         //MARK: Sample UI
         self.view.addSubview(editButton)
         editButton.snp.makeConstraints { make in
-            make.top.equalTo(arcLocationLabel.snp.bottom).offset(10)
+            make.top.equalToSuperview()
             make.leading.equalToSuperview().offset(20)
             make.height.equalTo(50)
             make.width.equalTo(50)
@@ -58,25 +64,22 @@ class MainViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        loadNeedles()
         locationManager.delegate = self
         locationManager.requestWhenInUseAuthorization() // 위치 서비스를 사용하기 위한 사용자 권한 요청
         locationManager.requestLocation() // 사용자의 현재 위치에 대한 일회성 전달을 요청
     }
     
-    func loadNeedles() {
-        for member in members {
-            let needle = Needle()
-            needle.text = "Doyoung"
-            needle.value = member.currentLoction.location
-            self.view.addSubview(needle)
-            needle.snp.makeConstraints { make in
-                make.centerX.equalTo(arcLocationLabel.snp.centerX)
-                make.centerY.equalTo(arcLocationLabel.snp.centerY)
-            }
-            needles.updateValue(needle, forKey: member.user.sub)
-        }
-    }
+//    func loadNeedles(area: Location) {
+//        let needle = Needle()
+//        needle.text = viewModel.currentUser
+//        needle.value = area.location
+//        self.view.addSubview(needle)
+//        needle.snp.makeConstraints { make in
+//            make.centerX.equalTo(arcLocationLabel.snp.centerX)
+//            make.centerY.equalTo(arcLocationLabel.snp.centerY)
+//        }
+//        needles.updateValue(needle, forKey: viewModel.currentUser)
+//    }
 
     //MARK: Sample load view
     func moveNeedle(_ member: Member) {
@@ -115,6 +118,13 @@ class MainViewController: UIViewController {
         button.tintColor = .systemRed
         button.addTarget(self, action: #selector(reLocate), for: .touchUpInside)
         return button
+    }()
+    
+    private lazy var groupCollectionView: UICollectionView = {
+        let collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: UICollectionViewFlowLayout.init())
+      
+        
+        return collectionView
     }()
     
     //MARK: Sample Button
@@ -158,33 +168,8 @@ extension MainViewController: CLLocationManagerDelegate {
             self.latitude = lat
             self.longitude = long
             print("\(lat) & \(long)")
-            viewModel.postLocation(latitude: lat, longitude: long) {
-                print("Success Post Data")
-                /*
-                 if _ == nil {
-                 let destinationVC = MapPinViewController()
-                 destinationVC.modalPresentationStyle = .overFullScreen
-                 present(destinationVC, animated: true, completion: nil)
-                 } else {
-                 //MARK: Update View
-                 }
-                 */
-            }
-            //MARK: Sample Updata Location
-//            var member = viewModel.currentMember
-//            if member != nil {
-//                switch [lat:long] {
-//                case ["37.2422":"127.0599"]:
-//                    member?.currentLoction = .home
-//                    print("at home")
-//                case ["37.3654":"127.1075"]:
-//                    member?.currentLoction = .work
-//                    print("working")
-//                default:
-//                    member?.currentLoction = .move
-//                    print("move to anywhere")
-//                }
-//                moveNeedle(member!)
+//            viewModel.postLocation(latitude: lat, longitude: long) { [weak self] area in
+//                self?.loadNeedles(area: area.area)
 //            }
         }
     }
@@ -192,18 +177,6 @@ extension MainViewController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         print("Cancel Location")
         print("Error: \(error.localizedDescription)")
-//        viewModel.postLocation(latitude: "?", longitude: "?") {
-//            print("Success Post Data")
-//            /*
-//             if _ == nil {
-//             let destinationVC = MapPinViewController()
-//             destinationVC.modalPresentationStyle = .overFullScreen
-//             present(destinationVC, animated: true, completion: nil)
-//             } else {
-//             //MARK: Update View
-//             }
-//             */
-//        }
     }
     
 }

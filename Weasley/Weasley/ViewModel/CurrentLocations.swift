@@ -11,16 +11,23 @@ class CurrentLocations {
     
     static var share = CurrentLocations()
     init() {    }
-    var groupMembers = [Member(user: UserInfo(sub: "111"), currentLoction: .lost)] //MARK: Sample Data
+    //var groupMembers = [Member(user: UserInfo(sub: "111"), currentLoction: .lost)] //MARK: Sample Data
     let currentUser = UserDefaults.standard.string(forKey: "userLogin") ?? ""
-    lazy var currentMember = groupMembers.first {
-        $0.user.sub == currentUser
-    }
+//    lazy var currentMember = groupMembers.first {
+//        $0.user.sub == currentUser
+//    }
     
     //MARK: 위치 전송
-    func postLocation(latitude: String, longitude: String, completion: @escaping () -> Void) {
+    func postLocation(latitude: String, longitude: String, completion: @escaping (UserArea) -> Void) {
         APIManager().performPostLocation(coordinate: UserLocCoordinate(sub: currentUser, lat: latitude, long: longitude)) { res in
-            print(res)
+            switch res {
+            case .success(let area):
+                DispatchQueue.main.async {
+                    completion(area)
+                }
+            case .failure(let err):
+                print(err)
+            }
         }
     }
     

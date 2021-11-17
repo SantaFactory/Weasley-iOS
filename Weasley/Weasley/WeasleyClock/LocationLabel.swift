@@ -15,7 +15,7 @@ class LocationLabel: UIView {
         context.translateBy(x: self.bounds.midX, y: self.bounds.midX)
         context.scaleBy (x: 1, y: -1)
 
-        centreArcPerpendicular(text: allText, context: context, radius: (self.bounds.size.width - 30) / 2, angle: 0, colour: UIColor.label, font: UIFont.systemFont(ofSize: 30, weight: .black), clockwise: true)
+        centreArcPerpendicular(text: allText, context: context, radius: ((self.bounds.size.width - 25) / 2) - 20, angle: 0, colour: UIColor.white, font: UIFont.systemFont(ofSize: 25, weight: .black), clockwise: true)
     }
     
     func centreArcPerpendicular(text str: [String], context: CGContext, radius r: CGFloat, angle theta: CGFloat, colour c: UIColor, font: UIFont, clockwise: Bool){

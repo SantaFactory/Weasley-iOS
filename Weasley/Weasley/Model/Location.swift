@@ -55,8 +55,13 @@ struct UserLocCoordinate: Codable {
 }
 
 struct UserArea: Codable {
-    let location: String
+    let area: Location
+    
+    enum CodingKeys: String, CodingKey {
+        case area = "location"
+    }
 }
+
 struct SaveRes: Codable {
     let task: String
 }
