@@ -60,6 +60,25 @@ class MainViewController: UIViewController {
             make.height.equalTo(50)
             make.width.equalTo(50)
         }
+        self.view.addSubview(listButton)
+        listButton.snp.makeConstraints { make in
+            make.top.equalTo(clockView.snp.bottom)
+            make.trailing.equalToSuperview().offset(-20)
+        }
+        self.view.addSubview(groupCollectionView)
+        groupCollectionView.snp.makeConstraints { make in
+            make.top.equalTo(clockView.snp.bottom)
+            make.leading.equalToSuperview()
+            make.trailing.equalTo(listButton.snp.leading)
+            make.bottom.equalTo(listButton.snp.bottom)
+        }
+        self.view.addSubview(membersTableView)
+        membersTableView.snp.makeConstraints { make in
+            make.top.equalTo(groupCollectionView.snp.bottom)
+            make.leading.equalToSuperview()
+            make.trailing.equalToSuperview()
+            make.bottom.equalToSuperview()
+        }
     }
     
     override func viewDidLoad() {
@@ -96,14 +115,13 @@ class MainViewController: UIViewController {
         label.backgroundColor = .clear
         return label
     }()
-    
     //MARK: Clock Background
     private lazy var clockView: Clock = {
         let view = Clock(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
         view.backgroundColor = .clear
         return view
     }()
-    
+    //MARK: Buttons
     private lazy var signOutButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(systemName: "escape"), for: .normal)
@@ -111,7 +129,6 @@ class MainViewController: UIViewController {
         button.addTarget(self, action: #selector(signOut), for: .touchUpInside)
         return button
     }()
-    
     private lazy var relocateButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(systemName: "safari.fill"), for: .normal)
@@ -119,20 +136,29 @@ class MainViewController: UIViewController {
         button.addTarget(self, action: #selector(reLocate), for: .touchUpInside)
         return button
     }()
-    
-    private lazy var groupCollectionView: UICollectionView = {
-        let collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: UICollectionViewFlowLayout.init())
-      
-        
-        return collectionView
+    private lazy var listButton: UIButton = {
+        let button = UIButton()
+        let config = UIImage.SymbolConfiguration(pointSize: 30)
+        button.setImage(UIImage(systemName: "list.star", withConfiguration: config), for: .normal)
+        //button.addTarget(self, action: <#T##Selector#>, for: .touchUpInside)
+        return button
     }()
-    
     //MARK: Sample Button
     private lazy var editButton: UIButton = {
         let button = UIButton()
         button.setTitle("Edit", for: .normal)
         button.addTarget(self, action: #selector(goEdit), for: .touchUpInside)
         return button
+    }()
+    private lazy var groupCollectionView: UICollectionView = {
+        let collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: UICollectionViewLayout.init())
+        collectionView.backgroundColor = .systemGray
+        return collectionView
+    }()
+    private lazy var membersTableView: UITableView = {
+        let tableView = UITableView()
+        tableView.backgroundColor = .systemIndigo
+        return tableView
     }()
 }
 
