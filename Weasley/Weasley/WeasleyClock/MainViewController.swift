@@ -25,11 +25,16 @@ class MainViewController: UIViewController {
     override func loadView() {
         super.loadView()
         view.backgroundColor = .systemBackground
+        self.view.addSubview(menuButton)
+        menuButton.snp.makeConstraints { make in
+            make.top.equalToSuperview()
+            make.trailing.equalToSuperview().offset(-20)
+        }
         self.view.addSubview(clockView)
         clockView.snp.makeConstraints { make in
             make.height.equalTo(self.view.frame.width)
             make.width.equalToSuperview()
-            make.top.equalToSuperview().offset(20)
+            make.top.equalTo(menuButton.snp.bottom)
         }
         self.view.addSubview(arcLocationLabel)
         arcLocationLabel.snp.makeConstraints { make in
@@ -38,14 +43,7 @@ class MainViewController: UIViewController {
             make.leading.equalTo(clockView.snp.leading)
             make.trailing.equalTo(clockView.snp.trailing)
         }
-        self.view.addSubview(signOutButton)
-        signOutButton.snp.makeConstraints { make in
-            make.height.equalTo(50)
-            make.width.equalTo(50)
-            make.trailing.equalToSuperview().offset(-20)
-            make.top.equalTo(self.view.safeArea.top).offset(20)
-        }
-        self.view.addSubview(relocateButton)
+       self.view.addSubview(relocateButton)
         relocateButton.snp.makeConstraints { make in
             make.height.equalTo(50)
             make.width.equalTo(50)
@@ -53,24 +51,12 @@ class MainViewController: UIViewController {
             make.centerY.equalTo(arcLocationLabel.snp.centerY)
         }
         //MARK: Sample UI
-        self.view.addSubview(editButton)
-        editButton.snp.makeConstraints { make in
-            make.top.equalToSuperview()
-            make.leading.equalToSuperview().offset(20)
-            make.height.equalTo(50)
-            make.width.equalTo(50)
-        }
-        self.view.addSubview(listButton)
-        listButton.snp.makeConstraints { make in
-            make.top.equalTo(clockView.snp.bottom)
-            make.trailing.equalToSuperview().offset(-20)
-        }
         self.view.addSubview(groupCollectionView)
         groupCollectionView.snp.makeConstraints { make in
             make.top.equalTo(clockView.snp.bottom)
             make.leading.equalToSuperview()
-            make.trailing.equalTo(listButton.snp.leading)
-            make.bottom.equalTo(listButton.snp.bottom)
+            make.trailing.equalTo(menuButton.snp.leading)
+            make.height.equalTo(50)
         }
         self.view.addSubview(membersTableView)
         membersTableView.snp.makeConstraints { make in
@@ -86,6 +72,12 @@ class MainViewController: UIViewController {
         locationManager.delegate = self
         locationManager.requestWhenInUseAuthorization() // 위치 서비스를 사용하기 위한 사용자 권한 요청
         locationManager.requestLocation() // 사용자의 현재 위치에 대한 일회성 전달을 요청
+        if #available(iOS 14.0, *) {
+            menuButton.showsMenuAsPrimaryAction = true
+            menuButton.menu = menu
+        } else {
+            showActionSheet()
+        }
     }
     
 //    func loadNeedles(area: Location) {
@@ -122,13 +114,6 @@ class MainViewController: UIViewController {
         return view
     }()
     //MARK: Buttons
-    private lazy var signOutButton: UIButton = {
-        let button = UIButton()
-        button.setImage(UIImage(systemName: "escape"), for: .normal)
-        button.tintColor = .systemRed
-        button.addTarget(self, action: #selector(signOut), for: .touchUpInside)
-        return button
-    }()
     private lazy var relocateButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(systemName: "safari.fill"), for: .normal)
@@ -136,18 +121,10 @@ class MainViewController: UIViewController {
         button.addTarget(self, action: #selector(reLocate), for: .touchUpInside)
         return button
     }()
-    private lazy var listButton: UIButton = {
+    private lazy var menuButton: UIButton = {
         let button = UIButton()
         let config = UIImage.SymbolConfiguration(pointSize: 30)
-        button.setImage(UIImage(systemName: "list.star", withConfiguration: config), for: .normal)
-        //button.addTarget(self, action: <#T##Selector#>, for: .touchUpInside)
-        return button
-    }()
-    //MARK: Sample Button
-    private lazy var editButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("Edit", for: .normal)
-        button.addTarget(self, action: #selector(goEdit), for: .touchUpInside)
+        button.setImage(UIImage(systemName: "ellipsis.circle.fill", withConfiguration: config), for: .normal)
         return button
     }()
     private lazy var groupCollectionView: UICollectionView = {
@@ -160,11 +137,52 @@ class MainViewController: UIViewController {
         tableView.backgroundColor = .systemIndigo
         return tableView
     }()
+    private lazy var menu: UIMenu = {
+        return UIMenu(title: "", options: [], children: menuItems)
+    }()
+    private lazy var menuItems: [UIAction] = {
+        return [
+            UIAction(title: "Invite member", image: UIImage(systemName: "paperplane.fill"), handler: { _ in
+                //TODO: Implement Invite member
+            }),
+            UIAction(title: "Setting", image: UIImage(systemName: "gearshape.fill"), handler: { _ in
+                //TODO: Implement Setting View
+            }),
+            UIAction(title: "Mark", image: UIImage(systemName: "gearshape.fill"), handler: { _ in
+                self.goEdit()
+            }),
+            UIAction(title: "Sign Out", image: UIImage(systemName: "rectangle.portrait.and.arrow.right"), handler: { _ in
+                self.signOut()
+            })
+        ]
+    }()
+    
+    private func showActionSheet() {
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        for action in alertActions {
+            alert.addAction(action)
+        }
+    }
+    
+    private lazy var alertActions: [UIAlertAction] = {
+        return [
+            UIAlertAction(title: "Edit Mark", style: .default, handler: { _ in
+                self.goEdit()
+            }),
+            UIAlertAction(title: "Setting", style: .default, handler: { _ in
+                //TODO: Implement Setting View
+            }),
+            UIAlertAction(title: "Sign Out", style: .default, handler: { _ in
+                self.signOut()
+            }),
+            UIAlertAction(title: "Cancel", style: .cancel)
+        ]
+    }()
 }
 
 extension MainViewController {
     
-    @objc func signOut() {
+    func signOut() {
         Login().signOut()
         dismiss(animated: true, completion: nil)
     }
@@ -174,7 +192,7 @@ extension MainViewController {
         locationManager.requestLocation()
     }
     
-    @objc func goEdit() {
+    func goEdit() {
         let destinationVC = MapPinViewController()
         destinationVC.lat = latitude
         destinationVC.long = longitude
