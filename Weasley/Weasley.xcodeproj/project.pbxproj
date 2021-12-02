@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		7D99C284FC90961B3821D0C0 /* Pods_Weasley.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9873566C8D513FA6A965F78 /* Pods_Weasley.framework */; };
+		7F3A480D2758C06300B3D104 /* MainViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F3A480C2758C06200B3D104 /* MainViewCell.swift */; };
 		7F4302612726D89400FA594F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F4302602726D89400FA594F /* AppDelegate.swift */; };
 		7F4302632726D89400FA594F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F4302622726D89400FA594F /* SceneDelegate.swift */; };
 		7F4302652726D89400FA594F /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F4302642726D89400FA594F /* MainViewController.swift */; };
@@ -32,6 +33,7 @@
 /* Begin PBXFileReference section */
 		31A6EE2BD28567E020F854D6 /* Pods-Weasley.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Weasley.release.xcconfig"; path = "Target Support Files/Pods-Weasley/Pods-Weasley.release.xcconfig"; sourceTree = "<group>"; };
 		61E91CCD83AB5938431ABBC1 /* Pods-Weasley.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Weasley.debug.xcconfig"; path = "Target Support Files/Pods-Weasley/Pods-Weasley.debug.xcconfig"; sourceTree = "<group>"; };
+		7F3A480C2758C06200B3D104 /* MainViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewCell.swift; sourceTree = "<group>"; };
 		7F43025D2726D89400FA594F /* Weasley.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Weasley.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7F4302602726D89400FA594F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7F4302622726D89400FA594F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -147,6 +149,7 @@
 				7F8A500D2734D5F700656E0A /* LocationLabel.swift */,
 				7F4302642726D89400FA594F /* MainViewController.swift */,
 				7FE879E02738E9FE00301A94 /* MapPinViewController.swift */,
+				7F3A480C2758C06200B3D104 /* MainViewCell.swift */,
 			);
 			path = WeasleyClock;
 			sourceTree = "<group>";
@@ -286,6 +289,7 @@
 			files = (
 				7FE87A15273BA5C600301A94 /* CurrentLocations.swift in Sources */,
 				7F8A50102734D65D00656E0A /* DegreesToRadians.swift in Sources */,
+				7F3A480D2758C06300B3D104 /* MainViewCell.swift in Sources */,
 				7FE879E12738E9FE00301A94 /* MapPinViewController.swift in Sources */,
 				7F4302652726D89400FA594F /* MainViewController.swift in Sources */,
 				7F8A4FDB2730F02000656E0A /* Location.swift in Sources */,

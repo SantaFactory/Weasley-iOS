@@ -107,13 +107,11 @@ class MainViewController: UIViewController {
         label.backgroundColor = .clear
         return label
     }()
-    //MARK: Clock Background
     private lazy var clockView: Clock = {
         let view = Clock(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
         view.backgroundColor = .clear
         return view
     }()
-    //MARK: Buttons
     private lazy var relocateButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(systemName: "safari.fill"), for: .normal)
@@ -128,8 +126,11 @@ class MainViewController: UIViewController {
         return button
     }()
     private lazy var groupCollectionView: UICollectionView = {
-        let collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: UICollectionViewLayout.init())
-        collectionView.backgroundColor = .systemGray
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
+        layout.itemSize = CGSize(width: 120, height: 120)
+        let collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)
+        collectionView.register(GroupCell.self, forCellWithReuseIdentifier: "groupCell")
         return collectionView
     }()
     private lazy var membersTableView: UITableView = {
@@ -190,7 +191,6 @@ extension MainViewController {
         dismiss(animated: true, completion: nil)
     }
     
-    //MARK: Sample Method
     @objc func reLocate() {
         locationManager.requestLocation()
     }
@@ -216,6 +216,19 @@ extension MainViewController {
     }
 }
 
+extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 0
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "groupCell", for: indexPath) as? GroupCell else {
+            return UICollectionViewCell()
+        }
+        cell.groupNameLabel.text = ""
+        return cell
+    }
+}
 extension MainViewController: CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
