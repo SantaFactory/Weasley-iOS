@@ -143,7 +143,7 @@ class MainViewController: UIViewController {
     private lazy var menuItems: [UIAction] = {
         return [
             UIAction(title: "Invite member", image: UIImage(systemName: "paperplane.fill"), handler: { _ in
-                //TODO: Implement Invite member
+                self.inviteMember()
             }),
             UIAction(title: "Setting", image: UIImage(systemName: "gearshape.fill"), handler: { _ in
                 //TODO: Implement Setting View
@@ -166,6 +166,9 @@ class MainViewController: UIViewController {
     
     private lazy var alertActions: [UIAlertAction] = {
         return [
+            UIAlertAction(title: "Invite", style: .default, handler: { _ in
+                self.inviteMember()
+            }),
             UIAlertAction(title: "Edit Mark", style: .default, handler: { _ in
                 self.goEdit()
             }),
@@ -198,6 +201,18 @@ extension MainViewController {
         destinationVC.long = longitude
         destinationVC.modalPresentationStyle = .overFullScreen
         present(destinationVC, animated: true, completion: nil)
+    }
+    
+    func inviteMember() {
+        let message = ["Message and link.."] // TODO: Link message
+        let activityVC = UIActivityViewController(activityItems: message, applicationActivities: nil)
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            if let popup = activityVC.popoverPresentationController {
+                popup.sourceView = self.view
+                popup.sourceRect = CGRect(x: self.view.frame.size.width / 2, y: self.view.frame.size.height, width: 0, height: 0)
+            }
+        }
+        self.present(activityVC, animated: true, completion: nil)
     }
 }
 
