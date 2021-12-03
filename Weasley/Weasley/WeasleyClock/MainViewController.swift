@@ -24,7 +24,7 @@ class MainViewController: UIViewController {
     
     override func loadView() {
         super.loadView()
-        view.backgroundColor = .systemBackground
+        view.backgroundColor = .secondarySystemBackground
         self.view.addSubview(menuButton)
         menuButton.snp.makeConstraints { make in
             make.top.equalToSuperview()
@@ -69,12 +69,16 @@ class MainViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        groupCollectionView.delegate = self
+        groupCollectionView.dataSource = self
+        membersTableView.delegate = self
+        membersTableView.dataSource = self
         locationManager.delegate = self
         locationManager.requestWhenInUseAuthorization() // 위치 서비스를 사용하기 위한 사용자 권한 요청
         locationManager.requestLocation() // 사용자의 현재 위치에 대한 일회성 전달을 요청
         if #available(iOS 14.0, *) {
             menuButton.showsMenuAsPrimaryAction = true
-            menuButton.menu = menu
+            menuButton.menu = settingMenu
         } else {
             showActionSheet()
         }
@@ -139,16 +143,16 @@ class MainViewController: UIViewController {
     }()
     
     private lazy var membersTableView: UITableView = {
-        let tableView = UITableView()
+        let tableView = UITableView(frame: CGRect.zero, style: .insetGrouped)
         tableView.register(MemberCell.self, forCellReuseIdentifier: "memberCell")
         return tableView
     }()
     
-    private lazy var menu: UIMenu = {
-        return UIMenu(title: "", options: [], children: menuItems)
+    private lazy var settingMenu: UIMenu = {
+        return UIMenu(title: "", options: [], children: settingMenuItems)
     }()
     
-    private lazy var menuItems: [UIAction] = {
+    private lazy var settingMenuItems: [UIAction] = {
         return [
             UIAction(title: "Invite member", image: UIImage(systemName: "paperplane.fill"), handler: { _ in
                 self.inviteMember()
@@ -189,6 +193,22 @@ class MainViewController: UIViewController {
             UIAlertAction(title: "Cancel", style: .cancel)
         ]
     }()
+    
+    private lazy var memberMenu: UIMenu = {
+        return UIMenu(title: "", options: [], children: memberMenuItems)
+    }()
+    
+    private lazy var memberMenuItems: [UIAction] = {
+        return [
+            UIAction(title: "Request Location", image: UIImage(systemName: "exclamationmark.bubble"), handler: { _ in
+                //TODO: Send Push
+            }),
+            UIAction(title: "Show Location", image: UIImage(systemName: "binoculars.fill"), handler: { _ in
+                //TODO: Show Map
+            })
+        ]
+    }()
+    
 }
 
 extension MainViewController {
@@ -239,15 +259,23 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
 
 extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
+        return 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "memberCell", for: indexPath) as? MemberCell else {
            return UITableViewCell()
         }
-        cell.nameLabel.text = ""
+        cell.textLabel?.text = "Test"
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, contextMenuConfigurationForRowAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
+        return UIContextMenuConfiguration(identifier: nil,
+                                          previewProvider: nil,
+                                          actionProvider: {_ in
+            return self.memberMenu
+        })
     }
 }
 extension MainViewController: CLLocationManagerDelegate {

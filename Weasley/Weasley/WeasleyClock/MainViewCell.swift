@@ -34,7 +34,13 @@ class MemberCell: UITableViewCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        contentView.addSubview(nameLabel)
+//        contentView.addSubview(nameLabel)
+//        nameLabel.snp.makeConstraints { make in
+//            make.top.equalToSuperview()
+//            make.leading.equalToSuperview()
+//            make.bottom.equalToSuperview()
+//            make.trailing.equalToSuperview()
+//        }
     }
     
     required init?(coder: NSCoder) {
