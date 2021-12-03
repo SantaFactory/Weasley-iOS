@@ -107,11 +107,13 @@ class MainViewController: UIViewController {
         label.backgroundColor = .clear
         return label
     }()
+    
     private lazy var clockView: Clock = {
         let view = Clock(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
         view.backgroundColor = .clear
         return view
     }()
+    
     private lazy var relocateButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(systemName: "safari.fill"), for: .normal)
@@ -119,12 +121,14 @@ class MainViewController: UIViewController {
         button.addTarget(self, action: #selector(reLocate), for: .touchUpInside)
         return button
     }()
+    
     private lazy var menuButton: UIButton = {
         let button = UIButton()
         let config = UIImage.SymbolConfiguration(pointSize: 30)
         button.setImage(UIImage(systemName: "ellipsis.circle.fill", withConfiguration: config), for: .normal)
         return button
     }()
+    
     private lazy var groupCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
@@ -133,14 +137,17 @@ class MainViewController: UIViewController {
         collectionView.register(GroupCell.self, forCellWithReuseIdentifier: "groupCell")
         return collectionView
     }()
+    
     private lazy var membersTableView: UITableView = {
         let tableView = UITableView()
-        tableView.backgroundColor = .systemIndigo
+        tableView.register(MemberCell.self, forCellReuseIdentifier: "memberCell")
         return tableView
     }()
+    
     private lazy var menu: UIMenu = {
         return UIMenu(title: "", options: [], children: menuItems)
     }()
+    
     private lazy var menuItems: [UIAction] = {
         return [
             UIAction(title: "Invite member", image: UIImage(systemName: "paperplane.fill"), handler: { _ in
@@ -226,6 +233,20 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
             return UICollectionViewCell()
         }
         cell.groupNameLabel.text = ""
+        return cell
+    }
+}
+
+extension MainViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 0
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "memberCell", for: indexPath) as? MemberCell else {
+           return UITableViewCell()
+        }
+        cell.nameLabel.text = ""
         return cell
     }
 }
