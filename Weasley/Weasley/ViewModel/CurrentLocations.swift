@@ -17,9 +17,11 @@ class CurrentLocations {
 //        $0.user.sub == currentUser
 //    }
     
-    //MARK: 위치 전송
-    func postLocation(latitude: String, longitude: String, completion: @escaping (UserArea) -> Void) {
-        APIManager().performPostLocation(coordinate: UserLocCoordinate(sub: currentUser, lat: latitude, long: longitude)) { res in
+    var userLatitude: String?
+    var userLongitude: String?
+    //MARK: 위치 전송, todo nil값 전송시 어떻게 할지
+    func postLocation(completion: @escaping (UserArea) -> Void) {
+        APIManager().performPostLocation(coordinate: UserLocCoordinate(sub: currentUser, lat: userLatitude!, long: userLongitude!)) { res in
             switch res {
             case .success(let area):
                 DispatchQueue.main.async {

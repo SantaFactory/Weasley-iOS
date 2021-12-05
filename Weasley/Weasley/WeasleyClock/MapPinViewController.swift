@@ -122,7 +122,7 @@ class MapPinViewController: UIViewController {
         button.setTitle("Skip", for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 18, weight: .semibold)
         button.addTarget(self, action: #selector(skipSet), for: .touchUpInside)
-        button.rounded(buttonHeight / 2)
+ 
         return button
     }()
 

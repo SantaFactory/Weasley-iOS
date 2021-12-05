@@ -11,12 +11,8 @@ import SnapKit
 
 class MainViewController: UIViewController {
 
-    //MARK: Sample Property
-    var latitude = ""
-    var longitude = ""
-    
     let locationManager = CLLocationManager()
-    //let viewModel = CurrentLocations.share
+    let viewModel = CurrentLocations.share
     /**
         [Sub : Needle View]
      */
@@ -84,17 +80,17 @@ class MainViewController: UIViewController {
         }
     }
     
-//    func loadNeedles(area: Location) {
-//        let needle = Needle()
-//        needle.text = viewModel.currentUser
-//        needle.value = area.location
-//        self.view.addSubview(needle)
-//        needle.snp.makeConstraints { make in
-//            make.centerX.equalTo(arcLocationLabel.snp.centerX)
-//            make.centerY.equalTo(arcLocationLabel.snp.centerY)
-//        }
-//        needles.updateValue(needle, forKey: viewModel.currentUser)
-//    }
+    func loadNeedles(area: Location) {
+        let needle = Needle()
+        needle.text = viewModel.currentUser
+        needle.value = area.location
+        self.view.addSubview(needle)
+        needle.snp.makeConstraints { make in
+            make.centerX.equalTo(arcLocationLabel.snp.centerX)
+            make.centerY.equalTo(arcLocationLabel.snp.centerY)
+        }
+        needles.updateValue(needle, forKey: viewModel.currentUser)
+    }
 
     //MARK: Sample load view
     func moveNeedle(_ member: Member) {
@@ -224,8 +220,6 @@ extension MainViewController {
     
     func goEdit() {
         let destinationVC = MapPinViewController()
-        destinationVC.lat = latitude
-        destinationVC.long = longitude
         destinationVC.modalPresentationStyle = .overFullScreen
         present(destinationVC, animated: true, completion: nil)
     }
@@ -282,16 +276,18 @@ extension MainViewController: CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if let location = locations.last {
-            locationManager.stopUpdatingLocation()
+//            locationManager.stopUpdatingLocation()
             let digit: Double = pow(10, 3)
             let lat = String(round(location.coordinate.latitude * digit) / digit)
             let long = String(round(location.coordinate.longitude * digit) / digit)
-            self.latitude = lat
-            self.longitude = long
-            print("\(lat) & \(long)")
-//            viewModel.postLocation(latitude: lat, longitude: long) { [weak self] area in
-//                self?.loadNeedles(area: area.area)
-//            }
+            if lat != viewModel.userLatitude || long != viewModel.userLongitude {
+                viewModel.userLatitude = lat
+                viewModel.userLongitude = long
+                print("Lat: \(viewModel.userLatitude!), Long:  \(viewModel.userLongitude!)")
+//                viewModel.postLocation() { [weak self] area in
+//                    self?.loadNeedles(area: area.area)
+//                }
+            }
         }
     }
     
