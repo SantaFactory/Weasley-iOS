@@ -22,39 +22,45 @@ class MainViewController: UIViewController {
         super.loadView()
         view.backgroundColor = .secondarySystemBackground
         self.view.addSubview(menuButton)
+        self.view.addSubview(clockView)
+        self.view.addSubview(arcLocationLabel)
+        self.view.addSubview(relocateButton)
+        self.view.addSubview(addGroupButton)
+        self.view.addSubview(groupCollectionView)
+        self.view.addSubview(membersTableView)
         menuButton.snp.makeConstraints { make in
             make.top.equalToSuperview()
             make.trailing.equalToSuperview().offset(-20)
         }
-        self.view.addSubview(clockView)
         clockView.snp.makeConstraints { make in
             make.height.equalTo(self.view.frame.width)
             make.width.equalToSuperview()
             make.top.equalTo(menuButton.snp.bottom)
         }
-        self.view.addSubview(arcLocationLabel)
         arcLocationLabel.snp.makeConstraints { make in
             make.top.equalTo(clockView.snp.top)
             make.bottom.equalTo(clockView.snp.bottom)
             make.leading.equalTo(clockView.snp.leading)
             make.trailing.equalTo(clockView.snp.trailing)
         }
-       self.view.addSubview(relocateButton)
         relocateButton.snp.makeConstraints { make in
             make.height.equalTo(50)
             make.width.equalTo(50)
             make.centerX.equalTo(arcLocationLabel.snp.centerX)
             make.centerY.equalTo(arcLocationLabel.snp.centerY)
         }
-        //MARK: Sample UI
-        self.view.addSubview(groupCollectionView)
+        addGroupButton.snp.makeConstraints { make in
+            make.height.equalTo(50)
+            make.width.equalTo(50)
+            make.trailing.equalToSuperview()
+            make.centerY.equalTo(groupCollectionView)
+        }
         groupCollectionView.snp.makeConstraints { make in
             make.top.equalTo(clockView.snp.bottom)
             make.leading.equalToSuperview()
-            make.trailing.equalTo(menuButton.snp.leading)
+            make.trailing.equalTo(addGroupButton.snp.leading)
             make.height.equalTo(50)
         }
-        self.view.addSubview(membersTableView)
         membersTableView.snp.makeConstraints { make in
             make.top.equalTo(groupCollectionView.snp.bottom)
             make.leading.equalToSuperview()
@@ -119,6 +125,14 @@ class MainViewController: UIViewController {
         button.setImage(UIImage(systemName: "safari.fill"), for: .normal)
         button.tintColor = .systemRed
         button.addTarget(self, action: #selector(reLocate), for: .touchUpInside)
+        return button
+    }()
+    
+    private lazy var addGroupButton: UIButton = {
+        let button = UIButton()
+        let config = UIImage.SymbolConfiguration(pointSize: 30)
+        button.setImage(UIImage(systemName: "plus.circle.fill", withConfiguration: config), for: .normal)
+        button.addTarget(self, action: #selector(addGroup), for: .touchUpInside)
         return button
     }()
     
@@ -222,6 +236,11 @@ extension MainViewController {
         let destinationVC = MapPinViewController()
         destinationVC.modalPresentationStyle = .overFullScreen
         present(destinationVC, animated: true, completion: nil)
+    }
+    
+    //MARK: To Do add Action Method
+    @objc func addGroup() {
+       print("")
     }
     
     func inviteMember() {
