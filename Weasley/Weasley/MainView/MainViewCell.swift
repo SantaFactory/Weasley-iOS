@@ -15,7 +15,7 @@ class GroupCell: UICollectionViewCell {
         contentView.addSubview(groupNameLabel)
         groupNameLabel.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(8)
-            make.bottom.equalToSuperview().offset(8)
+            make.bottom.equalToSuperview().offset(-8)
             make.leading.equalToSuperview().offset(8)
             make.trailing.equalToSuperview().offset(-8)
         }

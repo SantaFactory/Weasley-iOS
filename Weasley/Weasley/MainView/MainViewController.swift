@@ -146,9 +146,10 @@ class MainViewController: UIViewController {
     private lazy var groupCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
-        layout.itemSize = CGSize(width: 120, height: 120)
+        layout.itemSize = CGSize(width: 120, height: 0)
         let collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)
         collectionView.register(GroupCell.self, forCellWithReuseIdentifier: "groupCell")
+        collectionView.isScrollEnabled = true
         return collectionView
     }()
     
@@ -256,18 +257,30 @@ extension MainViewController {
     }
 }
 
-extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 0
+        return 2
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "groupCell", for: indexPath) as? GroupCell else {
             return UICollectionViewCell()
         }
-        cell.groupNameLabel.text = ""
+        cell.groupNameLabel.text = "Group"
         return cell
     }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let cell = collectionView.cellForItem(at: indexPath)
+        guard let cell = cell else {
+            return CGSize.zero
+        }
+        return CGSize(width: cell.contentView.frame.size.width, height: cell.contentView.frame.size.height)
+    }
+    
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+//        <#code#>
+//    }
 }
 
 extension MainViewController: UITableViewDelegate, UITableViewDataSource {

@@ -114,7 +114,8 @@
 				7FE87A12273B91B700301A94 /* Model */,
 				7FE87A13273B91CA00301A94 /* ViewModel */,
 				7F8A4FD52730D60F00656E0A /* LoginView */,
-				7F8A4FD72730D6D700656E0A /* WeasleyClock */,
+				7F8A4FD72730D6D700656E0A /* MainView */,
+				7FF5C8C5275DBBDF00DE24DE /* EditView */,
 				7F4302692726D89900FA594F /* Assets.xcassets */,
 				7F43026B2726D89900FA594F /* LaunchScreen.storyboard */,
 				7F43026E2726D89900FA594F /* Info.plist */,
@@ -141,17 +142,16 @@
 			path = Util;
 			sourceTree = "<group>";
 		};
-		7F8A4FD72730D6D700656E0A /* WeasleyClock */ = {
+		7F8A4FD72730D6D700656E0A /* MainView */ = {
 			isa = PBXGroup;
 			children = (
 				7FA1C8AB272CF46500D2B4E0 /* ClockView.swift */,
 				7F8A4FCD272FA8A900656E0A /* NeedleView.swift */,
 				7F8A500D2734D5F700656E0A /* LocationLabel.swift */,
 				7F4302642726D89400FA594F /* MainViewController.swift */,
-				7FE879E02738E9FE00301A94 /* MapPinViewController.swift */,
 				7F3A480C2758C06200B3D104 /* MainViewCell.swift */,
 			);
-			path = WeasleyClock;
+			path = MainView;
 			sourceTree = "<group>";
 		};
 		7FE87A12273B91B700301A94 /* Model */ = {
@@ -171,6 +171,14 @@
 				7FE87A14273BA5C600301A94 /* CurrentLocations.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		7FF5C8C5275DBBDF00DE24DE /* EditView */ = {
+			isa = PBXGroup;
+			children = (
+				7FE879E02738E9FE00301A94 /* MapPinViewController.swift */,
+			);
+			path = EditView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
