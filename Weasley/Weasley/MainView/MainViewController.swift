@@ -234,7 +234,7 @@ extension MainViewController {
     }
     
     func goEdit() {
-        let destinationVC = MapPinViewController()
+        let destinationVC = EditLocationViewController()
         destinationVC.modalPresentationStyle = .overFullScreen
         present(destinationVC, animated: true, completion: nil)
     }

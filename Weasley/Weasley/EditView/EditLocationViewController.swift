@@ -1,5 +1,5 @@
 //
-//  MapPinViewController.swift
+//  EditLocationViewController.swift
 //  Weasley
 //
 //  Created by Doyoung on 2021/11/08.
@@ -7,13 +7,13 @@
 
 import UIKit
 import SnapKit
+import MapKit
 
-class MapPinViewController: UIViewController {
+class EditLocationViewController: UIViewController {
     
     let viewModel = CurrentLocations.share
+    let annotoation = MKPointAnnotation()
     var buttonHeight: CGFloat = 40
-    var lat = ""
-    var long = ""
     
     override func loadView() {
         super.loadView()
@@ -23,7 +23,7 @@ class MapPinViewController: UIViewController {
         self.view.addSubview(setSchoolButton)
         self.view.addSubview(setWorkButton)
         self.view.addSubview(skipButton)
-        
+        self.view.addSubview(mapView)
         backgroundBView.snp.makeConstraints { make in
             make.top.equalToSuperview()
             make.bottom.equalToSuperview()
@@ -59,11 +59,26 @@ class MapPinViewController: UIViewController {
             make.trailing.equalToSuperview().offset(-20)
             make.height.equalTo(buttonHeight)
         }
-
+        mapView.snp.makeConstraints { make in
+            make.top.equalTo(welcomeLabel.snp.bottom).offset(40)
+            make.bottom.equalTo(setHomeButton.snp.top).offset(-40)
+            make.leading.equalToSuperview().offset(20)
+            make.trailing.equalToSuperview().offset(-20)
+        }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        mapView.delegate = self
+        let lat = Double(viewModel.userLatitude!)!
+        let long = Double(viewModel.userLongitude!)!
+        let location = CLLocationCoordinate2D(latitude: lat, longitude: long)
+        let span = MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)
+        let circle = MKCircle(center: location, radius: 500)
+        annotoation.coordinate = location
+        mapView.setRegion(MKCoordinateRegion(center: location, span: span), animated: true)
+        mapView.addOverlay(circle)
+        mapView.addAnnotation(annotoation)
         
     }
     private lazy var welcomeLabel: UILabel = {
@@ -91,7 +106,6 @@ class MapPinViewController: UIViewController {
         button.rounded(buttonHeight / 2)
         return button
     }()
-    
     
     private lazy var setSchoolButton: UIButton = {
         let button = UIButton()
@@ -122,16 +136,19 @@ class MapPinViewController: UIViewController {
         button.setTitle("Skip", for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 18, weight: .semibold)
         button.addTarget(self, action: #selector(skipSet), for: .touchUpInside)
- 
         return button
     }()
 
+    private lazy var mapView: MKMapView = {
+        let mapView = MKMapView()
+        return mapView
+    }()
 }
 
-extension MapPinViewController {
+extension EditLocationViewController {
     
     @objc private func setHome(_ sender: UIButton) {
-        viewModel.setLocation(loc: "home", latitude: lat, longitude: long) { result in
+        viewModel.setLocation(loc: "home", latitude: viewModel.userLatitude!, longitude: viewModel.userLongitude!) { result in
             if result.task == "success" {
                 self.dismiss(animated: true, completion: nil)
             } else {
@@ -150,5 +167,17 @@ extension MapPinViewController {
     
     @objc private func skipSet() {
         dismiss(animated: true, completion: nil)
+    }
+}
+
+extension EditLocationViewController: MKMapViewDelegate {
+    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+        guard let circleOverlay = overlay as? MKCircle else {
+            return MKOverlayRenderer()
+        }
+        let circleRenderer = MKCircleRenderer(overlay: circleOverlay)
+        circleRenderer.fillColor = .systemPink
+        circleRenderer.alpha = 0.5
+        return circleRenderer
     }
 }

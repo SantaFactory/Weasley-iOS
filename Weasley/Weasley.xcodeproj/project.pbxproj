@@ -25,7 +25,7 @@
 		7FA1C8AA272B83E800D2B4E0 /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FA1C8A9272B83E800D2B4E0 /* APIManager.swift */; };
 		7FA1C8AC272CF46500D2B4E0 /* ClockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FA1C8AB272CF46500D2B4E0 /* ClockView.swift */; };
 		7FE0D9CE273F9BE200512B07 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7FE0D9CD273F9BE200512B07 /* GoogleService-Info.plist */; };
-		7FE879E12738E9FE00301A94 /* MapPinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE879E02738E9FE00301A94 /* MapPinViewController.swift */; };
+		7FE879E12738E9FE00301A94 /* EditLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE879E02738E9FE00301A94 /* EditLocationViewController.swift */; };
 		7FE87A11273B90C600301A94 /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE87A10273B90C600301A94 /* Login.swift */; };
 		7FE87A15273BA5C600301A94 /* CurrentLocations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE87A14273BA5C600301A94 /* CurrentLocations.swift */; };
 /* End PBXBuildFile section */
@@ -52,7 +52,7 @@
 		7FA1C8A9272B83E800D2B4E0 /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
 		7FA1C8AB272CF46500D2B4E0 /* ClockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClockView.swift; sourceTree = "<group>"; };
 		7FE0D9CD273F9BE200512B07 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../../Downloads/GoogleServie_Plist/GoogleService-Info.plist"; sourceTree = "<group>"; };
-		7FE879E02738E9FE00301A94 /* MapPinViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapPinViewController.swift; sourceTree = "<group>"; };
+		7FE879E02738E9FE00301A94 /* EditLocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditLocationViewController.swift; sourceTree = "<group>"; };
 		7FE87A10273B90C600301A94 /* Login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Login.swift; sourceTree = "<group>"; };
 		7FE87A14273BA5C600301A94 /* CurrentLocations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentLocations.swift; sourceTree = "<group>"; };
 		A9873566C8D513FA6A965F78 /* Pods_Weasley.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Weasley.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -176,7 +176,7 @@
 		7FF5C8C5275DBBDF00DE24DE /* EditView */ = {
 			isa = PBXGroup;
 			children = (
-				7FE879E02738E9FE00301A94 /* MapPinViewController.swift */,
+				7FE879E02738E9FE00301A94 /* EditLocationViewController.swift */,
 			);
 			path = EditView;
 			sourceTree = "<group>";
@@ -298,7 +298,7 @@
 				7FE87A15273BA5C600301A94 /* CurrentLocations.swift in Sources */,
 				7F8A50102734D65D00656E0A /* DegreesToRadians.swift in Sources */,
 				7F3A480D2758C06300B3D104 /* MainViewCell.swift in Sources */,
-				7FE879E12738E9FE00301A94 /* MapPinViewController.swift in Sources */,
+				7FE879E12738E9FE00301A94 /* EditLocationViewController.swift in Sources */,
 				7F4302652726D89400FA594F /* MainViewController.swift in Sources */,
 				7F8A4FDB2730F02000656E0A /* Location.swift in Sources */,
 				7FA1C8AC272CF46500D2B4E0 /* ClockView.swift in Sources */,
