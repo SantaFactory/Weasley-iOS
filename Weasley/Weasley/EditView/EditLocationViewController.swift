@@ -94,8 +94,8 @@ class EditLocationViewController: UIViewController {
     }()
     
     private lazy var setHomeButton: UIButton = {
-        let button = UIButton()
-        button.backgroundColor = .blue
+        let button = GradientButton()
+        button.backgroundColor = .systemBackground
         button.setTitleColor(.white, for: .normal)
         button.setTitle("Home", for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 18, weight: .semibold)
@@ -106,7 +106,7 @@ class EditLocationViewController: UIViewController {
     
     private lazy var setSchoolButton: UIButton = {
         let button = GradientButton()
-        button.backgroundColor = .blue
+        button.backgroundColor = .systemBackground
         button.setTitleColor(.white, for: .normal)
         button.setTitle("School", for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 18, weight: .semibold)
@@ -117,6 +117,7 @@ class EditLocationViewController: UIViewController {
     
     private lazy var setWorkButton: UIButton = {
         let button = GradientButton()
+        button.backgroundColor = .systemBackground
         button.setTitleColor(.white, for: .normal)
         button.setTitle("Work", for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 18, weight: .semibold)
