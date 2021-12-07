@@ -99,7 +99,7 @@ class EditLocationViewController: UIViewController {
         button.setTitleColor(.white, for: .normal)
         button.setTitle("Home", for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 18, weight: .semibold)
-        button.addTarget(self, action: #selector(setHome), for: .touchUpInside)
+        button.addTarget(self, action: #selector(setLocation), for: .touchUpInside)
         button.rounded(buttonHeight / 3)
         return button
     }()
@@ -110,7 +110,7 @@ class EditLocationViewController: UIViewController {
         button.setTitleColor(.white, for: .normal)
         button.setTitle("School", for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 18, weight: .semibold)
-        button.addTarget(self, action: #selector(setSchool), for: .touchUpInside)
+        button.addTarget(self, action: #selector(setLocation), for: .touchUpInside)
         button.rounded(buttonHeight / 3)
         return button
     }()
@@ -121,7 +121,7 @@ class EditLocationViewController: UIViewController {
         button.setTitleColor(.white, for: .normal)
         button.setTitle("Work", for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 18, weight: .semibold)
-        button.addTarget(self, action: #selector(setWork), for: .touchUpInside)
+        button.addTarget(self, action: #selector(setLocation), for: .touchUpInside)
         button.rounded(buttonHeight / 3)
         return button
     }()
@@ -145,22 +145,15 @@ class EditLocationViewController: UIViewController {
 
 extension EditLocationViewController {
     
-    @objc private func setHome(_ sender: UIButton) {
-        viewModel.setLocation(loc: "home", latitude: viewModel.userLatitude!, longitude: viewModel.userLongitude!) { result in
+    @objc private func setLocation(_ sender: UIButton) {
+        let location = sender.titleLabel?.text!.lowercased()
+        viewModel.setLocation(loc: location!, latitude: viewModel.userLatitude!, longitude: viewModel.userLongitude!) { result in
             if result.task == "success" {
                 self.dismiss(animated: true, completion: nil)
             } else {
                 print("Error!!!!")
             }
         }
-    }
-    
-    @objc private func setSchool(_ sender: UIButton) {
-      
-    }
-    
-    @objc private func setWork(_ sender: UIButton) {
-     
     }
     
     @objc private func skipSet() {
