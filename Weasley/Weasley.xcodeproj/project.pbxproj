@@ -29,6 +29,7 @@
 		7FE87A11273B90C600301A94 /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE87A10273B90C600301A94 /* Login.swift */; };
 		7FE87A15273BA5C600301A94 /* CurrentLocations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE87A14273BA5C600301A94 /* CurrentLocations.swift */; };
 		7FF5C8C7275F0B9F00DE24DE /* GradientButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FF5C8C6275F0B9F00DE24DE /* GradientButton.swift */; };
+		7FF5C8CC275F42FD00DE24DE /* SettingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FF5C8CB275F42FD00DE24DE /* SettingTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -57,6 +58,7 @@
 		7FE87A10273B90C600301A94 /* Login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Login.swift; sourceTree = "<group>"; };
 		7FE87A14273BA5C600301A94 /* CurrentLocations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentLocations.swift; sourceTree = "<group>"; };
 		7FF5C8C6275F0B9F00DE24DE /* GradientButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientButton.swift; sourceTree = "<group>"; };
+		7FF5C8CB275F42FD00DE24DE /* SettingTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableViewController.swift; sourceTree = "<group>"; };
 		A9873566C8D513FA6A965F78 /* Pods_Weasley.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Weasley.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -118,6 +120,7 @@
 				7F8A4FD52730D60F00656E0A /* LoginView */,
 				7F8A4FD72730D6D700656E0A /* MainView */,
 				7FF5C8C5275DBBDF00DE24DE /* EditView */,
+				7FF5C8C8275F417700DE24DE /* SettingView */,
 				7F4302692726D89900FA594F /* Assets.xcassets */,
 				7F43026B2726D89900FA594F /* LaunchScreen.storyboard */,
 				7F43026E2726D89900FA594F /* Info.plist */,
@@ -182,6 +185,14 @@
 				7FF5C8C6275F0B9F00DE24DE /* GradientButton.swift */,
 			);
 			path = EditView;
+			sourceTree = "<group>";
+		};
+		7FF5C8C8275F417700DE24DE /* SettingView */ = {
+			isa = PBXGroup;
+			children = (
+				7FF5C8CB275F42FD00DE24DE /* SettingTableViewController.swift */,
+			);
+			path = SettingView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -308,6 +319,7 @@
 				7F8A500E2734D5F700656E0A /* LocationLabel.swift in Sources */,
 				7FE87A11273B90C600301A94 /* Login.swift in Sources */,
 				7F46B8E027280C1E002B2E78 /* LoginViewController.swift in Sources */,
+				7FF5C8CC275F42FD00DE24DE /* SettingTableViewController.swift in Sources */,
 				7FF5C8C7275F0B9F00DE24DE /* GradientButton.swift in Sources */,
 				7FA1C8AA272B83E800D2B4E0 /* APIManager.swift in Sources */,
 				7F8A4FD0272FB0F600656E0A /* View+SafeArea.swift in Sources */,

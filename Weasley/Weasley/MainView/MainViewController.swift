@@ -169,7 +169,7 @@ class MainViewController: UIViewController {
                 self.inviteMember()
             }),
             UIAction(title: "Setting", image: UIImage(systemName: "gearshape.fill"), handler: { _ in
-                //TODO: Implement Setting View
+                self.goSetting()
             }),
             UIAction(title: "Mark", image: UIImage(systemName: "gearshape.fill"), handler: { _ in
                 self.goEdit()
@@ -236,6 +236,12 @@ extension MainViewController {
     func goEdit() {
         let destinationVC = EditLocationViewController()
         destinationVC.modalPresentationStyle = .overFullScreen
+        present(destinationVC, animated: true, completion: nil)
+    }
+    
+    func goSetting() {
+        let rootVC = SettingTableViewController()
+        let destinationVC = UINavigationController(rootViewController: rootVC)
         present(destinationVC, animated: true, completion: nil)
     }
     
