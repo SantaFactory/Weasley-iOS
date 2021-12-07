@@ -12,8 +12,7 @@ import MapKit
 class EditLocationViewController: UIViewController {
     
     let viewModel = CurrentLocations.share
-    let annotoation = MKPointAnnotation()
-    var buttonHeight: CGFloat = 40
+    var buttonHeight: CGFloat = 50
     
     override func loadView() {
         super.loadView()
@@ -22,7 +21,7 @@ class EditLocationViewController: UIViewController {
         self.view.addSubview(setHomeButton)
         self.view.addSubview(setSchoolButton)
         self.view.addSubview(setWorkButton)
-        self.view.addSubview(skipButton)
+        self.view.addSubview(cancelButton)
         self.view.addSubview(mapView)
         backgroundBView.snp.makeConstraints { make in
             make.top.equalToSuperview()
@@ -48,12 +47,12 @@ class EditLocationViewController: UIViewController {
             make.height.equalTo(buttonHeight)
         }
         setWorkButton.snp.makeConstraints { make in
-            make.bottom.equalTo(self.skipButton.snp.top).offset(-10)
+            make.bottom.equalTo(self.cancelButton.snp.top).offset(-10)
             make.leading.equalToSuperview().offset(20)
             make.trailing.equalToSuperview().offset(-20)
             make.height.equalTo(buttonHeight)
         }
-        skipButton.snp.makeConstraints { make in
+        cancelButton.snp.makeConstraints { make in
             make.bottom.equalTo(self.view.safeArea.bottom).offset(-20)
             make.leading.equalToSuperview().offset(20)
             make.trailing.equalToSuperview().offset(-20)
@@ -73,14 +72,12 @@ class EditLocationViewController: UIViewController {
         let lat = Double(viewModel.userLatitude!)!
         let long = Double(viewModel.userLongitude!)!
         let location = CLLocationCoordinate2D(latitude: lat, longitude: long)
-        let span = MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)
-        let circle = MKCircle(center: location, radius: 500)
-        annotoation.coordinate = location
+        let span = MKCoordinateSpan(latitudeDelta: 0.005, longitudeDelta: 0.005)
+        let circle = MKCircle(center: location, radius: 200)
         mapView.setRegion(MKCoordinateRegion(center: location, span: span), animated: true)
         mapView.addOverlay(circle)
-        mapView.addAnnotation(annotoation)
-        
     }
+    
     private lazy var welcomeLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
@@ -103,39 +100,39 @@ class EditLocationViewController: UIViewController {
         button.setTitle("Home", for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 18, weight: .semibold)
         button.addTarget(self, action: #selector(setHome), for: .touchUpInside)
-        button.rounded(buttonHeight / 2)
+        button.rounded(buttonHeight / 3)
         return button
     }()
     
     private lazy var setSchoolButton: UIButton = {
-        let button = UIButton()
+        let button = GradientButton()
         button.backgroundColor = .blue
         button.setTitleColor(.white, for: .normal)
         button.setTitle("School", for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 18, weight: .semibold)
         button.addTarget(self, action: #selector(setSchool), for: .touchUpInside)
-        button.rounded(buttonHeight / 2)
+        button.rounded(buttonHeight / 3)
         return button
     }()
     
     private lazy var setWorkButton: UIButton = {
-        let button = UIButton()
-        button.backgroundColor = .blue
+        let button = GradientButton()
         button.setTitleColor(.white, for: .normal)
         button.setTitle("Work", for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 18, weight: .semibold)
         button.addTarget(self, action: #selector(setWork), for: .touchUpInside)
-        button.rounded(buttonHeight / 2)
+        button.rounded(buttonHeight / 3)
         return button
     }()
     
-    private lazy var skipButton: UIButton = {
+    private lazy var cancelButton: UIButton = {
         let button = UIButton()
         button.backgroundColor = .black
         button.setTitleColor(.white, for: .normal)
-        button.setTitle("Skip", for: .normal)
+        button.setTitle("Cancel", for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 18, weight: .semibold)
         button.addTarget(self, action: #selector(skipSet), for: .touchUpInside)
+        button.rounded(buttonHeight / 3)
         return button
     }()
 
