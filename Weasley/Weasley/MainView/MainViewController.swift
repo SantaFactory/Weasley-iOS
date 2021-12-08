@@ -172,11 +172,11 @@ class MainViewController: UIViewController {
             UIAction(title: "Invite member", image: UIImage(systemName: "paperplane.fill"), handler: { _ in
                 self.inviteMember()
             }),
+            UIAction(title: "Mark current location", image: UIImage(systemName: "mappin.and.ellipse"), handler: { _ in
+                self.goEdit()
+            }),
             UIAction(title: "Setting", image: UIImage(systemName: "gearshape.fill"), handler: { _ in
                 self.goSetting()
-            }),
-            UIAction(title: "Mark", image: UIImage(systemName: "gearshape.fill"), handler: { _ in
-                self.goEdit()
             }),
             UIAction(title: "Sign Out", image: UIImage(systemName: "rectangle.portrait.and.arrow.right"), handler: { _ in
                 self.signOut()

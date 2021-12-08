@@ -12,7 +12,7 @@ import MapKit
 class EditLocationViewController: UIViewController {
     
     let viewModel = CurrentLocations.share
-    var buttonHeight: CGFloat = 50
+    var buttonHeight: CGFloat = 40
     
     override func loadView() {
         super.loadView()
@@ -23,6 +23,10 @@ class EditLocationViewController: UIViewController {
         self.view.addSubview(setWorkButton)
         self.view.addSubview(cancelButton)
         self.view.addSubview(mapView)
+        self.view.addSubview(statusHomeImgView)
+        self.view.addSubview(statusSchoolImgView)
+        self.view.addSubview(statusWorkImgView)
+        
         backgroundBView.snp.makeConstraints { make in
             make.top.equalToSuperview()
             make.bottom.equalToSuperview()
@@ -34,20 +38,38 @@ class EditLocationViewController: UIViewController {
             make.leading.equalToSuperview().offset(20)
             make.trailing.equalToSuperview().offset(-20)
         }
+        statusWorkImgView.snp.makeConstraints { make in
+            make.trailing.equalTo(welcomeLabel.snp.trailing)
+            make.top.equalTo(welcomeLabel.snp.bottom).offset(10)
+            make.height.equalTo(24)
+            make.width.equalTo(24)
+        }
+        statusSchoolImgView.snp.makeConstraints { make in
+            make.trailing.equalTo(statusWorkImgView.snp.leading).offset(-4)
+            make.top.equalTo(welcomeLabel.snp.bottom).offset(10)
+            make.height.equalTo(24)
+            make.width.equalTo(24)
+        }
+        statusHomeImgView.snp.makeConstraints { make in
+            make.trailing.equalTo(statusSchoolImgView.snp.leading).offset(-4)
+            make.top.equalTo(welcomeLabel.snp.bottom).offset(10)
+            make.height.equalTo(24)
+            make.width.equalTo(24)
+        }
         setHomeButton.snp.makeConstraints { make in
-            make.bottom.equalTo(self.setSchoolButton.snp.top).offset(-10)
+            make.bottom.equalTo(self.setSchoolButton.snp.top).offset(-8)
             make.leading.equalToSuperview().offset(20)
             make.trailing.equalToSuperview().offset(-20)
             make.height.equalTo(buttonHeight)
         }
         setSchoolButton.snp.makeConstraints { make in
-            make.bottom.equalTo(self.setWorkButton.snp.top).offset(-10)
+            make.bottom.equalTo(self.setWorkButton.snp.top).offset(-8)
             make.leading.equalToSuperview().offset(20)
             make.trailing.equalToSuperview().offset(-20)
             make.height.equalTo(buttonHeight)
         }
         setWorkButton.snp.makeConstraints { make in
-            make.bottom.equalTo(self.cancelButton.snp.top).offset(-10)
+            make.bottom.equalTo(self.cancelButton.snp.top).offset(-8)
             make.leading.equalToSuperview().offset(20)
             make.trailing.equalToSuperview().offset(-20)
             make.height.equalTo(buttonHeight)
@@ -59,8 +81,8 @@ class EditLocationViewController: UIViewController {
             make.height.equalTo(buttonHeight)
         }
         mapView.snp.makeConstraints { make in
-            make.top.equalTo(welcomeLabel.snp.bottom).offset(40)
-            make.bottom.equalTo(setHomeButton.snp.top).offset(-40)
+            make.top.equalTo(statusHomeImgView.snp.bottom).offset(6)
+            make.bottom.equalTo(setHomeButton.snp.top).offset(-30)
             make.leading.equalToSuperview().offset(20)
             make.trailing.equalToSuperview().offset(-20)
         }
@@ -99,6 +121,8 @@ class EditLocationViewController: UIViewController {
         button.setTitleColor(.white, for: .normal)
         button.setTitle("Home", for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 18, weight: .semibold)
+        button.addTarget(self, action: #selector(tapButton), for: .touchDown)
+        button.addTarget(self, action: #selector(cancelTap), for: .touchUpOutside)
         button.addTarget(self, action: #selector(setLocation), for: .touchUpInside)
         button.rounded(buttonHeight / 3)
         return button
@@ -110,6 +134,8 @@ class EditLocationViewController: UIViewController {
         button.setTitleColor(.white, for: .normal)
         button.setTitle("School", for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 18, weight: .semibold)
+        button.addTarget(self, action: #selector(tapButton), for: .touchDown)
+        button.addTarget(self, action: #selector(cancelTap), for: .touchUpOutside)
         button.addTarget(self, action: #selector(setLocation), for: .touchUpInside)
         button.rounded(buttonHeight / 3)
         return button
@@ -121,6 +147,8 @@ class EditLocationViewController: UIViewController {
         button.setTitleColor(.white, for: .normal)
         button.setTitle("Work", for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 18, weight: .semibold)
+        button.addTarget(self, action: #selector(tapButton), for: .touchDown)
+        button.addTarget(self, action: #selector(cancelTap), for: .touchUpOutside)
         button.addTarget(self, action: #selector(setLocation), for: .touchUpInside)
         button.rounded(buttonHeight / 3)
         return button
@@ -132,6 +160,8 @@ class EditLocationViewController: UIViewController {
         button.setTitleColor(.white, for: .normal)
         button.setTitle("Cancel", for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 18, weight: .semibold)
+        button.addTarget(self, action: #selector(tapButton), for: .touchDown)
+        button.addTarget(self, action: #selector(cancelTap), for: .touchUpOutside)
         button.addTarget(self, action: #selector(skipSet), for: .touchUpInside)
         button.rounded(buttonHeight / 3)
         return button
@@ -141,11 +171,33 @@ class EditLocationViewController: UIViewController {
         let mapView = MKMapView()
         return mapView
     }()
+    
+    private lazy var statusHomeImgView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(systemName: "house.circle")
+        imageView.tintColor = .systemPink
+        return imageView
+    }()
+    
+    private lazy var statusSchoolImgView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(systemName: "graduationcap.circle")
+        imageView.tintColor = .systemPink
+        return imageView
+    }()
+    
+    private lazy var statusWorkImgView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(systemName: "building.2.crop.circle")
+        imageView.tintColor = .systemPink
+        return imageView
+    }()
 }
 
 extension EditLocationViewController {
     
     @objc private func setLocation(_ sender: UIButton) {
+        sender.alpha = 1.0
         let location = sender.titleLabel?.text!.lowercased()
         viewModel.setLocation(loc: location!, latitude: viewModel.userLatitude!, longitude: viewModel.userLongitude!) { result in
             if result.task == "success" {
@@ -154,6 +206,14 @@ extension EditLocationViewController {
                 print("Error!!!!")
             }
         }
+    }
+    
+    @objc private func tapButton(_ sender: UIButton) {
+        sender.alpha = 0.5
+    }
+    
+    @objc private func cancelTap(_ sender: UIButton) {
+        sender.alpha = 1.0
     }
     
     @objc private func skipSet() {
