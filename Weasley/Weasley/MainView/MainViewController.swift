@@ -28,7 +28,6 @@ class MainViewController: UIViewController {
         self.view.addSubview(addGroupButton)
         self.view.addSubview(membersTableView)
         self.view.addSubview(groupsScrollView)
-        self.view.addSubview(groupsPageControl)
         menuButton.snp.makeConstraints { make in
             make.top.equalTo(self.view.safeArea.top).offset(16)
             make.trailing.equalToSuperview().offset(-16)
@@ -58,11 +57,6 @@ class MainViewController: UIViewController {
         }
         groupsScrollView.snp.makeConstraints { make in
             make.height.equalTo(60)
-            make.bottom.equalToSuperview()
-            make.leading.equalToSuperview()
-            make.trailing.equalToSuperview()
-        }
-        groupsPageControl.snp.makeConstraints { make in
             make.bottom.equalToSuperview()
             make.leading.equalToSuperview()
             make.trailing.equalToSuperview()
@@ -142,18 +136,11 @@ class MainViewController: UIViewController {
         return button
     }()
     
-    private lazy var groupsPageControl: UIPageControl = {
-        let pageControl = UIPageControl()
-        pageControl.numberOfPages = 4
-        return pageControl
-    }()
-    
     private lazy var groupsScrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.contentSize = CGSize(width: UIScreen.main.bounds.width * 4, height: scrollView.contentSize.height)
         scrollView.backgroundColor = .systemGray
         scrollView.isPagingEnabled = true
-        scrollView.showsHorizontalScrollIndicator = false
         return scrollView
     }()
     
@@ -290,12 +277,6 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
-//MARK: SCROLL VIEW DELEGATE
-extension MainViewController: UIScrollViewDelegate {
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-            groupsPageControl.currentPage = Int(floorf(Float((scrollView.contentOffset.x + scrollView.frame.width/2) / (scrollView.frame.width))))
-    }
-}
 //MARK: CORE LOCATION MANGER DELEGATE
 extension MainViewController: CLLocationManagerDelegate {
     
