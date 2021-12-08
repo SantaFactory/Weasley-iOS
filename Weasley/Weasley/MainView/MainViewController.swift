@@ -21,21 +21,22 @@ class MainViewController: UIViewController {
     override func loadView() {
         super.loadView()
         view.backgroundColor = .secondarySystemBackground
-        self.view.addSubview(menuButton)
         self.view.addSubview(clockView)
         self.view.addSubview(arcLocationLabel)
+        self.view.addSubview(menuButton)
         self.view.addSubview(relocateButton)
         self.view.addSubview(addGroupButton)
-        self.view.addSubview(groupCollectionView)
         self.view.addSubview(membersTableView)
+        self.view.addSubview(groupsScrollView)
+        self.view.addSubview(groupsPageControl)
         menuButton.snp.makeConstraints { make in
-            make.top.equalToSuperview()
-            make.trailing.equalToSuperview().offset(-20)
+            make.top.equalTo(self.view.safeArea.top).offset(16)
+            make.trailing.equalToSuperview().offset(-16)
         }
         clockView.snp.makeConstraints { make in
             make.height.equalTo(self.view.frame.width)
             make.width.equalToSuperview()
-            make.top.equalTo(menuButton.snp.bottom)
+            make.top.equalTo(self.view.safeArea.top)
         }
         arcLocationLabel.snp.makeConstraints { make in
             make.top.equalTo(clockView.snp.top)
@@ -49,30 +50,28 @@ class MainViewController: UIViewController {
             make.centerX.equalTo(arcLocationLabel.snp.centerX)
             make.centerY.equalTo(arcLocationLabel.snp.centerY)
         }
-        addGroupButton.snp.makeConstraints { make in
-            make.height.equalTo(50)
-            make.width.equalTo(50)
-            make.trailing.equalToSuperview()
-            make.centerY.equalTo(groupCollectionView)
-        }
-        groupCollectionView.snp.makeConstraints { make in
+        membersTableView.snp.makeConstraints { make in
             make.top.equalTo(clockView.snp.bottom)
             make.leading.equalToSuperview()
-            make.trailing.equalTo(addGroupButton.snp.leading)
-            make.height.equalTo(50)
+            make.trailing.equalToSuperview()
+            make.bottom.equalTo(groupsScrollView.snp.top)
         }
-        membersTableView.snp.makeConstraints { make in
-            make.top.equalTo(groupCollectionView.snp.bottom)
+        groupsScrollView.snp.makeConstraints { make in
+            make.height.equalTo(60)
+            make.bottom.equalToSuperview()
             make.leading.equalToSuperview()
             make.trailing.equalToSuperview()
+        }
+        groupsPageControl.snp.makeConstraints { make in
             make.bottom.equalToSuperview()
+            make.leading.equalToSuperview()
+            make.trailing.equalToSuperview()
         }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        groupCollectionView.delegate = self
-        groupCollectionView.dataSource = self
+        groupsScrollView.delegate = self
         membersTableView.delegate = self
         membersTableView.dataSource = self
         locationManager.delegate = self
@@ -138,19 +137,24 @@ class MainViewController: UIViewController {
     
     private lazy var menuButton: UIButton = {
         let button = UIButton()
-        let config = UIImage.SymbolConfiguration(pointSize: 30)
-        button.setImage(UIImage(systemName: "ellipsis.circle.fill", withConfiguration: config), for: .normal)
+        let config = UIImage.SymbolConfiguration(pointSize: 24)
+        button.setImage(UIImage(systemName: "ellipsis.circle", withConfiguration: config), for: .normal)
         return button
     }()
     
-    private lazy var groupCollectionView: UICollectionView = {
-        let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .horizontal
-        layout.itemSize = CGSize(width: 120, height: 0)
-        let collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)
-        collectionView.register(GroupCell.self, forCellWithReuseIdentifier: "groupCell")
-        collectionView.isScrollEnabled = true
-        return collectionView
+    private lazy var groupsPageControl: UIPageControl = {
+        let pageControl = UIPageControl()
+        pageControl.numberOfPages = 4
+        return pageControl
+    }()
+    
+    private lazy var groupsScrollView: UIScrollView = {
+        let scrollView = UIScrollView()
+        scrollView.contentSize = CGSize(width: UIScreen.main.bounds.width * 4, height: scrollView.contentSize.height)
+        scrollView.backgroundColor = .systemGray
+        scrollView.isPagingEnabled = true
+        scrollView.showsHorizontalScrollIndicator = false
+        return scrollView
     }()
     
     private lazy var membersTableView: UITableView = {
@@ -263,32 +267,7 @@ extension MainViewController {
     }
 }
 
-extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 2
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "groupCell", for: indexPath) as? GroupCell else {
-            return UICollectionViewCell()
-        }
-        cell.groupNameLabel.text = "Group"
-        return cell
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let cell = collectionView.cellForItem(at: indexPath)
-        guard let cell = cell else {
-            return CGSize.zero
-        }
-        return CGSize(width: cell.contentView.frame.size.width, height: cell.contentView.frame.size.height)
-    }
-    
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-//        <#code#>
-//    }
-}
-
+//MARK: TABLE VIEW DELEGATE
 extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
@@ -310,6 +289,14 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
         })
     }
 }
+
+//MARK: SCROLL VIEW DELEGATE
+extension MainViewController: UIScrollViewDelegate {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+            groupsPageControl.currentPage = Int(floorf(Float((scrollView.contentOffset.x + scrollView.frame.width/2) / (scrollView.frame.width))))
+    }
+}
+//MARK: CORE LOCATION MANGER DELEGATE
 extension MainViewController: CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
