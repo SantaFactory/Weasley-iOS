@@ -12,34 +12,42 @@ class Clock: UIView {
     let gradientLayer: CAGradientLayer = CAGradientLayer()
     var startAngle: CGFloat = (-(.pi) / 2)
     var endAngle: CGFloat = 0.0
-    
+    let colors = [
+        UIColor(named: "magicRed")!,
+        UIColor(named: "magicOrange")!,
+        UIColor(named: "magicYellow")!,
+        UIColor(named: "magicLime")!,
+        UIColor(named: "magicGreen")!,
+        UIColor(named: "magicBlue")!,
+        UIColor(named: "magicPurple")!,
+        UIColor(named: "magicPink")!
+    ]
     override func draw(_ rect: CGRect) {
-        let radius = min(rect.size.width / 2.0, rect.size.height / 2.0) - 20
         let center = CGPoint(x: rect.midX, y: rect.midY)
+        let radius = min(rect.size.width / 2.0, rect.size.height / 2.0) - 20
         
-        let background = UIBezierPath(
-            arcCenter: center,
+        let path = UIBezierPath()
+        path.addArc(
+            withCenter: center,
             radius: radius,
             startAngle: 0,
             endAngle: (360 * .pi) / 180,
             clockwise: true
         )
-        UIColor.black.set()
-        background.fill()
-        let whole = UIBezierPath(
-            arcCenter: center,
-            radius: radius * 0.8,
-            startAngle: 0,
-            endAngle: (360 * .pi) / 180,
-            clockwise: true
-        )
-        UIColor.secondarySystemBackground.set()
-        whole.fill()
+        self.gradientLayer.colors = colors.map{ $0.withAlphaComponent(0.6).cgColor }
+        gradientLayer.frame = rect
+        self.gradientLayer.startPoint = CGPoint(x: 0.5, y: 0.5)
+        self.gradientLayer.endPoint = CGPoint(x: 0.5, y: 0.0)
+        self.gradientLayer.type = .conic
         
-        for _ in 1...8 {
-            endAngle = (1 / 8) * (.pi * 2)
-            
+        let shapeMask = CAShapeLayer()
+        shapeMask.path = path.cgPath
+        gradientLayer.mask = shapeMask
+        self.layer.addSublayer(gradientLayer)
+        
+        for index in 0..<8 {
             let path = UIBezierPath()
+            endAngle = (1 / 8) * (.pi * 2)
             path.move(to: center)
             path.addArc(withCenter: center,
                         radius: radius,
@@ -47,25 +55,10 @@ class Clock: UIView {
                         endAngle: startAngle + endAngle,
                         clockwise: true
             )
-            UIColor.clear.set()
+            colors[index].withAlphaComponent(0.2).set()
             path.fill()
             path.close()
-            
-            UIColor.black.set()
-            path.lineWidth = 7
-            path.stroke()
             startAngle += endAngle
         }
-        
-        let semiCircle = UIBezierPath(
-            arcCenter: center,
-            radius: radius * 0.6,
-            startAngle: 0,
-            endAngle: (360 * .pi) / 180,
-            clockwise: true
-        )
-        UIColor.secondarySystemBackground.set()
-        semiCircle.fill()
     }
-    
 }
