@@ -8,6 +8,7 @@
 import UIKit
 import CoreLocation
 import SnapKit
+import MapKit
 
 class MainViewController: UIViewController {
 
@@ -28,6 +29,7 @@ class MainViewController: UIViewController {
         self.view.addSubview(addGroupButton)
         self.view.addSubview(membersTableView)
         self.view.addSubview(groupsScrollView)
+        self.clockView.addSubview(userLocationMapView)
         menuButton.snp.makeConstraints { make in
             make.top.equalTo(self.view.safeArea.top).offset(16)
             make.trailing.equalToSuperview().offset(-16)
@@ -36,12 +38,20 @@ class MainViewController: UIViewController {
             make.height.equalTo(self.view.frame.width)
             make.width.equalToSuperview()
             make.top.equalTo(self.view.safeArea.top)
+            make.leading.equalToSuperview()
+            make.trailing.equalToSuperview()
         }
         arcLocationLabel.snp.makeConstraints { make in
             make.top.equalTo(clockView.snp.top)
             make.bottom.equalTo(clockView.snp.bottom)
             make.leading.equalTo(clockView.snp.leading)
             make.trailing.equalTo(clockView.snp.trailing)
+        }
+        userLocationMapView.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(20)
+            make.bottom.equalToSuperview().offset(-20)
+            make.leading.equalToSuperview().offset(20)
+            make.trailing.equalToSuperview().offset(-20)
         }
         relocateButton.snp.makeConstraints { make in
             make.height.equalTo(50)
@@ -77,6 +87,8 @@ class MainViewController: UIViewController {
         } else {
             showActionSheet()
         }
+        self.userLocationMapView.delegate = self
+        self.userLocationMapView.isHidden = true
     }
     
     func loadNeedles(area: Location) {
@@ -119,6 +131,12 @@ class MainViewController: UIViewController {
         button.tintColor = .systemRed
         button.addTarget(self, action: #selector(reLocate), for: .touchUpInside)
         return button
+    }()
+    
+    private lazy var userLocationMapView: MKMapView = {
+        let mapView = MKMapView()
+        mapView.rounded((UIScreen.main.bounds.width - 40) / 2)
+        return mapView
     }()
     
     private lazy var addGroupButton: UIButton = {
@@ -196,21 +214,27 @@ class MainViewController: UIViewController {
         ]
     }()
     
-    private lazy var memberMenu: UIMenu = {
-        return UIMenu(title: "", options: [], children: memberMenuItems)
-    }()
-    
-    private lazy var memberMenuItems: [UIAction] = {
-        return [
+    private func setMemberMenu(index member: Int) -> UIMenu {
+        let items = [
             UIAction(title: "Request Location", image: UIImage(systemName: "exclamationmark.bubble"), handler: { _ in
                 //TODO: Send Push
             }),
             UIAction(title: "Show Location", image: UIImage(systemName: "binoculars.fill"), handler: { _ in
                 //TODO: Show Map
+                let mapView = self.userLocationMapView
+                mapView.removeOverlays(mapView.overlays)
+                mapView.isHidden = false
+                let loc = CLLocationCoordinate2D(latitude: 37.365, longitude: 127.107)
+                //MARK: SET MEMBER INDEX
+                //let loc = CLLocationCoordinate2D(latitude: <#T##CLLocationDegrees#>, longitude: <#T##CLLocationDegrees#>)
+                let circle = MKCircle(center: loc, radius: 200)
+                let span = MKCoordinateSpan(latitudeDelta: 0.005, longitudeDelta: 0.005)
+                mapView.setRegion(MKCoordinateRegion(center: loc, span: span), animated: true)
+                mapView.addOverlay(circle)
             })
         ]
-    }()
-    
+        return UIMenu(title: "", options: [], children: items)
+    }
 }
 
 extension MainViewController {
@@ -272,7 +296,7 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
         return UIContextMenuConfiguration(identifier: nil,
                                           previewProvider: nil,
                                           actionProvider: {_ in
-            return self.memberMenu
+            return self.setMemberMenu(index: 0)
         })
     }
 }
@@ -302,4 +326,16 @@ extension MainViewController: CLLocationManagerDelegate {
         print("Error: \(error.localizedDescription)")
     }
     
+}
+
+extension MainViewController: MKMapViewDelegate {
+    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+        guard let circleOverlay = overlay as? MKCircle else {
+            return MKOverlayRenderer()
+        }
+        let circleRenderer = MKCircleRenderer(overlay: circleOverlay)
+        circleRenderer.fillColor = .systemBlue
+        circleRenderer.alpha = 0.7
+        return circleRenderer
+    }
 }
