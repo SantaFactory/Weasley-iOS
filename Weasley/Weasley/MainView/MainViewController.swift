@@ -66,7 +66,7 @@ class MainViewController: UIViewController {
             make.bottom.equalTo(groupsScrollView.snp.top)
         }
         groupsScrollView.snp.makeConstraints { make in
-            make.height.equalTo(60)
+            make.height.equalTo(80)
             make.bottom.equalToSuperview()
             make.leading.equalToSuperview()
             make.trailing.equalToSuperview()
@@ -89,6 +89,7 @@ class MainViewController: UIViewController {
         }
         self.userLocationMapView.delegate = self
         self.userLocationMapView.isHidden = true
+        loadGroupLabels()
     }
     
     func loadNeedles(area: Location) {
@@ -162,6 +163,50 @@ class MainViewController: UIViewController {
         return scrollView
     }()
     
+    //MARK: TODO: Sample Label -> for loop Method
+    func getGradientLayer(bounds : CGRect) -> CAGradientLayer{
+        let gradient = CAGradientLayer()
+        gradient.frame = bounds
+        //order of gradient colors
+        gradient.colors = [UIColor.red.cgColor,UIColor.blue.cgColor, UIColor.green.cgColor]
+        // start and end points
+        gradient.startPoint = CGPoint(x: 0.0, y: 0.5)
+        gradient.endPoint = CGPoint(x: 1.0, y: 0.5)
+        return gradient
+    }
+
+
+    func gradientColor(bounds: CGRect, gradientLayer :CAGradientLayer) -> UIColor? {
+        UIGraphicsBeginImageContext(gradientLayer.bounds.size)
+        //create UIImage by rendering gradient layer.
+        guard let context = UIGraphicsGetCurrentContext() else {
+            return .systemRed
+        }
+        gradientLayer.render(in: context)
+        let image = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        //get gradient UIcolor from gradient UIImage
+        return UIColor(patternImage: image!)
+    }
+
+    private lazy var sampleGroupName: UILabel = {
+        let label = UILabel()
+        print(UIScreen.main.bounds.height)
+        print(self.view.frame.maxY)
+        label.frame = CGRect(x: UIScreen.main.bounds.width * 0, y: 0, width: self.view.frame.width, height: 80)
+        label.font = UIFont.systemFont(ofSize: 60, weight: .black)
+        label.backgroundColor = .systemBackground
+        label.text = "Hello World!"
+        let gradient = getGradientLayer(bounds: label.bounds)
+        label.textColor = gradientColor(bounds: label.bounds, gradientLayer: gradient)
+        label.textAlignment = .center
+        return label
+    }()
+    
+    func loadGroupLabels() {
+        self.groupsScrollView.addSubview(sampleGroupName)
+    }
+    
     private lazy var membersTableView: UITableView = {
         let tableView = UITableView(frame: CGRect.zero, style: .insetGrouped)
         tableView.register(MemberCell.self, forCellReuseIdentifier: "memberCell")
@@ -223,7 +268,6 @@ class MainViewController: UIViewController {
                 //TODO: Show Map
                 let mapView = self.userLocationMapView
                 mapView.removeOverlays(mapView.overlays)
-                mapView.isHidden = false
                 let loc = CLLocationCoordinate2D(latitude: 37.365, longitude: 127.107)
                 //MARK: SET MEMBER INDEX
                 //let loc = CLLocationCoordinate2D(latitude: <#T##CLLocationDegrees#>, longitude: <#T##CLLocationDegrees#>)
