@@ -275,6 +275,7 @@ class MainViewController: UIViewController {
                 let span = MKCoordinateSpan(latitudeDelta: 0.005, longitudeDelta: 0.005)
                 mapView.setRegion(MKCoordinateRegion(center: loc, span: span), animated: true)
                 mapView.addOverlay(circle)
+                mapView.animateToHide()
             })
         ]
         return UIMenu(title: "", options: [], children: items)
