@@ -14,7 +14,7 @@ class InitialViewController: UIViewController {
         super.loadView()
         self.view.addSubview(titleLabel)
         self.view.addSubview(descriptionLabel)
-        self.view.addSubview(setGroupTextField)
+        self.view.addSubview(groupNameTextField)
         self.view.addSubview(setButton)
         self.view.addSubview(skipButton)
         self.view.backgroundColor = .systemBackground
@@ -27,16 +27,16 @@ class InitialViewController: UIViewController {
             make.top.equalTo(titleLabel.snp.bottom).offset(20)
             make.leading.equalToSuperview().offset(20)
             make.trailing.equalToSuperview().offset(-20)
-            make.bottom.equalTo(setGroupTextField.snp.top).offset(-20)
+            make.bottom.equalTo(groupNameTextField.snp.top).offset(-20)
         }
-        setGroupTextField.snp.makeConstraints { make in
+        groupNameTextField.snp.makeConstraints { make in
             make.top.equalTo(descriptionLabel.snp.bottom)
             make.leading.equalToSuperview().offset(20)
             make.trailing.equalToSuperview().offset(-20)
             make.height.equalTo(50)
         }
         setButton.snp.makeConstraints { make in
-            make.top.equalTo(setGroupTextField.snp.bottom).offset(20)
+            make.top.equalTo(groupNameTextField.snp.bottom).offset(20)
             make.leading.equalToSuperview().offset(20)
             make.trailing.equalToSuperview().offset(-20)
             make.height.equalTo(44)
@@ -75,11 +75,12 @@ class InitialViewController: UIViewController {
         return label
     }()
     
-    lazy var setGroupTextField: UITextField = {
+    lazy var groupNameTextField: UITextField = {
         let textField = UITextField()
         textField.placeholder = "Groupname"
         textField.borderStyle = .roundedRect
         textField.autocorrectionType = .no
+        textField.returnKeyType = .next
         textField.backgroundColor = .secondarySystemBackground
         return textField
     }()
@@ -101,13 +102,28 @@ class InitialViewController: UIViewController {
         return button
     }()
     
-    @objc func setGroup() {
+    func setAction() {
+        guard let groupName = groupNameTextField.text else {
+            return
+        }
         //MARK: Set Group Action
+        
+        
     }
-
+    @objc func setGroup() {
+        
+    }
+    
     @objc func skip() {
         let destinationVC = MainViewController()
         destinationVC.modalPresentationStyle = .fullScreen
         self.present(destinationVC, animated: true, completion: nil)
+    }
+    
+}
+
+extension InitialViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        return true
     }
 }
