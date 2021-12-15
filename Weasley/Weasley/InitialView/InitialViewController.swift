@@ -15,7 +15,7 @@ class InitialViewController: UIViewController {
         self.view.addSubview(titleLabel)
         self.view.addSubview(descriptionLabel)
         self.view.addSubview(groupNameTextField)
-        self.view.addSubview(setButton)
+        self.view.addSubview(nextButton)
         self.view.addSubview(skipButton)
         self.view.backgroundColor = .systemBackground
         titleLabel.snp.makeConstraints { make in
@@ -35,14 +35,14 @@ class InitialViewController: UIViewController {
             make.trailing.equalToSuperview().offset(-20)
             make.height.equalTo(50)
         }
-        setButton.snp.makeConstraints { make in
+        nextButton.snp.makeConstraints { make in
             make.top.equalTo(groupNameTextField.snp.bottom).offset(20)
             make.leading.equalToSuperview().offset(20)
             make.trailing.equalToSuperview().offset(-20)
             make.height.equalTo(44)
         }
         skipButton.snp.makeConstraints { make in
-            make.top.equalTo(setButton.snp.bottom).offset(16)
+            make.top.equalTo(nextButton.snp.bottom).offset(16)
             make.leading.equalToSuperview().offset(20)
             make.trailing.equalToSuperview().offset(-20)
             make.height.equalTo(44)
@@ -51,7 +51,7 @@ class InitialViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        groupNameTextField.delegate = self
     }
     
     
@@ -85,11 +85,11 @@ class InitialViewController: UIViewController {
         return textField
     }()
 
-    lazy var setButton: UIButton = {
+    lazy var nextButton: UIButton = {
         let button = UIButton()
         button.setTitle("Next", for: .normal)
         button.backgroundColor = .blue
-        //button.addTarget(self, action: <#T##Selector#>, for: .touchUpInside)
+        button.addTarget(self, action: #selector(goNext), for: .touchUpInside)
         return button
     }()
     
@@ -102,16 +102,13 @@ class InitialViewController: UIViewController {
         return button
     }()
     
-    func setAction() {
+    @objc func goNext() {
         guard let groupName = groupNameTextField.text else {
             return
         }
-        //MARK: Set Group Action
-        
-        
-    }
-    @objc func setGroup() {
-        
+        let destinationVC = SetHomeViewController()
+        destinationVC.modalPresentationStyle = .fullScreen
+        self.present(destinationVC, animated: true, completion: nil)
     }
     
     @objc func skip() {
@@ -124,6 +121,7 @@ class InitialViewController: UIViewController {
 
 extension InitialViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        return true
+        goNext()
+        return false
     }
 }
