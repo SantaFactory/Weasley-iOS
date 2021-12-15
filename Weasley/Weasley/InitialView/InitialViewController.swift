@@ -97,6 +97,7 @@ class InitialViewController: UIViewController {
         button.setTitle("Skip", for: .normal)
         button.setTitleColor(.blue, for: .normal)
         button.backgroundColor = .clear
+        button.addTarget(self, action: #selector(skip), for: .touchUpInside)
         return button
     }()
     
@@ -104,4 +105,9 @@ class InitialViewController: UIViewController {
         //MARK: Set Group Action
     }
 
+    @objc func skip() {
+        let destinationVC = MainViewController()
+        destinationVC.modalPresentationStyle = .fullScreen
+        self.present(destinationVC, animated: true, completion: nil)
+    }
 }
