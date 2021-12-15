@@ -15,6 +15,7 @@ class SetHomeViewController: UIViewController {
         super.loadView()
         self.view.addSubview(titleLabel)
         self.view.addSubview(descriptionLabel)
+        self.view.addSubview(mapView)
         titleLabel.snp.makeConstraints { make in
             make.top.equalTo(self.view.safeArea.top).offset(20)
             make.leading.equalToSuperview()
@@ -24,7 +25,12 @@ class SetHomeViewController: UIViewController {
             make.top.equalTo(titleLabel.snp.bottom).offset(20)
             make.leading.equalToSuperview().offset(20)
             make.trailing.equalToSuperview().offset(-20)
-            //make.bottom.equalTo(groupNameTextField.snp.top).offset(-20)
+            make.bottom.equalTo(mapView.snp.top).offset(-20)
+        }
+        mapView.snp.makeConstraints { make in
+            make.leading.equalToSuperview().offset(20)
+            make.trailing.equalToSuperview().offset(-20)
+            make.height.equalTo(self.view.snp.width)
         }
     }
     override func viewDidLoad() {
@@ -32,7 +38,7 @@ class SetHomeViewController: UIViewController {
 
     }
     
-    lazy var titleLabel: UILabel = {
+    private lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.textColor = .label
         label.font = UIFont.systemFont(ofSize: 28)
@@ -42,7 +48,7 @@ class SetHomeViewController: UIViewController {
         return label
     }()
     
-    lazy var descriptionLabel: UILabel = {
+    private lazy var descriptionLabel: UILabel = {
         let label = UILabel()
         label.textColor = .secondaryLabel
         label.text = "Pick a location for your home location. You can always change it later."
@@ -52,4 +58,8 @@ class SetHomeViewController: UIViewController {
         return label
     }()
     
+    private lazy var mapView: MKMapView = {
+        let mapView = MKMapView()
+        return mapView
+    }()
 }
