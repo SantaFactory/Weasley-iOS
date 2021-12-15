@@ -27,6 +27,7 @@
 		7FA1C8AC272CF46500D2B4E0 /* ClockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FA1C8AB272CF46500D2B4E0 /* ClockView.swift */; };
 		7FC1ACAC27686B44007C7F0B /* InitialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FC1ACAB27686B44007C7F0B /* InitialViewController.swift */; };
 		7FC1ACAE2769998D007C7F0B /* SetHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FC1ACAD2769998D007C7F0B /* SetHomeViewController.swift */; };
+		7FC1ACB02769AD53007C7F0B /* SetSchoolViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FC1ACAF2769AD53007C7F0B /* SetSchoolViewController.swift */; };
 		7FE0D9CE273F9BE200512B07 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7FE0D9CD273F9BE200512B07 /* GoogleService-Info.plist */; };
 		7FE879E12738E9FE00301A94 /* EditLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE879E02738E9FE00301A94 /* EditLocationViewController.swift */; };
 		7FE87A11273B90C600301A94 /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE87A10273B90C600301A94 /* Login.swift */; };
@@ -59,6 +60,7 @@
 		7FA1C8AB272CF46500D2B4E0 /* ClockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClockView.swift; sourceTree = "<group>"; };
 		7FC1ACAB27686B44007C7F0B /* InitialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialViewController.swift; sourceTree = "<group>"; };
 		7FC1ACAD2769998D007C7F0B /* SetHomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetHomeViewController.swift; sourceTree = "<group>"; };
+		7FC1ACAF2769AD53007C7F0B /* SetSchoolViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetSchoolViewController.swift; sourceTree = "<group>"; };
 		7FE0D9CD273F9BE200512B07 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../../Downloads/GoogleServie_Plist/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		7FE879E02738E9FE00301A94 /* EditLocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditLocationViewController.swift; sourceTree = "<group>"; };
 		7FE87A10273B90C600301A94 /* Login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Login.swift; sourceTree = "<group>"; };
@@ -172,6 +174,7 @@
 			children = (
 				7FC1ACAB27686B44007C7F0B /* InitialViewController.swift */,
 				7FC1ACAD2769998D007C7F0B /* SetHomeViewController.swift */,
+				7FC1ACAF2769AD53007C7F0B /* SetSchoolViewController.swift */,
 			);
 			path = InitialView;
 			sourceTree = "<group>";
@@ -328,6 +331,7 @@
 			files = (
 				7FE87A15273BA5C600301A94 /* CurrentLocations.swift in Sources */,
 				7F8A50102734D65D00656E0A /* DegreesToRadians.swift in Sources */,
+				7FC1ACB02769AD53007C7F0B /* SetSchoolViewController.swift in Sources */,
 				7F3A480D2758C06300B3D104 /* MainViewCell.swift in Sources */,
 				7FE879E12738E9FE00301A94 /* EditLocationViewController.swift in Sources */,
 				7F4302652726D89400FA594F /* MainViewController.swift in Sources */,
