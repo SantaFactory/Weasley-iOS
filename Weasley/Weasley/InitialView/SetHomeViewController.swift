@@ -114,8 +114,8 @@ class SetHomeViewController: UIViewController {
     }()
     
     @objc func searchLocation() {
-        let destinationVC = SelectLocationTableViewController()
-        destinationVC.modalPresentationStyle = .fullScreen
+        let nextVC = SelectLocationTableViewController()
+        let destinationVC = UINavigationController(rootViewController: nextVC)
         self.present(destinationVC, animated: true, completion: nil)
     }
     
