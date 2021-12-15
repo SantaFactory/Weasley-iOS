@@ -8,6 +8,7 @@
 import Foundation
 import Firebase
 import GoogleSignIn
+import UIKit
 
 class Login {
     
@@ -20,7 +21,8 @@ class Login {
                     GIDSignIn.sharedInstance.signOut()
                     return
                 }
-                APIManager().performRequestUser(user: UserInfo(sub: sub)) { res in
+                
+                APIManager().performRequestUserLoc(user: Loc(sub: sub)) { res in
                     switch res {
                     case .failure(let message):
                         print(message)
@@ -64,19 +66,42 @@ class Login {
                     case .success:
                         do {
                             let value = try tokenData.get()
+                            print(value)
                             self.userDefault.set(value.sub, forKey: "userLogin")// Local에 sub저장
                             APIManager().performRequestUser(user: value) { res in
                                 switch res {
                                 case .failure(let message):
-                                    print(message)
+                                    print("Fail: \(message)")
                                     self.signOut()
                                 case .success(let message):
-                                    print(message)
-                                    DispatchQueue.main.async {
-                                        completion()
+                                    print("Success: \(message)")
+                                    APIManager().performRequestUserLoc(user: Loc(sub: value.sub)) { res in
+                                        switch res {
+                                        case .failure(let message):
+                                            print("Fail: \(message)")
+                                            self.signOut()
+                                        case .success(let message):
+                                            print("Success Loc: \(message)")
+                                            DispatchQueue.main.async {
+                                                completion()
+                                            }
+                                        }
                                     }
                                 }
+                                
                             }
+//                            APIManager().performRequestUserLoc(user: value) { res in
+//                                switch res {
+//                                case .failure(let message):
+//                                    print("Fail: \(message)")
+//                                    self.signOut()
+//                                case .success(let message):
+//                                    print("Success: \(message)")
+//                                    DispatchQueue.main.async {
+//                                        completion()
+//                                    }
+//                                }
+//                            }
                         } catch {
                             GIDSignIn.sharedInstance.signOut()
                             print("Error retrieving the value: \(error)")

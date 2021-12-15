@@ -13,7 +13,11 @@ struct User: Codable {
 
 struct UserInfo: Codable {
     let sub: String
-    //let email: String
+    let email: String
+}
+
+struct Loc: Codable {
+    let sub: String
 }
 
 struct Token: Codable {

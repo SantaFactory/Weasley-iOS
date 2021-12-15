@@ -22,8 +22,8 @@ class Needle: UILabel {
     }
 
     func setUp() {
-        textColor = .systemGreen
-        font = .systemFont(ofSize: 30, weight: .bold)
+        textColor = .systemBackground
+        font = .systemFont(ofSize: 25, weight: .bold)
         layer.anchorPoint = CGPoint(x: 0, y: 0.5)
     }
     override init(frame: CGRect) {

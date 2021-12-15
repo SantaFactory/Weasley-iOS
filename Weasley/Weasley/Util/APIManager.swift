@@ -7,7 +7,7 @@
 
 import Foundation
 
-fileprivate let url = "http://ec2-13-125-188-145.ap-northeast-2.compute.amazonaws.com:9000"
+fileprivate let url = "http://ec2-13-209-75-199.ap-northeast-2.compute.amazonaws.com:9000"
 
 class APIManager {
     
@@ -87,6 +87,20 @@ class APIManager {
         }
     }
     
+    func performDupLocation(loc: UserLoc, completion: @escaping (Result<SaveRes, APIError>) -> Void) {
+        guard let url = URL(string: "\(url)/posts/userSaveLocAgain") else {
+            completion(.failure(.urlNotSupport))
+            return
+        }
+        let resource = Resource<SaveRes>(url: url, method: .post(loc))
+        session.load(resource) { resultData, _ in
+            guard let data = resultData else {
+                completion(.failure(.noData))
+                return
+            }
+            completion(.success(data))
+        }
+    }
     /**
      로그인 URLSession 메소드
       
@@ -110,7 +124,6 @@ class APIManager {
         }
     }
     
-    
     /**
      사용자 요청 URLSession 메소드
       
@@ -120,6 +133,17 @@ class APIManager {
          - completion: response시 실행될 메소드
      */
     func performRequestUser(user: UserInfo, completion: @escaping (Result<String, APIError>) -> Void) {
+            guard let url = URL(string: "\(url)/posts/users") else {
+                completion(.failure(.urlNotSupport))
+                return
+            }
+            let resource = Resource<UserInfo>(url: url, method: .post(user))
+            session.load(resource) { resultData, _ in
+                completion(.success("Success Load"))
+            }
+        }
+    
+    func performRequestUserLoc(user: Loc, completion: @escaping (Result<String, APIError>) -> Void) {
             guard let url = URL(string: "\(url)/posts/usersloc") else {
                 completion(.failure(.urlNotSupport))
                 return

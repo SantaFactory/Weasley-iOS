@@ -10,12 +10,15 @@ import CoreLocation
 import SnapKit
 import MapKit
 
+var sampleUser = [UserArea(area: .lost)]
+var sampleGroup = ["Hello", "World"]
+
 class MainViewController: UIViewController {
 
     let locationManager = CLLocationManager()
     let viewModel = CurrentLocations.share
     /**
-        [Sub : Needle View]
+        [Email : Needle View]
      */
     var needles = [String : Needle]()
     
@@ -88,27 +91,31 @@ class MainViewController: UIViewController {
             showActionSheet()
         }
         self.userLocationMapView.delegate = self
-        self.userLocationMapView.isHidden = true
+        self.userLocationMapView.alpha = 0
         loadGroupLabels()
+        loadNeedles()
     }
     
-    func loadNeedles(area: Location) {
-        let needle = Needle()
-        needle.text = viewModel.currentUser
-        needle.value = area.location
-        self.view.addSubview(needle)
-        needle.snp.makeConstraints { make in
-            make.centerX.equalTo(arcLocationLabel.snp.centerX)
-            make.centerY.equalTo(arcLocationLabel.snp.centerY)
+    func loadNeedles() {
+        for user in sampleUser {
+            let needle = Needle()
+            needle.text = viewModel.currentUser
+            needle.value = user.area.location
+            self.view.addSubview(needle)
+            needle.snp.makeConstraints { make in
+                make.centerX.equalTo(arcLocationLabel.snp.centerX)
+                make.centerY.equalTo(arcLocationLabel.snp.centerY)
+            }
+            needles.updateValue(needle, forKey: viewModel.currentUser)
         }
-        needles.updateValue(needle, forKey: viewModel.currentUser)
     }
 
     //MARK: Sample load view
-    func moveNeedle(_ member: Member) {
+    func moveNeedle() {
         DispatchQueue.main.async {
-            UIView.animate(withDuration: 1) {
-                self.needles[member.user.sub]?.value = member.currentLoction.location
+            UIView.animate(withDuration: 3) {
+                self.needles[self.viewModel.currentUser]?.value = Location.move.location
+                //member.currentLoction.location
             }
         }
     }
@@ -351,7 +358,6 @@ extension MainViewController: CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if let location = locations.last {
-//            locationManager.stopUpdatingLocation()
             let digit: Double = pow(10, 3)
             let lat = String(round(location.coordinate.latitude * digit) / digit)
             let long = String(round(location.coordinate.longitude * digit) / digit)
@@ -359,9 +365,11 @@ extension MainViewController: CLLocationManagerDelegate {
                 viewModel.userLatitude = lat
                 viewModel.userLongitude = long
                 print("Lat: \(viewModel.userLatitude!), Long:  \(viewModel.userLongitude!)")
-//                viewModel.postLocation() { [weak self] area in
-//                    self?.loadNeedles(area: area.area)
-//                }
+                self.moveNeedle()
+                viewModel.postLocation() { [weak self] area in
+                    //self?.loadNeedles(area: area.area)
+                    self?.moveNeedle()
+                }
             }
         }
     }

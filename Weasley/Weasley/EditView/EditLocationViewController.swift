@@ -200,9 +200,22 @@ extension EditLocationViewController {
         sender.alpha = 1.0
         let location = sender.titleLabel?.text!.lowercased()
         viewModel.setLocation(loc: location!, latitude: viewModel.userLatitude!, longitude: viewModel.userLongitude!) { result in
-            if result.task == "success" {
+            switch result.task {
+            case "success":
                 self.dismiss(animated: true, completion: nil)
-            } else {
+            case "duplicated":
+                //TODO Alert
+                let alert = UIAlertController(title: "", message: nil, preferredStyle: .alert)
+                let cancel = UIAlertAction(title: "Cancel", style: .cancel)
+                let ok = UIAlertAction(title: "Okay", style: .default) { _ in
+                    self.viewModel.reSetLocation(loc: location!, latitude: self.viewModel.userLatitude!, longitude: self.viewModel.userLongitude!) { _ in
+                        self.dismiss(animated: true, completion: nil)
+                    }
+                }
+                alert.addAction(cancel)
+                alert.addAction(ok)
+                self.present(alert, animated: true, completion: nil)
+            default:
                 print("Error!!!!")
             }
         }

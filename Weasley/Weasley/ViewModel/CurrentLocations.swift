@@ -52,6 +52,23 @@ class CurrentLocations {
         }
     }
     
+    func reSetLocation(loc: String, latitude: String, longitude: String, completion: @escaping (SaveRes) -> Void) {
+        APIManager().performDupLocation(loc: UserLoc(sub: currentUser, status: loc, lat: latitude, long: longitude)) { res in
+            switch res {
+            case .success:
+                do {
+                    let result = try res.get()
+                    DispatchQueue.main.async {
+                        completion(result)
+                    }
+                } catch {
+                    print("Error retrieving the value: \(error)")
+                }
+            case .failure:
+                print("Error")
+            }
+        }
+    }
     //TODO: 맴버들 가져오기
     func getMember() {
     
