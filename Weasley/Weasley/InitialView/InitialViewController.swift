@@ -106,6 +106,9 @@ class InitialViewController: UIViewController {
         guard let groupName = groupNameTextField.text else {
             return
         }
+        if groupName.isEmpty {
+            showAlert()
+        }
         let destinationVC = SetHomeViewController()
         navigationController?.pushViewController(destinationVC, animated: true)
     }
@@ -118,6 +121,19 @@ class InitialViewController: UIViewController {
     
 }
 
+extension InitialViewController {
+    func showAlert() {
+        let alert = UIAlertController(title: "Group name is blank", message: "Show nothing about your group name.", preferredStyle: .alert)
+        let okay = UIAlertAction(title: "Ok", style: .default) { _ in
+            let destinationVC = SetHomeViewController()
+            self.navigationController?.pushViewController(destinationVC, animated: true)
+        }
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel)
+        alert.addAction(okay)
+        alert.addAction(cancel)
+        self.present(alert, animated: true, completion: nil)
+    }
+}
 extension InitialViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         goNext()
