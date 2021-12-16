@@ -11,7 +11,7 @@ class SetSchoolViewController: SetLocationViewController {
 
     override func loadView() {
         super.loadView()
-        self.destinationVC = SetHomeViewController()
+        self.destinationVC = SetWorkViewController()
         self.place = "School"
     }
 
