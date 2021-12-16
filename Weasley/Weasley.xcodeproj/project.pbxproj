@@ -56,6 +56,7 @@
 		7F43026E2726D89900FA594F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7F46B8DF27280C1E002B2E78 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		7F6C64632765D35E00DE23E0 /* UIView+Animation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Animation.swift"; sourceTree = "<group>"; };
+		7F7FCD17276B32ED005ADD27 /* lf30_editor_lqe82iao.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = lf30_editor_lqe82iao.json; sourceTree = "<group>"; };
 		7F8A4FCD272FA8A900656E0A /* NeedleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NeedleView.swift; sourceTree = "<group>"; };
 		7F8A4FCF272FB0F600656E0A /* UIView+Layout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Layout.swift"; sourceTree = "<group>"; };
 		7F8A4FD12730C3F300656E0A /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -134,15 +135,16 @@
 		7F43025F2726D89400FA594F /* Weasley */ = {
 			isa = PBXGroup;
 			children = (
+				7F8A4FD62730D69200656E0A /* Util */,
+				7FE87A12273B91B700301A94 /* Model */,
+				7F8A4FD52730D60F00656E0A /* LoginView */,
+				7FC1ACAA27686422007C7F0B /* InitialView */,
+				7F7FCD16276B2704005ADD27 /* SetLocationView */,
+				7F8A4FD72730D6D700656E0A /* MainView */,
 				7F4302602726D89400FA594F /* AppDelegate.swift */,
 				7F4302622726D89400FA594F /* SceneDelegate.swift */,
 				7FC1ACC6276B0621007C7F0B /* lf30_editor_lqe82iao.json */,
-				7F8A4FD62730D69200656E0A /* Util */,
-				7FE87A12273B91B700301A94 /* Model */,
 				7FE87A13273B91CA00301A94 /* ViewModel */,
-				7F8A4FD52730D60F00656E0A /* LoginView */,
-				7FC1ACAA27686422007C7F0B /* InitialView */,
-				7F8A4FD72730D6D700656E0A /* MainView */,
 				7FF5C8C5275DBBDF00DE24DE /* EditView */,
 				7FF5C8C8275F417700DE24DE /* SettingView */,
 				7F4302692726D89900FA594F /* Assets.xcassets */,
@@ -151,6 +153,18 @@
 				7FE0D9CD273F9BE200512B07 /* GoogleService-Info.plist */,
 			);
 			path = Weasley;
+			sourceTree = "<group>";
+		};
+		7F7FCD16276B2704005ADD27 /* SetLocationView */ = {
+			isa = PBXGroup;
+			children = (
+				7FC1ACBD276AD8C8007C7F0B /* SetLocationViewController.swift */,
+				7FC1ACBB276A1632007C7F0B /* SearchedLocationTableViewController.swift */,
+				7FC1ACAD2769998D007C7F0B /* SetHomeViewController.swift */,
+				7FC1ACAF2769AD53007C7F0B /* SetSchoolViewController.swift */,
+				7FC1ACBF276AEDCC007C7F0B /* SetWorkViewController.swift */,
+			);
+			path = SetLocationView;
 			sourceTree = "<group>";
 		};
 		7F8A4FD52730D60F00656E0A /* LoginView */ = {
@@ -188,12 +202,8 @@
 		7FC1ACAA27686422007C7F0B /* InitialView */ = {
 			isa = PBXGroup;
 			children = (
+				7F7FCD17276B32ED005ADD27 /* lf30_editor_lqe82iao.json */,
 				7FC1ACAB27686B44007C7F0B /* InitialViewController.swift */,
-				7FC1ACBD276AD8C8007C7F0B /* SetLocationViewController.swift */,
-				7FC1ACBB276A1632007C7F0B /* SearchedLocationTableViewController.swift */,
-				7FC1ACAD2769998D007C7F0B /* SetHomeViewController.swift */,
-				7FC1ACAF2769AD53007C7F0B /* SetSchoolViewController.swift */,
-				7FC1ACBF276AEDCC007C7F0B /* SetWorkViewController.swift */,
 				7FC1ACC1276AEF6E007C7F0B /* FinishInitialViewController.swift */,
 			);
 			path = InitialView;
