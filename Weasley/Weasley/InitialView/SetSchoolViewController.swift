@@ -7,7 +7,13 @@
 
 import UIKit
 
-class SetSchoolViewController: UIViewController {
+class SetSchoolViewController: SetLocationViewController {
+
+    override func loadView() {
+        super.loadView()
+        self.destinationVC = SetHomeViewController()
+        self.place = "School"
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
