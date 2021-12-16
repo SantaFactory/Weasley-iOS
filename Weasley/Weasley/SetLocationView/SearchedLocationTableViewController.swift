@@ -18,7 +18,7 @@ class SearchedLocationTableViewController: UITableViewController {
     var showResultMapDelegate: ShowResultMap? = nil
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.register(SuggestedCompletionTableViewCell.self, forCellReuseIdentifier: SuggestedCompletionTableViewCell.reuseID)
+        tableView.register(SearchedLocationTableViewCell.self, forCellReuseIdentifier: SearchedLocationTableViewCell.reuseID)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -56,7 +56,7 @@ extension SearchedLocationTableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: SuggestedCompletionTableViewCell.reuseID, for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: SearchedLocationTableViewCell.reuseID, for: indexPath)
 
         if let suggestion = completerResults?[indexPath.row] {
             cell.textLabel?.text = suggestion.title
@@ -103,9 +103,9 @@ extension SearchedLocationTableViewController: UISearchResultsUpdating {
 }
 
 //MARK: Table View Cell
-private class SuggestedCompletionTableViewCell: UITableViewCell {
+private class SearchedLocationTableViewCell: UITableViewCell {
     
-    static let reuseID = "SuggestedCompletionTableViewCellReuseID"
+    static let reuseID = "SearchedLocationTableViewCell"
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: .subtitle, reuseIdentifier: reuseIdentifier)

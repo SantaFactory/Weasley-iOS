@@ -34,7 +34,6 @@
 		7FC1ACC0276AEDCC007C7F0B /* SetWorkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FC1ACBF276AEDCC007C7F0B /* SetWorkViewController.swift */; };
 		7FC1ACC2276AEF6E007C7F0B /* FinishInitialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FC1ACC1276AEF6E007C7F0B /* FinishInitialViewController.swift */; };
 		7FC1ACC5276B0108007C7F0B /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 7FC1ACC4276B0108007C7F0B /* Lottie */; };
-		7FC1ACC7276B0621007C7F0B /* lf30_editor_lqe82iao.json in Resources */ = {isa = PBXBuildFile; fileRef = 7FC1ACC6276B0621007C7F0B /* lf30_editor_lqe82iao.json */; };
 		7FE0D9CE273F9BE200512B07 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7FE0D9CD273F9BE200512B07 /* GoogleService-Info.plist */; };
 		7FE879E12738E9FE00301A94 /* EditLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE879E02738E9FE00301A94 /* EditLocationViewController.swift */; };
 		7FE87A11273B90C600301A94 /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE87A10273B90C600301A94 /* Login.swift */; };
@@ -74,7 +73,6 @@
 		7FC1ACBD276AD8C8007C7F0B /* SetLocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetLocationViewController.swift; sourceTree = "<group>"; };
 		7FC1ACBF276AEDCC007C7F0B /* SetWorkViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetWorkViewController.swift; sourceTree = "<group>"; };
 		7FC1ACC1276AEF6E007C7F0B /* FinishInitialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinishInitialViewController.swift; sourceTree = "<group>"; };
-		7FC1ACC6276B0621007C7F0B /* lf30_editor_lqe82iao.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = lf30_editor_lqe82iao.json; path = ../../../../../../Downloads/Lottie/lf30_editor_lqe82iao.json; sourceTree = "<group>"; };
 		7FE0D9CD273F9BE200512B07 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../../Downloads/GoogleServie_Plist/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		7FE879E02738E9FE00301A94 /* EditLocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditLocationViewController.swift; sourceTree = "<group>"; };
 		7FE87A10273B90C600301A94 /* Login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Login.swift; sourceTree = "<group>"; };
@@ -141,12 +139,11 @@
 				7FC1ACAA27686422007C7F0B /* InitialView */,
 				7F7FCD16276B2704005ADD27 /* SetLocationView */,
 				7F8A4FD72730D6D700656E0A /* MainView */,
+				7FF5C8C8275F417700DE24DE /* SettingView */,
 				7F4302602726D89400FA594F /* AppDelegate.swift */,
 				7F4302622726D89400FA594F /* SceneDelegate.swift */,
-				7FC1ACC6276B0621007C7F0B /* lf30_editor_lqe82iao.json */,
 				7FE87A13273B91CA00301A94 /* ViewModel */,
 				7FF5C8C5275DBBDF00DE24DE /* EditView */,
-				7FF5C8C8275F417700DE24DE /* SettingView */,
 				7F4302692726D89900FA594F /* Assets.xcassets */,
 				7F43026B2726D89900FA594F /* LaunchScreen.storyboard */,
 				7F43026E2726D89900FA594F /* Info.plist */,
@@ -310,7 +307,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7FC1ACC7276B0621007C7F0B /* lf30_editor_lqe82iao.json in Resources */,
 				7F43026D2726D89900FA594F /* LaunchScreen.storyboard in Resources */,
 				7FE0D9CE273F9BE200512B07 /* GoogleService-Info.plist in Resources */,
 				7F43026A2726D89900FA594F /* Assets.xcassets in Resources */,
