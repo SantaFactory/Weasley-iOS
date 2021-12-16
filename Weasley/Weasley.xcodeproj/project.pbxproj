@@ -32,6 +32,7 @@
 		7FC1ACBC276A1632007C7F0B /* SearchedLocationTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FC1ACBB276A1632007C7F0B /* SearchedLocationTableViewController.swift */; };
 		7FC1ACBE276AD8C8007C7F0B /* SetLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FC1ACBD276AD8C8007C7F0B /* SetLocationViewController.swift */; };
 		7FC1ACC0276AEDCC007C7F0B /* SetWorkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FC1ACBF276AEDCC007C7F0B /* SetWorkViewController.swift */; };
+		7FC1ACC2276AEF6E007C7F0B /* FinishInitialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FC1ACC1276AEF6E007C7F0B /* FinishInitialViewController.swift */; };
 		7FE0D9CE273F9BE200512B07 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7FE0D9CD273F9BE200512B07 /* GoogleService-Info.plist */; };
 		7FE879E12738E9FE00301A94 /* EditLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE879E02738E9FE00301A94 /* EditLocationViewController.swift */; };
 		7FE87A11273B90C600301A94 /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE87A10273B90C600301A94 /* Login.swift */; };
@@ -69,6 +70,7 @@
 		7FC1ACBB276A1632007C7F0B /* SearchedLocationTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchedLocationTableViewController.swift; sourceTree = "<group>"; };
 		7FC1ACBD276AD8C8007C7F0B /* SetLocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetLocationViewController.swift; sourceTree = "<group>"; };
 		7FC1ACBF276AEDCC007C7F0B /* SetWorkViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetWorkViewController.swift; sourceTree = "<group>"; };
+		7FC1ACC1276AEF6E007C7F0B /* FinishInitialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinishInitialViewController.swift; sourceTree = "<group>"; };
 		7FE0D9CD273F9BE200512B07 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../../Downloads/GoogleServie_Plist/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		7FE879E02738E9FE00301A94 /* EditLocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditLocationViewController.swift; sourceTree = "<group>"; };
 		7FE87A10273B90C600301A94 /* Login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Login.swift; sourceTree = "<group>"; };
@@ -187,6 +189,7 @@
 				7FC1ACAD2769998D007C7F0B /* SetHomeViewController.swift */,
 				7FC1ACAF2769AD53007C7F0B /* SetSchoolViewController.swift */,
 				7FC1ACBF276AEDCC007C7F0B /* SetWorkViewController.swift */,
+				7FC1ACC1276AEF6E007C7F0B /* FinishInitialViewController.swift */,
 			);
 			path = InitialView;
 			sourceTree = "<group>";
@@ -359,6 +362,7 @@
 				7F8A4FD0272FB0F600656E0A /* UIView+Layout.swift in Sources */,
 				7FC1ACBE276AD8C8007C7F0B /* SetLocationViewController.swift in Sources */,
 				7F8A4FD22730C3F300656E0A /* User.swift in Sources */,
+				7FC1ACC2276AEF6E007C7F0B /* FinishInitialViewController.swift in Sources */,
 				7FC1ACAC27686B44007C7F0B /* InitialViewController.swift in Sources */,
 				7F4302612726D89400FA594F /* AppDelegate.swift in Sources */,
 				7F4302632726D89400FA594F /* SceneDelegate.swift in Sources */,
