@@ -65,6 +65,7 @@ class SetLocationViewController: UIViewController {
             make.bottom.equalTo(self.view.snp.bottom).offset(-20)
             make.height.equalTo(44)
         }
+        nextButton.isEnabled = false
     }
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -146,13 +147,14 @@ extension SetLocationViewController: UISearchBarDelegate {
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
-        guard let suggestion = suggestionController.completerResults?[0] else {
-            //MARK: TO DO - 검색결과 없는 경우
+        showResultMapDelegate?.clearOverlay()
+        guard let suggestion = suggestionController.completerResults, suggestion.count != 0 else {
+            self.showAlert()
+            dismiss(animated: true, completion: nil)
             return
         }
         //search(for: suggestion)
-        showResultMapDelegate?.clearOverlay()
-        showResultMapDelegate?.markAreaOverlay(result: suggestion)
+        showResultMapDelegate?.markAreaOverlay(result: suggestion[0])
         dismiss(animated: true, completion: nil)
         
         // The user tapped search on the `UISearchBar` or on the keyboard. Since they didn't
@@ -167,6 +169,7 @@ extension SetLocationViewController: ShowResultMap {
         let searchResult = MKLocalSearch.Request(completion: result)
         MKLocalSearch(request: searchResult).start { response, error in
             guard let response = response else {
+                print("response is nil")
                 return
                 //MARK: TODO nil
             }
@@ -182,6 +185,7 @@ extension SetLocationViewController: ShowResultMap {
             let span = MKCoordinateSpan(latitudeDelta: 0.005, longitudeDelta: 0.005)
             self.mapView.setRegion(MKCoordinateRegion(center: loc, span: span), animated: true)
             self.mapView.addOverlay(circle)
+            self.nextButton.isEnabled = true
         }
     }
     
@@ -199,5 +203,16 @@ extension SetLocationViewController: MKMapViewDelegate {
         circleRenderer.fillColor = .systemBlue
         circleRenderer.alpha = 0.7
         return circleRenderer
+    }
+}
+
+extension SetLocationViewController {
+    func showAlert() {
+        let alert = UIAlertController(title: "No Result", message: nil, preferredStyle: .alert)
+        let okay = UIAlertAction(title: "OK", style: .cancel)
+        alert.addAction(okay)
+        present(alert, animated: true) {
+            self.nextButton.isEnabled = false
+        }
     }
 }
