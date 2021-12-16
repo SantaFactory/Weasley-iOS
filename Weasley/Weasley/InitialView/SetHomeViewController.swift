@@ -9,19 +9,28 @@ import UIKit
 import MapKit
 import SnapKit
 
+protocol ShowResultMap {
+    func markAreaOverlay(result: MKLocalSearchCompletion)
+    func clearOverlay()
+}
+
 class SetHomeViewController: UIViewController {
 
+    
+    private var suggestionController: SearchedLocationTableViewController!
+    private var searchController: UISearchController!
+    var showResultMapDelegate: ShowResultMap? = nil
     override func loadView() {
         super.loadView()
         self.view.backgroundColor = .systemBackground
         self.view.addSubview(titleLabel)
         self.view.addSubview(descriptionLabel)
-        self.view.addSubview(searchLocationButton)
         self.view.addSubview(mapView)
         self.view.addSubview(nextButton)
         self.view.addSubview(skipButton)
+        
         titleLabel.snp.makeConstraints { make in
-            make.top.equalTo(self.view.safeArea.top).offset(20)
+            make.top.equalTo(self.view.safeArea.top)
             make.leading.equalToSuperview()
             make.trailing.equalToSuperview()
         }
@@ -29,13 +38,7 @@ class SetHomeViewController: UIViewController {
             make.top.equalTo(titleLabel.snp.bottom).offset(20)
             make.leading.equalToSuperview().offset(20)
             make.trailing.equalToSuperview().offset(-20)
-            make.bottom.equalTo(searchLocationButton.snp.top).offset(-20)
-        }
-        searchLocationButton.snp.makeConstraints { make in
-            make.leading.equalToSuperview().offset(20)
-            make.trailing.equalToSuperview().offset(-20)
             make.bottom.equalTo(mapView.snp.top).offset(-20)
-            make.height.equalTo(44)
         }
         mapView.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(20)
@@ -54,10 +57,21 @@ class SetHomeViewController: UIViewController {
             make.bottom.equalTo(self.view.snp.bottom).offset(-20)
             make.height.equalTo(44)
         }
+        
+        suggestionController = SearchedLocationTableViewController(style: .grouped)
+        searchController = UISearchController(searchResultsController: suggestionController)
+        searchController.searchResultsUpdater = suggestionController
+
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.navigationItem.searchController = searchController
+        navigationItem.hidesSearchBarWhenScrolling = false
+        searchController.searchBar.delegate = self
+        mapView.delegate = self
+        suggestionController.showResultMapDelegate = self
+        definesPresentationContext = true
+        showResultMapDelegate = self
     }
     
     private lazy var titleLabel: UILabel = {
@@ -85,16 +99,6 @@ class SetHomeViewController: UIViewController {
         return mapView
     }()
     
-    lazy var searchLocationButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.tintColor = .systemRed
-        button.setTitle("Search location", for: .normal)
-        button.setImage(UIImage(systemName: "map.fill"), for: .normal)
-        button.backgroundColor = .secondarySystemBackground
-        button.addTarget(self, action: #selector(searchLocation), for: .touchUpInside)
-        return button
-    }()
-    
     lazy var nextButton: UIButton = {
         let button = UIButton(type: .system)
         button.tintColor = .white
@@ -113,12 +117,6 @@ class SetHomeViewController: UIViewController {
         return button
     }()
     
-    @objc func searchLocation() {
-        let nextVC = SelectLocationTableViewController()
-        let destinationVC = UINavigationController(rootViewController: nextVC)
-        self.present(destinationVC, animated: true, completion: nil)
-    }
-    
     @objc func goNext() {
         let destinationVC = SetSchoolViewController()
         destinationVC.modalPresentationStyle = .fullScreen
@@ -129,5 +127,77 @@ class SetHomeViewController: UIViewController {
         let destinationVC = MainViewController()
         destinationVC.modalPresentationStyle = .fullScreen
         self.present(destinationVC, animated: true, completion: nil)
+    }
+}
+
+// MARK: Search Bar Delegate
+extension SetHomeViewController: UISearchBarDelegate {
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
+    }
+    
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        searchBar.setShowsCancelButton(true, animated: true)
+    }
+    
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        searchBar.setShowsCancelButton(false, animated: true)
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
+        guard let suggestion = suggestionController.completerResults?[0] else {
+            //MARK: TO DO - 검색결과 없는 경우
+            return
+        }
+        //search(for: suggestion)
+        showResultMapDelegate?.clearOverlay()
+        showResultMapDelegate?.markAreaOverlay(result: suggestion)
+        dismiss(animated: true, completion: nil)
+        
+        // The user tapped search on the `UISearchBar` or on the keyboard. Since they didn't
+        // select a row with a suggested completion, run the search with the query text in the search field.
+    }
+}
+
+extension SetHomeViewController: ShowResultMap {
+    func markAreaOverlay(result: MKLocalSearchCompletion) {
+        searchController.isActive = false
+        searchController.searchBar.text = result.title
+        let searchResult = MKLocalSearch.Request(completion: result)
+        MKLocalSearch(request: searchResult).start { response, error in
+            guard let response = response else {
+                return
+                //MARK: TODO nil
+            }
+            let item = response.mapItems[0]
+            let location = item.placemark.location
+            let latitude = location?.coordinate.latitude
+            let longitude = location?.coordinate.longitude
+            guard let lat = latitude, let long = longitude else {
+                return
+            }
+            let loc = CLLocationCoordinate2D(latitude: lat, longitude: long)
+            let circle = MKCircle(center: loc, radius: 200)
+            let span = MKCoordinateSpan(latitudeDelta: 0.005, longitudeDelta: 0.005)
+            self.mapView.setRegion(MKCoordinateRegion(center: loc, span: span), animated: true)
+            self.mapView.addOverlay(circle)
+        }
+    }
+    
+    func clearOverlay() {
+        mapView.removeOverlays(mapView.overlays)
+    }
+}
+
+extension SetHomeViewController: MKMapViewDelegate {
+    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+        guard let circleOverlay = overlay as? MKCircle else {
+            return MKOverlayRenderer()
+        }
+        let circleRenderer = MKCircleRenderer(overlay: circleOverlay)
+        circleRenderer.fillColor = .systemBlue
+        circleRenderer.alpha = 0.7
+        return circleRenderer
     }
 }
