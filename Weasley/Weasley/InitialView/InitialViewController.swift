@@ -107,8 +107,7 @@ class InitialViewController: UIViewController {
             return
         }
         let destinationVC = SetHomeViewController()
-        destinationVC.modalPresentationStyle = .fullScreen
-        self.present(destinationVC, animated: true, completion: nil)
+        navigationController?.pushViewController(destinationVC, animated: true)
     }
     
     @objc func skip() {
