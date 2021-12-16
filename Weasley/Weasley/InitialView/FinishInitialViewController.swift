@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Lottie
 
 class FinishInitialViewController: UIViewController {
 
@@ -22,7 +23,14 @@ class FinishInitialViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.view.addSubview(lottieView)
+        lottieView.snp.makeConstraints { make in
+            make.top.equalTo(messageLabel.snp.bottom)
+            make.leading.equalToSuperview()
+            make.trailing.equalToSuperview()
+            make.bottom.equalTo(self.view.safeArea.bottom)
+        }
+        lottieView.play()
     }
 
     private lazy var messageLabel: UILabel = {
@@ -34,4 +42,11 @@ class FinishInitialViewController: UIViewController {
         label.numberOfLines = 0
         return label
     }()
+    
+    private lazy var lottieView: AnimationView = {
+        let animationView = AnimationView(name: "lf30_editor_lqe82iao")
+        animationView.loopMode = .loop
+        return animationView
+    }()
+    
 }

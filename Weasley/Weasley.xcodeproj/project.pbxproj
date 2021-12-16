@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -33,6 +33,8 @@
 		7FC1ACBE276AD8C8007C7F0B /* SetLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FC1ACBD276AD8C8007C7F0B /* SetLocationViewController.swift */; };
 		7FC1ACC0276AEDCC007C7F0B /* SetWorkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FC1ACBF276AEDCC007C7F0B /* SetWorkViewController.swift */; };
 		7FC1ACC2276AEF6E007C7F0B /* FinishInitialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FC1ACC1276AEF6E007C7F0B /* FinishInitialViewController.swift */; };
+		7FC1ACC5276B0108007C7F0B /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 7FC1ACC4276B0108007C7F0B /* Lottie */; };
+		7FC1ACC7276B0621007C7F0B /* lf30_editor_lqe82iao.json in Resources */ = {isa = PBXBuildFile; fileRef = 7FC1ACC6276B0621007C7F0B /* lf30_editor_lqe82iao.json */; };
 		7FE0D9CE273F9BE200512B07 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7FE0D9CD273F9BE200512B07 /* GoogleService-Info.plist */; };
 		7FE879E12738E9FE00301A94 /* EditLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE879E02738E9FE00301A94 /* EditLocationViewController.swift */; };
 		7FE87A11273B90C600301A94 /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE87A10273B90C600301A94 /* Login.swift */; };
@@ -71,6 +73,7 @@
 		7FC1ACBD276AD8C8007C7F0B /* SetLocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetLocationViewController.swift; sourceTree = "<group>"; };
 		7FC1ACBF276AEDCC007C7F0B /* SetWorkViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetWorkViewController.swift; sourceTree = "<group>"; };
 		7FC1ACC1276AEF6E007C7F0B /* FinishInitialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinishInitialViewController.swift; sourceTree = "<group>"; };
+		7FC1ACC6276B0621007C7F0B /* lf30_editor_lqe82iao.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = lf30_editor_lqe82iao.json; path = ../../../../../../Downloads/Lottie/lf30_editor_lqe82iao.json; sourceTree = "<group>"; };
 		7FE0D9CD273F9BE200512B07 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../../Downloads/GoogleServie_Plist/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		7FE879E02738E9FE00301A94 /* EditLocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditLocationViewController.swift; sourceTree = "<group>"; };
 		7FE87A10273B90C600301A94 /* Login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Login.swift; sourceTree = "<group>"; };
@@ -86,6 +89,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7D99C284FC90961B3821D0C0 /* Pods_Weasley.framework in Frameworks */,
+				7FC1ACC5276B0108007C7F0B /* Lottie in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -132,6 +136,7 @@
 			children = (
 				7F4302602726D89400FA594F /* AppDelegate.swift */,
 				7F4302622726D89400FA594F /* SceneDelegate.swift */,
+				7FC1ACC6276B0621007C7F0B /* lf30_editor_lqe82iao.json */,
 				7F8A4FD62730D69200656E0A /* Util */,
 				7FE87A12273B91B700301A94 /* Model */,
 				7FE87A13273B91CA00301A94 /* ViewModel */,
@@ -248,6 +253,9 @@
 			dependencies = (
 			);
 			name = Weasley;
+			packageProductDependencies = (
+				7FC1ACC4276B0108007C7F0B /* Lottie */,
+			);
 			productName = Weasley;
 			productReference = 7F43025D2726D89400FA594F /* Weasley.app */;
 			productType = "com.apple.product-type.application";
@@ -275,6 +283,9 @@
 				Base,
 			);
 			mainGroup = 7F4302542726D89400FA594F;
+			packageReferences = (
+				7FC1ACC3276B0108007C7F0B /* XCRemoteSwiftPackageReference "lottie-ios" */,
+			);
 			productRefGroup = 7F43025E2726D89400FA594F /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -289,6 +300,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7FC1ACC7276B0621007C7F0B /* lf30_editor_lqe82iao.json in Resources */,
 				7F43026D2726D89900FA594F /* LaunchScreen.storyboard in Resources */,
 				7FE0D9CE273F9BE200512B07 /* GoogleService-Info.plist in Resources */,
 				7F43026A2726D89900FA594F /* Assets.xcassets in Resources */,
@@ -567,6 +579,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		7FC1ACC3276B0108007C7F0B /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/airbnb/lottie-ios";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		7FC1ACC4276B0108007C7F0B /* Lottie */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7FC1ACC3276B0108007C7F0B /* XCRemoteSwiftPackageReference "lottie-ios" */;
+			productName = Lottie;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 7F4302552726D89400FA594F /* Project object */;
 }
