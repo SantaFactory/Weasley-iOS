@@ -86,7 +86,7 @@ class MainViewController: UIViewController {
         locationManager.requestLocation() // 사용자의 현재 위치에 대한 일회성 전달을 요청
         if #available(iOS 14.0, *) {
             menuButton.showsMenuAsPrimaryAction = true
-            menuButton.menu = settingMenu
+            menuButton.menu = menu
         } else {
             showActionSheet()
         }
@@ -220,11 +220,11 @@ class MainViewController: UIViewController {
         return tableView
     }()
     
-    private lazy var settingMenu: UIMenu = {
-        return UIMenu(title: "", options: [], children: settingMenuItems)
+    private lazy var menu: UIMenu = {
+        return UIMenu(title: "", options: [], children: menuItems)
     }()
     
-    private lazy var settingMenuItems: [UIAction] = {
+    private lazy var menuItems: [UIAction] = {
         return [
             UIAction(title: "Invite member", image: UIImage(systemName: "paperplane.fill"), handler: { _ in
                 self.inviteMember()
