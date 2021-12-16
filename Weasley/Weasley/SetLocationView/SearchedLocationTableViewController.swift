@@ -105,7 +105,7 @@ extension SearchedLocationTableViewController: UISearchResultsUpdating {
 //MARK: Table View Cell
 private class SearchedLocationTableViewCell: UITableViewCell {
     
-    static let reuseID = "SearchedLocationTableViewCell"
+    static let reuseID = "SearchedLocationTableViewCellReuseID"
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: .subtitle, reuseIdentifier: reuseIdentifier)
