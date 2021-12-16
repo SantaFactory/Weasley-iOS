@@ -229,9 +229,6 @@ class MainViewController: UIViewController {
             UIAction(title: "Invite member", image: UIImage(systemName: "paperplane.fill"), handler: { _ in
                 self.inviteMember()
             }),
-            UIAction(title: "Mark current location", image: UIImage(systemName: "mappin.and.ellipse"), handler: { _ in
-                self.goEdit()
-            }),
             UIAction(title: "Setting", image: UIImage(systemName: "gearshape.fill"), handler: { _ in
                 self.goSetting()
             }),
@@ -252,9 +249,6 @@ class MainViewController: UIViewController {
         return [
             UIAlertAction(title: "Invite", style: .default, handler: { _ in
                 self.inviteMember()
-            }),
-            UIAlertAction(title: "Edit Mark", style: .default, handler: { _ in
-                self.goEdit()
             }),
             UIAlertAction(title: "Setting", style: .default, handler: { _ in
                 //TODO: Implement Setting View
@@ -298,12 +292,6 @@ extension MainViewController {
     
     @objc func reLocate() {
         locationManager.requestLocation()
-    }
-    
-    func goEdit() {
-        let destinationVC = EditLocationViewController()
-        destinationVC.modalPresentationStyle = .overFullScreen
-        present(destinationVC, animated: true, completion: nil)
     }
     
     func goSetting() {
