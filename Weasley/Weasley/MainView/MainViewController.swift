@@ -251,7 +251,7 @@ class MainViewController: UIViewController {
                 self.inviteMember()
             }),
             UIAlertAction(title: "Setting", style: .default, handler: { _ in
-                //TODO: Implement Setting View
+                self.goSetting()
             }),
             UIAlertAction(title: "Sign Out", style: .default, handler: { _ in
                 self.signOut()
@@ -297,6 +297,7 @@ extension MainViewController {
     func goSetting() {
         let rootVC = SettingTableViewController()
         let destinationVC = UINavigationController(rootViewController: rootVC)
+        destinationVC.modalPresentationStyle = .fullScreen
         present(destinationVC, animated: true, completion: nil)
     }
     
