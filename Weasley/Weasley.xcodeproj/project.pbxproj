@@ -18,6 +18,7 @@
 		7F6C64642765D35E00DE23E0 /* UIView+Animation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F6C64632765D35E00DE23E0 /* UIView+Animation.swift */; };
 		7F7FCD19276C37D1005ADD27 /* SetGroupTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F7FCD18276C37D1005ADD27 /* SetGroupTableViewController.swift */; };
 		7F7FCD1B276C3BA7005ADD27 /* SettingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F7FCD1A276C3BA7005ADD27 /* SettingTableViewCell.swift */; };
+		7F7FCD1D276C3CD8005ADD27 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F7FCD1C276C3CD8005ADD27 /* ProfileViewController.swift */; };
 		7F8A4FCE272FA8A900656E0A /* NeedleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F8A4FCD272FA8A900656E0A /* NeedleView.swift */; };
 		7F8A4FD0272FB0F600656E0A /* UIView+Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F8A4FCF272FB0F600656E0A /* UIView+Layout.swift */; };
 		7F8A4FD22730C3F300656E0A /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F8A4FD12730C3F300656E0A /* User.swift */; };
@@ -60,6 +61,7 @@
 		7F7FCD17276B32ED005ADD27 /* lf30_editor_lqe82iao.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = lf30_editor_lqe82iao.json; sourceTree = "<group>"; };
 		7F7FCD18276C37D1005ADD27 /* SetGroupTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetGroupTableViewController.swift; sourceTree = "<group>"; };
 		7F7FCD1A276C3BA7005ADD27 /* SettingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableViewCell.swift; sourceTree = "<group>"; };
+		7F7FCD1C276C3CD8005ADD27 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		7F8A4FCD272FA8A900656E0A /* NeedleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NeedleView.swift; sourceTree = "<group>"; };
 		7F8A4FCF272FB0F600656E0A /* UIView+Layout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Layout.swift"; sourceTree = "<group>"; };
 		7F8A4FD12730C3F300656E0A /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -244,6 +246,7 @@
 				7F7FCD1A276C3BA7005ADD27 /* SettingTableViewCell.swift */,
 				7FF5C8CB275F42FD00DE24DE /* SettingTableViewController.swift */,
 				7F7FCD18276C37D1005ADD27 /* SetGroupTableViewController.swift */,
+				7F7FCD1C276C3CD8005ADD27 /* ProfileViewController.swift */,
 			);
 			path = SettingView;
 			sourceTree = "<group>";
@@ -380,6 +383,7 @@
 				7FC1ACBA2769CC14007C7F0B /* MKPlacemark+Extension.swift in Sources */,
 				7F8A500E2734D5F700656E0A /* LocationLabel.swift in Sources */,
 				7FE87A11273B90C600301A94 /* Login.swift in Sources */,
+				7F7FCD1D276C3CD8005ADD27 /* ProfileViewController.swift in Sources */,
 				7F46B8E027280C1E002B2E78 /* LoginViewController.swift in Sources */,
 				7FF5C8CC275F42FD00DE24DE /* SettingTableViewController.swift in Sources */,
 				7FF5C8C7275F0B9F00DE24DE /* GradientButton.swift in Sources */,
