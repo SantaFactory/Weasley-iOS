@@ -19,6 +19,7 @@
 		7F7FCD19276C37D1005ADD27 /* SetGroupTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F7FCD18276C37D1005ADD27 /* SetGroupTableViewController.swift */; };
 		7F7FCD1B276C3BA7005ADD27 /* SettingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F7FCD1A276C3BA7005ADD27 /* SettingTableViewCell.swift */; };
 		7F7FCD1D276C3CD8005ADD27 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F7FCD1C276C3CD8005ADD27 /* ProfileViewController.swift */; };
+		7F7FCD1F276C3D58005ADD27 /* NotificationsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F7FCD1E276C3D58005ADD27 /* NotificationsTableViewController.swift */; };
 		7F8A4FCE272FA8A900656E0A /* NeedleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F8A4FCD272FA8A900656E0A /* NeedleView.swift */; };
 		7F8A4FD0272FB0F600656E0A /* UIView+Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F8A4FCF272FB0F600656E0A /* UIView+Layout.swift */; };
 		7F8A4FD22730C3F300656E0A /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F8A4FD12730C3F300656E0A /* User.swift */; };
@@ -62,6 +63,7 @@
 		7F7FCD18276C37D1005ADD27 /* SetGroupTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetGroupTableViewController.swift; sourceTree = "<group>"; };
 		7F7FCD1A276C3BA7005ADD27 /* SettingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableViewCell.swift; sourceTree = "<group>"; };
 		7F7FCD1C276C3CD8005ADD27 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		7F7FCD1E276C3D58005ADD27 /* NotificationsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsTableViewController.swift; sourceTree = "<group>"; };
 		7F8A4FCD272FA8A900656E0A /* NeedleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NeedleView.swift; sourceTree = "<group>"; };
 		7F8A4FCF272FB0F600656E0A /* UIView+Layout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Layout.swift"; sourceTree = "<group>"; };
 		7F8A4FD12730C3F300656E0A /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -247,6 +249,7 @@
 				7FF5C8CB275F42FD00DE24DE /* SettingTableViewController.swift */,
 				7F7FCD18276C37D1005ADD27 /* SetGroupTableViewController.swift */,
 				7F7FCD1C276C3CD8005ADD27 /* ProfileViewController.swift */,
+				7F7FCD1E276C3D58005ADD27 /* NotificationsTableViewController.swift */,
 			);
 			path = SettingView;
 			sourceTree = "<group>";
@@ -373,6 +376,7 @@
 			files = (
 				7FE87A15273BA5C600301A94 /* CurrentLocations.swift in Sources */,
 				7F8A50102734D65D00656E0A /* DegreesToRadians.swift in Sources */,
+				7F7FCD1F276C3D58005ADD27 /* NotificationsTableViewController.swift in Sources */,
 				7FC1ACB02769AD53007C7F0B /* SetSchoolViewController.swift in Sources */,
 				7F3A480D2758C06300B3D104 /* MainViewCell.swift in Sources */,
 				7FE879E12738E9FE00301A94 /* EditLocationViewController.swift in Sources */,
