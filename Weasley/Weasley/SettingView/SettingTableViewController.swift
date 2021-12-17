@@ -13,6 +13,7 @@ class SettingTableViewController: UITableViewController {
         let title: String
         let image: UIImage
         let color: UIColor
+        let destination: UIViewController?
     }
     
     //let settingList = ["Profile", "Group", "Notifications", "General"]
@@ -20,22 +21,26 @@ class SettingTableViewController: UITableViewController {
         Setting(
             title: "Profile",
             image: UIImage(systemName: "person.fill")!,
-            color: .systemBlue
+            color: .systemBlue,
+            destination: ProfileViewController()
         ),
         Setting(
             title: "Groups",
             image: UIImage(systemName: "person.3.fill")!,
-            color: .systemGreen
+            color: .systemGreen,
+            destination: SetGroupTableViewController()
         ),
         Setting(
             title: "Notifications",
             image: UIImage(systemName: "bell.badge.fill")!,
-            color: .systemRed
+            color: .systemRed,
+            destination: NotificationsTableViewController()
         ),
         Setting(
             title: "General",
             image: UIImage(systemName: "gearshape.2.fill")!,
-            color: .systemGray
+            color: .systemGray,
+            destination: nil
         )]
     
     override func viewDidLoad() {
@@ -77,5 +82,11 @@ extension SettingTableViewController {
 }
 // MARK: Table view delegate
 extension SettingTableViewController {
-    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let setting = settingList[indexPath.row]
+        guard let destinationVC = setting.destination else {
+            return
+        }
+        self.navigationController?.pushViewController(destinationVC, animated: true)
+    }
 }
