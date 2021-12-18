@@ -19,6 +19,14 @@ extension UIView {
         self.layer.masksToBounds = true
     }
     
+    func shadows(color: UIColor) {
+        self.layer.shadowColor = color.cgColor
+        self.layer.shadowOffset = .zero
+        self.layer.shadowRadius = 9
+        self.layer.shadowOpacity = 0.4
+        self.layer.masksToBounds = false
+    }
+    
     var hideAnimator: UIViewPropertyAnimator {
         return UIViewPropertyAnimator
             .runningPropertyAnimator(
