@@ -15,7 +15,6 @@
 		7F43026A2726D89900FA594F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7F4302692726D89900FA594F /* Assets.xcassets */; };
 		7F43026D2726D89900FA594F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7F43026B2726D89900FA594F /* LaunchScreen.storyboard */; };
 		7F46B8E027280C1E002B2E78 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F46B8DF27280C1E002B2E78 /* LoginViewController.swift */; };
-		7F6C64642765D35E00DE23E0 /* UIView+Animation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F6C64632765D35E00DE23E0 /* UIView+Animation.swift */; };
 		7F7FCD19276C37D1005ADD27 /* SetGroupTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F7FCD18276C37D1005ADD27 /* SetGroupTableViewController.swift */; };
 		7F7FCD1B276C3BA7005ADD27 /* SettingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F7FCD1A276C3BA7005ADD27 /* SettingTableViewCell.swift */; };
 		7F7FCD1D276C3CD8005ADD27 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F7FCD1C276C3CD8005ADD27 /* ProfileViewController.swift */; };
@@ -27,7 +26,7 @@
 		7F7FCD31276DB5B4005ADD27 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F7FCD30276DB5B4005ADD27 /* UIColor+Extension.swift */; };
 		7F7FCD33276DB849005ADD27 /* CAGradientLayer+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F7FCD32276DB849005ADD27 /* CAGradientLayer+Extension.swift */; };
 		7F8A4FCE272FA8A900656E0A /* NeedleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F8A4FCD272FA8A900656E0A /* NeedleView.swift */; };
-		7F8A4FD0272FB0F600656E0A /* UIView+Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F8A4FCF272FB0F600656E0A /* UIView+Layout.swift */; };
+		7F8A4FD0272FB0F600656E0A /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F8A4FCF272FB0F600656E0A /* UIView+Extension.swift */; };
 		7F8A4FD22730C3F300656E0A /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F8A4FD12730C3F300656E0A /* User.swift */; };
 		7F8A4FD92730D8A600656E0A /* Member.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F8A4FD82730D8A600656E0A /* Member.swift */; };
 		7F8A4FDB2730F02000656E0A /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F8A4FDA2730F02000656E0A /* Location.swift */; };
@@ -64,7 +63,6 @@
 		7F43026C2726D89900FA594F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7F43026E2726D89900FA594F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7F46B8DF27280C1E002B2E78 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
-		7F6C64632765D35E00DE23E0 /* UIView+Animation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Animation.swift"; sourceTree = "<group>"; };
 		7F7FCD18276C37D1005ADD27 /* SetGroupTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetGroupTableViewController.swift; sourceTree = "<group>"; };
 		7F7FCD1A276C3BA7005ADD27 /* SettingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableViewCell.swift; sourceTree = "<group>"; };
 		7F7FCD1C276C3CD8005ADD27 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
@@ -75,7 +73,7 @@
 		7F7FCD30276DB5B4005ADD27 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		7F7FCD32276DB849005ADD27 /* CAGradientLayer+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CAGradientLayer+Extension.swift"; sourceTree = "<group>"; };
 		7F8A4FCD272FA8A900656E0A /* NeedleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NeedleView.swift; sourceTree = "<group>"; };
-		7F8A4FCF272FB0F600656E0A /* UIView+Layout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Layout.swift"; sourceTree = "<group>"; };
+		7F8A4FCF272FB0F600656E0A /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		7F8A4FD12730C3F300656E0A /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		7F8A4FD82730D8A600656E0A /* Member.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Member.swift; sourceTree = "<group>"; };
 		7F8A4FDA2730F02000656E0A /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
@@ -197,8 +195,7 @@
 			children = (
 				7FA1C8A9272B83E800D2B4E0 /* APIManager.swift */,
 				7F8A500F2734D65D00656E0A /* DegreesToRadians.swift */,
-				7F8A4FCF272FB0F600656E0A /* UIView+Layout.swift */,
-				7F6C64632765D35E00DE23E0 /* UIView+Animation.swift */,
+				7F8A4FCF272FB0F600656E0A /* UIView+Extension.swift */,
 				7FC1ACB92769CC14007C7F0B /* MKPlacemark+Extension.swift */,
 				7F7FCD30276DB5B4005ADD27 /* UIColor+Extension.swift */,
 				7F7FCD32276DB849005ADD27 /* CAGradientLayer+Extension.swift */,
@@ -415,7 +412,7 @@
 				7FF5C8C7275F0B9F00DE24DE /* GradientButton.swift in Sources */,
 				7F7FCD19276C37D1005ADD27 /* SetGroupTableViewController.swift in Sources */,
 				7FA1C8AA272B83E800D2B4E0 /* APIManager.swift in Sources */,
-				7F8A4FD0272FB0F600656E0A /* UIView+Layout.swift in Sources */,
+				7F8A4FD0272FB0F600656E0A /* UIView+Extension.swift in Sources */,
 				7FC1ACBE276AD8C8007C7F0B /* SetLocationViewController.swift in Sources */,
 				7F8A4FD22730C3F300656E0A /* User.swift in Sources */,
 				7FC1ACC2276AEF6E007C7F0B /* FinishInitialViewController.swift in Sources */,
@@ -423,7 +420,6 @@
 				7F4302612726D89400FA594F /* AppDelegate.swift in Sources */,
 				7F4302632726D89400FA594F /* SceneDelegate.swift in Sources */,
 				7FC1ACAE2769998D007C7F0B /* SetHomeViewController.swift in Sources */,
-				7F6C64642765D35E00DE23E0 /* UIView+Animation.swift in Sources */,
 				7FC1ACBC276A1632007C7F0B /* SearchedLocationTableViewController.swift in Sources */,
 				7F8A4FCE272FA8A900656E0A /* NeedleView.swift in Sources */,
 				7FC1ACC0276AEDCC007C7F0B /* SetWorkViewController.swift in Sources */,

@@ -18,5 +18,20 @@ extension UIView {
         self.layer.cornerRadius = radius
         self.layer.masksToBounds = true
     }
+    
+    var hideAnimator: UIViewPropertyAnimator {
+        return UIViewPropertyAnimator
+            .runningPropertyAnimator(
+                withDuration: 1.5,
+                delay: 5.0
+            ) {
+                self.alpha = 0
+            }
+    }
+    
+    func animateToHide() {
+        self.alpha = 1
+        self.hideAnimator.startAnimation()
+    }
  
 }
