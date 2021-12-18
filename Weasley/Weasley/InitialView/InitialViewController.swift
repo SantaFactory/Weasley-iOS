@@ -48,7 +48,10 @@ class InitialViewController: UIViewController {
         navigationController?.navigationBar.prefersLargeTitles = false
     }
     
-    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
+          self.view.endEditing(true)
+    }
+
     lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.textColor = .label
