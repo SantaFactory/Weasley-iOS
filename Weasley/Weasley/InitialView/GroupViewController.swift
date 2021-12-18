@@ -37,9 +37,18 @@ class GroupViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "My Band"
-        navigationController?.navigationBar.prefersLargeTitles = true
         groupTableView.dataSource = self
         groupTableView.delegate = self
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.navigationBar.prefersLargeTitles = true
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        navigationController?.navigationBar.prefersLargeTitles = false
     }
     
     private lazy var groupTableView: UITableView = {
