@@ -73,6 +73,7 @@ extension GroupViewController: UITableViewDataSource {
 //MARK: Table view delegate
 extension GroupViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
         let destinationVC = MainViewController()
         navigationController?.pushViewController(destinationVC, animated: true)
     }
