@@ -16,7 +16,6 @@ class InitialViewController: UIViewController {
         self.view.addSubview(descriptionLabel)
         self.view.addSubview(groupNameTextField)
         self.view.addSubview(nextButton)
-        self.view.addSubview(skipButton)
         self.view.backgroundColor = .systemBackground
         titleLabel.snp.makeConstraints { make in
             make.top.equalTo(self.view.safeArea.top).offset(20)
@@ -37,12 +36,6 @@ class InitialViewController: UIViewController {
         }
         nextButton.snp.makeConstraints { make in
             make.top.equalTo(groupNameTextField.snp.bottom).offset(20)
-            make.leading.equalToSuperview().offset(20)
-            make.trailing.equalToSuperview().offset(-20)
-            make.height.equalTo(44)
-        }
-        skipButton.snp.makeConstraints { make in
-            make.top.equalTo(nextButton.snp.bottom).offset(16)
             make.leading.equalToSuperview().offset(20)
             make.trailing.equalToSuperview().offset(-20)
             make.height.equalTo(44)
@@ -93,15 +86,6 @@ class InitialViewController: UIViewController {
         return button
     }()
     
-    lazy var skipButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("Skip", for: .normal)
-        button.setTitleColor(.blue, for: .normal)
-        button.backgroundColor = .clear
-        button.addTarget(self, action: #selector(skip), for: .touchUpInside)
-        return button
-    }()
-    
     @objc func goNext() {
         guard let groupName = groupNameTextField.text else {
             return
@@ -111,12 +95,6 @@ class InitialViewController: UIViewController {
         }
         let destinationVC = SetHomeViewController()
         navigationController?.pushViewController(destinationVC, animated: true)
-    }
-    
-    @objc func skip() {
-        let destinationVC = MainViewController()
-        destinationVC.modalPresentationStyle = .fullScreen
-        self.present(destinationVC, animated: true, completion: nil)
     }
     
 }
