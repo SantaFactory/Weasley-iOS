@@ -27,7 +27,7 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         viewModel.autoLogin {
-            self.presentMain()
+            self.successLogin()
         }
     }
     
@@ -43,13 +43,15 @@ class LoginViewController: UIViewController {
     
     @objc private func googleLogin() {
         viewModel.googleLogin(vc: self) {
-            self.presentMain()
+            self.successLogin()
         }
     }
     
-    private func presentMain() {
+    private func successLogin() {
         let destinationVC = MainViewController()
-        destinationVC.modalPresentationStyle = .fullScreen
-        self.present(destinationVC, animated: true, completion: nil)
+        let navController = UINavigationController(rootViewController: destinationVC)
+        navController.hero.isEnabled = true
+        navController.modalPresentationStyle = .fullScreen
+        self.present(navController, animated: true, completion: nil)
     }
 }

@@ -6,7 +6,7 @@
 //
 
 import UIKit
-
+import Hero
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
@@ -14,9 +14,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: windowScene)
-        let initialViewController = GroupViewController()
-        let navController = UINavigationController(rootViewController: initialViewController)
-        self.window?.rootViewController = navController
+        let initialViewController = LoginViewController()
+        self.window?.rootViewController = initialViewController
         self.window?.makeKeyAndVisible()
     }
 

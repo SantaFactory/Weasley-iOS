@@ -22,6 +22,8 @@
 		7F7FCD1F276C3D58005ADD27 /* NotificationsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F7FCD1E276C3D58005ADD27 /* NotificationsTableViewController.swift */; };
 		7F7FCD21276C41FB005ADD27 /* EditPlaceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F7FCD20276C41FB005ADD27 /* EditPlaceViewController.swift */; };
 		7F7FCD24276D6AD1005ADD27 /* GroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F7FCD23276D6AD1005ADD27 /* GroupViewController.swift */; };
+		7F7FCD26276D84B3005ADD27 /* lf30_editor_lqe82iao.json in Resources */ = {isa = PBXBuildFile; fileRef = 7F7FCD25276D84B3005ADD27 /* lf30_editor_lqe82iao.json */; };
+		7F7FCD2F276D8B20005ADD27 /* Hero in Frameworks */ = {isa = PBXBuildFile; productRef = 7F7FCD2E276D8B20005ADD27 /* Hero */; };
 		7F8A4FCE272FA8A900656E0A /* NeedleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F8A4FCD272FA8A900656E0A /* NeedleView.swift */; };
 		7F8A4FD0272FB0F600656E0A /* UIView+Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F8A4FCF272FB0F600656E0A /* UIView+Layout.swift */; };
 		7F8A4FD22730C3F300656E0A /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F8A4FD12730C3F300656E0A /* User.swift */; };
@@ -61,13 +63,13 @@
 		7F43026E2726D89900FA594F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7F46B8DF27280C1E002B2E78 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		7F6C64632765D35E00DE23E0 /* UIView+Animation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Animation.swift"; sourceTree = "<group>"; };
-		7F7FCD17276B32ED005ADD27 /* lf30_editor_lqe82iao.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = lf30_editor_lqe82iao.json; sourceTree = "<group>"; };
 		7F7FCD18276C37D1005ADD27 /* SetGroupTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetGroupTableViewController.swift; sourceTree = "<group>"; };
 		7F7FCD1A276C3BA7005ADD27 /* SettingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableViewCell.swift; sourceTree = "<group>"; };
 		7F7FCD1C276C3CD8005ADD27 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		7F7FCD1E276C3D58005ADD27 /* NotificationsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsTableViewController.swift; sourceTree = "<group>"; };
 		7F7FCD20276C41FB005ADD27 /* EditPlaceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = EditPlaceViewController.swift; path = Weasley/SettingView/EditPlaceViewController.swift; sourceTree = SOURCE_ROOT; };
 		7F7FCD23276D6AD1005ADD27 /* GroupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupViewController.swift; sourceTree = "<group>"; };
+		7F7FCD25276D84B3005ADD27 /* lf30_editor_lqe82iao.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = lf30_editor_lqe82iao.json; path = ../../../../../../../Downloads/Lottie/lf30_editor_lqe82iao.json; sourceTree = "<group>"; };
 		7F8A4FCD272FA8A900656E0A /* NeedleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NeedleView.swift; sourceTree = "<group>"; };
 		7F8A4FCF272FB0F600656E0A /* UIView+Layout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Layout.swift"; sourceTree = "<group>"; };
 		7F8A4FD12730C3F300656E0A /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -100,6 +102,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7D99C284FC90961B3821D0C0 /* Pods_Weasley.framework in Frameworks */,
+				7F7FCD2F276D8B20005ADD27 /* Hero in Frameworks */,
 				7FC1ACC5276B0108007C7F0B /* Lottie in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -152,10 +155,10 @@
 				7F7FCD16276B2704005ADD27 /* SetLocationView */,
 				7F8A4FD72730D6D700656E0A /* MainView */,
 				7FF5C8C8275F417700DE24DE /* SettingView */,
-				7F4302602726D89400FA594F /* AppDelegate.swift */,
-				7F4302622726D89400FA594F /* SceneDelegate.swift */,
-				7FE87A13273B91CA00301A94 /* ViewModel */,
 				7FF5C8C5275DBBDF00DE24DE /* EditView */,
+				7F4302622726D89400FA594F /* SceneDelegate.swift */,
+				7F4302602726D89400FA594F /* AppDelegate.swift */,
+				7FE87A13273B91CA00301A94 /* ViewModel */,
 				7F4302692726D89900FA594F /* Assets.xcassets */,
 				7F43026B2726D89900FA594F /* LaunchScreen.storyboard */,
 				7F43026E2726D89900FA594F /* Info.plist */,
@@ -212,8 +215,8 @@
 		7FC1ACAA27686422007C7F0B /* InitialView */ = {
 			isa = PBXGroup;
 			children = (
+				7F7FCD25276D84B3005ADD27 /* lf30_editor_lqe82iao.json */,
 				7F7FCD23276D6AD1005ADD27 /* GroupViewController.swift */,
-				7F7FCD17276B32ED005ADD27 /* lf30_editor_lqe82iao.json */,
 				7FC1ACAB27686B44007C7F0B /* InitialViewController.swift */,
 				7FC1ACC1276AEF6E007C7F0B /* FinishInitialViewController.swift */,
 			);
@@ -280,6 +283,7 @@
 			name = Weasley;
 			packageProductDependencies = (
 				7FC1ACC4276B0108007C7F0B /* Lottie */,
+				7F7FCD2E276D8B20005ADD27 /* Hero */,
 			);
 			productName = Weasley;
 			productReference = 7F43025D2726D89400FA594F /* Weasley.app */;
@@ -310,6 +314,7 @@
 			mainGroup = 7F4302542726D89400FA594F;
 			packageReferences = (
 				7FC1ACC3276B0108007C7F0B /* XCRemoteSwiftPackageReference "lottie-ios" */,
+				7F7FCD2D276D8B20005ADD27 /* XCRemoteSwiftPackageReference "Hero" */,
 			);
 			productRefGroup = 7F43025E2726D89400FA594F /* Products */;
 			projectDirPath = "";
@@ -325,6 +330,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7F7FCD26276D84B3005ADD27 /* lf30_editor_lqe82iao.json in Resources */,
 				7F43026D2726D89900FA594F /* LaunchScreen.storyboard in Resources */,
 				7FE0D9CE273F9BE200512B07 /* GoogleService-Info.plist in Resources */,
 				7F43026A2726D89900FA594F /* Assets.xcassets in Resources */,
@@ -611,6 +617,15 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		7F7FCD2D276D8B20005ADD27 /* XCRemoteSwiftPackageReference "Hero" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/HeroTransitions/Hero";
+			requirement = {
+				kind = versionRange;
+				maximumVersion = 1.5.0;
+				minimumVersion = 1.0.0;
+			};
+		};
 		7FC1ACC3276B0108007C7F0B /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/airbnb/lottie-ios";
@@ -622,6 +637,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		7F7FCD2E276D8B20005ADD27 /* Hero */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7F7FCD2D276D8B20005ADD27 /* XCRemoteSwiftPackageReference "Hero" */;
+			productName = Hero;
+		};
 		7FC1ACC4276B0108007C7F0B /* Lottie */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 7FC1ACC3276B0108007C7F0B /* XCRemoteSwiftPackageReference "lottie-ios" */;

@@ -7,6 +7,7 @@
 
 import UIKit
 import SnapKit
+import Hero
 
 class GroupViewController: UIViewController {
 
@@ -73,8 +74,7 @@ extension GroupViewController: UITableViewDataSource {
 extension GroupViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let destinationVC = MainViewController()
-        destinationVC.modalPresentationStyle = .fullScreen
-        present(destinationVC, animated: true, completion: nil)
+        navigationController?.pushViewController(destinationVC, animated: true)
     }
 }
 
@@ -103,6 +103,7 @@ class GroupTableViewCell: UITableViewCell {
         label.text = "Hello World!"
         label.font = UIFont.systemFont(ofSize: 40, weight: .black)
         label.textAlignment = .center
+        label.hero.id = "Main"
         return label
     }()
     

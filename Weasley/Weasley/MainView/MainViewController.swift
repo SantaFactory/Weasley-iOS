@@ -78,6 +78,7 @@ class MainViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.view.hero.id = "Main"
         groupsScrollView.delegate = self
         membersTableView.delegate = self
         membersTableView.dataSource = self
