@@ -15,7 +15,7 @@ class FinishInitialViewController: UIViewController {
         self.view.backgroundColor = .secondarySystemGroupedBackground
         self.view.addSubview(messageLabel)
         messageLabel.snp.makeConstraints { make in
-            make.top.equalTo(self.view.safeArea.top)
+            make.top.equalTo(self.view.safeArea.top).offset(20)
             make.leading.equalToSuperview()
             make.trailing.equalToSuperview()
         }
@@ -24,6 +24,7 @@ class FinishInitialViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.addSubview(lottieView)
+        navigationController?.navigationBar.isHidden = true
         lottieView.snp.makeConstraints { make in
             make.top.equalTo(messageLabel.snp.bottom)
             make.leading.equalToSuperview()
