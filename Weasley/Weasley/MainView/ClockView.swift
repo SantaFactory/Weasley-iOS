@@ -9,7 +9,7 @@ import UIKit
 
 class Clock: UIView {
     
-    let gradientLayer: CAGradientLayer = CAGradientLayer()
+    let gradientLayer = CAGradientLayer()
     var startAngle: CGFloat = (-(.pi) / 2)
     var endAngle: CGFloat = 0.0
     let colors = [
@@ -34,10 +34,13 @@ class Clock: UIView {
             endAngle: (360 * .pi) / 180,
             clockwise: true
         )
-        self.gradientLayer.colors = colors.map{ $0.withAlphaComponent(0.6).cgColor }
-        gradientLayer.frame = rect
-        self.gradientLayer.startPoint = CGPoint(x: 0.5, y: 0.5)
-        self.gradientLayer.endPoint = CGPoint(x: 0.5, y: 0.0)
+        gradientLayer.getGradientLayer(
+            colors: colors,
+            alpha: 0.6,
+            frame: rect,
+            startPoint: CGPoint(x: 0.5, y: 0.5),
+            endPoint: CGPoint(x: 0.5, y: 0.0)
+        )
         self.gradientLayer.type = .conic
         
         let shapeMask = CAShapeLayer()

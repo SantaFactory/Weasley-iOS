@@ -24,6 +24,8 @@
 		7F7FCD24276D6AD1005ADD27 /* GroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F7FCD23276D6AD1005ADD27 /* GroupViewController.swift */; };
 		7F7FCD26276D84B3005ADD27 /* lf30_editor_lqe82iao.json in Resources */ = {isa = PBXBuildFile; fileRef = 7F7FCD25276D84B3005ADD27 /* lf30_editor_lqe82iao.json */; };
 		7F7FCD2F276D8B20005ADD27 /* Hero in Frameworks */ = {isa = PBXBuildFile; productRef = 7F7FCD2E276D8B20005ADD27 /* Hero */; };
+		7F7FCD31276DB5B4005ADD27 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F7FCD30276DB5B4005ADD27 /* UIColor+Extension.swift */; };
+		7F7FCD33276DB849005ADD27 /* CAGradientLayer+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F7FCD32276DB849005ADD27 /* CAGradientLayer+Extension.swift */; };
 		7F8A4FCE272FA8A900656E0A /* NeedleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F8A4FCD272FA8A900656E0A /* NeedleView.swift */; };
 		7F8A4FD0272FB0F600656E0A /* UIView+Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F8A4FCF272FB0F600656E0A /* UIView+Layout.swift */; };
 		7F8A4FD22730C3F300656E0A /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F8A4FD12730C3F300656E0A /* User.swift */; };
@@ -70,6 +72,8 @@
 		7F7FCD20276C41FB005ADD27 /* EditPlaceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = EditPlaceViewController.swift; path = Weasley/SettingView/EditPlaceViewController.swift; sourceTree = SOURCE_ROOT; };
 		7F7FCD23276D6AD1005ADD27 /* GroupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupViewController.swift; sourceTree = "<group>"; };
 		7F7FCD25276D84B3005ADD27 /* lf30_editor_lqe82iao.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = lf30_editor_lqe82iao.json; path = ../../../../../../../Downloads/Lottie/lf30_editor_lqe82iao.json; sourceTree = "<group>"; };
+		7F7FCD30276DB5B4005ADD27 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
+		7F7FCD32276DB849005ADD27 /* CAGradientLayer+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CAGradientLayer+Extension.swift"; sourceTree = "<group>"; };
 		7F8A4FCD272FA8A900656E0A /* NeedleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NeedleView.swift; sourceTree = "<group>"; };
 		7F8A4FCF272FB0F600656E0A /* UIView+Layout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Layout.swift"; sourceTree = "<group>"; };
 		7F8A4FD12730C3F300656E0A /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -196,6 +200,8 @@
 				7F8A4FCF272FB0F600656E0A /* UIView+Layout.swift */,
 				7F6C64632765D35E00DE23E0 /* UIView+Animation.swift */,
 				7FC1ACB92769CC14007C7F0B /* MKPlacemark+Extension.swift */,
+				7F7FCD30276DB5B4005ADD27 /* UIColor+Extension.swift */,
+				7F7FCD32276DB849005ADD27 /* CAGradientLayer+Extension.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -391,6 +397,7 @@
 				7F7FCD1F276C3D58005ADD27 /* NotificationsTableViewController.swift in Sources */,
 				7FC1ACB02769AD53007C7F0B /* SetSchoolViewController.swift in Sources */,
 				7F3A480D2758C06300B3D104 /* MainViewCell.swift in Sources */,
+				7F7FCD33276DB849005ADD27 /* CAGradientLayer+Extension.swift in Sources */,
 				7FE879E12738E9FE00301A94 /* EditLocationViewController.swift in Sources */,
 				7F7FCD24276D6AD1005ADD27 /* GroupViewController.swift in Sources */,
 				7F7FCD21276C41FB005ADD27 /* EditPlaceViewController.swift in Sources */,
@@ -400,6 +407,7 @@
 				7FA1C8AC272CF46500D2B4E0 /* ClockView.swift in Sources */,
 				7FC1ACBA2769CC14007C7F0B /* MKPlacemark+Extension.swift in Sources */,
 				7F8A500E2734D5F700656E0A /* LocationLabel.swift in Sources */,
+				7F7FCD31276DB5B4005ADD27 /* UIColor+Extension.swift in Sources */,
 				7FE87A11273B90C600301A94 /* Login.swift in Sources */,
 				7F7FCD1D276C3CD8005ADD27 /* ProfileViewController.swift in Sources */,
 				7F46B8E027280C1E002B2E78 /* LoginViewController.swift in Sources */,
