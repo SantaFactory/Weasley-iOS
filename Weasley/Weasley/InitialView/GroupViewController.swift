@@ -57,6 +57,7 @@ extension GroupViewController {
     }
 }
 
+//MARK: Table view data source
 extension GroupViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
@@ -68,12 +69,16 @@ extension GroupViewController: UITableViewDataSource {
     }
 }
 
+//MARK: Table view delegate
 extension GroupViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+        let destinationVC = MainViewController()
+        destinationVC.modalPresentationStyle = .fullScreen
+        present(destinationVC, animated: true, completion: nil)
     }
 }
 
+//MARK: Table view cell
 class GroupTableViewCell: UITableViewCell {
     
     static let reuseID = "GroupTableViewCellReuseID"
