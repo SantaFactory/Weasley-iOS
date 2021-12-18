@@ -12,16 +12,7 @@ class Clock: UIView {
     let gradientLayer = CAGradientLayer()
     var startAngle: CGFloat = (-(.pi) / 2)
     var endAngle: CGFloat = 0.0
-    let colors = [
-        UIColor(named: "magicRed")!,
-        UIColor(named: "magicOrange")!,
-        UIColor(named: "magicYellow")!,
-        UIColor(named: "magicLime")!,
-        UIColor(named: "magicGreen")!,
-        UIColor(named: "magicBlue")!,
-        UIColor(named: "magicPurple")!,
-        UIColor(named: "magicPink")!
-    ]
+  
     override func draw(_ rect: CGRect) {
         let center = CGPoint(x: rect.midX, y: rect.midY)
         let radius = min(rect.size.width / 2.0, rect.size.height / 2.0) - 20
@@ -35,7 +26,7 @@ class Clock: UIView {
             clockwise: true
         )
         gradientLayer.getGradientLayer(
-            colors: colors,
+            colors: UIColor().themeColors,
             alpha: 0.6,
             frame: rect,
             startPoint: CGPoint(x: 0.5, y: 0.5),
@@ -58,7 +49,7 @@ class Clock: UIView {
                         endAngle: startAngle + endAngle,
                         clockwise: true
             )
-            colors[index].withAlphaComponent(0.2).set()
+            UIColor().themeColors[index].withAlphaComponent(0.2).set()
             path.fill()
             path.close()
             startAngle += endAngle

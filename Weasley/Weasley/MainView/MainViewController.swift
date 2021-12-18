@@ -171,32 +171,6 @@ class MainViewController: UIViewController {
         return scrollView
     }()
     
-    //MARK: TODO: Sample Label -> for loop Method
-    func getGradientLayer(bounds : CGRect) -> CAGradientLayer{
-        let gradient = CAGradientLayer()
-        gradient.frame = bounds
-        //order of gradient colors
-        gradient.colors = [UIColor.red.cgColor,UIColor.blue.cgColor, UIColor.green.cgColor]
-        // start and end points
-        gradient.startPoint = CGPoint(x: 0.0, y: 0.5)
-        gradient.endPoint = CGPoint(x: 1.0, y: 0.5)
-        return gradient
-    }
-
-
-    func gradientColor(bounds: CGRect, gradientLayer :CAGradientLayer) -> UIColor? {
-        UIGraphicsBeginImageContext(gradientLayer.bounds.size)
-        //create UIImage by rendering gradient layer.
-        guard let context = UIGraphicsGetCurrentContext() else {
-            return .systemRed
-        }
-        gradientLayer.render(in: context)
-        let image = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
-        //get gradient UIcolor from gradient UIImage
-        return UIColor(patternImage: image!)
-    }
-
     private lazy var sampleGroupName: UILabel = {
         let label = UILabel()
         print(UIScreen.main.bounds.height)
@@ -205,8 +179,15 @@ class MainViewController: UIViewController {
         label.font = UIFont.systemFont(ofSize: 60, weight: .black)
         label.backgroundColor = .systemBackground
         label.text = "Hello World!"
-        let gradient = getGradientLayer(bounds: label.bounds)
-        label.textColor = gradientColor(bounds: label.bounds, gradientLayer: gradient)
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.getGradientLayer(
+            colors: UIColor().themeColors,
+            alpha: 1,
+            frame: label.bounds,
+            startPoint: CGPoint(x: 0.0, y: 0.5),
+            endPoint: CGPoint(x: 1.0, y: 0.5)
+        )
+        label.textColor = .gradientColor(bounds: label.bounds, gradientLayer: gradientLayer)
         label.textAlignment = .center
         return label
     }()
