@@ -14,6 +14,15 @@ extension UIButton {
         self.addTarget(self, action: #selector(cancelTap), for: .touchDragOutside)
     }
     
+    func enableStatus(_ status: Bool) {
+        self.isEnabled = status
+        if self.isEnabled {
+            self.alpha = 1
+        } else {
+            self.alpha = 0.5
+        }
+    }
+    
     @objc func tapButton() {
         self.alpha = 0.5
     }
