@@ -18,6 +18,7 @@ class SetLocationViewController: UIViewController {
 
     var destinationVC: UIViewController!
     var place: String!
+    let gradientLayer = CAGradientLayer()
     
     private var suggestionController: SearchedLocationTableViewController!
     private var searchController: UISearchController!
@@ -65,7 +66,7 @@ class SetLocationViewController: UIViewController {
             make.bottom.equalTo(self.view.snp.bottom).offset(-20)
             make.height.equalTo(44)
         }
-        nextButton.isEnabled = false
+        nextButton.enableStatus(false)
     }
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -105,19 +106,36 @@ class SetLocationViewController: UIViewController {
     }()
     
     lazy var nextButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.tintColor = .white
+        let button = UIButton()
+        gradientLayer.getGradientLayer(
+            colors: UIColor().themeColors,
+            alpha: 0.7,
+            frame: self.view.bounds,
+            startPoint: CGPoint(x: 0.0, y: 0.5),
+            endPoint: CGPoint(x: 1.0, y: 0.5)
+        )
+        let color = UIColor.gradientColor(bounds: self.view.bounds, gradientLayer: gradientLayer)
         button.setTitle("Next", for: .normal)
-        button.backgroundColor = .blue
+        button.backgroundColor = color
+        button.defaultAction()
         button.addTarget(self, action: #selector(goNext), for: .touchUpInside)
         return button
     }()
     
     lazy var skipButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.tintColor = .blue
+        let button = UIButton()
+        gradientLayer.getGradientLayer(
+            colors: UIColor().themeColors,
+            alpha: 0.7,
+            frame: self.view.bounds,
+            startPoint: CGPoint(x: 0.0, y: 0.5),
+            endPoint: CGPoint(x: 1.0, y: 0.5)
+        )
+        let color = UIColor.gradientColor(bounds: self.view.bounds, gradientLayer: gradientLayer)
         button.setTitle("Skip", for: .normal)
+        button.setTitleColor(color, for: .normal)
         button.backgroundColor = .clear
+        button.defaultAction()
         button.addTarget(self, action: #selector(skip), for: .touchUpInside)
         return button
     }()
@@ -185,7 +203,7 @@ extension SetLocationViewController: ShowResultMap {
             let span = MKCoordinateSpan(latitudeDelta: 0.005, longitudeDelta: 0.005)
             self.mapView.setRegion(MKCoordinateRegion(center: loc, span: span), animated: true)
             self.mapView.addOverlay(circle)
-            self.nextButton.isEnabled = true
+            self.nextButton.enableStatus(true)
         }
     }
     
@@ -212,7 +230,7 @@ extension SetLocationViewController {
         let okay = UIAlertAction(title: "OK", style: .cancel)
         alert.addAction(okay)
         present(alert, animated: true) {
-            self.nextButton.isEnabled = false
+            self.nextButton.enableStatus(false)
         }
     }
 }
