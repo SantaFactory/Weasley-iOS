@@ -38,7 +38,7 @@ class InitialViewController: UIViewController {
             make.top.equalTo(groupNameTextField.snp.bottom).offset(20)
             make.leading.equalToSuperview().offset(20)
             make.trailing.equalToSuperview().offset(-20)
-            make.height.equalTo(44)
+            make.height.equalTo(50)
         }
     }
     
@@ -84,13 +84,24 @@ class InitialViewController: UIViewController {
 
     lazy var nextButton: UIButton = {
         let button = UIButton()
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.getGradientLayer(
+            colors: UIColor().themeColors,
+            alpha: 0.6,
+            frame: self.view.bounds,
+            startPoint: CGPoint(x: 0.0, y: 0.0),
+            endPoint: CGPoint(x: 1.0, y: 1.0)
+        )
         button.setTitle("Next", for: .normal)
-        button.backgroundColor = .blue
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 20, weight: .bold)
+        button.backgroundColor = .gradientColor(bounds: self.view.bounds, gradientLayer: gradientLayer)
+        button.defaultAction()
         button.addTarget(self, action: #selector(goNext), for: .touchUpInside)
         return button
     }()
     
-    @objc func goNext() {
+    @objc func goNext(_ sender: UIButton?) {
+        sender?.alpha = 1
         guard let groupName = groupNameTextField.text else {
             return
         }
@@ -118,7 +129,7 @@ extension InitialViewController {
 }
 extension InitialViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        goNext()
+        goNext(nil)
         return false
     }
 }
