@@ -51,7 +51,7 @@ class LoginViewController: UIViewController {
     private func successLogin() {
         let destinationVC = GroupViewController()
         let navController = UINavigationController(rootViewController: destinationVC)
-        navController.hero.isEnabled = true
+        //navController.hero.isEnabled = true
         navController.modalPresentationStyle = .fullScreen
         self.present(navController, animated: true, completion: nil)
     }

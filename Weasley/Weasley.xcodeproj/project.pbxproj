@@ -22,7 +22,6 @@
 		7F7FCD21276C41FB005ADD27 /* EditPlaceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F7FCD20276C41FB005ADD27 /* EditPlaceViewController.swift */; };
 		7F7FCD24276D6AD1005ADD27 /* GroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F7FCD23276D6AD1005ADD27 /* GroupViewController.swift */; };
 		7F7FCD26276D84B3005ADD27 /* lf30_editor_lqe82iao.json in Resources */ = {isa = PBXBuildFile; fileRef = 7F7FCD25276D84B3005ADD27 /* lf30_editor_lqe82iao.json */; };
-		7F7FCD2F276D8B20005ADD27 /* Hero in Frameworks */ = {isa = PBXBuildFile; productRef = 7F7FCD2E276D8B20005ADD27 /* Hero */; };
 		7F7FCD31276DB5B4005ADD27 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F7FCD30276DB5B4005ADD27 /* UIColor+Extension.swift */; };
 		7F7FCD33276DB849005ADD27 /* CAGradientLayer+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F7FCD32276DB849005ADD27 /* CAGradientLayer+Extension.swift */; };
 		7F8A4FCE272FA8A900656E0A /* NeedleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F8A4FCD272FA8A900656E0A /* NeedleView.swift */; };
@@ -104,7 +103,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				7D99C284FC90961B3821D0C0 /* Pods_Weasley.framework in Frameworks */,
-				7F7FCD2F276D8B20005ADD27 /* Hero in Frameworks */,
 				7FC1ACC5276B0108007C7F0B /* Lottie in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -286,7 +284,6 @@
 			name = Weasley;
 			packageProductDependencies = (
 				7FC1ACC4276B0108007C7F0B /* Lottie */,
-				7F7FCD2E276D8B20005ADD27 /* Hero */,
 			);
 			productName = Weasley;
 			productReference = 7F43025D2726D89400FA594F /* Weasley.app */;
@@ -317,7 +314,6 @@
 			mainGroup = 7F4302542726D89400FA594F;
 			packageReferences = (
 				7FC1ACC3276B0108007C7F0B /* XCRemoteSwiftPackageReference "lottie-ios" */,
-				7F7FCD2D276D8B20005ADD27 /* XCRemoteSwiftPackageReference "Hero" */,
 			);
 			productRefGroup = 7F43025E2726D89400FA594F /* Products */;
 			projectDirPath = "";
@@ -621,15 +617,6 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		7F7FCD2D276D8B20005ADD27 /* XCRemoteSwiftPackageReference "Hero" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/HeroTransitions/Hero";
-			requirement = {
-				kind = versionRange;
-				maximumVersion = 1.5.0;
-				minimumVersion = 1.0.0;
-			};
-		};
 		7FC1ACC3276B0108007C7F0B /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/airbnb/lottie-ios";
@@ -641,11 +628,6 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		7F7FCD2E276D8B20005ADD27 /* Hero */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 7F7FCD2D276D8B20005ADD27 /* XCRemoteSwiftPackageReference "Hero" */;
-			productName = Hero;
-		};
 		7FC1ACC4276B0108007C7F0B /* Lottie */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 7FC1ACC3276B0108007C7F0B /* XCRemoteSwiftPackageReference "lottie-ios" */;

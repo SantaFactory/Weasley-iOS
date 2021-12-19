@@ -7,7 +7,6 @@
 
 import UIKit
 import SnapKit
-import Hero
 import SwiftUI
 
 class GroupViewController: UIViewController {
@@ -23,8 +22,6 @@ class GroupViewController: UIViewController {
             make.bottom.equalTo(self.view.safeArea.bottom).offset(-10)
             make.leading.equalToSuperview().offset(40)
             make.trailing.equalToSuperview().offset(-40)
-            //make.centerX.equalToSuperview()
-            //make.height.equalTo(50)
         }
         groupTableView.snp.makeConstraints { make in
             make.top.equalTo(self.view.snp.top)
@@ -141,7 +138,6 @@ class GroupTableViewCell: UITableViewCell {
         label.font = UIFont.systemFont(ofSize: 40, weight: .black)
         label.textColor = .white
         label.textAlignment = .center
-        label.hero.id = "Main"
         return label
     }()
     
