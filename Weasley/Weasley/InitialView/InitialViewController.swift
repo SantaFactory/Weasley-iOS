@@ -45,6 +45,7 @@ class InitialViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         groupNameTextField.delegate = self
+        navigationItem.largeTitleDisplayMode = .never
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
