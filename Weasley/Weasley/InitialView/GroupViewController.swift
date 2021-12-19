@@ -7,7 +7,7 @@
 
 import UIKit
 import SnapKit
-import SwiftUI
+import Hero
 
 class GroupViewController: UIViewController {
     
@@ -34,18 +34,9 @@ class GroupViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "My Band"
+        navigationController?.navigationBar.prefersLargeTitles = true
         groupTableView.dataSource = self
         groupTableView.delegate = self
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        navigationController?.navigationBar.prefersLargeTitles = true
-    }
-    
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        navigationController?.navigationBar.prefersLargeTitles = false
     }
     
     private lazy var groupTableView: UITableView = {
@@ -108,7 +99,9 @@ extension GroupViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         let destinationVC = MainViewController()
-        navigationController?.pushViewController(destinationVC, animated: true)
+        destinationVC.modalPresentationStyle = .overFullScreen
+        present(destinationVC, animated: true, completion: nil)
+        //navigationController?.pushViewController(destinationVC, animated: true)
     }
 }
 
@@ -138,6 +131,7 @@ class GroupTableViewCell: UITableViewCell {
         label.font = UIFont.systemFont(ofSize: 40, weight: .black)
         label.textColor = .white
         label.textAlignment = .center
+        label.hero.id = "main"
         return label
     }()
     

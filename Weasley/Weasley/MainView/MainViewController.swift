@@ -78,7 +78,6 @@ class MainViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.hero.id = "Main"
         groupsScrollView.delegate = self
         membersTableView.delegate = self
         membersTableView.dataSource = self
@@ -95,6 +94,8 @@ class MainViewController: UIViewController {
         self.userLocationMapView.alpha = 0
         loadGroupLabels()
         loadNeedles()
+        self.hero.isEnabled = true
+        self.view.hero.id = "main"
     }
     
     func loadNeedles() {
