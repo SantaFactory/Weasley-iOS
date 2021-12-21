@@ -27,16 +27,11 @@ class MainViewController: UIViewController {
         view.backgroundColor = .secondarySystemBackground
         self.view.addSubview(clockView)
         self.view.addSubview(arcLocationLabel)
-        self.view.addSubview(menuButton)
         self.view.addSubview(relocateButton)
         self.view.addSubview(addGroupButton)
         self.view.addSubview(membersTableView)
         self.view.addSubview(groupsScrollView)
         self.clockView.addSubview(userLocationMapView)
-        menuButton.snp.makeConstraints { make in
-            make.top.equalTo(self.view.safeArea.top).offset(16)
-            make.trailing.equalToSuperview().offset(-16)
-        }
         clockView.snp.makeConstraints { make in
             make.height.equalTo(self.view.frame.width)
             make.width.equalToSuperview()
@@ -84,12 +79,6 @@ class MainViewController: UIViewController {
         locationManager.delegate = self
         locationManager.requestWhenInUseAuthorization() // 위치 서비스를 사용하기 위한 사용자 권한 요청
         locationManager.requestLocation() // 사용자의 현재 위치에 대한 일회성 전달을 요청
-        if #available(iOS 14.0, *) {
-            menuButton.showsMenuAsPrimaryAction = true
-            menuButton.menu = menu
-        } else {
-            showActionSheet()
-        }
         self.userLocationMapView.delegate = self
         self.userLocationMapView.alpha = 0
         loadGroupLabels()
@@ -157,13 +146,6 @@ class MainViewController: UIViewController {
         return button
     }()
     
-    private lazy var menuButton: UIButton = {
-        let button = UIButton()
-        let config = UIImage.SymbolConfiguration(pointSize: 24)
-        button.setImage(UIImage(systemName: "ellipsis.circle", withConfiguration: config), for: .normal)
-        return button
-    }()
-    
     private lazy var groupsScrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.contentSize = CGSize(width: UIScreen.main.bounds.width * 4, height: scrollView.contentSize.height)
@@ -203,46 +185,6 @@ class MainViewController: UIViewController {
         return tableView
     }()
     
-    private lazy var menu: UIMenu = {
-        return UIMenu(title: "", options: [], children: menuItems)
-    }()
-    
-    private lazy var menuItems: [UIAction] = {
-        return [
-            UIAction(title: "Invite member", image: UIImage(systemName: "paperplane.fill"), handler: { _ in
-                self.inviteMember()
-            }),
-            UIAction(title: "Setting", image: UIImage(systemName: "gearshape.fill"), handler: { _ in
-                self.goSetting()
-            }),
-            UIAction(title: "Sign Out", image: UIImage(systemName: "rectangle.portrait.and.arrow.right"), handler: { _ in
-                self.signOut()
-            })
-        ]
-    }()
-    
-    private func showActionSheet() {
-        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        for action in alertActions {
-            alert.addAction(action)
-        }
-    }
-    
-    private lazy var alertActions: [UIAlertAction] = {
-        return [
-            UIAlertAction(title: "Invite", style: .default, handler: { _ in
-                self.inviteMember()
-            }),
-            UIAlertAction(title: "Setting", style: .default, handler: { _ in
-                self.goSetting()
-            }),
-            UIAlertAction(title: "Sign Out", style: .default, handler: { _ in
-                self.signOut()
-            }),
-            UIAlertAction(title: "Cancel", style: .cancel)
-        ]
-    }()
-    
     private func setMemberMenu(index member: Int) -> UIMenu {
         let items = [
             UIAction(title: "Request Location", image: UIImage(systemName: "exclamationmark.bubble"), handler: { _ in
@@ -267,23 +209,11 @@ class MainViewController: UIViewController {
 }
 
 extension MainViewController {
-    
-    func signOut() {
-        Login().signOut()
-        dismiss(animated: true, completion: nil)
-    }
-    
+  
     @objc func reLocate() {
         locationManager.requestLocation()
     }
-    
-    func goSetting() {
-        let rootVC = SettingTableViewController()
-        let destinationVC = UINavigationController(rootViewController: rootVC)
-        destinationVC.modalPresentationStyle = .fullScreen
-        present(destinationVC, animated: true, completion: nil)
-    }
-    
+   
     //MARK: To Do add Action Method
     @objc func addGroup() {
        print("")
