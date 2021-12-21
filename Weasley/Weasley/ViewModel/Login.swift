@@ -21,19 +21,7 @@ class Login {
                     GIDSignIn.sharedInstance.signOut()
                     return
                 }
-                
-                APIManager().performRequestUserLoc(user: Loc(sub: sub)) { res in
-                    switch res {
-                    case .failure(let message):
-                        print(message)
-                        self.signOut()
-                    case .success(let message):
-                        print(message)
-                        DispatchQueue.main.async {
-                            completion()
-                        }
-                    }
-                }
+                //TODO: Request user data
             } else {
                 print("Signed-Out State")
             }
@@ -57,51 +45,20 @@ class Login {
                     print("Control idToken is nil")
                     return
                 }
-                let token = Token(token: idToken)
-                APIManager().performLogin(token: token) { tokenData in
+                let token = Token(id_token: idToken)
+                LoginService().performLogin(token: token) { tokenData in
                     switch tokenData {
                     case .failure:
-                        print("fail")
+                        print(error?.localizedDescription ?? "Fail")
                         GIDSignIn.sharedInstance.signOut()
                     case .success:
                         do {
                             let value = try tokenData.get()
-                            print(value)
-                            self.userDefault.set(value.sub, forKey: "userLogin")// Local에 sub저장
-                            APIManager().performRequestUser(user: value) { res in
-                                switch res {
-                                case .failure(let message):
-                                    print("Fail: \(message)")
-                                    self.signOut()
-                                case .success(let message):
-                                    print("Success: \(message)")
-                                    APIManager().performRequestUserLoc(user: Loc(sub: value.sub)) { res in
-                                        switch res {
-                                        case .failure(let message):
-                                            print("Fail: \(message)")
-                                            self.signOut()
-                                        case .success(let message):
-                                            print("Success Loc: \(message)")
-                                            DispatchQueue.main.async {
-                                                completion()
-                                            }
-                                        }
-                                    }
-                                }
-                                
+                            //TODO: Request user data
+                            
+                            DispatchQueue.main.async {
+                                completion()
                             }
-//                            APIManager().performRequestUserLoc(user: value) { res in
-//                                switch res {
-//                                case .failure(let message):
-//                                    print("Fail: \(message)")
-//                                    self.signOut()
-//                                case .success(let message):
-//                                    print("Success: \(message)")
-//                                    DispatchQueue.main.async {
-//                                        completion()
-//                                    }
-//                                }
-//                            }
                         } catch {
                             GIDSignIn.sharedInstance.signOut()
                             print("Error retrieving the value: \(error)")
@@ -111,6 +68,8 @@ class Login {
             }
         }
     }
+    
+    //TODO: Apple Login
     
     func signOut() {
         userDefault.removeObject(forKey: "userLogin")
