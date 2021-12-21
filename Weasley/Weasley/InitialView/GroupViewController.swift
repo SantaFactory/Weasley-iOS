@@ -37,7 +37,41 @@ class GroupViewController: UIViewController {
         navigationController?.navigationBar.prefersLargeTitles = true
         groupTableView.dataSource = self
         groupTableView.delegate = self
+        if #available(iOS 14.0, *) {
+            navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "ellipsis.circle"), primaryAction: nil, menu: menu)
+        } else {
+            navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "ellipsis.circle"), style: .plain, target: self, action: #selector(showActionSheet))
+        }
     }
+   
+    //MARK: Menu iOS 14.0..<
+    private lazy var menu: UIMenu = {
+        return UIMenu(title: "", options: [], children: menuItems)
+    }()
+    
+    private lazy var menuItems: [UIAction] = {
+        return [
+            UIAction(title: "Setting", image: UIImage(systemName: "gearshape.fill"), handler: { _ in
+                self.goSetting()
+            }),
+            UIAction(title: "Sign Out", image: UIImage(systemName: "rectangle.portrait.and.arrow.right"), handler: { _ in
+                self.signOut()
+            })
+        ]
+    }()
+    
+    //MARK: Menu ...iOS 13.0
+    private lazy var alertActions: [UIAlertAction] = {
+        return [
+            UIAlertAction(title: "Setting", style: .default, handler: { _ in
+                self.goSetting()
+            }),
+            UIAlertAction(title: "Sign Out", style: .default, handler: { _ in
+                self.signOut()
+            }),
+            UIAlertAction(title: "Cancel", style: .cancel)
+        ]
+    }()
     
     private lazy var groupTableView: UITableView = {
         let tableView = UITableView(frame: CGRect.zero, style: .insetGrouped)
@@ -66,7 +100,27 @@ class GroupViewController: UIViewController {
     }()
 }
 
+//MARK: Button Action
 extension GroupViewController {
+    
+    func signOut() {
+        Login().signOut()
+        dismiss(animated: true, completion: nil)
+    }
+    
+    func goSetting() {
+        let destinationVC = SettingTableViewController()
+        self.navigationController?.pushViewController(destinationVC, animated: true)
+    }
+    
+    @objc private func showActionSheet() {
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        for action in alertActions {
+            alert.addAction(action)
+        }
+        self.present(alert, animated: true, completion: nil)
+    }
+    
     @objc func addGroup() {
         let destinationVC = InitialViewController()
         self.navigationController?.pushViewController(destinationVC, animated: true)
