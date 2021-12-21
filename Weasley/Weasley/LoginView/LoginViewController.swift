@@ -42,10 +42,9 @@ class LoginViewController: UIViewController {
     }()
     
     @objc private func googleLogin() {
-        self.successLogin()
-//        viewModel.googleLogin(vc: self) {
-//            self.successLogin()
-//        }
+        viewModel.googleLogin(vc: self) {
+            self.successLogin()
+        }
     }
     
     private func successLogin() {
