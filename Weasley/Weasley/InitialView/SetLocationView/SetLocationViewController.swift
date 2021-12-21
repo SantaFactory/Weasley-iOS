@@ -16,6 +16,7 @@ protocol ShowResultMap {
 
 class SetLocationViewController: UIViewController {
 
+    var viewModel: GroupAddition?
     var destinationVC: UIViewController!
     var place: String!
     let gradientLayer = CAGradientLayer()
@@ -78,6 +79,7 @@ class SetLocationViewController: UIViewController {
         suggestionController.showResultMapDelegate = self
         definesPresentationContext = true
         showResultMapDelegate = self
+        print(viewModel?.newGroup.name)
     }
     
     private lazy var titleLabel: UILabel = {
