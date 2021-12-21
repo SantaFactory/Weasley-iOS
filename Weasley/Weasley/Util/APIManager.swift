@@ -7,8 +7,6 @@
 
 import Foundation
 
-let url = "http://ec2-3-36-123-250.ap-northeast-2.compute.amazonaws.com:5050"
-
 enum APIError: LocalizedError {
     case urlNotSupport
     case noData
