@@ -153,7 +153,6 @@
 				7FE87A13273B91CA00301A94 /* ViewModel */,
 				7F8A4FD52730D60F00656E0A /* LoginView */,
 				7FC1ACAA27686422007C7F0B /* InitialView */,
-				7F7FCD16276B2704005ADD27 /* SetLocationView */,
 				7F8A4FD72730D6D700656E0A /* MainView */,
 				7FF5C8C8275F417700DE24DE /* SettingView */,
 				7F4302622726D89400FA594F /* SceneDelegate.swift */,
@@ -174,7 +173,6 @@
 				7FC1ACAD2769998D007C7F0B /* SetHomeViewController.swift */,
 				7FC1ACAF2769AD53007C7F0B /* SetSchoolViewController.swift */,
 				7FC1ACBF276AEDCC007C7F0B /* SetWorkViewController.swift */,
-				7F7FCD20276C41FB005ADD27 /* EditPlaceViewController.swift */,
 			);
 			path = SetLocationView;
 			sourceTree = "<group>";
@@ -219,6 +217,7 @@
 			children = (
 				7F7FCD23276D6AD1005ADD27 /* GroupListViewController.swift */,
 				7FC1ACAB27686B44007C7F0B /* SetGroupNameViewController.swift */,
+				7F7FCD16276B2704005ADD27 /* SetLocationView */,
 				7F7FCD25276D84B3005ADD27 /* lf30_editor_lqe82iao.json */,
 				7FC1ACC1276AEF6E007C7F0B /* FinishInitialViewController.swift */,
 			);
@@ -246,6 +245,7 @@
 		7FF5C8C8275F417700DE24DE /* SettingView */ = {
 			isa = PBXGroup;
 			children = (
+				7F7FCD20276C41FB005ADD27 /* EditPlaceViewController.swift */,
 				7F7FCD1A276C3BA7005ADD27 /* SettingTableViewCell.swift */,
 				7FF5C8CB275F42FD00DE24DE /* SettingTableViewController.swift */,
 				7F7FCD18276C37D1005ADD27 /* SetGroupTableViewController.swift */,
