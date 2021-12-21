@@ -48,7 +48,7 @@ class LoginViewController: UIViewController {
     }
     
     private func successLogin() {
-        let destinationVC = GroupViewController()
+        let destinationVC = GroupListViewController()
         let navController = UINavigationController(rootViewController: destinationVC)
         navController.modalPresentationStyle = .fullScreen
         self.present(navController, animated: true, completion: nil)

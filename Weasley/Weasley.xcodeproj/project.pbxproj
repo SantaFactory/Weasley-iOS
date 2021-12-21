@@ -20,7 +20,7 @@
 		7F7FCD1D276C3CD8005ADD27 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F7FCD1C276C3CD8005ADD27 /* ProfileViewController.swift */; };
 		7F7FCD1F276C3D58005ADD27 /* NotificationsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F7FCD1E276C3D58005ADD27 /* NotificationsTableViewController.swift */; };
 		7F7FCD21276C41FB005ADD27 /* EditPlaceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F7FCD20276C41FB005ADD27 /* EditPlaceViewController.swift */; };
-		7F7FCD24276D6AD1005ADD27 /* GroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F7FCD23276D6AD1005ADD27 /* GroupViewController.swift */; };
+		7F7FCD24276D6AD1005ADD27 /* GroupListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F7FCD23276D6AD1005ADD27 /* GroupListViewController.swift */; };
 		7F7FCD26276D84B3005ADD27 /* lf30_editor_lqe82iao.json in Resources */ = {isa = PBXBuildFile; fileRef = 7F7FCD25276D84B3005ADD27 /* lf30_editor_lqe82iao.json */; };
 		7F7FCD31276DB5B4005ADD27 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F7FCD30276DB5B4005ADD27 /* UIColor+Extension.swift */; };
 		7F7FCD33276DB849005ADD27 /* CAGradientLayer+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F7FCD32276DB849005ADD27 /* CAGradientLayer+Extension.swift */; };
@@ -69,7 +69,7 @@
 		7F7FCD1C276C3CD8005ADD27 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		7F7FCD1E276C3D58005ADD27 /* NotificationsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsTableViewController.swift; sourceTree = "<group>"; };
 		7F7FCD20276C41FB005ADD27 /* EditPlaceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = EditPlaceViewController.swift; path = Weasley/SettingView/EditPlaceViewController.swift; sourceTree = SOURCE_ROOT; };
-		7F7FCD23276D6AD1005ADD27 /* GroupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupViewController.swift; sourceTree = "<group>"; };
+		7F7FCD23276D6AD1005ADD27 /* GroupListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupListViewController.swift; sourceTree = "<group>"; };
 		7F7FCD25276D84B3005ADD27 /* lf30_editor_lqe82iao.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = lf30_editor_lqe82iao.json; path = ../../../../../../../Downloads/Lottie/lf30_editor_lqe82iao.json; sourceTree = "<group>"; };
 		7F7FCD30276DB5B4005ADD27 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		7F7FCD32276DB849005ADD27 /* CAGradientLayer+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CAGradientLayer+Extension.swift"; sourceTree = "<group>"; };
@@ -222,8 +222,8 @@
 		7FC1ACAA27686422007C7F0B /* InitialView */ = {
 			isa = PBXGroup;
 			children = (
+				7F7FCD23276D6AD1005ADD27 /* GroupListViewController.swift */,
 				7F7FCD25276D84B3005ADD27 /* lf30_editor_lqe82iao.json */,
-				7F7FCD23276D6AD1005ADD27 /* GroupViewController.swift */,
 				7FC1ACAB27686B44007C7F0B /* InitialViewController.swift */,
 				7FC1ACC1276AEF6E007C7F0B /* FinishInitialViewController.swift */,
 			);
@@ -400,7 +400,7 @@
 				7F7FCD38276EC2A0005ADD27 /* UIButton+Extension.swift in Sources */,
 				7F7FCD33276DB849005ADD27 /* CAGradientLayer+Extension.swift in Sources */,
 				7FE879E12738E9FE00301A94 /* EditLocationViewController.swift in Sources */,
-				7F7FCD24276D6AD1005ADD27 /* GroupViewController.swift in Sources */,
+				7F7FCD24276D6AD1005ADD27 /* GroupListViewController.swift in Sources */,
 				7F7FCD21276C41FB005ADD27 /* EditPlaceViewController.swift in Sources */,
 				7F4302652726D89400FA594F /* MainViewController.swift in Sources */,
 				7F7FCD1B276C3BA7005ADD27 /* SettingTableViewCell.swift in Sources */,

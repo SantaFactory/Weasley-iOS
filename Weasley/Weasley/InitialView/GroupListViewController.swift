@@ -9,7 +9,7 @@ import UIKit
 import SnapKit
 import Hero
 
-class GroupViewController: UIViewController {
+class GroupListViewController: UIViewController {
     
     let gradientLayer = CAGradientLayer()
     
@@ -101,7 +101,7 @@ class GroupViewController: UIViewController {
 }
 
 //MARK: Button Action
-extension GroupViewController {
+extension GroupListViewController {
     
     func signOut() {
         Login().signOut()
@@ -128,7 +128,7 @@ extension GroupViewController {
 }
 
 //MARK: Table view data source
-extension GroupViewController: UITableViewDataSource {
+extension GroupListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
     }
@@ -149,7 +149,7 @@ extension GroupViewController: UITableViewDataSource {
 }
 
 //MARK: Table view delegate
-extension GroupViewController: UITableViewDelegate {
+extension GroupListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         let destinationVC = MainViewController()
