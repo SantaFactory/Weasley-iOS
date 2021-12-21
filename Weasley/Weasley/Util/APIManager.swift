@@ -18,6 +18,22 @@ enum APIError: LocalizedError {
     }
 }
 
+extension URLSession {
+     func load<T>(_ resource: Resource<T>, completion: @escaping (T?, Bool) -> Void) {
+         dataTask(with: resource.urlRequest) { data, response, error in
+             print("Response: \(response)")
+             guard error == nil else {
+                 print(error?.localizedDescription ?? "Unknown Error")
+                 return
+             }
+             let resData = String(data: data!, encoding: String.Encoding.utf8) as String?
+             print("Data: \(resData)")
+             completion(data.flatMap(resource.parseData), true)
+         }.resume()
+     }
+
+ }
+
 struct Resource<T> {
     var urlRequest: URLRequest
     let parseData: (Data) -> T?
