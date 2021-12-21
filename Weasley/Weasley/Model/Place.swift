@@ -7,8 +7,14 @@
 
 import Foundation
 
-struct Place {
-    var place: String?
+struct Place: Codable {
+    var place: String
     var latitude: String?
     var longitude: String?
+    
+    enum CodingKeys: String, CodingKey {
+        case place = "title"
+        case latitude
+        case longitude
+    }
 }
