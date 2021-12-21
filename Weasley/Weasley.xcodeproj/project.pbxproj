@@ -51,7 +51,6 @@
 		7FC1ACC5276B0108007C7F0B /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 7FC1ACC4276B0108007C7F0B /* Lottie */; };
 		7FE0D9CE273F9BE200512B07 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7FE0D9CD273F9BE200512B07 /* GoogleService-Info.plist */; };
 		7FE87A11273B90C600301A94 /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE87A10273B90C600301A94 /* Login.swift */; };
-		7FE87A15273BA5C600301A94 /* CurrentLocations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE87A14273BA5C600301A94 /* CurrentLocations.swift */; };
 		7FF5C8CC275F42FD00DE24DE /* SettingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FF5C8CB275F42FD00DE24DE /* SettingTableViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -101,7 +100,6 @@
 		7FC1ACC1276AEF6E007C7F0B /* FinishInitialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinishInitialViewController.swift; sourceTree = "<group>"; };
 		7FE0D9CD273F9BE200512B07 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../../Downloads/GoogleServie_Plist/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		7FE87A10273B90C600301A94 /* Login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Login.swift; sourceTree = "<group>"; };
-		7FE87A14273BA5C600301A94 /* CurrentLocations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentLocations.swift; sourceTree = "<group>"; };
 		7FF5C8CB275F42FD00DE24DE /* SettingTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableViewController.swift; sourceTree = "<group>"; };
 		A9873566C8D513FA6A965F78 /* Pods_Weasley.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Weasley.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -251,7 +249,6 @@
 			isa = PBXGroup;
 			children = (
 				7FE87A10273B90C600301A94 /* Login.swift */,
-				7FE87A14273BA5C600301A94 /* CurrentLocations.swift */,
 				7F2865582771BD2A00DAF9D2 /* GroupAddition.swift */,
 			);
 			path = ViewModel;
@@ -393,7 +390,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7FE87A15273BA5C600301A94 /* CurrentLocations.swift in Sources */,
 				7F8A50102734D65D00656E0A /* DegreesToRadians.swift in Sources */,
 				7F7FCD1F276C3D58005ADD27 /* NotificationsTableViewController.swift in Sources */,
 				7FC1ACB02769AD53007C7F0B /* SetSchoolViewController.swift in Sources */,
