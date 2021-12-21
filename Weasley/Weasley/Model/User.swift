@@ -7,20 +7,12 @@
 
 import Foundation
 
-struct User: Codable {
-    let info: UserInfo
+//MARK: Use for Login..
+struct Token: Codable {
+    let id_token: String
 }
 
-struct UserInfo: Codable {
+struct User: Codable {
     let sub: String
     let email: String
 }
-
-struct Loc: Codable {
-    let sub: String
-}
-
-struct Token: Codable {
-    let token: String
-}
-
