@@ -10,6 +10,7 @@
 		7D99C284FC90961B3821D0C0 /* Pods_Weasley.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9873566C8D513FA6A965F78 /* Pods_Weasley.framework */; };
 		7F28654F2771989800DAF9D2 /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F28654E2771989800DAF9D2 /* Group.swift */; };
 		7F2865512771A4F400DAF9D2 /* AWSUrl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F2865502771A4F400DAF9D2 /* AWSUrl.swift */; };
+		7F2865572771B27800DAF9D2 /* GroupAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F2865562771B27800DAF9D2 /* GroupAPIService.swift */; };
 		7F3A480D2758C06300B3D104 /* MainViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F3A480C2758C06200B3D104 /* MainViewCell.swift */; };
 		7F4302612726D89400FA594F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F4302602726D89400FA594F /* AppDelegate.swift */; };
 		7F4302632726D89400FA594F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F4302622726D89400FA594F /* SceneDelegate.swift */; };
@@ -57,6 +58,7 @@
 		61E91CCD83AB5938431ABBC1 /* Pods-Weasley.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Weasley.debug.xcconfig"; path = "Target Support Files/Pods-Weasley/Pods-Weasley.debug.xcconfig"; sourceTree = "<group>"; };
 		7F28654E2771989800DAF9D2 /* Group.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
 		7F2865502771A4F400DAF9D2 /* AWSUrl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AWSUrl.swift; sourceTree = "<group>"; };
+		7F2865562771B27800DAF9D2 /* GroupAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupAPIService.swift; sourceTree = "<group>"; };
 		7F3A480C2758C06200B3D104 /* MainViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewCell.swift; sourceTree = "<group>"; };
 		7F43025D2726D89400FA594F /* Weasley.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Weasley.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7F4302602726D89400FA594F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -194,6 +196,7 @@
 			children = (
 				7FA1C8A9272B83E800D2B4E0 /* APIManager.swift */,
 				7F7FCD3927717C3A005ADD27 /* LoginAPIService.swift */,
+				7F2865562771B27800DAF9D2 /* GroupAPIService.swift */,
 				7F8A500F2734D65D00656E0A /* DegreesToRadians.swift */,
 				7F8A4FCF272FB0F600656E0A /* UIView+Extension.swift */,
 				7FC1ACB92769CC14007C7F0B /* MKPlacemark+Extension.swift */,
@@ -391,6 +394,7 @@
 				7F3A480D2758C06300B3D104 /* MainViewCell.swift in Sources */,
 				7F7FCD38276EC2A0005ADD27 /* UIButton+Extension.swift in Sources */,
 				7F7FCD33276DB849005ADD27 /* CAGradientLayer+Extension.swift in Sources */,
+				7F2865572771B27800DAF9D2 /* GroupAPIService.swift in Sources */,
 				7F7FCD24276D6AD1005ADD27 /* GroupListViewController.swift in Sources */,
 				7F7FCD21276C41FB005ADD27 /* EditPlaceViewController.swift in Sources */,
 				7F4302652726D89400FA594F /* MainViewController.swift in Sources */,
