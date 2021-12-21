@@ -7,39 +7,23 @@
 
 import Foundation
 
-fileprivate let url = "http://ec2-13-209-75-199.ap-northeast-2.compute.amazonaws.com:9000"
+let url = "http://ec2-3-36-123-250.ap-northeast-2.compute.amazonaws.com:5050"
+
+enum APIError: LocalizedError {
+    case urlNotSupport
+    case noData
+    var errorDescription: String? {
+        switch self {
+        case .urlNotSupport: return "URL NOT Supported"
+        case .noData: return "No Data"
+        }
+    }
+}
 
 class APIManager {
     
-    enum APIError: LocalizedError {
-        case urlNotSupport
-        case noData
-        var errorDescription: String? {
-            switch self {
-            case .urlNotSupport: return "URL NOT Supported"
-            case .noData: return "Has No Data"
-            }
-        }
-    }
-    
-    
     private lazy var session = URLSession(configuration: .default)
     
-//    func performGetLocation(user: String, lat: String, long: String, completion: @escaping (Result<UserInfo, APIError>) -> Void) {
-////        guard let url = URL(string: "\(url)tokensignin") else {
-////            completion(.failure(.urlNotSupport))
-////            return
-////        }
-//        let location = ["sub": user, "lat": lat, "lon": long]
-//        let resource = Resource<UserInfo>(url: url, parameters: location)
-//        session.load(resource) { resultDatas, _ in
-//            guard let data = resultDatas else {
-//                completion(.failure(.noData))
-//                return
-//            }
-//            completion(.success(data))
-//        }
-//    }
     
     /**
     사용자 현재 위치 정보를 제공받는 URLSession 메소드
@@ -101,127 +85,18 @@ class APIManager {
             completion(.success(data))
         }
     }
-    /**
-     로그인 URLSession 메소드
-      
-      Post 방식으로 토큰을 제공하여, 서버로 부터 유효성 검사
-      - parameters:
-         - token: 로그인을 위한 토큰
-         - completion: response시 실행될 메소드
-     */
-    func performLogin(token: Token, completion: @escaping (Result<UserInfo, APIError>) -> Void) {
-        guard let url = URL(string: "\(url)/tokensignin") else {
-            completion(.failure(.urlNotSupport))
-            return
-        }
-        let resource = Resource<UserInfo>(url: url, method: .post(token))
-        session.load(resource) { resultData, _ in
-            guard let data = resultData else {
-                completion(.failure(.noData))
-                return
-            }
-            completion(.success(data))
-        }
-    }
-    
-    /**
-     사용자 요청 URLSession 메소드
-      
-      유효성 검사로 제공받은 데이터로 사용자 정보 제공 받음
-      - parameters:
-         - user: 유효성 검사를 통해 제공받은 데이터
-         - completion: response시 실행될 메소드
-     */
-    func performRequestUser(user: UserInfo, completion: @escaping (Result<String, APIError>) -> Void) {
-            guard let url = URL(string: "\(url)/posts/users") else {
-                completion(.failure(.urlNotSupport))
-                return
-            }
-            let resource = Resource<UserInfo>(url: url, method: .post(user))
-            session.load(resource) { resultData, _ in
-                completion(.success("Success Load"))
-            }
-        }
-    
-    func performRequestUserLoc(user: Loc, completion: @escaping (Result<String, APIError>) -> Void) {
-            guard let url = URL(string: "\(url)/posts/usersloc") else {
-                completion(.failure(.urlNotSupport))
-                return
-            }
-            let resource = Resource<UserInfo>(url: url, method: .post(user))
-            session.load(resource) { resultData, _ in
-                completion(.success("Success Load"))
-            }
-        }
-    /**
-     구글에서 제공된 Post 샘플 코드
-     
-    모듈화 되지 않은 평상시에 사용하던 형태입니다.
-        
-     ## 구글 공식 문서
-     [바로가기](https://developers.google.com/identity/sign-in/ios/backend-auth)
-     
-     
-     - parameters:
-        - idToken: FireBase에서 제공받은 idToken
-        - completion: response 데이터 가공하기
-     */
-//    func signInExample(idToken: String, completion: @escaping (Result<User, APIError>) -> Void) {
-//        guard let authData = try? JSONEncoder().encode(Token(token: idToken)) else {
-//            return
-//        }
-//        let url = URL(string: "\(url)/tokensignin")!
-//        var request = URLRequest(url: url)
-//        request.httpMethod = "POST"
-//        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-//
-//        let task = URLSession.shared.uploadTask(with: request, from: authData) { data, response, error in
-//            // Handle response from your backend.
-//            print(error)
-//            guard error == nil else {
-//                completion(.failure(.urlNotSupport))
-//                print("Error: \(error?.localizedDescription ?? "Error Cant find")")
-//                return
-//            }
-//            guard let resultData = data else {
-//                print("Can't Parsing")
-//                completion(.failure(.noData))
-//                return
-//            }
-//            let result = self.userParseExample(resultData)
-//            completion(.success(result!))
-//        }
-//        task.resume()
-//    }
-    
-    /**
-     데이터 파싱 메소드
-     
-    - 모듈화되지않은 로그인을 위한 데이터 파싱하는 작업입니다.
-     - 모듈화된 메소드에서는 URLSession 확장에서 load<T>에서 실행됩니다.
-    
-     - parameters:
-        - data: 파싱할 데이터
-     */
-//    func userParseExample(_ data: Data) -> User? {
-//        let decoder = JSONDecoder()
-//        do {
-//            let response = try decoder.decode(User.self, from: data)
-//            return response
-//        } catch let error {
-//            print("Error: \(error.localizedDescription)")
-//            return nil
-//        }
-//    }
-    
 }
 
 extension URLSession {
     func load<T>(_ resource: Resource<T>, completion: @escaping (T?, Bool) -> Void) {
         dataTask(with: resource.urlRequest) { data, response, error in
+            print("Response: \(response)")
             guard error == nil else {
+                print(error?.localizedDescription ?? "Unknown Error")
                 return
             }
+            let resData = String(data: data!, encoding: String.Encoding.utf8) as String?
+            print("Data: \(resData)")
             completion(data.flatMap(resource.parseData), true)
         }.resume()
     }
