@@ -122,7 +122,7 @@ extension GroupListViewController {
     }
     
     @objc func addGroup() {
-        let destinationVC = InitialViewController()
+        let destinationVC = SetGroupNameViewController()
         self.navigationController?.pushViewController(destinationVC, animated: true)
     }
 }

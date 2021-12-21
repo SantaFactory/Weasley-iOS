@@ -35,7 +35,7 @@
 		7F8A50102734D65D00656E0A /* DegreesToRadians.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F8A500F2734D65D00656E0A /* DegreesToRadians.swift */; };
 		7FA1C8AA272B83E800D2B4E0 /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FA1C8A9272B83E800D2B4E0 /* APIManager.swift */; };
 		7FA1C8AC272CF46500D2B4E0 /* ClockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FA1C8AB272CF46500D2B4E0 /* ClockView.swift */; };
-		7FC1ACAC27686B44007C7F0B /* InitialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FC1ACAB27686B44007C7F0B /* InitialViewController.swift */; };
+		7FC1ACAC27686B44007C7F0B /* SetGroupNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FC1ACAB27686B44007C7F0B /* SetGroupNameViewController.swift */; };
 		7FC1ACAE2769998D007C7F0B /* SetHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FC1ACAD2769998D007C7F0B /* SetHomeViewController.swift */; };
 		7FC1ACB02769AD53007C7F0B /* SetSchoolViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FC1ACAF2769AD53007C7F0B /* SetSchoolViewController.swift */; };
 		7FC1ACBA2769CC14007C7F0B /* MKPlacemark+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FC1ACB92769CC14007C7F0B /* MKPlacemark+Extension.swift */; };
@@ -83,7 +83,7 @@
 		7F8A500F2734D65D00656E0A /* DegreesToRadians.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DegreesToRadians.swift; sourceTree = "<group>"; };
 		7FA1C8A9272B83E800D2B4E0 /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
 		7FA1C8AB272CF46500D2B4E0 /* ClockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClockView.swift; sourceTree = "<group>"; };
-		7FC1ACAB27686B44007C7F0B /* InitialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialViewController.swift; sourceTree = "<group>"; };
+		7FC1ACAB27686B44007C7F0B /* SetGroupNameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetGroupNameViewController.swift; sourceTree = "<group>"; };
 		7FC1ACAD2769998D007C7F0B /* SetHomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetHomeViewController.swift; sourceTree = "<group>"; };
 		7FC1ACAF2769AD53007C7F0B /* SetSchoolViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetSchoolViewController.swift; sourceTree = "<group>"; };
 		7FC1ACB92769CC14007C7F0B /* MKPlacemark+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MKPlacemark+Extension.swift"; sourceTree = "<group>"; };
@@ -223,8 +223,8 @@
 			isa = PBXGroup;
 			children = (
 				7F7FCD23276D6AD1005ADD27 /* GroupListViewController.swift */,
+				7FC1ACAB27686B44007C7F0B /* SetGroupNameViewController.swift */,
 				7F7FCD25276D84B3005ADD27 /* lf30_editor_lqe82iao.json */,
-				7FC1ACAB27686B44007C7F0B /* InitialViewController.swift */,
 				7FC1ACC1276AEF6E007C7F0B /* FinishInitialViewController.swift */,
 			);
 			path = InitialView;
@@ -421,7 +421,7 @@
 				7F8A4FD22730C3F300656E0A /* User.swift in Sources */,
 				7FC1ACC2276AEF6E007C7F0B /* FinishInitialViewController.swift in Sources */,
 				7F7FCD3A27717C3B005ADD27 /* LoginAPIService.swift in Sources */,
-				7FC1ACAC27686B44007C7F0B /* InitialViewController.swift in Sources */,
+				7FC1ACAC27686B44007C7F0B /* SetGroupNameViewController.swift in Sources */,
 				7F4302612726D89400FA594F /* AppDelegate.swift in Sources */,
 				7F4302632726D89400FA594F /* SceneDelegate.swift in Sources */,
 				7FC1ACAE2769998D007C7F0B /* SetHomeViewController.swift in Sources */,

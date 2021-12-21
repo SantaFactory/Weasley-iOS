@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class InitialViewController: UIViewController {
+class SetGroupNameViewController: UIViewController {
 
     override func loadView() {
         super.loadView()
@@ -114,7 +114,7 @@ class InitialViewController: UIViewController {
     
 }
 
-extension InitialViewController {
+extension SetGroupNameViewController {
     func showAlert() {
         let alert = UIAlertController(title: "Group name is blank", message: "Show nothing about your group name.", preferredStyle: .alert)
         let okay = UIAlertAction(title: "Ok", style: .default) { _ in
@@ -127,7 +127,7 @@ extension InitialViewController {
         self.present(alert, animated: true, completion: nil)
     }
 }
-extension InitialViewController: UITextFieldDelegate {
+extension SetGroupNameViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         goNext(nil)
         return false
