@@ -161,11 +161,12 @@ extension SetLocationViewController {
     }
     
     @objc func skip() {
-        guard let destinationVC = self.destinationVC as? SetLocationViewController else {
-            return
+        if let destinaitonVC = self.destinationVC as? SetLocationViewController {
+            destinaitonVC.viewModel = self.viewModel
+            self.navigationController?.pushViewController(destinaitonVC, animated: true)
+        } else {
+            self.navigationController?.pushViewController(destinationVC, animated: true)
         }
-        destinationVC.viewModel = self.viewModel
-        self.navigationController?.pushViewController(destinationVC, animated: true)
     }
 }
 
