@@ -18,7 +18,6 @@ class SetLocationViewController: UIViewController {
 
     var viewModel: GroupAddition?
     var destinationVC: UIViewController!
-    var place: String!
     let gradientLayer = CAGradientLayer()
     
     private var suggestionController: SearchedLocationTableViewController!
@@ -69,6 +68,7 @@ class SetLocationViewController: UIViewController {
         }
         nextButton.enableStatus(false)
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         loadUI()
@@ -79,14 +79,13 @@ class SetLocationViewController: UIViewController {
         suggestionController.showResultMapDelegate = self
         definesPresentationContext = true
         showResultMapDelegate = self
-        print(viewModel?.newGroup.name)
     }
     
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.textColor = .label
         label.font = UIFont.systemFont(ofSize: 28)
-        label.text = "Mark \(place ?? "") Location"
+        label.text = "Mark \(viewModel?.place ?? "") Location"
         label.textAlignment = .center
         label.numberOfLines = 0
         return label
@@ -141,7 +140,10 @@ class SetLocationViewController: UIViewController {
         button.addTarget(self, action: #selector(skip), for: .touchUpInside)
         return button
     }()
-    
+}
+
+//MARK: Action
+extension SetLocationViewController {
     @objc func goNext() {
         self.navigationController?.pushViewController(destinationVC, animated: true)
     }

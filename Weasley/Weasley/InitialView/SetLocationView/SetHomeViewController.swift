@@ -12,7 +12,7 @@ class SetHomeViewController: SetLocationViewController {
     override func loadView() {
         super.loadView()
         self.destinationVC = SetSchoolViewController()
-        self.place = "Home"
+        self.viewModel?.place = "home"
     }
     
     override func viewDidLoad() {
