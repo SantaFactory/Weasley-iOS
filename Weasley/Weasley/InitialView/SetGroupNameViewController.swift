@@ -126,13 +126,9 @@ extension SetGroupNameViewController {
         self.present(alert, animated: true, completion: nil)
     }
     
-    func addGroup() -> GroupAddition {
-        return GroupAddition(name: self.groupNameTextField.text ?? "")
-    }
-    
     func pushView() {
         let destinationVC = SetHomeViewController()
-        destinationVC.viewModel = self.addGroup()
+        destinationVC.viewModel = GroupAddition(group: self.groupNameTextField.text!, set: destinationVC.place)
         self.navigationController?.pushViewController(destinationVC, animated: true)
     }
 }
