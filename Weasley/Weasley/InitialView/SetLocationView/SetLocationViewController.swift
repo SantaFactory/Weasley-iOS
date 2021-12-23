@@ -140,11 +140,18 @@ class SetLocationViewController: UIViewController {
         button.addTarget(self, action: #selector(skip), for: .touchUpInside)
         return button
     }()
+    
+    func setLocation(latitude: CGFloat, longitude: CGFloat) {
+        let digit: Double = pow(10, 3)
+        viewModel?.placeLatitude = String(round(latitude * digit) / digit)
+        viewModel?.placeLongitude = String(round(longitude * digit) / digit)
+    }
 }
 
 //MARK: Action
 extension SetLocationViewController {
     @objc func goNext() {
+        viewModel?.setPlace()
         guard let destinationVC = self.destinationVC as? SetLocationViewController else {
             return
         }
@@ -211,6 +218,7 @@ extension SetLocationViewController: ShowResultMap {
             guard let lat = latitude, let long = longitude else {
                 return
             }
+            self.setLocation(latitude: lat, longitude: long)
             let loc = CLLocationCoordinate2D(latitude: lat, longitude: long)
             let circle = MKCircle(center: loc, radius: 200)
             let span = MKCoordinateSpan(latitudeDelta: 0.005, longitudeDelta: 0.005)
