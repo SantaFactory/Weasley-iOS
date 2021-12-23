@@ -12,6 +12,7 @@ class SetWorkViewController: SetLocationViewController {
     override func loadView() {
         super.loadView()
         self.viewModel?.place = "work"
+        self.nextButton.setTitle("Done", for: .normal)
     }
 
     override func viewDidLoad() {

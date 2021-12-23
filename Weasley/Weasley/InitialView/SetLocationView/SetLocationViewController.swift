@@ -116,7 +116,6 @@ class SetLocationViewController: UIViewController {
             endPoint: CGPoint(x: 1.0, y: 0.5)
         )
         let color = UIColor.gradientColor(bounds: self.view.bounds, gradientLayer: gradientLayer)
-        button.setTitle("Next", for: .normal)
         button.backgroundColor = color
         button.defaultAction()
         button.addTarget(self, action: #selector(goNext), for: .touchUpInside)
