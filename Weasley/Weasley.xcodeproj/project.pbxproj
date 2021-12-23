@@ -47,7 +47,6 @@
 		7FC1ACBC276A1632007C7F0B /* SearchedLocationTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FC1ACBB276A1632007C7F0B /* SearchedLocationTableViewController.swift */; };
 		7FC1ACBE276AD8C8007C7F0B /* SetLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FC1ACBD276AD8C8007C7F0B /* SetLocationViewController.swift */; };
 		7FC1ACC0276AEDCC007C7F0B /* SetWorkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FC1ACBF276AEDCC007C7F0B /* SetWorkViewController.swift */; };
-		7FC1ACC2276AEF6E007C7F0B /* FinishInitialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FC1ACC1276AEF6E007C7F0B /* FinishInitialViewController.swift */; };
 		7FC1ACC5276B0108007C7F0B /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 7FC1ACC4276B0108007C7F0B /* Lottie */; };
 		7FE0D9CE273F9BE200512B07 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7FE0D9CD273F9BE200512B07 /* GoogleService-Info.plist */; };
 		7FE87A11273B90C600301A94 /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE87A10273B90C600301A94 /* Login.swift */; };
@@ -97,7 +96,6 @@
 		7FC1ACBB276A1632007C7F0B /* SearchedLocationTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchedLocationTableViewController.swift; sourceTree = "<group>"; };
 		7FC1ACBD276AD8C8007C7F0B /* SetLocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetLocationViewController.swift; sourceTree = "<group>"; };
 		7FC1ACBF276AEDCC007C7F0B /* SetWorkViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetWorkViewController.swift; sourceTree = "<group>"; };
-		7FC1ACC1276AEF6E007C7F0B /* FinishInitialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinishInitialViewController.swift; sourceTree = "<group>"; };
 		7FE0D9CD273F9BE200512B07 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../../Downloads/GoogleServie_Plist/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		7FE87A10273B90C600301A94 /* Login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Login.swift; sourceTree = "<group>"; };
 		7FF5C8CB275F42FD00DE24DE /* SettingTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableViewController.swift; sourceTree = "<group>"; };
@@ -229,7 +227,6 @@
 				7FC1ACAB27686B44007C7F0B /* SetGroupNameViewController.swift */,
 				7F7FCD16276B2704005ADD27 /* SetLocationView */,
 				7F7FCD25276D84B3005ADD27 /* lf30_editor_lqe82iao.json */,
-				7FC1ACC1276AEF6E007C7F0B /* FinishInitialViewController.swift */,
 			);
 			path = InitialView;
 			sourceTree = "<group>";
@@ -418,7 +415,6 @@
 				7F8A4FD22730C3F300656E0A /* User.swift in Sources */,
 				7F28655B2771C2ED00DAF9D2 /* Place.swift in Sources */,
 				7F2865512771A4F400DAF9D2 /* AWSUrl.swift in Sources */,
-				7FC1ACC2276AEF6E007C7F0B /* FinishInitialViewController.swift in Sources */,
 				7F7FCD3A27717C3B005ADD27 /* LoginAPIService.swift in Sources */,
 				7FC1ACAC27686B44007C7F0B /* SetGroupNameViewController.swift in Sources */,
 				7F28654F2771989800DAF9D2 /* Group.swift in Sources */,
