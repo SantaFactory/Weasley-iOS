@@ -23,13 +23,13 @@ class GroupAddition {
 
     func setPlace() {
         switch place {
-        case "Home":
+        case "home":
             newGroup.places[0].latitude = placeLatitude
             newGroup.places[0].longitude = placeLongitude
-        case "School":
+        case "school":
             newGroup.places[1].latitude = placeLatitude
             newGroup.places[1].longitude = placeLongitude
-        case "Work":
+        case "work":
             newGroup.places[2].latitude = placeLatitude
             newGroup.places[2].longitude = placeLongitude
         default:
