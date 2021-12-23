@@ -85,7 +85,7 @@ class SetLocationViewController: UIViewController {
         let label = UILabel()
         label.textColor = .label
         label.font = UIFont.systemFont(ofSize: 28)
-        label.text = "Mark \(viewModel?.place ?? "") Location"
+        label.text = "Mark \(viewModel?.place ?? "") location"
         label.textAlignment = .center
         label.numberOfLines = 0
         return label
