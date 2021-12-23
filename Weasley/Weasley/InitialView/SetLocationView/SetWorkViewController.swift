@@ -11,7 +11,6 @@ class SetWorkViewController: SetLocationViewController {
     
     override func loadView() {
         super.loadView()
-        self.destinationVC = FinishInitialViewController()
         self.viewModel?.place = "work"
     }
 

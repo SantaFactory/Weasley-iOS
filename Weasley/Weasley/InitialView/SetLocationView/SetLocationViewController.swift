@@ -153,20 +153,30 @@ extension SetLocationViewController {
     @objc func goNext() {
         viewModel?.setPlace()
         guard let destinationVC = self.destinationVC as? SetLocationViewController else {
+            self.viewModel?.addGroup {
+                self.viewModel = nil
+                DispatchQueue.main.async {
+                    self.navigationController?.popToRootViewController(animated: true)
+                }
+            }
             return
         }
         destinationVC.viewModel = self.viewModel
         self.navigationController?.pushViewController(destinationVC, animated: true)
-        
     }
     
     @objc func skip() {
-        if let destinaitonVC = self.destinationVC as? SetLocationViewController {
-            destinaitonVC.viewModel = self.viewModel
-            self.navigationController?.pushViewController(destinaitonVC, animated: true)
-        } else {
-            self.navigationController?.pushViewController(destinationVC, animated: true)
+        guard let destinationVC = self.destinationVC as? SetLocationViewController else {
+            self.viewModel?.addGroup {
+                self.viewModel = nil
+                DispatchQueue.main.async {
+                    self.navigationController?.popToRootViewController(animated: true)
+                }
+            }
+            return
         }
+        destinationVC.viewModel = self.viewModel
+        self.navigationController?.pushViewController(destinationVC, animated: true)
     }
 }
 
