@@ -10,7 +10,7 @@ import Foundation
 class GroupAddition {
     
     var newGroup: Group
-    var place: String
+    var place: String? = nil
     var placeLatitude: String? = nil
     var placeLongitude: String? = nil
     
@@ -39,8 +39,7 @@ class GroupAddition {
         placeLongitude = nil
     }
     
-    init(group name: String, set place: String) {
-        self.place = place
+    init(group name: String) {
         newGroup = Group(name: name, places: [
             Place(place: "home", latitude: nil, longitude: nil),
             Place(place: "school", latitude: nil, longitude: nil),
