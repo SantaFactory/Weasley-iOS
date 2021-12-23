@@ -145,10 +145,19 @@ class SetLocationViewController: UIViewController {
 //MARK: Action
 extension SetLocationViewController {
     @objc func goNext() {
+        guard let destinationVC = self.destinationVC as? SetLocationViewController else {
+            return
+        }
+        destinationVC.viewModel = self.viewModel
         self.navigationController?.pushViewController(destinationVC, animated: true)
+        
     }
     
     @objc func skip() {
+        guard let destinationVC = self.destinationVC as? SetLocationViewController else {
+            return
+        }
+        destinationVC.viewModel = self.viewModel
         self.navigationController?.pushViewController(destinationVC, animated: true)
     }
 }
