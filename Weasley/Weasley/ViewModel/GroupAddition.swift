@@ -14,10 +14,10 @@ class GroupAddition {
     var placeLatitude: String? = nil
     var placeLongitude: String? = nil
     
-    func addGroup() {
+    func addGroup(completion: @escaping () -> Void) {
         //TODO: Complete api
         GroupAPIService().performAddGroup(group: newGroup) { [weak self] _ in
-            print(self!.newGroup)
+            completion()
         }
     }
 
