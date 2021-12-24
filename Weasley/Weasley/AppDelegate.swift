@@ -8,22 +8,18 @@
 import UIKit
 import Firebase
 import GoogleSignIn
+import CoreLocation
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
+    let locationManager = CLLocationManager()
+    var userLatitude: String?
+    var userLongitude: String?
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         FirebaseApp.configure()
-//        GIDSignIn.sharedInstance.restorePreviousSignIn { user, error in
-//            if error != nil || user == nil {
-//                print("Signed-Out State")
-//            } else {
-//                print("Signed-In State")
-//                let destinationVC = MainViewController()
-//                destinationVC.modalPresentationStyle = .fullScreen
-//                UIApplication.shared.windows.first?.rootViewController?.present(destinationVC, animated: false, completion: nil)
-//            }
-//        }
+        locationManager.delegate = self
         return true
     }
     
@@ -47,5 +43,30 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
 
+}
+
+extension AppDelegate: CLLocationManagerDelegate {
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        if let location = locations.last {
+            guard let sub = UserDefaults.standard.string(forKey: "userLogin") else {
+                return
+            }
+            let digit: Double = pow(10, 3)
+            let lat = String(round(location.coordinate.latitude * digit) / digit)
+            let long = String(round(location.coordinate.longitude * digit) / digit)
+            print("\(lat) & \(long)")
+            if lat != userLatitude || long != userLongitude {
+                userLatitude = lat
+                userLongitude = long
+                LocationAPIService().performPostLocation(user: sub)
+            }
+        }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print("Cancel Location")
+        print("Error: \(error.localizedDescription)")
+    }
 }
 
