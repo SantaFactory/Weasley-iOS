@@ -51,6 +51,7 @@
 		7FE0D9CE273F9BE200512B07 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7FE0D9CD273F9BE200512B07 /* GoogleService-Info.plist */; };
 		7FE87A11273B90C600301A94 /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE87A10273B90C600301A94 /* Login.swift */; };
 		7FE9F32327755913003560BD /* SampleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE9F32227755913003560BD /* SampleModel.swift */; };
+		7FE9F32727756649003560BD /* UsersGroups.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE9F32627756649003560BD /* UsersGroups.swift */; };
 		7FF5C8CC275F42FD00DE24DE /* SettingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FF5C8CB275F42FD00DE24DE /* SettingTableViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -100,6 +101,7 @@
 		7FE0D9CD273F9BE200512B07 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../../Downloads/GoogleServie_Plist/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		7FE87A10273B90C600301A94 /* Login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Login.swift; sourceTree = "<group>"; };
 		7FE9F32227755913003560BD /* SampleModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleModel.swift; sourceTree = "<group>"; };
+		7FE9F32627756649003560BD /* UsersGroups.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersGroups.swift; sourceTree = "<group>"; };
 		7FF5C8CB275F42FD00DE24DE /* SettingTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableViewController.swift; sourceTree = "<group>"; };
 		A9873566C8D513FA6A965F78 /* Pods_Weasley.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Weasley.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -249,6 +251,7 @@
 			isa = PBXGroup;
 			children = (
 				7FE87A10273B90C600301A94 /* Login.swift */,
+				7FE9F32627756649003560BD /* UsersGroups.swift */,
 				7F2865582771BD2A00DAF9D2 /* GroupAddition.swift */,
 			);
 			path = ViewModel;
@@ -405,6 +408,7 @@
 				7FA1C8AC272CF46500D2B4E0 /* ClockView.swift in Sources */,
 				7FC1ACBA2769CC14007C7F0B /* MKPlacemark+Extension.swift in Sources */,
 				7F8A500E2734D5F700656E0A /* LocationLabel.swift in Sources */,
+				7FE9F32727756649003560BD /* UsersGroups.swift in Sources */,
 				7F7FCD31276DB5B4005ADD27 /* UIColor+Extension.swift in Sources */,
 				7FE87A11273B90C600301A94 /* Login.swift in Sources */,
 				7F7FCD1D276C3CD8005ADD27 /* ProfileViewController.swift in Sources */,
