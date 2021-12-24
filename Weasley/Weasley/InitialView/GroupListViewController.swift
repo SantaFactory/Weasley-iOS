@@ -11,6 +11,7 @@ import Hero
 
 class GroupListViewController: UIViewController {
     
+    let viewModel = UsersGroups.shared
     let gradientLayer = CAGradientLayer()
     
     override func loadView() {
@@ -130,7 +131,7 @@ extension GroupListViewController {
 //MARK: Table view data source
 extension GroupListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return viewModel.groups?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -144,6 +145,7 @@ extension GroupListViewController: UITableViewDataSource {
             endPoint: CGPoint(x: 1.0, y: 0.5)
         )
         cell.groupNameLabel.backgroundColor = .gradientColor(bounds: tableView.bounds, gradientLayer: gradientLayer)
+        cell.groupNameLabel.text = viewModel.groups?[indexPath.row].name
         return cell
     }
 }
@@ -181,7 +183,6 @@ class GroupTableViewCell: UITableViewCell {
     
     fileprivate lazy var groupNameLabel: UILabel = {
         let label = UILabel()
-        label.text = "Hello World!"
         label.font = UIFont.systemFont(ofSize: 40, weight: .black)
         label.textColor = .white
         label.textAlignment = .center
