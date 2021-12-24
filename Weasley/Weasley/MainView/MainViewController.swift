@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import CoreLocation
 import SnapKit
 import MapKit
 
@@ -15,8 +14,6 @@ var sampleGroup = ["Hello", "World"]
 
 class MainViewController: UIViewController {
 
-    let locationManager = CLLocationManager()
-    let viewModel = CurrentLocations.share
     /**
         [Email : Needle View]
      */
@@ -76,13 +73,10 @@ class MainViewController: UIViewController {
         groupsScrollView.delegate = self
         membersTableView.delegate = self
         membersTableView.dataSource = self
-        locationManager.delegate = self
-        locationManager.requestWhenInUseAuthorization() // 위치 서비스를 사용하기 위한 사용자 권한 요청
-        locationManager.requestLocation() // 사용자의 현재 위치에 대한 일회성 전달을 요청
         self.userLocationMapView.delegate = self
         self.userLocationMapView.alpha = 0
         loadGroupLabels()
-        loadNeedles()
+//        loadNeedles()
         self.hero.isEnabled = true
         self.view.hero.id = "main"
     }
@@ -90,14 +84,14 @@ class MainViewController: UIViewController {
     func loadNeedles() {
         for user in sampleUser {
             let needle = Needle()
-            needle.text = viewModel.currentUser
+            //needle.text = viewModel.currentUser
             needle.value = user.area.location
             self.view.addSubview(needle)
             needle.snp.makeConstraints { make in
                 make.centerX.equalTo(arcLocationLabel.snp.centerX)
                 make.centerY.equalTo(arcLocationLabel.snp.centerY)
             }
-            needles.updateValue(needle, forKey: viewModel.currentUser)
+            //needles.updateValue(needle, forKey: viewModel.currentUser)
         }
     }
 
@@ -105,7 +99,7 @@ class MainViewController: UIViewController {
     func moveNeedle() {
         DispatchQueue.main.async {
             UIView.animate(withDuration: 3) {
-                self.needles[self.viewModel.currentUser]?.value = Location.move.location
+                //self.needles[self.viewModel.currentUser]?.value = Location.move.location
                 //member.currentLoction.location
             }
         }
@@ -211,7 +205,6 @@ class MainViewController: UIViewController {
 extension MainViewController {
   
     @objc func reLocate() {
-        locationManager.requestLocation()
     }
    
     //MARK: To Do add Action Method
@@ -253,34 +246,6 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
             return self.setMemberMenu(index: 0)
         })
     }
-}
-
-//MARK: CORE LOCATION MANGER DELEGATE
-extension MainViewController: CLLocationManagerDelegate {
-    
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        if let location = locations.last {
-            let digit: Double = pow(10, 3)
-            let lat = String(round(location.coordinate.latitude * digit) / digit)
-            let long = String(round(location.coordinate.longitude * digit) / digit)
-            if lat != viewModel.userLatitude || long != viewModel.userLongitude {
-                viewModel.userLatitude = lat
-                viewModel.userLongitude = long
-                print("Lat: \(viewModel.userLatitude!), Long:  \(viewModel.userLongitude!)")
-                self.moveNeedle()
-                viewModel.postLocation() { [weak self] area in
-                    //self?.loadNeedles(area: area.area)
-                    self?.moveNeedle()
-                }
-            }
-        }
-    }
-    
-    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        print("Cancel Location")
-        print("Error: \(error.localizedDescription)")
-    }
-    
 }
 
 extension MainViewController: MKMapViewDelegate {
