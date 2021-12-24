@@ -53,6 +53,7 @@
 		7FE9F32327755913003560BD /* SampleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE9F32227755913003560BD /* SampleModel.swift */; };
 		7FE9F32727756649003560BD /* UsersGroups.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE9F32627756649003560BD /* UsersGroups.swift */; };
 		7FE9F32927759F85003560BD /* CurrentGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE9F32827759F85003560BD /* CurrentGroup.swift */; };
+		7FE9F32B2775B3F2003560BD /* LocationAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE9F32A2775B3F2003560BD /* LocationAPIService.swift */; };
 		7FF5C8CC275F42FD00DE24DE /* SettingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FF5C8CB275F42FD00DE24DE /* SettingTableViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -104,6 +105,7 @@
 		7FE9F32227755913003560BD /* SampleModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleModel.swift; sourceTree = "<group>"; };
 		7FE9F32627756649003560BD /* UsersGroups.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersGroups.swift; sourceTree = "<group>"; };
 		7FE9F32827759F85003560BD /* CurrentGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentGroup.swift; sourceTree = "<group>"; };
+		7FE9F32A2775B3F2003560BD /* LocationAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationAPIService.swift; sourceTree = "<group>"; };
 		7FF5C8CB275F42FD00DE24DE /* SettingTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableViewController.swift; sourceTree = "<group>"; };
 		A9873566C8D513FA6A965F78 /* Pods_Weasley.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Weasley.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -201,6 +203,7 @@
 			isa = PBXGroup;
 			children = (
 				7FA1C8A9272B83E800D2B4E0 /* APIManager.swift */,
+				7FE9F32A2775B3F2003560BD /* LocationAPIService.swift */,
 				7F7FCD3927717C3A005ADD27 /* LoginAPIService.swift */,
 				7F2865562771B27800DAF9D2 /* GroupAPIService.swift */,
 				7F8A500F2734D65D00656E0A /* DegreesToRadians.swift */,
@@ -433,6 +436,7 @@
 				7F4302612726D89400FA594F /* AppDelegate.swift in Sources */,
 				7F4302632726D89400FA594F /* SceneDelegate.swift in Sources */,
 				7FC1ACAE2769998D007C7F0B /* SetHomeViewController.swift in Sources */,
+				7FE9F32B2775B3F2003560BD /* LocationAPIService.swift in Sources */,
 				7FC1ACBC276A1632007C7F0B /* SearchedLocationTableViewController.swift in Sources */,
 				7F8A4FCE272FA8A900656E0A /* NeedleView.swift in Sources */,
 				7FC1ACC0276AEDCC007C7F0B /* SetWorkViewController.swift in Sources */,
