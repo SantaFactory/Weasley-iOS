@@ -9,9 +9,6 @@ import UIKit
 import SnapKit
 import MapKit
 
-var sampleUser = [UserArea(area: .lost)]
-var sampleGroup = ["Hello", "World"]
-
 class MainViewController: UIViewController {
 
     /**
@@ -24,8 +21,6 @@ class MainViewController: UIViewController {
         view.backgroundColor = .secondarySystemBackground
         self.view.addSubview(clockView)
         self.view.addSubview(arcLocationLabel)
-        self.view.addSubview(relocateButton)
-        self.view.addSubview(addGroupButton)
         self.view.addSubview(membersTableView)
         self.view.addSubview(groupsScrollView)
         self.clockView.addSubview(userLocationMapView)
@@ -47,12 +42,6 @@ class MainViewController: UIViewController {
             make.bottom.equalToSuperview().offset(-20)
             make.leading.equalToSuperview().offset(20)
             make.trailing.equalToSuperview().offset(-20)
-        }
-        relocateButton.snp.makeConstraints { make in
-            make.height.equalTo(50)
-            make.width.equalTo(50)
-            make.centerX.equalTo(arcLocationLabel.snp.centerX)
-            make.centerY.equalTo(arcLocationLabel.snp.centerY)
         }
         membersTableView.snp.makeConstraints { make in
             make.top.equalTo(clockView.snp.bottom)
@@ -118,26 +107,10 @@ class MainViewController: UIViewController {
         return view
     }()
     
-    private lazy var relocateButton: UIButton = {
-        let button = UIButton()
-        button.setImage(UIImage(systemName: "safari.fill"), for: .normal)
-        button.tintColor = .systemRed
-        button.addTarget(self, action: #selector(reLocate), for: .touchUpInside)
-        return button
-    }()
-    
     private lazy var userLocationMapView: MKMapView = {
         let mapView = MKMapView()
         mapView.rounded((UIScreen.main.bounds.width - 40) / 2)
         return mapView
-    }()
-    
-    private lazy var addGroupButton: UIButton = {
-        let button = UIButton()
-        let config = UIImage.SymbolConfiguration(pointSize: 30)
-        button.setImage(UIImage(systemName: "plus.circle.fill", withConfiguration: config), for: .normal)
-        button.addTarget(self, action: #selector(addGroup), for: .touchUpInside)
-        return button
     }()
     
     private lazy var groupsScrollView: UIScrollView = {
@@ -203,14 +176,6 @@ class MainViewController: UIViewController {
 }
 
 extension MainViewController {
-  
-    @objc func reLocate() {
-    }
-   
-    //MARK: To Do add Action Method
-    @objc func addGroup() {
-       print("")
-    }
     
     func inviteMember() {
         let message = ["Message and link.."] // TODO: Link message
