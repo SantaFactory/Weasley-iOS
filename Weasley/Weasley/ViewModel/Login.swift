@@ -55,10 +55,10 @@ class Login {
                         do {
                             let value = try tokenData.get()
                             //TODO: Request user data
-                            
-                            DispatchQueue.main.async {
-                                completion()
-                            }
+                            let token = value.loginData.token
+//                            DispatchQueue.main.async {
+//                                completion()
+//                            }
                         } catch {
                             GIDSignIn.sharedInstance.signOut()
                             print("Error retrieving the value: \(error)")

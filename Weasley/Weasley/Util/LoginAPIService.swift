@@ -17,12 +17,14 @@ class LoginService {
          - token: 로그인을 위한 토큰
          - completion: response시 실행될 메소드
      */
-    func performLogin(token: Token, completion: @escaping (Result<User, APIError>) -> Void) {
-        guard let url = URL(string: "\(url)/login-process") else {
+    private let loginURL = "\(url)/login-process"
+    
+    func performLogin(token: Token, completion: @escaping (Result<ResultToken, APIError>) -> Void) {
+        guard let url = URL(string: loginURL) else {
             completion(.failure(.urlNotSupport))
             return
         }
-        let resource = Resource<User>(url: url, method: .post(token))
+        let resource = Resource<ResultToken>(url: url, method: .post(token))
         URLSession(configuration: .default).load(resource) { resultData, _ in
             guard let data = resultData else {
                 completion(.failure(.noData))
