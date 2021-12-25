@@ -128,4 +128,26 @@ extension Resource where T: Decodable {
             try? JSONDecoder().decode(T.self, from: data)
         }
     }
+    
+    /**
+    RESTAPI method with Hearder
+     */
+    init<Body: Encodable>(url: URL, method: HttpMethod<Body>, header: [String: String]) {
+        self.urlRequest = URLRequest(url: url)
+        self.urlRequest.httpMethod = method.method
+        
+        switch method {
+        case .post(let body), .put(let body), .delete(let body):
+            self.urlRequest.httpBody = try? JSONEncoder().encode(body)
+            self.urlRequest.addValue("application/json", forHTTPHeaderField: "Content-Type")
+            for (key, value) in header {
+                self.urlRequest.setValue(value, forHTTPHeaderField: key)
+            }
+        default:
+            break
+        }
+        self.parseData = { data in
+            try? JSONDecoder().decode(T.self, from: data)
+        }
+    }
 }
