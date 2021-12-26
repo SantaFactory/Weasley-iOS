@@ -22,12 +22,17 @@ class MainViewController: UIViewController {
         self.view.addSubview(clockView)
         self.view.addSubview(arcLocationLabel)
         self.view.addSubview(membersTableView)
-        self.view.addSubview(groupsScrollView)
+        self.view.addSubview(groupNameLabel)
         self.clockView.addSubview(userLocationMapView)
+        groupNameLabel.snp.makeConstraints { make in
+            make.leading.equalToSuperview()
+            make.trailing.equalToSuperview()
+            make.top.equalTo(self.view.safeArea.top)
+        }
         clockView.snp.makeConstraints { make in
             make.height.equalTo(self.view.frame.width)
             make.width.equalToSuperview()
-            make.top.equalTo(self.view.safeArea.top)
+            make.top.equalTo(groupNameLabel.snp.bottom)
             make.leading.equalToSuperview()
             make.trailing.equalToSuperview()
         }
@@ -47,25 +52,16 @@ class MainViewController: UIViewController {
             make.top.equalTo(clockView.snp.bottom)
             make.leading.equalToSuperview()
             make.trailing.equalToSuperview()
-            make.bottom.equalTo(groupsScrollView.snp.top)
-        }
-        groupsScrollView.snp.makeConstraints { make in
-            make.height.equalTo(80)
-            make.bottom.equalToSuperview()
-            make.leading.equalToSuperview()
-            make.trailing.equalToSuperview()
+            make.bottom.equalTo(self.view.safeArea.bottom)
         }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        groupsScrollView.delegate = self
         membersTableView.delegate = self
         membersTableView.dataSource = self
         self.userLocationMapView.delegate = self
         self.userLocationMapView.alpha = 0
-        loadGroupLabels()
-//        loadNeedles()
         self.hero.isEnabled = true
         self.view.hero.id = "main"
     }
@@ -113,38 +109,26 @@ class MainViewController: UIViewController {
         return mapView
     }()
     
-    private lazy var groupsScrollView: UIScrollView = {
-        let scrollView = UIScrollView()
-        scrollView.contentSize = CGSize(width: UIScreen.main.bounds.width * 4, height: scrollView.contentSize.height)
-        scrollView.backgroundColor = .systemGray
-        scrollView.isPagingEnabled = true
-        return scrollView
-    }()
-    
-    private lazy var sampleGroupName: UILabel = {
+    private lazy var groupNameLabel: UILabel = {
         let label = UILabel()
-        print(UIScreen.main.bounds.height)
-        print(self.view.frame.maxY)
-        label.frame = CGRect(x: UIScreen.main.bounds.width * 0, y: 0, width: self.view.frame.width, height: 80)
-        label.font = UIFont.systemFont(ofSize: 60, weight: .black)
-        label.backgroundColor = .systemBackground
-        label.text = "Hello World!"
         let gradientLayer = CAGradientLayer()
         gradientLayer.getGradientLayer(
             colors: UIColor().themeColors,
-            alpha: 1,
-            frame: label.bounds,
+            alpha: 0.6,
+            frame: self.view.bounds,
             startPoint: CGPoint(x: 0.0, y: 0.5),
             endPoint: CGPoint(x: 1.0, y: 0.5)
         )
-        label.textColor = .gradientColor(bounds: label.bounds, gradientLayer: gradientLayer)
+        let color = UIColor.gradientColor(bounds: self.view.bounds, gradientLayer: gradientLayer)
+        label.frame = CGRect(x: UIScreen.main.bounds.width * 0, y: 0, width: self.view.frame.width, height: 40)
+        label.font = UIFont.systemFont(ofSize: 30, weight: .black)
+        label.backgroundColor = .clear
+        label.text = "Hello World!"
+        label.textColor = color
         label.textAlignment = .center
         return label
     }()
     
-    func loadGroupLabels() {
-        self.groupsScrollView.addSubview(sampleGroupName)
-    }
     
     private lazy var membersTableView: UITableView = {
         let tableView = UITableView(frame: CGRect.zero, style: .insetGrouped)
