@@ -47,6 +47,7 @@ class GroupListViewController: UIViewController {
         }
         appDelegate.locationManager.requestWhenInUseAuthorization()
         appDelegate.locationManager.requestLocation()
+        viewModel.loadGroups()
     }
    
     //MARK: Menu iOS 14.0..<
