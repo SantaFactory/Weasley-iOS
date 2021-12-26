@@ -25,6 +25,7 @@ class MainViewController: UIViewController {
         self.view.addSubview(groupNameLabel)
         self.clockView.addSubview(userLocationMapView)
         self.view.addSubview(backButton)
+        self.view.addSubview(inviteButton)
         groupNameLabel.snp.makeConstraints { make in
             make.leading.equalToSuperview()
             make.trailing.equalToSuperview()
@@ -58,6 +59,10 @@ class MainViewController: UIViewController {
         backButton.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(20)
             make.bottom.equalTo(self.view.safeArea.bottom).offset(-20)
+        }
+        inviteButton.snp.makeConstraints { make in
+            make.leading.equalTo(backButton.snp.trailing).offset(10)
+            make.centerY.equalTo(backButton.snp.centerY)
         }
     }
     
@@ -150,6 +155,15 @@ class MainViewController: UIViewController {
         return button
     }()
     
+    private lazy var inviteButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.addTarget(self, action: #selector(inviteMember), for: .touchUpInside)
+        let configuration = UIImage.SymbolConfiguration(pointSize: 30)
+        button.setImage(UIImage(systemName: "paperplane.fill", withConfiguration: configuration), for: .normal)
+        button.tintColor = .white
+        return button
+    }()
+    
     private func setMemberMenu(index member: Int) -> UIMenu {
         let items = [
             UIAction(title: "Request Location", image: UIImage(systemName: "exclamationmark.bubble"), handler: { _ in
@@ -179,7 +193,7 @@ extension MainViewController {
         self.dismiss(animated: true, completion: nil)
     }
     
-    func inviteMember() {
+    @objc private func inviteMember() {
         let message = ["Message and link.."] // TODO: Link message
         let activityVC = UIActivityViewController(activityItems: message, applicationActivities: nil)
         if UIDevice.current.userInterfaceIdiom == .pad {
