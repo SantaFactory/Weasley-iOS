@@ -24,6 +24,7 @@ class MainViewController: UIViewController {
         self.view.addSubview(membersTableView)
         self.view.addSubview(groupNameLabel)
         self.clockView.addSubview(userLocationMapView)
+        self.view.addSubview(backButton)
         groupNameLabel.snp.makeConstraints { make in
             make.leading.equalToSuperview()
             make.trailing.equalToSuperview()
@@ -52,7 +53,11 @@ class MainViewController: UIViewController {
             make.top.equalTo(clockView.snp.bottom)
             make.leading.equalToSuperview()
             make.trailing.equalToSuperview()
-            make.bottom.equalTo(self.view.safeArea.bottom)
+            make.bottom.equalTo(backButton.snp.bottom)
+        }
+        backButton.snp.makeConstraints { make in
+            make.leading.equalToSuperview().offset(20)
+            make.bottom.equalTo(self.view.safeArea.bottom).offset(-20)
         }
     }
     
@@ -136,6 +141,24 @@ class MainViewController: UIViewController {
         return tableView
     }()
     
+    private lazy var backButton: UIButton = {
+        let button = UIButton(type: .system)
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.getGradientLayer(
+            colors: UIColor().themeColors,
+            alpha: 0.6,
+            frame: self.view.bounds,
+            startPoint: CGPoint(x: 0.0, y: 0.5),
+            endPoint: CGPoint(x: 1.0, y: 0.5)
+        )
+        let color = UIColor.gradientColor(bounds: self.view.bounds, gradientLayer: gradientLayer)
+        button.addTarget(self, action: #selector(back), for: .touchUpInside)
+        let configuration = UIImage.SymbolConfiguration(pointSize: 30)
+        button.setImage(UIImage(systemName: "chevron.backward.circle.fill", withConfiguration: configuration), for: .normal)
+        button.tintColor = .white
+        return button
+    }()
+    
     private func setMemberMenu(index member: Int) -> UIMenu {
         let items = [
             UIAction(title: "Request Location", image: UIImage(systemName: "exclamationmark.bubble"), handler: { _ in
@@ -160,6 +183,10 @@ class MainViewController: UIViewController {
 }
 
 extension MainViewController {
+    
+    @objc private func back() {
+        self.dismiss(animated: true, completion: nil)
+    }
     
     func inviteMember() {
         let message = ["Message and link.."] // TODO: Link message
