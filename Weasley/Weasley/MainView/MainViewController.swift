@@ -143,15 +143,6 @@ class MainViewController: UIViewController {
     
     private lazy var backButton: UIButton = {
         let button = UIButton(type: .system)
-        let gradientLayer = CAGradientLayer()
-        gradientLayer.getGradientLayer(
-            colors: UIColor().themeColors,
-            alpha: 0.6,
-            frame: self.view.bounds,
-            startPoint: CGPoint(x: 0.0, y: 0.5),
-            endPoint: CGPoint(x: 1.0, y: 0.5)
-        )
-        let color = UIColor.gradientColor(bounds: self.view.bounds, gradientLayer: gradientLayer)
         button.addTarget(self, action: #selector(back), for: .touchUpInside)
         let configuration = UIImage.SymbolConfiguration(pointSize: 30)
         button.setImage(UIImage(systemName: "chevron.backward.circle.fill", withConfiguration: configuration), for: .normal)
