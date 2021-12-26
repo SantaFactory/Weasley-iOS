@@ -54,7 +54,7 @@ class MainViewController: UIViewController {
             make.top.equalTo(clockView.snp.bottom)
             make.leading.equalToSuperview()
             make.trailing.equalToSuperview()
-            make.bottom.equalTo(backButton.snp.bottom)
+            make.bottom.equalTo(backButton.snp.top)
         }
         backButton.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(20)
@@ -142,6 +142,7 @@ class MainViewController: UIViewController {
     
     private lazy var membersTableView: UITableView = {
         let tableView = UITableView(frame: CGRect.zero, style: .insetGrouped)
+        tableView.backgroundColor = .clear
         tableView.register(MemberCell.self, forCellReuseIdentifier: "memberCell")
         return tableView
     }()
@@ -149,18 +150,18 @@ class MainViewController: UIViewController {
     private lazy var backButton: UIButton = {
         let button = UIButton(type: .system)
         button.addTarget(self, action: #selector(back), for: .touchUpInside)
-        let configuration = UIImage.SymbolConfiguration(pointSize: 30)
+        let configuration = UIImage.SymbolConfiguration(pointSize: 20)
         button.setImage(UIImage(systemName: "chevron.backward.circle.fill", withConfiguration: configuration), for: .normal)
-        button.tintColor = .white
+        button.tintColor = .systemGray2
         return button
     }()
     
     private lazy var inviteButton: UIButton = {
         let button = UIButton(type: .system)
         button.addTarget(self, action: #selector(inviteMember), for: .touchUpInside)
-        let configuration = UIImage.SymbolConfiguration(pointSize: 30)
+        let configuration = UIImage.SymbolConfiguration(pointSize: 20)
         button.setImage(UIImage(systemName: "paperplane.fill", withConfiguration: configuration), for: .normal)
-        button.tintColor = .white
+        button.tintColor = .systemGray2
         return button
     }()
     
