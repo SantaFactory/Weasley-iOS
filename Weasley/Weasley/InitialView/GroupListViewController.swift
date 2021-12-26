@@ -11,6 +11,7 @@ import Hero
 
 class GroupListViewController: UIViewController {
     
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
     let viewModel = UsersGroups.shared
     let gradientLayer = CAGradientLayer()
     
@@ -19,6 +20,7 @@ class GroupListViewController: UIViewController {
         self.view.backgroundColor = .secondarySystemBackground
         self.view.addSubview(groupTableView)
         self.view.addSubview(addGroupButton)
+        
         addGroupButton.snp.makeConstraints { make in
             make.bottom.equalTo(self.view.safeArea.bottom).offset(-10)
             make.leading.equalToSuperview().offset(40)
@@ -43,6 +45,8 @@ class GroupListViewController: UIViewController {
         } else {
             navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "ellipsis.circle"), style: .plain, target: self, action: #selector(showActionSheet))
         }
+        appDelegate.locationManager.requestWhenInUseAuthorization()
+        appDelegate.locationManager.requestLocation()
     }
    
     //MARK: Menu iOS 14.0..<
