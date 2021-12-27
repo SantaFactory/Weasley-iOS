@@ -7,6 +7,7 @@
 
 import UIKit
 import SnapKit
+import AuthenticationServices
 
 class LoginViewController: UIViewController {
 
@@ -15,10 +16,17 @@ class LoginViewController: UIViewController {
     override func loadView() {
         super.loadView()
         self.view.backgroundColor = .systemBackground
+        self.view.addSubview(appleLoginButton)
         self.view.addSubview(googleLoginButton)
+        appleLoginButton.snp.makeConstraints { make in
+            make.height.equalTo(50)
+            make.bottom.equalToSuperview().offset(-30)
+            make.leading.equalToSuperview().offset(20)
+            make.trailing.equalToSuperview().offset(-20)
+        }
         googleLoginButton.snp.makeConstraints { make in
             make.height.equalTo(50)
-            make.bottom.equalToSuperview().offset(-40)
+            make.bottom.equalTo(appleLoginButton.snp.top).offset(-10)
             make.leading.equalToSuperview().offset(20)
             make.trailing.equalToSuperview().offset(-20)
         }
@@ -34,17 +42,24 @@ class LoginViewController: UIViewController {
     private lazy var googleLoginButton: UIButton = {
         let button = UIButton()
         button.backgroundColor = #colorLiteral(red: 0.2745098039, green: 0.5333333333, blue: 0.9333333333, alpha: 1)
-        button.layer.cornerRadius = 25
+        button.layer.cornerRadius = 5
         button.setTitle("Continue with Google", for: .normal)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 20, weight: .medium)
         button.tintColor = .white
         button.addTarget(self, action: #selector(googleLogin), for: .touchUpInside)
         return button
     }()
     
+    private lazy var appleLoginButton: ASAuthorizationAppleIDButton = {
+        let button = ASAuthorizationAppleIDButton()
+        return button
+    }()
+    
     @objc private func googleLogin() {
-        viewModel.googleLogin(vc: self) {
-            self.successLogin()
-        }
+        self.successLogin()
+//        viewModel.googleLogin(vc: self) {
+//            self.successLogin()
+//        }
     }
     
     private func successLogin() {
