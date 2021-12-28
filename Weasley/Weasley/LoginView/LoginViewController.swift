@@ -52,14 +52,24 @@ class LoginViewController: UIViewController {
     
     private lazy var appleLoginButton: ASAuthorizationAppleIDButton = {
         let button = ASAuthorizationAppleIDButton()
+        button.addTarget(self, action: #selector(appleLogin), for: .touchUpInside)
         return button
     }()
     
     @objc private func googleLogin() {
-        self.successLogin()
-//        viewModel.googleLogin(vc: self) {
-//            self.successLogin()
-//        }
+        viewModel.googleLogin(vc: self) {
+            self.successLogin()
+        }
+    }
+    
+    @objc private func appleLogin() {
+        let appleIDProvider = ASAuthorizationAppleIDProvider()
+        let request = appleIDProvider.createRequest()
+        request.requestedScopes = [.fullName, .email]
+        let authorizationController = ASAuthorizationController(authorizationRequests: [request])
+        authorizationController.delegate = self
+        authorizationController.presentationContextProvider = self
+        authorizationController.performRequests()
     }
     
     private func successLogin() {
@@ -67,5 +77,27 @@ class LoginViewController: UIViewController {
         let navController = UINavigationController(rootViewController: destinationVC)
         navController.modalPresentationStyle = .fullScreen
         self.present(navController, animated: true, completion: nil)
+    }
+}
+
+extension LoginViewController: ASAuthorizationControllerDelegate, ASAuthorizationControllerPresentationContextProviding {
+    
+    func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
+        switch authorization.credential {
+        case let appleIDCredential as ASAuthorizationAppleIDCredential:
+            let accessToken = String(data: appleIDCredential.identityToken!, encoding: .ascii) ?? ""
+            //TODO: Send ID token to backend.
+            print("Token: \(accessToken)")
+        default:
+            break
+        }
+    }
+    
+    func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
+        print("Error: \(error.localizedDescription)")
+    }
+    
+    func presentationAnchor(for controller: ASAuthorizationController) -> ASPresentationAnchor {
+        return self.view.window!
     }
 }

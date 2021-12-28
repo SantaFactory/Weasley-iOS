@@ -91,6 +91,7 @@
 		7F8A4FDA2730F02000656E0A /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		7F8A500D2734D5F700656E0A /* LocationLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationLabel.swift; sourceTree = "<group>"; };
 		7F8A500F2734D65D00656E0A /* DegreesToRadians.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DegreesToRadians.swift; sourceTree = "<group>"; };
+		7F8FE96E27799547006F3723 /* Weasley.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Weasley.entitlements; sourceTree = "<group>"; };
 		7FA1C8A9272B83E800D2B4E0 /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
 		7FA1C8AB272CF46500D2B4E0 /* ClockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClockView.swift; sourceTree = "<group>"; };
 		7FC1ACAB27686B44007C7F0B /* SetGroupNameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetGroupNameViewController.swift; sourceTree = "<group>"; };
@@ -162,6 +163,7 @@
 		7F43025F2726D89400FA594F /* Weasley */ = {
 			isa = PBXGroup;
 			children = (
+				7F8FE96E27799547006F3723 /* Weasley.entitlements */,
 				7F8A4FD62730D69200656E0A /* Util */,
 				7FE87A12273B91B700301A94 /* Model */,
 				7FE87A13273B91CA00301A94 /* ViewModel */,
@@ -579,6 +581,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Weasley/Weasley.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3XVAQ6DRC4;
 				INFOPLIST_FILE = Weasley/Info.plist;
@@ -599,6 +602,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Weasley/Weasley.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3XVAQ6DRC4;
 				INFOPLIST_FILE = Weasley/Info.plist;
