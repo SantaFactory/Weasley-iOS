@@ -54,11 +54,11 @@ class Login {
                     case .success:
                         do {
                             let value = try tokenData.get()
-                            //TODO: Request user data
                             let token = value.loginData.token
-//                            DispatchQueue.main.async {
-//                                completion()
-//                            }
+                            authToken = ["Authorization": "Bearer \(token)"]
+                            DispatchQueue.main.async {
+                                completion()
+                            }
                         } catch {
                             GIDSignIn.sharedInstance.signOut()
                             print("Error retrieving the value: \(error)")
@@ -69,6 +69,9 @@ class Login {
         }
     }
     
+    func appleLogin() {
+        
+    }
     //TODO: Apple Login
     
     func signOut() {

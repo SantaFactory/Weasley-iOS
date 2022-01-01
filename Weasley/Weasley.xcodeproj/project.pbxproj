@@ -204,17 +204,17 @@
 		7F8A4FD62730D69200656E0A /* Util */ = {
 			isa = PBXGroup;
 			children = (
+				7F2865502771A4F400DAF9D2 /* AWSUrl.swift */,
 				7FA1C8A9272B83E800D2B4E0 /* APIManager.swift */,
-				7FE9F32A2775B3F2003560BD /* LocationAPIService.swift */,
 				7F7FCD3927717C3A005ADD27 /* LoginAPIService.swift */,
+				7FE9F32A2775B3F2003560BD /* LocationAPIService.swift */,
 				7F2865562771B27800DAF9D2 /* GroupAPIService.swift */,
 				7F8A500F2734D65D00656E0A /* DegreesToRadians.swift */,
-				7F8A4FCF272FB0F600656E0A /* UIView+Extension.swift */,
-				7FC1ACB92769CC14007C7F0B /* MKPlacemark+Extension.swift */,
 				7F7FCD30276DB5B4005ADD27 /* UIColor+Extension.swift */,
-				7F7FCD32276DB849005ADD27 /* CAGradientLayer+Extension.swift */,
+				7F8A4FCF272FB0F600656E0A /* UIView+Extension.swift */,
 				7F7FCD37276EC2A0005ADD27 /* UIButton+Extension.swift */,
-				7F2865502771A4F400DAF9D2 /* AWSUrl.swift */,
+				7FC1ACB92769CC14007C7F0B /* MKPlacemark+Extension.swift */,
+				7F7FCD32276DB849005ADD27 /* CAGradientLayer+Extension.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
