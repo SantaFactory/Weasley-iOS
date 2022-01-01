@@ -14,15 +14,17 @@ class UsersGroups {
     
     var groups: [Group]?
     
-    func loadGroups() {
+    func loadGroups(completion: @escaping () -> Void) {
         //TODO: API Service
+        GroupAPIService().performLoadGroups { [weak self] _ in
+            DispatchQueue.main.async {
+                completion()
+            }
+        }
     }
-    
+   
     func addGroup(group: Group, completion: @escaping () -> Void) {
         //TODO: Complete API
-        GroupAPIService().performAddGroup(group: group) { [weak self] _ in
-            completion()
-        }
     }
     
     func removeGroup() {
