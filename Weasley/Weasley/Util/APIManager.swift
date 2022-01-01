@@ -7,6 +7,8 @@
 
 import Foundation
 
+var authToken: [String: String]?
+
 enum APIError: LocalizedError {
     case urlNotSupport
     case noData
@@ -69,8 +71,13 @@ extension Resource where T: Decodable {
         - Default URLRequest
         - URL을 통해 결과 Data를 Decodable Type으로 파싱됨
      */
-    init(url: URL) {
+    init(url: URL, header: [String: String]?) {
         self.urlRequest = URLRequest(url: url)
+        if let header = header {
+            for (key, value) in header {
+                self.urlRequest.setValue(value, forHTTPHeaderField: key)
+            }
+        }
         self.parseData = { data in
             try? JSONDecoder().decode(T.self, from: data)
         }
@@ -82,7 +89,7 @@ extension Resource where T: Decodable {
         - URLComponents를 사용하여 "/?name=value" 형태로 변환하여 url 요청
         - Parameter의 입력은 [String: String] dictionary의 형태로 받아, 그 값은 내부에서 URLQueryItem으로 추가
      */
-    init(url: String, parameters: [String: String]) {
+    init(url: String, parameters: [String: String], header: [String: String]?) {
         var urlComponents = URLComponents(string: url)
         var items = [URLQueryItem]()
         
@@ -100,6 +107,11 @@ extension Resource where T: Decodable {
         } else {
             self.urlRequest = URLRequest(url: URL(string: url)!)
         }
+        if let header = header {
+            for (key, value) in header {
+                self.urlRequest.setValue(value, forHTTPHeaderField: key)
+            }
+        }
         self.parseData = { data in
             try? JSONDecoder().decode(T.self, from: data)
         }
@@ -113,7 +125,7 @@ extension Resource where T: Decodable {
      - Content-Type -> application/json으로 설정하여 json data를 가져옴
      
      */
-    init<Body: Encodable>(url: URL, method: HttpMethod<Body>) {
+    init<Body: Encodable>(url: URL, method: HttpMethod<Body>, header: [String: String]?) {
         self.urlRequest = URLRequest(url: url)
         self.urlRequest.httpMethod = method.method
         
@@ -121,27 +133,10 @@ extension Resource where T: Decodable {
         case .post(let body), .put(let body), .delete(let body):
             self.urlRequest.httpBody = try? JSONEncoder().encode(body)
             self.urlRequest.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        default:
-            break
-        }
-        self.parseData = { data in
-            try? JSONDecoder().decode(T.self, from: data)
-        }
-    }
-    
-    /**
-    RESTAPI method with Hearder
-     */
-    init<Body: Encodable>(url: URL, method: HttpMethod<Body>, header: [String: String]) {
-        self.urlRequest = URLRequest(url: url)
-        self.urlRequest.httpMethod = method.method
-        
-        switch method {
-        case .post(let body), .put(let body), .delete(let body):
-            self.urlRequest.httpBody = try? JSONEncoder().encode(body)
-            self.urlRequest.addValue("application/json", forHTTPHeaderField: "Content-Type")
-            for (key, value) in header {
-                self.urlRequest.setValue(value, forHTTPHeaderField: key)
+            if let header = header {
+                for (key, value) in header {
+                    self.urlRequest.setValue(value, forHTTPHeaderField: key)
+                }
             }
         default:
             break
