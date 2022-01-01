@@ -24,7 +24,7 @@ class LoginService {
             completion(.failure(.urlNotSupport))
             return
         }
-        let resource = Resource<ResultToken>(url: url, method: .post(token))
+        let resource = Resource<ResultToken>(url: url, method: .post(token), header: nil)
         URLSession(configuration: .default).load(resource) { resultData, _ in
             guard let data = resultData else {
                 completion(.failure(.noData))
