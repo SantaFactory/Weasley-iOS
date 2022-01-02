@@ -32,6 +32,14 @@ class GroupAddition {
         placeLongitude = nil
     }
     
+    func createGroup(completion: @escaping () -> Void) {
+        GroupAPIService().performAddGroup(group: newGroup) { _ in
+            DispatchQueue.main.async {
+                completion()
+            }
+        }
+    }
+    
     init(group name: String) {
         newGroup = Group(name: name, places: [
             Place(place: "home", latitude: nil, longitude: nil),
