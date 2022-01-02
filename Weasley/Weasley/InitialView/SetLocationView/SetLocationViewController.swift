@@ -150,13 +150,10 @@ class SetLocationViewController: UIViewController {
 //MARK: Action
 extension SetLocationViewController {
     @objc func goNext() {
-        viewModel?.setPlace()
+        viewModel!.setPlace()
         guard let destinationVC = self.destinationVC as? SetLocationViewController else {
-            self.viewModel?.addGroup {
-                self.viewModel = nil
-                DispatchQueue.main.async {
-                    self.navigationController?.popToRootViewController(animated: true)
-                }
+            viewModel?.createGroup {
+                self.navigationController?.popToRootViewController(animated: true)
             }
             return
         }
@@ -166,11 +163,8 @@ extension SetLocationViewController {
     
     @objc func skip() {
         guard let destinationVC = self.destinationVC as? SetLocationViewController else {
-            self.viewModel?.addGroup {
-                self.viewModel = nil
-                DispatchQueue.main.async {
-                    self.navigationController?.popToRootViewController(animated: true)
-                }
+            viewModel?.createGroup {
+                self.navigationController?.popToRootViewController(animated: true)
             }
             return
         }
