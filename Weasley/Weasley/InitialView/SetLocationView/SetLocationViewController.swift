@@ -16,7 +16,7 @@ protocol ShowResultMap {
 
 class SetLocationViewController: UIViewController {
 
-    var viewModel: GroupAddition?
+    var viewModel = UsersGroups.shared
     var destinationVC: UIViewController!
     let gradientLayer = CAGradientLayer()
     
@@ -85,7 +85,7 @@ class SetLocationViewController: UIViewController {
         let label = UILabel()
         label.textColor = .label
         label.font = UIFont.systemFont(ofSize: 28)
-        label.text = "Mark \(viewModel?.place ?? "") location"
+        label.text = "Mark \(viewModel.place ?? "") location"
         label.textAlignment = .center
         label.numberOfLines = 0
         return label
@@ -142,17 +142,17 @@ class SetLocationViewController: UIViewController {
     
     func setLocation(latitude: CGFloat, longitude: CGFloat) {
         let digit: Double = pow(10, 3)
-        viewModel?.placeLatitude = String(round(latitude * digit) / digit)
-        viewModel?.placeLongitude = String(round(longitude * digit) / digit)
+        viewModel.placeLatitude = String(round(latitude * digit) / digit)
+        viewModel.placeLongitude = String(round(longitude * digit) / digit)
     }
 }
 
 //MARK: Action
 extension SetLocationViewController {
     @objc func goNext() {
-        viewModel!.setPlace()
+        viewModel.setPlace()
         guard let destinationVC = self.destinationVC as? SetLocationViewController else {
-            viewModel?.createGroup {
+            viewModel.createGroup {
                 self.navigationController?.popToRootViewController(animated: true)
             }
             return
@@ -163,7 +163,7 @@ extension SetLocationViewController {
     
     @objc func skip() {
         guard let destinationVC = self.destinationVC as? SetLocationViewController else {
-            viewModel?.createGroup {
+            viewModel.createGroup {
                 self.navigationController?.popToRootViewController(animated: true)
             }
             return

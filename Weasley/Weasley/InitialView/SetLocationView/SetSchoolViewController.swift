@@ -12,7 +12,7 @@ class SetSchoolViewController: SetLocationViewController {
     override func loadView() {
         super.loadView()
         self.destinationVC = SetWorkViewController()
-        self.viewModel?.place = "school"
+        self.viewModel.place = "school"
         self.nextButton.setTitle("Next", for: .normal)
     }
 
