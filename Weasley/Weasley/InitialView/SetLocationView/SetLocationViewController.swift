@@ -197,13 +197,10 @@ extension SetLocationViewController: UISearchBarDelegate {
         showResultMapDelegate?.clearOverlay()
         guard let suggestion = suggestionController.completerResults, suggestion.count != 0 else {
             self.showAlert()
-            dismiss(animated: true, completion: nil)
             return
         }
         //search(for: suggestion)
         showResultMapDelegate?.markAreaOverlay(result: suggestion[0])
-        dismiss(animated: true, completion: nil)
-        
         // The user tapped search on the `UISearchBar` or on the keyboard. Since they didn't
         // select a row with a suggested completion, run the search with the query text in the search field.
     }
