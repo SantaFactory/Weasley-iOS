@@ -31,7 +31,6 @@ class SetGroupNameViewController: UIViewController {
             make.bottom.equalTo(groupNameTextField.snp.top).offset(-20)
         }
         groupNameTextField.snp.makeConstraints { make in
-            make.top.equalTo(descriptionLabel.snp.bottom)
             make.leading.equalToSuperview().offset(20)
             make.trailing.equalToSuperview().offset(-20)
             make.height.equalTo(50)
