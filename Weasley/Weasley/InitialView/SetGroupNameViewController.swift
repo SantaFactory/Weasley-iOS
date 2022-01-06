@@ -10,6 +10,8 @@ import SnapKit
 
 class SetGroupNameViewController: UIViewController {
 
+    let viewModel = UsersGroups.shared
+    
     override func loadView() {
         super.loadView()
         self.view.addSubview(titleLabel)
@@ -128,7 +130,7 @@ extension SetGroupNameViewController {
     
     func pushView() {
         let destinationVC = SetHomeViewController()
-        destinationVC.viewModel = GroupAddition(group: self.groupNameTextField.text!)
+        viewModel.newGroup = Group(name: groupNameTextField.text ?? "", places: [])
         self.navigationController?.pushViewController(destinationVC, animated: true)
     }
 }
