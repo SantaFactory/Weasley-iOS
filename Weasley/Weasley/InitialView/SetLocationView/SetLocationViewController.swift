@@ -74,6 +74,7 @@ class SetLocationViewController: UIViewController {
         loadUI()
         self.navigationItem.searchController = searchController
         navigationItem.hidesSearchBarWhenScrolling = false
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "chevron.backward"), style: .plain, target: self, action: #selector(back))
         searchController.searchBar.delegate = self
         mapView.delegate = self
         suggestionController.showResultMapDelegate = self
@@ -81,11 +82,10 @@ class SetLocationViewController: UIViewController {
         showResultMapDelegate = self
     }
     
-    private lazy var titleLabel: UILabel = {
+    lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.textColor = .label
         label.font = UIFont.systemFont(ofSize: 28)
-        label.text = "Mark \(viewModel.place ?? "") location"
         label.textAlignment = .center
         label.numberOfLines = 0
         return label
@@ -157,7 +157,6 @@ extension SetLocationViewController {
             }
             return
         }
-        destinationVC.viewModel = self.viewModel
         self.navigationController?.pushViewController(destinationVC, animated: true)
     }
     
@@ -168,8 +167,14 @@ extension SetLocationViewController {
             }
             return
         }
-        destinationVC.viewModel = self.viewModel
         self.navigationController?.pushViewController(destinationVC, animated: true)
+    }
+    
+    @objc func back() {
+        if viewModel.place == "home" {
+            viewModel.place = nil
+        }
+        self.navigationController?.popViewController(animated: true)
     }
 }
 

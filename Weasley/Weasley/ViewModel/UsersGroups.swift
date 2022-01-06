@@ -30,7 +30,15 @@ class UsersGroups {
     var placeLongitude: String? = nil
     
     func setPlace() {
-        newGroup?.places.append(Place(place: place!, latitude: placeLatitude, longitude: placeLongitude))
+        if newGroup == nil || newGroup!.places.filter({ $0.place == self.place}).isEmpty {
+            newGroup?.places.append(Place(place: place!, latitude: placeLatitude, longitude: placeLongitude))
+        } else {
+            let index = newGroup!.places.firstIndex {
+                $0.place == self.place
+            }
+            newGroup!.places.remove(at: index!)
+            newGroup?.places.append(Place(place: place!, latitude: placeLatitude, longitude: placeLongitude))
+        }
     }
     
     func createGroup(completion: @escaping () -> Void) {
