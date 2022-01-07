@@ -1,0 +1,30 @@
+/* 
+  Localizable.strings
+  Weasley
+
+  Created by Doyoung on 2022/01/07.
+  
+*/
+"My Group" = "내 그룹";
+"Setting" = "설정";
+"Sign Out" = "로그아웃";
+"Cancel" = "취소";
+"OK" = "확인";
+"Add Group" = "그룹 추가하기";
+"Create Group" = "그룹 생성하기";
+"Pick a groupname for your group. You can always change it later." = "그룹 이름을 지어주세요. 그룹명은 언제든지 다시 설정할 수 있습니다.";
+"Groupname" = "그룹 이름";
+"Next" = "다음";
+"Done" = "완료";
+"Group name is blank" = "그룹 이름이 비었습니다";
+"Show nothing about your group name." = "그룹 이름에 아무것도 나타나지 않습니다.";
+"Skip" = "건너뛰기";
+"No Result" = "결과없음";
+"Mark home location" = "집에 대한 위치 설정";
+"Mark school location" = "학교에 대한 위치 설정";
+"Mark work location" = "직장에 대한 위치 설정";
+"Pick a location for your home location. You can always change it later." = "집의 위치를 지정해주세요. 언제나 변경할 수 있습니다.";
+"Pick a location for your school location. You can always change it later." = "학교의 위치를 지정해주세요. 언제나 변경할 수 있습니다.";
+"Pick a location for your work location. You can always change it later." = "직장의 위치를 지정해주세요. 언제나 변경할 수 있습니다.";
+
+
