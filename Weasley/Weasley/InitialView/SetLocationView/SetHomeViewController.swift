@@ -12,13 +12,14 @@ class SetHomeViewController: SetLocationViewController {
     override func loadView() {
         super.loadView()
         self.destinationVC = SetSchoolViewController()
-        self.nextButton.setTitle("Next", for: .normal)
+        self.nextButton.setTitle("Next".localized, for: .normal)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.viewModel.place = "home"
-        self.titleLabel.text = "Mark \(viewModel.place ?? "") location"
+        self.titleLabel.text = "Mark home location".localized
+        self.descriptionLabel.text = "Pick a location for your home location. You can always change it later.".localized
     }
     
 }

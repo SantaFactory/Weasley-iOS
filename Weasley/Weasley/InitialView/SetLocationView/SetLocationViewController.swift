@@ -91,10 +91,9 @@ class SetLocationViewController: UIViewController {
         return label
     }()
     
-    private lazy var descriptionLabel: UILabel = {
+    lazy var descriptionLabel: UILabel = {
         let label = UILabel()
         label.textColor = .secondaryLabel
-        label.text = "Pick a location for your home location. You can always change it later."
         label.font = UIFont.systemFont(ofSize: 16)
         label.textAlignment = .center
         label.numberOfLines = 0
@@ -132,7 +131,7 @@ class SetLocationViewController: UIViewController {
             endPoint: CGPoint(x: 1.0, y: 0.5)
         )
         let color = UIColor.gradientColor(bounds: self.view.bounds, gradientLayer: gradientLayer)
-        button.setTitle("Skip", for: .normal)
+        button.setTitle("Skip".localized, for: .normal)
         button.setTitleColor(color, for: .normal)
         button.backgroundColor = .clear
         button.defaultAction()
@@ -253,8 +252,8 @@ extension SetLocationViewController: MKMapViewDelegate {
 
 extension SetLocationViewController {
     func showAlert() {
-        let alert = UIAlertController(title: "No Result", message: nil, preferredStyle: .alert)
-        let okay = UIAlertAction(title: "OK", style: .cancel)
+        let alert = UIAlertController(title: "No Result".localized, message: nil, preferredStyle: .alert)
+        let okay = UIAlertAction(title: "OK".localized, style: .cancel)
         alert.addAction(okay)
         present(alert, animated: true) {
             self.nextButton.enableStatus(false)
