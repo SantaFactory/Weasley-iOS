@@ -43,7 +43,7 @@ class LoginViewController: UIViewController {
         let button = UIButton()
         button.backgroundColor = #colorLiteral(red: 0.2745098039, green: 0.5333333333, blue: 0.9333333333, alpha: 1)
         button.layer.cornerRadius = 5
-        button.setTitle("Continue with Google", for: .normal)
+        button.setTitle("Sign in with Google".localized, for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 20, weight: .medium)
         button.tintColor = .white
         button.addTarget(self, action: #selector(googleLogin), for: .touchUpInside)
