@@ -7,6 +7,25 @@
 
 import Foundation
 
+struct UsersGroup: Codable {
+    var groupData: GroupData
+    
+    enum CodingKeys: String, CodingKey {
+        case groupData = "data"
+    }
+}
+
+struct GroupData: Codable {
+    var countOfMemeber: Int
+    var name: String
+    var id: Int
+    
+    enum CodingKeys: String, CodingKey {
+        case countOfMemeber = "userCount"
+        case name = "title"
+        case id
+    }
+}
 struct Group: Codable {
     var name: String
     var places: [Place]
