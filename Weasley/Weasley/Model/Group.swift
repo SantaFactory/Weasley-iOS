@@ -8,7 +8,7 @@
 import Foundation
 
 struct UsersGroup: Codable {
-    var groupData: GroupData
+    var groupData: [GroupData]
     
     enum CodingKeys: String, CodingKey {
         case groupData = "data"
