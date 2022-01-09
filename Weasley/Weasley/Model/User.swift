@@ -9,7 +9,11 @@ import Foundation
 
 //MARK: Use for Login..
 struct Token: Codable {
-    let id_token: String
+    let token: String
+    
+    enum CodingKeys: String, CodingKey {
+        case token = "id_token"
+    }
 }
 
 struct ResultToken: Codable {
@@ -23,7 +27,8 @@ struct ResultToken: Codable {
 struct LoginData: Codable {
     let email: String
     let sub: String
-    let token: String
+    let accessToken: String
+    let refreshToken: String
 }
 
 struct User: Codable {
