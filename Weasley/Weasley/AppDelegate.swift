@@ -56,7 +56,7 @@ extension AppDelegate: CLLocationManagerDelegate {
                 userLatitude = lat
                 userLongitude = long
                 let location = UserLocationCoordinate(latitude: Double(userLatitude!)!, longitude: Double(userLongitude!)!)
-                LocationAPIService().performPutLocation(currentLocation: location)
+                LocationAPIService().performUpdateLocation(currentLocation: location)
             }
         }
     }
