@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct UsersGroup: Codable {
+struct GroupsList: Codable {
     var groupData: [GroupData]
     
     enum CodingKeys: String, CodingKey {
