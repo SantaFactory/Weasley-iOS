@@ -12,13 +12,24 @@ class UsersGroups {
     static let shared = UsersGroups()
     init() { }
     
-    var groups: [Group]?
+    var groups: [GroupData]?
    
     func loadGroups(completion: @escaping () -> Void) {
         //TODO: API Service
-        GroupAPIService().performLoadGroups { [weak self] _ in
-            DispatchQueue.main.async {
-                completion()
+        GroupAPIService().performLoadGroups { [weak self] data in
+            switch data {
+            case .success:
+                do {
+                    let value = try data.get()
+                    self?.groups = value.groupData
+                    DispatchQueue.main.async {
+                        completion()
+                    }
+                } catch {
+                    print("Error retrieving the value: \(error.localizedDescription)")
+                }
+            case .failure:
+                print("Fail load groups")
             }
         }
     }
