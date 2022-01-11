@@ -45,7 +45,7 @@ class Login {
                     print("Control idToken is nil")
                     return
                 }
-                let token = Token(id_token: idToken)
+                let token = Token(token: idToken)
                 LoginService().performLogin(token: token) { tokenData in
                     switch tokenData {
                     case .failure:
@@ -54,8 +54,9 @@ class Login {
                     case .success:
                         do {
                             let value = try tokenData.get()
-                            let token = value.loginData.token
-                            authToken = ["Authorization": "Bearer \(token)"]
+                            let accessToken = value.loginData.accessToken
+                            authToken = ["Authorization": "Bearer \(accessToken)"]
+                            refreshToken = ["refreshToken": value.loginData.refreshToken]
                             DispatchQueue.main.async {
                                 completion()
                             }

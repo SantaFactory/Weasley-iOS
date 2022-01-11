@@ -8,6 +8,7 @@
 import Foundation
 
 var authToken: [String: String]?
+var refreshToken: [String: String]?
 
 enum APIError: LocalizedError {
     case urlNotSupport
@@ -33,8 +34,7 @@ extension URLSession {
              completion(data.flatMap(resource.parseData), true)
          }.resume()
      }
-
- }
+}
 
 struct Resource<T> {
     var urlRequest: URLRequest
