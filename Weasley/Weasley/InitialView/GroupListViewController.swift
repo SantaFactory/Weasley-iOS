@@ -36,7 +36,7 @@ class GroupListViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "My Band"
+        title = "My Group".localized
         navigationController?.navigationBar.prefersLargeTitles = true
         groupTableView.dataSource = self
         groupTableView.delegate = self
@@ -47,7 +47,9 @@ class GroupListViewController: UIViewController {
         }
         appDelegate.locationManager.requestWhenInUseAuthorization()
         appDelegate.locationManager.requestLocation()
-        viewModel.loadGroups()
+        viewModel.loadGroups {
+            self.groupTableView.reloadData()
+        }
     }
    
     //MARK: Menu iOS 14.0..<
@@ -57,10 +59,10 @@ class GroupListViewController: UIViewController {
     
     private lazy var menuItems: [UIAction] = {
         return [
-            UIAction(title: "Setting", image: UIImage(systemName: "gearshape.fill"), handler: { _ in
+            UIAction(title: "Setting".localized, image: UIImage(systemName: "gearshape.fill"), handler: { _ in
                 self.goSetting()
             }),
-            UIAction(title: "Sign Out", image: UIImage(systemName: "rectangle.portrait.and.arrow.right"), handler: { _ in
+            UIAction(title: "Sign Out".localized, image: UIImage(systemName: "rectangle.portrait.and.arrow.right"), handler: { _ in
                 self.signOut()
             })
         ]
@@ -69,13 +71,13 @@ class GroupListViewController: UIViewController {
     //MARK: Menu ...iOS 13.0
     private lazy var alertActions: [UIAlertAction] = {
         return [
-            UIAlertAction(title: "Setting", style: .default, handler: { _ in
+            UIAlertAction(title: "Setting".localized, style: .default, handler: { _ in
                 self.goSetting()
             }),
-            UIAlertAction(title: "Sign Out", style: .default, handler: { _ in
+            UIAlertAction(title: "Sign Out".localized, style: .default, handler: { _ in
                 self.signOut()
             }),
-            UIAlertAction(title: "Cancel", style: .cancel)
+            UIAlertAction(title: "Cancel".localized, style: .cancel)
         ]
     }()
     
@@ -96,7 +98,7 @@ class GroupListViewController: UIViewController {
         )
         let color = UIColor.gradientColor(bounds: self.view.bounds, gradientLayer: gradientLayer)
         button.tintColor = color
-        button.setTitle("Add Group", for: .normal)
+        button.setTitle("Add Group".localized, for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 30, weight: .black)
         button.backgroundColor = .systemBackground
         button.addTarget(self, action: #selector(addGroup), for: .touchUpInside)

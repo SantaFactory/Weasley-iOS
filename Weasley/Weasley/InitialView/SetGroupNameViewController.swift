@@ -57,7 +57,7 @@ class SetGroupNameViewController: UIViewController {
         let label = UILabel()
         label.textColor = .label
         label.font = UIFont.systemFont(ofSize: 28)
-        label.text = "Create Group"
+        label.text = "Create Group".localized
         label.textAlignment = .center
         label.numberOfLines = 0
         return label
@@ -66,7 +66,7 @@ class SetGroupNameViewController: UIViewController {
     lazy var descriptionLabel: UILabel = {
         let label = UILabel()
         label.textColor = .secondaryLabel
-        label.text = "Pick a groupname for your group. You can always change it later."
+        label.text = "Pick a groupname for your group. You can always change it later.".localized
         label.font = UIFont.systemFont(ofSize: 16)
         label.textAlignment = .center
         label.numberOfLines = 0
@@ -75,7 +75,7 @@ class SetGroupNameViewController: UIViewController {
     
     lazy var groupNameTextField: UITextField = {
         let textField = UITextField()
-        textField.placeholder = "Groupname"
+        textField.placeholder = "Groupname".localized
         textField.borderStyle = .roundedRect
         textField.autocorrectionType = .no
         textField.returnKeyType = .next
@@ -93,7 +93,7 @@ class SetGroupNameViewController: UIViewController {
             startPoint: CGPoint(x: 0.0, y: 0.0),
             endPoint: CGPoint(x: 1.0, y: 1.0)
         )
-        button.setTitle("Next", for: .normal)
+        button.setTitle("Next".localized, for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 20, weight: .bold)
         button.backgroundColor = .gradientColor(bounds: self.view.bounds, gradientLayer: gradientLayer)
         button.defaultAction()
@@ -117,11 +117,11 @@ extension SetGroupNameViewController {
     }
     
     func showAlert() {
-        let alert = UIAlertController(title: "Group name is blank", message: "Show nothing about your group name.", preferredStyle: .alert)
-        let okay = UIAlertAction(title: "Ok", style: .default) { _ in
+        let alert = UIAlertController(title: "Group name is blank".localized, message: "Show nothing about your group name.".localized, preferredStyle: .alert)
+        let okay = UIAlertAction(title: "OK".localized, style: .default) { _ in
             self.pushView()
         }
-        let cancel = UIAlertAction(title: "Cancel", style: .cancel)
+        let cancel = UIAlertAction(title: "Cancel".localized, style: .cancel)
         alert.addAction(okay)
         alert.addAction(cancel)
         self.present(alert, animated: true, completion: nil)
