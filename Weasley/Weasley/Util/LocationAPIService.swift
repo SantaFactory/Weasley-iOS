@@ -9,7 +9,17 @@ import Foundation
 
 class LocationAPIService {
     
-    func performPostLocation(user: String) {
-       //TODO: Add post location API Service
+    let locationURL = "\(url)/api/weasley"
+    
+    func performUpdateLocation(currentLocation: UserLocationCoordinate) {
+        guard let url = URL(string: locationURL) else {
+            return
+        }
+        let resource = Resource<String>(url: url, method: .put(currentLocation), header: authToken)
+        URLSession(configuration: .default).load(resource) { resultData, _ in
+            guard let data = resultData else {
+                return
+            }
+        }
     }
 }

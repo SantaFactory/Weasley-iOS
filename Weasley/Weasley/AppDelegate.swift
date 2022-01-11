@@ -49,17 +49,14 @@ extension AppDelegate: CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if let location = locations.last {
-            guard let sub = UserDefaults.standard.string(forKey: "userLogin") else {
-                return
-            }
             let digit: Double = pow(10, 3)
             let lat = String(round(location.coordinate.latitude * digit) / digit)
             let long = String(round(location.coordinate.longitude * digit) / digit)
-            print("\(lat) & \(long)")
             if lat != userLatitude || long != userLongitude {
                 userLatitude = lat
                 userLongitude = long
-                LocationAPIService().performPostLocation(user: sub)
+                let location = UserLocationCoordinate(latitude: Double(userLatitude!)!, longitude: Double(userLongitude!)!)
+                LocationAPIService().performPutLocation(currentLocation: location)
             }
         }
     }

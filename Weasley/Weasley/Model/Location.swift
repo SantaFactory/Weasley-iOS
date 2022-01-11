@@ -41,17 +41,9 @@ extension Location {
     }
 }
 
-struct UserLoc: Codable {
-    let sub: String
-    let status: String
-    let lat: String
-    let long: String
-}
-
-struct UserLocCoordinate: Codable {
-    let sub: String
-    let lat: String
-    let long: String
+struct UserLocationCoordinate: Codable {
+    let latitude: Double
+    let longitude: Double
 }
 
 struct UserArea: Codable {
