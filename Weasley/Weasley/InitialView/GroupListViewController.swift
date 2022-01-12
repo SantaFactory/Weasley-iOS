@@ -7,6 +7,7 @@
 
 import UIKit
 import SnapKit
+import CoreMIDI
 
 class GroupListViewController: UIViewController {
     
@@ -164,6 +165,29 @@ extension GroupListViewController: UITableViewDelegate {
         let destinationVC = MainViewController()
         destinationVC.modalPresentationStyle = .overFullScreen
         present(destinationVC, animated: true, completion: nil)
+    }
+    
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let delete = UIContextualAction(style: .destructive, title: nil) { (action, view, completion) in
+            let alert = UIAlertController(title: "Delete Group", message: "", preferredStyle: .alert)
+            let delete = UIAlertAction(title: "delete", style: .destructive) { [weak self] _ in
+                let id = self?.viewModel.groups![indexPath.row].id
+                self?.viewModel.deleteGroup(groupID: id!) {
+                    self?.viewModel.loadGroups {
+                        tableView.deleteRows(at: [indexPath], with: .fade)
+                    }
+                }
+            }
+            let cancel = UIAlertAction(title: "Cancel", style: .cancel) { _ in
+                completion(false)
+            }
+            alert.addAction(delete)
+            alert.addAction(cancel)
+            self.present(alert, animated: true, completion: nil)
+        }
+        delete.image = UIImage(systemName: "trash")?.withTintColor(.white)
+        
+        return UISwipeActionsConfiguration(actions: [delete])
     }
 }
 
