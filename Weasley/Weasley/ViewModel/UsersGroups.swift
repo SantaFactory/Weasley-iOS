@@ -60,7 +60,11 @@ class UsersGroups {
         }
     }
     
-    func removeGroup() {
-        //TODO: Complete API
+    func deleteGroup(groupID: Int, completion: @escaping () -> Void) {
+        GroupAPIService().performDeleteGroup(id: groupID) {
+            DispatchQueue.main.async {
+                completion()
+            }
+        }
     }
 }
