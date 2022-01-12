@@ -45,7 +45,7 @@ enum HttpMethod<Body> {
     case get
     case post(Body)
     case put(Body)
-    case delete(Body)
+    case delete
 }
 
 extension HttpMethod {
@@ -71,8 +71,9 @@ extension Resource where T: Decodable {
         - Default URLRequest
         - URL을 통해 결과 Data를 Decodable Type으로 파싱됨
      */
-    init(url: URL, header: [String: String]?) {
+    init(url: URL, method: HttpMethod<Any>, header: [String: String]?) {
         self.urlRequest = URLRequest(url: url)
+        self.urlRequest.httpMethod = method.method
         if let header = header {
             for (key, value) in header {
                 self.urlRequest.setValue(value, forHTTPHeaderField: key)
@@ -120,7 +121,7 @@ extension Resource where T: Decodable {
     /**
      Others RESTAPI method
      
-     - GET 방식외 method(POST, PUT, DELETE)
+     - GET 방식외 method(POST, PUT)
      - body값을 Encodable 타입으로 제한하여, data로 변경되도록 JSONEncoder를 사용
      - Content-Type -> application/json으로 설정하여 json data를 가져옴
      
@@ -130,16 +131,16 @@ extension Resource where T: Decodable {
         self.urlRequest.httpMethod = method.method
         
         switch method {
-        case .post(let body), .put(let body), .delete(let body):
+        case .post(let body), .put(let body):
             self.urlRequest.httpBody = try? JSONEncoder().encode(body)
             self.urlRequest.addValue("application/json", forHTTPHeaderField: "Content-Type")
-            if let header = header {
-                for (key, value) in header {
-                    self.urlRequest.setValue(value, forHTTPHeaderField: key)
-                }
-            }
         default:
             break
+        }
+        if let header = header {
+            for (key, value) in header {
+                self.urlRequest.setValue(value, forHTTPHeaderField: key)
+            }
         }
         self.parseData = { data in
             try? JSONDecoder().decode(T.self, from: data)
