@@ -7,7 +7,6 @@
 
 import UIKit
 import SnapKit
-import Hero
 
 class GroupListViewController: UIViewController {
     
@@ -151,8 +150,9 @@ extension GroupListViewController: UITableViewDataSource {
             startPoint: CGPoint(x: 0.0, y: 0.5),
             endPoint: CGPoint(x: 1.0, y: 0.5)
         )
-        cell.groupNameLabel.backgroundColor = .gradientColor(bounds: tableView.bounds, gradientLayer: gradientLayer)
+        cell.backgroundColor = .gradientColor(bounds: tableView.bounds, gradientLayer: gradientLayer)
         cell.groupNameLabel.text = viewModel.groups?[indexPath.row].name
+        cell.groupCountOfMember.text = "\(viewModel.groups?[indexPath.row].countOfMemeber ?? 1)"
         return cell
     }
 }
@@ -164,7 +164,6 @@ extension GroupListViewController: UITableViewDelegate {
         let destinationVC = MainViewController()
         destinationVC.modalPresentationStyle = .overFullScreen
         present(destinationVC, animated: true, completion: nil)
-        //navigationController?.pushViewController(destinationVC, animated: true)
     }
 }
 
@@ -174,14 +173,17 @@ class GroupTableViewCell: UITableViewCell {
     static let reuseID = "GroupTableViewCellReuseID"
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        contentView.addSubview(groupCountOfMember)
         contentView.addSubview(groupNameLabel)
-        groupNameLabel.snp.makeConstraints { make in
-            make.top.equalToSuperview()
-            make.bottom.equalToSuperview()
-            make.leading.equalToSuperview()
-            make.trailing.equalToSuperview()
+        groupCountOfMember.snp.makeConstraints { make in
+            make.centerY.equalToSuperview()
+            make.trailing.equalToSuperview().offset(-20)
         }
-        
+        groupNameLabel.snp.makeConstraints { make in
+            make.centerY.equalToSuperview()
+            make.leading.equalToSuperview().offset(20)
+            make.trailing.lessThanOrEqualTo(groupCountOfMember.snp.leading).offset(-10)
+        }
     }
     
     required init?(coder: NSCoder) {
@@ -190,10 +192,15 @@ class GroupTableViewCell: UITableViewCell {
     
     fileprivate lazy var groupNameLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 40, weight: .black)
+        label.font = UIFont.systemFont(ofSize: 20, weight: .medium)
         label.textColor = .white
-        label.textAlignment = .center
-        label.hero.id = "main"
+        return label
+    }()
+    
+    fileprivate lazy var groupCountOfMember: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 20)
+        label.textColor = .secondaryLabel
         return label
     }()
     
