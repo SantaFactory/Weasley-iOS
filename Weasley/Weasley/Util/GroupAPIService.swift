@@ -9,12 +9,10 @@ import Foundation
 
 class GroupAPIService {
     
-    private let loadGroupsURL = "\(url)/api/band/self"
-    private let createGroupURL = "\(url)/api/band"
-    private let deleteGroupURL = "\(url)/api/band/"
+    private let groupURL = "\(url)/api/band"
     
     func performLoadGroups(completion: @escaping(Result<GroupsList, APIError>) -> Void) {
-        guard let url = URL(string: loadGroupsURL) else {
+        guard let url = URL(string: "\(groupURL)/self") else {
             completion(.failure(.urlNotSupport))
             return
         }
@@ -29,7 +27,7 @@ class GroupAPIService {
     }
     
     func performAddGroup(group: Group, completion: @escaping(Result<Group?, APIError>) -> Void) {
-        guard let url = URL(string: createGroupURL) else {
+        guard let url = URL(string: groupURL) else {
             completion(.failure(.urlNotSupport))
             return
         }
@@ -44,10 +42,20 @@ class GroupAPIService {
     }
     
     func performDeleteGroup(id group: Int, completion: @escaping() -> Void) {
-        guard let url = URL(string: "\(deleteGroupURL)\(group)") else {
+        guard let url = URL(string: "\(groupURL)/\(group)") else {
             return
         }
         let resource = Resource<String>(url: url, method: .delete, header: authToken)
+        URLSession(configuration: .default).load(resource) { resultData, _ in
+            completion()
+        }
+    }
+    
+    func performLoadMembers(id group: Int, completion: @escaping() -> Void) {
+        guard let url = URL(string: "\(groupURL)/\(group)/users") else {
+            return
+        }
+        let resource = Resource<String>(url: url, method: .get, header: authToken)
         URLSession(configuration: .default).load(resource) { resultData, _ in
             completion()
         }
