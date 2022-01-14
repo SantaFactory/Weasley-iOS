@@ -45,6 +45,10 @@ class GroupListViewController: UIViewController {
         } else {
             navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "ellipsis.circle"), style: .plain, target: self, action: #selector(showActionSheet))
         }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         appDelegate.locationManager.requestWhenInUseAuthorization()
         appDelegate.locationManager.requestLocation()
         viewModel.loadGroups {
@@ -162,9 +166,10 @@ extension GroupListViewController: UITableViewDataSource {
 extension GroupListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        let destinationVC = MainViewController()
-        destinationVC.modalPresentationStyle = .overFullScreen
-        present(destinationVC, animated: true, completion: nil)
+        let destinationVC = MainViewController(viewModel: Detail(group: viewModel.groups![indexPath.row]))
+        destinationVC.modalPresentationStyle = .formSheet
+        showDetailViewController(destinationVC, sender: self)
+        //present(destinationVC, animated: true, completion: nil)
     }
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
@@ -189,6 +194,7 @@ extension GroupListViewController: UITableViewDelegate {
         
         return UISwipeActionsConfiguration(actions: [delete])
     }
+    
 }
 
 //MARK: Table view cell
