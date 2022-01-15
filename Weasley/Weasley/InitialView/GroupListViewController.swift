@@ -169,13 +169,12 @@ extension GroupListViewController: UITableViewDelegate {
         let destinationVC = DetailViewController(viewModel: Detail(group: viewModel.groups![indexPath.row]))
         destinationVC.modalPresentationStyle = .formSheet
         showDetailViewController(destinationVC, sender: self)
-        //present(destinationVC, animated: true, completion: nil)
     }
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let delete = UIContextualAction(style: .destructive, title: nil) { (action, view, completion) in
-            let alert = UIAlertController(title: "Delete Group", message: "", preferredStyle: .alert)
-            let delete = UIAlertAction(title: "delete", style: .destructive) { [weak self] _ in
+            let alert = UIAlertController(title: nil, message: "Are you sure you want to leave this group? If you do, you must be invited to join the group again.".localized, preferredStyle: .actionSheet)
+            let delete = UIAlertAction(title: "Leave a group".localized, style: .destructive) { [weak self] _ in
                 let id = self?.viewModel.groups![indexPath.row].id
                 self?.viewModel.deleteGroup(groupID: id!) {
                     self?.viewModel.loadGroups {
@@ -183,7 +182,7 @@ extension GroupListViewController: UITableViewDelegate {
                     }
                 }
             }
-            let cancel = UIAlertAction(title: "Cancel", style: .cancel) { _ in
+            let cancel = UIAlertAction(title: "Cancel".localized, style: .cancel) { _ in
                 completion(false)
             }
             alert.addAction(delete)
