@@ -76,6 +76,7 @@ class DetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        groupNameLabel.text = viewModel.groupName
         membersTableView.delegate = self
         membersTableView.dataSource = self
         self.userLocationMapView.delegate = self
@@ -146,7 +147,6 @@ class DetailViewController: UIViewController {
         label.frame = CGRect(x: UIScreen.main.bounds.width * 0, y: 0, width: self.view.frame.width, height: 40)
         label.font = UIFont.systemFont(ofSize: 30, weight: .black)
         label.backgroundColor = .clear
-        label.text = "Hello World!"
         label.textColor = color
         label.textAlignment = .center
         return label
@@ -178,18 +178,16 @@ class DetailViewController: UIViewController {
         return button
     }()
     
-    private func setMemberMenu(index member: Int) -> UIMenu {
+    private func setMemberMenu(index: Int) -> UIMenu {
         let items = [
             UIAction(title: "Request Location", image: UIImage(systemName: "exclamationmark.bubble"), handler: { _ in
                 //TODO: Send Push
             }),
-            UIAction(title: "Show Location", image: UIImage(systemName: "binoculars.fill"), handler: { _ in
-                //TODO: Show Map
+            UIAction(title: "Show Current Location", image: UIImage(systemName: "binoculars.fill"), handler: { _ in
                 let mapView = self.userLocationMapView
                 mapView.removeOverlays(mapView.overlays)
-                let loc = CLLocationCoordinate2D(latitude: 37.365, longitude: 127.107)
-                //MARK: SET MEMBER INDEX
-                //let loc = CLLocationCoordinate2D(latitude: <#T##CLLocationDegrees#>, longitude: <#T##CLLocationDegrees#>)
+                let member = self.viewModel.members![index]
+                let loc = CLLocationCoordinate2D(latitude: member.latitude, longitude: member.longitude)
                 let circle = MKCircle(center: loc, radius: 200)
                 let span = MKCoordinateSpan(latitudeDelta: 0.005, longitudeDelta: 0.005)
                 mapView.setRegion(MKCoordinateRegion(center: loc, span: span), animated: true)
@@ -239,7 +237,7 @@ extension DetailViewController: UITableViewDelegate, UITableViewDataSource {
         return UIContextMenuConfiguration(identifier: nil,
                                           previewProvider: nil,
                                           actionProvider: {_ in
-            return self.setMemberMenu(index: 0)
+            return self.setMemberMenu(index: indexPath.row)
         })
     }
 }
