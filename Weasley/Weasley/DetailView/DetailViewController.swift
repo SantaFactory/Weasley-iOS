@@ -10,9 +10,18 @@ import SnapKit
 import MapKit
 
 class DetailViewController: UIViewController {
-    /**
-        [Email : Needle View]
-     */
+    
+    var viewModel: Detail
+    
+    init(viewModel: Detail) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     var needles = [String : Needle]()
     
     override func loadView() {
@@ -73,20 +82,27 @@ class DetailViewController: UIViewController {
         self.userLocationMapView.alpha = 0
     }
     
-    func loadNeedles() {
-//        for user in sampleUser {
-//            let needle = Needle()
-//            //needle.text = viewModel.currentUser
-//            needle.value = user.area.location
-//            self.view.addSubview(needle)
-//            needle.snp.makeConstraints { make in
-//                make.centerX.equalTo(arcLocationLabel.snp.centerX)
-//                make.centerY.equalTo(arcLocationLabel.snp.centerY)
-//            }
-//            //needles.updateValue(needle, forKey: viewModel.currentUser)
-//        }
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        viewModel.loadGroupDetail {
+            self.membersTableView.reloadData()
+        }
     }
-
+    
+    func loadNeedles() {
+        //        for user in sampleUser {
+        //            let needle = Needle()
+        //            //needle.text = viewModel.currentUser
+        //            needle.value = user.area.location
+        //            self.view.addSubview(needle)
+        //            needle.snp.makeConstraints { make in
+        //                make.centerX.equalTo(arcLocationLabel.snp.centerX)
+        //                make.centerY.equalTo(arcLocationLabel.snp.centerY)
+        //            }
+        //            //needles.updateValue(needle, forKey: viewModel.currentUser)
+        //        }
+    }
+    
     //MARK: Sample load view
     func moveNeedle() {
         DispatchQueue.main.async {
@@ -207,14 +223,15 @@ extension DetailViewController {
 //MARK: TABLE VIEW DELEGATE
 extension DetailViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return viewModel.members?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: MemberCell.reuseID, for: indexPath) as? MemberCell else {
            return UITableViewCell()
         }
-        cell.textLabel?.text = "Test"
+        cell.nameLabel.text = viewModel.members?[indexPath.row].userName
+        
         return cell
     }
     
