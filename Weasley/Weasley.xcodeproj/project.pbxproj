@@ -15,7 +15,7 @@
 		7F3A480D2758C06300B3D104 /* MainViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F3A480C2758C06200B3D104 /* MainViewCell.swift */; };
 		7F4302612726D89400FA594F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F4302602726D89400FA594F /* AppDelegate.swift */; };
 		7F4302632726D89400FA594F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F4302622726D89400FA594F /* SceneDelegate.swift */; };
-		7F4302652726D89400FA594F /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F4302642726D89400FA594F /* MainViewController.swift */; };
+		7F4302652726D89400FA594F /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F4302642726D89400FA594F /* DetailViewController.swift */; };
 		7F43026A2726D89900FA594F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7F4302692726D89900FA594F /* Assets.xcassets */; };
 		7F43026D2726D89900FA594F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7F43026B2726D89900FA594F /* LaunchScreen.storyboard */; };
 		7F46B8E027280C1E002B2E78 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F46B8DF27280C1E002B2E78 /* LoginViewController.swift */; };
@@ -68,7 +68,7 @@
 		7F43025D2726D89400FA594F /* Weasley.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Weasley.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7F4302602726D89400FA594F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7F4302622726D89400FA594F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		7F4302642726D89400FA594F /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		7F4302642726D89400FA594F /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		7F4302692726D89900FA594F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7F43026C2726D89900FA594F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7F43026E2726D89900FA594F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -175,7 +175,7 @@
 				7FE87A13273B91CA00301A94 /* ViewModel */,
 				7F8A4FD52730D60F00656E0A /* LoginView */,
 				7FC1ACAA27686422007C7F0B /* InitialView */,
-				7F8A4FD72730D6D700656E0A /* MainView */,
+				7F8A4FD72730D6D700656E0A /* DetailView */,
 				7FF5C8C8275F417700DE24DE /* SettingView */,
 				7F43026B2726D89900FA594F /* LaunchScreen.storyboard */,
 				7FE0D9CD273F9BE200512B07 /* GoogleService-Info.plist */,
@@ -222,16 +222,16 @@
 			path = Util;
 			sourceTree = "<group>";
 		};
-		7F8A4FD72730D6D700656E0A /* MainView */ = {
+		7F8A4FD72730D6D700656E0A /* DetailView */ = {
 			isa = PBXGroup;
 			children = (
 				7FA1C8AB272CF46500D2B4E0 /* ClockView.swift */,
 				7F8A4FCD272FA8A900656E0A /* NeedleView.swift */,
 				7F8A500D2734D5F700656E0A /* LocationLabel.swift */,
-				7F4302642726D89400FA594F /* MainViewController.swift */,
+				7F4302642726D89400FA594F /* DetailViewController.swift */,
 				7F3A480C2758C06200B3D104 /* MainViewCell.swift */,
 			);
-			path = MainView;
+			path = DetailView;
 			sourceTree = "<group>";
 		};
 		7FC1ACAA27686422007C7F0B /* InitialView */ = {
@@ -413,7 +413,7 @@
 				7F2865572771B27800DAF9D2 /* GroupAPIService.swift in Sources */,
 				7F7FCD24276D6AD1005ADD27 /* GroupListViewController.swift in Sources */,
 				7F7FCD21276C41FB005ADD27 /* EditPlaceViewController.swift in Sources */,
-				7F4302652726D89400FA594F /* MainViewController.swift in Sources */,
+				7F4302652726D89400FA594F /* DetailViewController.swift in Sources */,
 				7F7FCD1B276C3BA7005ADD27 /* SettingTableViewCell.swift in Sources */,
 				7F8A4FDB2730F02000656E0A /* Location.swift in Sources */,
 				7FA1C8AC272CF46500D2B4E0 /* ClockView.swift in Sources */,

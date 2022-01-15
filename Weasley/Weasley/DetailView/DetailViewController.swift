@@ -9,8 +9,7 @@ import UIKit
 import SnapKit
 import MapKit
 
-class MainViewController: UIViewController {
-
+class DetailViewController: UIViewController {
     /**
         [Email : Needle View]
      */
@@ -72,22 +71,20 @@ class MainViewController: UIViewController {
         membersTableView.dataSource = self
         self.userLocationMapView.delegate = self
         self.userLocationMapView.alpha = 0
-        self.hero.isEnabled = true
-        self.view.hero.id = "main"
     }
     
     func loadNeedles() {
-        for user in sampleUser {
-            let needle = Needle()
-            //needle.text = viewModel.currentUser
-            needle.value = user.area.location
-            self.view.addSubview(needle)
-            needle.snp.makeConstraints { make in
-                make.centerX.equalTo(arcLocationLabel.snp.centerX)
-                make.centerY.equalTo(arcLocationLabel.snp.centerY)
-            }
-            //needles.updateValue(needle, forKey: viewModel.currentUser)
-        }
+//        for user in sampleUser {
+//            let needle = Needle()
+//            //needle.text = viewModel.currentUser
+//            needle.value = user.area.location
+//            self.view.addSubview(needle)
+//            needle.snp.makeConstraints { make in
+//                make.centerX.equalTo(arcLocationLabel.snp.centerX)
+//                make.centerY.equalTo(arcLocationLabel.snp.centerY)
+//            }
+//            //needles.updateValue(needle, forKey: viewModel.currentUser)
+//        }
     }
 
     //MARK: Sample load view
@@ -143,7 +140,7 @@ class MainViewController: UIViewController {
     private lazy var membersTableView: UITableView = {
         let tableView = UITableView(frame: CGRect.zero, style: .insetGrouped)
         tableView.backgroundColor = .clear
-        tableView.register(MemberCell.self, forCellReuseIdentifier: "memberCell")
+        tableView.register(MemberCell.self, forCellReuseIdentifier: MemberCell.reuseID)
         return tableView
     }()
     
@@ -188,7 +185,7 @@ class MainViewController: UIViewController {
     }
 }
 
-extension MainViewController {
+extension DetailViewController {
     
     @objc private func back() {
         self.dismiss(animated: true, completion: nil)
@@ -208,13 +205,13 @@ extension MainViewController {
 }
 
 //MARK: TABLE VIEW DELEGATE
-extension MainViewController: UITableViewDelegate, UITableViewDataSource {
+extension DetailViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "memberCell", for: indexPath) as? MemberCell else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: MemberCell.reuseID, for: indexPath) as? MemberCell else {
            return UITableViewCell()
         }
         cell.textLabel?.text = "Test"
@@ -230,7 +227,7 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
-extension MainViewController: MKMapViewDelegate {
+extension DetailViewController: MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
         guard let circleOverlay = overlay as? MKCircle else {
             return MKOverlayRenderer()
