@@ -60,5 +60,19 @@ class GroupAPIService {
             completion()
         }
     }
+    
+    func performLoadGroupDetail(id group: Int, completion: @escaping(Result<GroupDetail, APIError>) -> Void) {
+        guard let url = URL(string: "\(groupURL)/\(group)") else {
+            return
+        }
+        let resource = Resource<GroupDetail>(url: url, method: .get, header: authToken)
+        URLSession(configuration: .default).load(resource) { resultData, _ in
+            guard let data = resultData else {
+                completion(.failure(.noData))
+                return
+            }
+            completion(.success(data))
+        }
+    }
 }
 
