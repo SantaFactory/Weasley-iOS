@@ -166,7 +166,7 @@ extension GroupListViewController: UITableViewDataSource {
 extension GroupListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        let destinationVC = MainViewController(viewModel: Detail(group: viewModel.groups![indexPath.row]))
+        let destinationVC = DetailViewController(viewModel: Detail(group: viewModel.groups![indexPath.row]))
         destinationVC.modalPresentationStyle = .formSheet
         showDetailViewController(destinationVC, sender: self)
         //present(destinationVC, animated: true, completion: nil)
