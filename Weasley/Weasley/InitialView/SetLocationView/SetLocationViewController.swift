@@ -107,15 +107,7 @@ class SetLocationViewController: UIViewController {
     
     lazy var nextButton: UIButton = {
         let button = UIButton()
-        gradientLayer.getGradientLayer(
-            colors: UIColor().themeColors,
-            alpha: 0.7,
-            frame: self.view.bounds,
-            startPoint: CGPoint(x: 0.0, y: 0.5),
-            endPoint: CGPoint(x: 1.0, y: 0.5)
-        )
-        let color = UIColor.gradientColor(bounds: self.view.bounds, gradientLayer: gradientLayer)
-        button.backgroundColor = color
+        button.backgroundColor = .themeGreen
         button.defaultAction()
         button.addTarget(self, action: #selector(goNext), for: .touchUpInside)
         return button
@@ -123,16 +115,8 @@ class SetLocationViewController: UIViewController {
     
     lazy var skipButton: UIButton = {
         let button = UIButton()
-        gradientLayer.getGradientLayer(
-            colors: UIColor().themeColors,
-            alpha: 0.7,
-            frame: self.view.bounds,
-            startPoint: CGPoint(x: 0.0, y: 0.5),
-            endPoint: CGPoint(x: 1.0, y: 0.5)
-        )
-        let color = UIColor.gradientColor(bounds: self.view.bounds, gradientLayer: gradientLayer)
         button.setTitle("Skip".localized, for: .normal)
-        button.setTitleColor(color, for: .normal)
+        button.setTitleColor(.themeGreen, for: .normal)
         button.backgroundColor = .clear
         button.defaultAction()
         button.addTarget(self, action: #selector(skip), for: .touchUpInside)
