@@ -85,17 +85,9 @@ class SetGroupNameViewController: UIViewController {
 
     lazy var nextButton: UIButton = {
         let button = UIButton()
-        let gradientLayer = CAGradientLayer()
-        gradientLayer.getGradientLayer(
-            colors: UIColor().themeColors,
-            alpha: 0.6,
-            frame: self.view.bounds,
-            startPoint: CGPoint(x: 0.0, y: 0.0),
-            endPoint: CGPoint(x: 1.0, y: 1.0)
-        )
         button.setTitle("Next".localized, for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 20, weight: .bold)
-        button.backgroundColor = .gradientColor(bounds: self.view.bounds, gradientLayer: gradientLayer)
+        button.backgroundColor = .themeGreen
         button.defaultAction()
         button.addTarget(self, action: #selector(goNext), for: .touchUpInside)
         return button

@@ -7,13 +7,11 @@
 
 import UIKit
 import SnapKit
-import CoreMIDI
 
 class GroupListViewController: UIViewController {
     
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     let viewModel = UsersGroups.shared
-    let gradientLayer = CAGradientLayer()
     
     override func loadView() {
         super.loadView()
@@ -23,8 +21,8 @@ class GroupListViewController: UIViewController {
         
         addGroupButton.snp.makeConstraints { make in
             make.bottom.equalTo(self.view.safeArea.bottom).offset(-10)
-            make.leading.equalToSuperview().offset(40)
-            make.trailing.equalToSuperview().offset(-40)
+            make.leading.equalToSuperview().offset(16)
+            make.trailing.equalToSuperview().offset(-16)
         }
         groupTableView.snp.makeConstraints { make in
             make.top.equalTo(self.view.snp.top)
@@ -38,6 +36,7 @@ class GroupListViewController: UIViewController {
         super.viewDidLoad()
         title = "My Group".localized
         navigationController?.navigationBar.prefersLargeTitles = true
+        navigationController?.navigationBar.tintColor = UIColor.themeGreen
         groupTableView.dataSource = self
         groupTableView.delegate = self
         if #available(iOS 14.0, *) {
@@ -93,21 +92,11 @@ class GroupListViewController: UIViewController {
     
     private lazy var addGroupButton: UIButton = {
         let button = UIButton(type: .system)
-        gradientLayer.getGradientLayer(
-            colors: UIColor().themeColors,
-            alpha: 1,
-            frame: self.view.bounds,
-            startPoint: CGPoint(x: 0.0, y: 0.5),
-            endPoint: CGPoint(x: 1.0, y: 0.5)
-        )
-        let color = UIColor.gradientColor(bounds: self.view.bounds, gradientLayer: gradientLayer)
-        button.tintColor = color
+        button.tintColor = UIColor.white
         button.setTitle("Add Group".localized, for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 30, weight: .black)
-        button.backgroundColor = .systemBackground
+        button.backgroundColor = .themeGreen
         button.addTarget(self, action: #selector(addGroup), for: .touchUpInside)
-        button.layer.borderWidth = 2
-        button.layer.borderColor = color?.cgColor
         return button
     }()
 }
@@ -147,15 +136,6 @@ extension GroupListViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: GroupTableViewCell.reuseID, for: indexPath) as! GroupTableViewCell
-        let gradientLayer = CAGradientLayer()
-        gradientLayer.getGradientLayer(
-            colors: UIColor().themeColors,
-            alpha: 0.6,
-            frame: tableView.bounds,
-            startPoint: CGPoint(x: 0.0, y: 0.5),
-            endPoint: CGPoint(x: 1.0, y: 0.5)
-        )
-        cell.backgroundColor = .gradientColor(bounds: tableView.bounds, gradientLayer: gradientLayer)
         cell.groupNameLabel.text = viewModel.groups?[indexPath.row].name
         cell.groupCountOfMember.text = "\(viewModel.groups?[indexPath.row].countOfMemeber ?? 1)"
         return cell
@@ -221,8 +201,8 @@ class GroupTableViewCell: UITableViewCell {
     
     fileprivate lazy var groupNameLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 20, weight: .medium)
-        label.textColor = .white
+        label.font = UIFont.systemFont(ofSize: 30, weight: .black)
+        label.textColor = .themeGreen
         return label
     }()
     
