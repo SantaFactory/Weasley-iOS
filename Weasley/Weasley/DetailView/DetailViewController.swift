@@ -22,8 +22,6 @@ class DetailViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    var needles = [String : Needle]()
-    
     override func loadView() {
         super.loadView()
         view.backgroundColor = .secondarySystemBackground
@@ -37,7 +35,7 @@ class DetailViewController: UIViewController {
         groupNameLabel.snp.makeConstraints { make in
             make.leading.equalToSuperview()
             make.trailing.equalToSuperview()
-            make.top.equalTo(self.view.safeArea.top)
+            make.top.equalTo(self.view.safeArea.top).offset(20)
         }
         clockView.snp.makeConstraints { make in
             make.height.equalTo(self.view.frame.width)
@@ -69,7 +67,7 @@ class DetailViewController: UIViewController {
             make.bottom.equalTo(self.view.safeArea.bottom).offset(-20)
         }
         inviteButton.snp.makeConstraints { make in
-            make.leading.equalTo(backButton.snp.trailing).offset(10)
+            make.trailing.equalToSuperview().offset(-20)
             make.centerY.equalTo(backButton.snp.centerY)
         }
     }
@@ -85,23 +83,28 @@ class DetailViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        viewModel.loadGroupDetail {
-            self.membersTableView.reloadData()
-        }
+//        viewModel.loadGroupDetail {
+//            self.membersTableView.reloadData()
+//        }
+//        viewModel.loadMembers()
+        loadNeedles()
     }
     
+    var needles = [String : Needle]()
+    
     func loadNeedles() {
-        //        for user in sampleUser {
-        //            let needle = Needle()
-        //            //needle.text = viewModel.currentUser
-        //            needle.value = user.area.location
-        //            self.view.addSubview(needle)
-        //            needle.snp.makeConstraints { make in
-        //                make.centerX.equalTo(arcLocationLabel.snp.centerX)
-        //                make.centerY.equalTo(arcLocationLabel.snp.centerY)
-        //            }
-        //            //needles.updateValue(needle, forKey: viewModel.currentUser)
-        //        }
+        for member in viewModel.members! {
+            let needle = Needle()
+            needle.text = member.userName
+            //TODO: Set needle.value
+            self.view.addSubview(needle)
+            needle.snp.makeConstraints { make in
+                make.centerX.equalTo(arcLocationLabel.snp.centerX)
+                make.centerY.equalTo(arcLocationLabel.snp.centerY)
+            }
+            //TODO: Set needles Key
+            needles.updateValue(needle, forKey: "Test")
+        }
     }
     
     //MARK: Sample load view
@@ -136,18 +139,9 @@ class DetailViewController: UIViewController {
     private lazy var groupNameLabel: UILabel = {
         let label = UILabel()
         let gradientLayer = CAGradientLayer()
-        gradientLayer.getGradientLayer(
-            colors: UIColor().themeColors,
-            alpha: 0.6,
-            frame: self.view.bounds,
-            startPoint: CGPoint(x: 0.0, y: 0.5),
-            endPoint: CGPoint(x: 1.0, y: 0.5)
-        )
-        let color = UIColor.gradientColor(bounds: self.view.bounds, gradientLayer: gradientLayer)
         label.frame = CGRect(x: UIScreen.main.bounds.width * 0, y: 0, width: self.view.frame.width, height: 40)
-        label.font = UIFont.systemFont(ofSize: 30, weight: .black)
+        label.font = UIFont.systemFont(ofSize: 30, weight: .light)
         label.backgroundColor = .clear
-        label.textColor = color
         label.textAlignment = .center
         return label
     }()
@@ -165,16 +159,19 @@ class DetailViewController: UIViewController {
         button.addTarget(self, action: #selector(back), for: .touchUpInside)
         let configuration = UIImage.SymbolConfiguration(pointSize: 20)
         button.setImage(UIImage(systemName: "chevron.backward.circle.fill", withConfiguration: configuration), for: .normal)
-        button.tintColor = .systemGray2
+        button.tintColor = .themeGreen
         return button
     }()
     
     private lazy var inviteButton: UIButton = {
         let button = UIButton(type: .system)
         button.addTarget(self, action: #selector(inviteMember), for: .touchUpInside)
-        let configuration = UIImage.SymbolConfiguration(pointSize: 20)
-        button.setImage(UIImage(systemName: "paperplane.fill", withConfiguration: configuration), for: .normal)
-        button.tintColor = .systemGray2
+        if #available(iOS 15.0, *) {
+            button.configuration = .filled()
+        }
+        button.setTitle("Invite friends", for: .normal)
+        button.setImage(UIImage(systemName: "paperplane.fill"), for: .normal)
+        button.tintColor = .themeGreen
         return button
     }()
     
