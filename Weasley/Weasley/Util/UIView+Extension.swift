@@ -37,8 +37,8 @@ extension UIView {
             }
     }
     
-    func animateToHide() {
-        self.alpha = 1
+    func animateToHide(showAlpha alpha: Double) {
+        self.alpha = alpha
         self.hideAnimator.startAnimation()
     }
  
