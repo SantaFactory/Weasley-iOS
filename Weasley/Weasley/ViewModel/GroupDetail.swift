@@ -19,13 +19,21 @@ class Detail {
         return groupData!.id
     }()
     
-    var members: [Member]?
+    var members: [DumpMember]?
+    
+    struct DumpMember {
+        let id:Int
+        let name: String
+        let currentPlace: Location
+        let latitude: Double
+        let longitude: Double
+    }
     
     func loadGroupDetail(completion: @escaping() -> Void) {
         GroupAPIService().performLoadGroupDetail(id: groupID) { [weak self] data in
             switch data {
             case .success(let detail):
-                self?.members = detail.data.members
+                //self?.members = detail.data.members
                 DispatchQueue.main.async {
                     completion()
                 }
@@ -45,6 +53,7 @@ class Detail {
     
     init(group data: GroupData) {
         self.groupData = data
+        self.members = [DumpMember(id: 1, name: "iDoyoung", currentPlace: .work, latitude: 37.256634401328036, longitude: 127.0610867098238)]
     }
     //TODO: Member Place
     //TODO: Invite Member
