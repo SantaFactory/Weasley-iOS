@@ -29,7 +29,7 @@ class DetailViewController: UIViewController {
         self.view.addSubview(arcLocationLabel)
         self.view.addSubview(membersTableView)
         self.view.addSubview(groupNameLabel)
-        self.clockView.addSubview(userLocationMapView)
+        self.arcLocationLabel.addSubview(userLocationMapView)
         self.view.addSubview(backButton)
         self.view.addSubview(inviteButton)
         groupNameLabel.snp.makeConstraints { make in
@@ -51,10 +51,10 @@ class DetailViewController: UIViewController {
             make.trailing.equalTo(clockView.snp.trailing)
         }
         userLocationMapView.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(20)
-            make.bottom.equalToSuperview().offset(-20)
-            make.leading.equalToSuperview().offset(20)
-            make.trailing.equalToSuperview().offset(-20)
+            make.top.equalToSuperview().offset(60)
+            make.bottom.equalToSuperview().offset(-60)
+            make.leading.equalToSuperview().offset(60)
+            make.trailing.equalToSuperview().offset(-60)
         }
         membersTableView.snp.makeConstraints { make in
             make.top.equalTo(clockView.snp.bottom)
@@ -90,20 +90,30 @@ class DetailViewController: UIViewController {
         loadNeedles()
     }
     
-    var needles = [String : Needle]()
+    var needles = [Int : Needle]()
     
     func loadNeedles() {
         for member in viewModel.members! {
             let needle = Needle()
-            needle.text = member.userName
+            let shadow = NSShadow()
+            shadow.shadowColor = UIColor.green
+            shadow.shadowBlurRadius = 5
+            let attributes: [NSAttributedString.Key: Any] = [
+                .shadow: shadow
+            ]
+            needle.attributedText  = NSAttributedString(string: member.name, attributes: attributes)
+            needle.textAlignment = .right
+            needle.font = UIFont.systemFont(ofSize: 20, weight: .light)
             //TODO: Set needle.value
+            needle.value = member.currentPlace.location
             self.view.addSubview(needle)
             needle.snp.makeConstraints { make in
+                make.width.equalTo((arcLocationLabel.bounds.width / 2) - 40)
                 make.centerX.equalTo(arcLocationLabel.snp.centerX)
                 make.centerY.equalTo(arcLocationLabel.snp.centerY)
             }
             //TODO: Set needles Key
-            needles.updateValue(needle, forKey: "Test")
+            needles.updateValue(needle, forKey: member.id)
         }
     }
     
@@ -132,7 +142,7 @@ class DetailViewController: UIViewController {
     
     private lazy var userLocationMapView: MKMapView = {
         let mapView = MKMapView()
-        mapView.rounded((UIScreen.main.bounds.width - 40) / 2)
+        mapView.rounded((UIScreen.main.bounds.width - 120) / 2)
         return mapView
     }()
     
@@ -189,7 +199,7 @@ class DetailViewController: UIViewController {
                 let span = MKCoordinateSpan(latitudeDelta: 0.005, longitudeDelta: 0.005)
                 mapView.setRegion(MKCoordinateRegion(center: loc, span: span), animated: true)
                 mapView.addOverlay(circle)
-                mapView.animateToHide()
+                mapView.animateToHide(showAlpha: 0.3)
             })
         ]
         return UIMenu(title: "", options: [], children: items)
@@ -225,9 +235,21 @@ extension DetailViewController: UITableViewDelegate, UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: MemberCell.reuseID, for: indexPath) as? MemberCell else {
            return UITableViewCell()
         }
-        cell.nameLabel.text = viewModel.members?[indexPath.row].userName
+        cell.selectionStyle = .none
+        cell.nameLabel.text = viewModel.members?[indexPath.row].name
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let member = viewModel.members?[indexPath.row] else {
+            return
+        }
+        DispatchQueue.main.async {
+            UIView.animate(withDuration: 2) {
+                self.needles[member.id]!.value = member.currentPlace.location
+            }
+        }
     }
     
     func tableView(_ tableView: UITableView, contextMenuConfigurationForRowAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
@@ -245,8 +267,8 @@ extension DetailViewController: MKMapViewDelegate {
             return MKOverlayRenderer()
         }
         let circleRenderer = MKCircleRenderer(overlay: circleOverlay)
-        circleRenderer.fillColor = .systemBlue
-        circleRenderer.alpha = 0.7
+        circleRenderer.fillColor = .systemRed
+        circleRenderer.alpha = 0.4
         return circleRenderer
     }
 }
@@ -259,10 +281,9 @@ class MemberCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         contentView.addSubview(nameLabel)
         nameLabel.snp.makeConstraints { make in
-            make.top.equalToSuperview()
-            make.leading.equalToSuperview()
-            make.bottom.equalToSuperview()
-            make.trailing.equalToSuperview()
+            make.leading.equalToSuperview().offset(20)
+            make.trailing.equalToSuperview().offset(-20)
+            make.centerY.equalToSuperview()
         }
     }
     
@@ -272,6 +293,7 @@ class MemberCell: UITableViewCell {
     
     fileprivate lazy var nameLabel: UILabel = {
         let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 20, weight: .medium)
         return label
     }()
 }

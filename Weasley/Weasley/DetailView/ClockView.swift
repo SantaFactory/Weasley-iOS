@@ -8,8 +8,8 @@
 import UIKit
 
 class Clock: UIView {
-    
-    let gradientLayer = CAGradientLayer()
+    let x = [1.0, 1.0, 1.0, 0.5, 0, 0, 0, 0.5]
+    let y = [0, 0.5, 1.0, 1.0, 1.0, 0.5, 0, 0]
     var startAngle: CGFloat = (-(.pi) / 2)
     var endAngle: CGFloat = 0.0
   
@@ -17,42 +17,20 @@ class Clock: UIView {
         let center = CGPoint(x: rect.midX, y: rect.midY)
         let radius = min(rect.size.width / 2.0, rect.size.height / 2.0) - 20
         
-        let path = UIBezierPath()
-        path.addArc(
-            withCenter: center,
-            radius: radius,
-            startAngle: 0,
-            endAngle: (360 * .pi) / 180,
-            clockwise: true
-        )
-        gradientLayer.getGradientLayer(
-            colors: UIColor().themeColors,
-            alpha: 0.6,
-            frame: rect,
-            startPoint: CGPoint(x: 0.5, y: 0.5),
-            endPoint: CGPoint(x: 0.5, y: 0.0)
-        )
-        self.gradientLayer.type = .conic
-        
-        let shapeMask = CAShapeLayer()
-        shapeMask.path = path.cgPath
-        gradientLayer.mask = shapeMask
-        self.layer.addSublayer(gradientLayer)
-        
         for index in 0..<8 {
-            let path = UIBezierPath()
-            endAngle = (1 / 8) * (.pi * 2)
-            path.move(to: center)
-            path.addArc(withCenter: center,
-                        radius: radius,
-                        startAngle: startAngle,
-                        endAngle: startAngle + endAngle,
-                        clockwise: true
-            )
-            UIColor().themeColors[index].withAlphaComponent(0.2).set()
-            path.fill()
-            path.close()
-            startAngle += endAngle
+            let gradientLayer: CAGradientLayer = CAGradientLayer()
+            gradientLayer.colors = [UIColor.themeGreen.cgColor, UIColor.clear.cgColor]
+            gradientLayer.startPoint = CGPoint(x: 0.5, y: 0.5)
+            gradientLayer.endPoint = CGPoint(x: x[index], y: y[index])
+            gradientLayer.type = .conic
+            gradientLayer.frame = rect
+            self.layer.addSublayer(gradientLayer)
         }
+        
+        let path = UIBezierPath(arcCenter: center, radius: radius, startAngle: 0, endAngle: (360 * .pi) / 180, clockwise: true)
+        let sliceLayer = CAShapeLayer()
+        sliceLayer.frame = rect
+        sliceLayer.path = path.cgPath
+        self.layer.mask = sliceLayer
     }
 }
