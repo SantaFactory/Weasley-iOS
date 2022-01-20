@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 52;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -28,7 +28,6 @@
 		7F7FCD21276C41FB005ADD27 /* EditPlaceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F7FCD20276C41FB005ADD27 /* EditPlaceViewController.swift */; };
 		7F7FCD24276D6AD1005ADD27 /* GroupListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F7FCD23276D6AD1005ADD27 /* GroupListViewController.swift */; };
 		7F7FCD26276D84B3005ADD27 /* lf30_editor_lqe82iao.json in Resources */ = {isa = PBXBuildFile; fileRef = 7F7FCD25276D84B3005ADD27 /* lf30_editor_lqe82iao.json */; };
-		7F7FCD36276EB3A3005ADD27 /* Hero in Frameworks */ = {isa = PBXBuildFile; productRef = 7F7FCD35276EB3A3005ADD27 /* Hero */; };
 		7F7FCD38276EC2A0005ADD27 /* UIButton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F7FCD37276EC2A0005ADD27 /* UIButton+Extension.swift */; };
 		7F7FCD3A27717C3B005ADD27 /* LoginAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F7FCD3927717C3A005ADD27 /* LoginAPIService.swift */; };
 		7F8A4FCE272FA8A900656E0A /* NeedleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F8A4FCD272FA8A900656E0A /* NeedleView.swift */; };
@@ -46,7 +45,6 @@
 		7FC1ACBC276A1632007C7F0B /* SearchedLocationTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FC1ACBB276A1632007C7F0B /* SearchedLocationTableViewController.swift */; };
 		7FC1ACBE276AD8C8007C7F0B /* SetLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FC1ACBD276AD8C8007C7F0B /* SetLocationViewController.swift */; };
 		7FC1ACC0276AEDCC007C7F0B /* SetWorkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FC1ACBF276AEDCC007C7F0B /* SetWorkViewController.swift */; };
-		7FC1ACC5276B0108007C7F0B /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 7FC1ACC4276B0108007C7F0B /* Lottie */; };
 		7FD21590278D9CE100A2C61C /* GroupDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FD2158F278D9CE000A2C61C /* GroupDetail.swift */; };
 		7FE0D9CE273F9BE200512B07 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7FE0D9CD273F9BE200512B07 /* GoogleService-Info.plist */; };
 		7FE87A11273B90C600301A94 /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE87A10273B90C600301A94 /* Login.swift */; };
@@ -114,8 +112,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				7D99C284FC90961B3821D0C0 /* Pods_Weasley.framework in Frameworks */,
-				7F7FCD36276EB3A3005ADD27 /* Hero in Frameworks */,
-				7FC1ACC5276B0108007C7F0B /* Lottie in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -292,8 +288,6 @@
 			);
 			name = Weasley;
 			packageProductDependencies = (
-				7FC1ACC4276B0108007C7F0B /* Lottie */,
-				7F7FCD35276EB3A3005ADD27 /* Hero */,
 			);
 			productName = Weasley;
 			productReference = 7F43025D2726D89400FA594F /* Weasley.app */;
@@ -324,8 +318,6 @@
 			);
 			mainGroup = 7F4302542726D89400FA594F;
 			packageReferences = (
-				7FC1ACC3276B0108007C7F0B /* XCRemoteSwiftPackageReference "lottie-ios" */,
-				7F7FCD34276EB3A3005ADD27 /* XCRemoteSwiftPackageReference "Hero" */,
 			);
 			productRefGroup = 7F43025E2726D89400FA594F /* Products */;
 			projectDirPath = "";
@@ -644,39 +636,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		7F7FCD34276EB3A3005ADD27 /* XCRemoteSwiftPackageReference "Hero" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/HeroTransitions/Hero";
-			requirement = {
-				kind = versionRange;
-				maximumVersion = 1.5.0;
-				minimumVersion = 1.0.0;
-			};
-		};
-		7FC1ACC3276B0108007C7F0B /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/airbnb/lottie-ios";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 3.0.0;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		7F7FCD35276EB3A3005ADD27 /* Hero */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 7F7FCD34276EB3A3005ADD27 /* XCRemoteSwiftPackageReference "Hero" */;
-			productName = Hero;
-		};
-		7FC1ACC4276B0108007C7F0B /* Lottie */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 7FC1ACC3276B0108007C7F0B /* XCRemoteSwiftPackageReference "lottie-ios" */;
-			productName = Lottie;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 7F4302552726D89400FA594F /* Project object */;
 }
