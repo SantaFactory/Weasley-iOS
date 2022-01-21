@@ -12,4 +12,8 @@
 - 카카오톡, gmail, instagram 등은 네트워크 연결이 안된 상태에서 최근 데이터를 제공
 - RxSwift 적용
 
-## Download: Coming Soon 03.2022
+## Report wiki history.
+- 진행사항에 대한 리포트
+[Report](https://hyper-stealer-69c.notion.site/Watch-Ball-s-Wiki-a4b621ddd31f4def9c06b86ba3ece958)
+2022.01.21
+
