@@ -12,38 +12,40 @@ class GroupListViewController: UIViewController {
     
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     let viewModel = UsersGroups.shared
+    var alert: UIAlertController?
     
     override func loadView() {
         super.loadView()
         self.view.backgroundColor = .secondarySystemBackground
         self.view.addSubview(groupTableView)
-        self.view.addSubview(addGroupButton)
-        
-        addGroupButton.snp.makeConstraints { make in
-            make.bottom.equalTo(self.view.safeArea.bottom).offset(-10)
-            make.leading.equalToSuperview().offset(16)
-            make.trailing.equalToSuperview().offset(-16)
-        }
+        self.view.addSubview(toolbar)
+        self.view.addSubview(activityIndicatorView)
         groupTableView.snp.makeConstraints { make in
             make.top.equalTo(self.view.snp.top)
             make.leading.equalToSuperview()
             make.trailing.equalToSuperview()
-            make.bottom.equalTo(addGroupButton.snp.top)
+            make.bottom.equalTo(self.view.safeArea.bottom)
+        }
+        toolbar.snp.makeConstraints { make in
+            make.bottom.equalTo(self.view.safeArea.bottom)
+            make.leading.equalToSuperview()
+            make.trailing.equalToSuperview()
+        }
+        activityIndicatorView.snp.makeConstraints { make in
+            make.centerX.equalTo(toolbar)
+            make.centerY.equalTo(toolbar)
         }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        activityIndicatorView.startAnimating()
         title = "My Group".localized
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationController?.navigationBar.tintColor = UIColor.themeGreen
         groupTableView.dataSource = self
         groupTableView.delegate = self
-        if #available(iOS 14.0, *) {
-            navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "ellipsis.circle"), primaryAction: nil, menu: menu)
-        } else {
-            navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "ellipsis.circle"), style: .plain, target: self, action: #selector(showActionSheet))
-        }
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "gear"), style: .plain, target: self, action: #selector(goSetting))
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -52,6 +54,7 @@ class GroupListViewController: UIViewController {
         appDelegate.locationManager.requestLocation()
         viewModel.loadGroups {
             self.groupTableView.reloadData()
+            self.activityIndicatorView.stopAnimating()
         }
     }
    
@@ -62,23 +65,23 @@ class GroupListViewController: UIViewController {
     
     private lazy var menuItems: [UIAction] = {
         return [
-            UIAction(title: "Setting".localized, image: UIImage(systemName: "gearshape.fill"), handler: { _ in
-                self.goSetting()
+            UIAction(title: "Create a new group".localized, image: UIImage(systemName: "plus"), handler: { _ in
+                self.addGroup()
             }),
-            UIAction(title: "Sign Out".localized, image: UIImage(systemName: "rectangle.portrait.and.arrow.right"), handler: { _ in
-                self.signOut()
+            UIAction(title: "Join a group with key".localized, image: UIImage(systemName: "key"), handler: { _ in
+                self.joinGroup()
             })
         ]
     }()
     
     //MARK: Menu ...iOS 13.0
-    private lazy var alertActions: [UIAlertAction] = {
+    private lazy var alertAddGroupActions: [UIAlertAction] = {
         return [
-            UIAlertAction(title: "Setting".localized, style: .default, handler: { _ in
-                self.goSetting()
+            UIAlertAction(title: "Create a new group".localized, style: .default, handler: { _ in
+                self.addGroup()
             }),
-            UIAlertAction(title: "Sign Out".localized, style: .default, handler: { _ in
-                self.signOut()
+            UIAlertAction(title: "Join a group with key".localized, style: .default, handler: { _ in
+                self.joinGroup()
             }),
             UIAlertAction(title: "Cancel".localized, style: .cancel)
         ]
@@ -90,41 +93,77 @@ class GroupListViewController: UIViewController {
         return tableView
     }()
     
-    private lazy var addGroupButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.tintColor = UIColor.white
-        button.setTitle("Add Group".localized, for: .normal)
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 30, weight: .black)
-        button.backgroundColor = .themeGreen
-        button.addTarget(self, action: #selector(addGroup), for: .touchUpInside)
-        return button
+    private lazy var toolbar: UIToolbar = {
+        let toolbar = UIToolbar()
+        toolbar.isTranslucent = true
+        toolbar.setItems([profileButton, flexibleSpace, addButton], animated: true)
+        toolbar.tintColor = .themeGreen
+        return toolbar
     }()
+    
+    private lazy var addButton: UIBarButtonItem = {
+        if #available(iOS 14.0, *) {
+            return UIBarButtonItem(image: UIImage(systemName: "plus.circle"), menu: menu)
+        } else {
+            return UIBarButtonItem(image: UIImage(systemName: "plus.circle"), style: .plain, target: self, action: #selector(showActionSheet))
+        }
+    }()
+    
+    private lazy var flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
+    private lazy var profileButton = UIBarButtonItem(image: UIImage(systemName: "person.crop.circle"), style: .plain, target: self, action: #selector(setProfile))
+    private lazy var activityIndicatorView = UIActivityIndicatorView()
 }
 
 //MARK: Button Action
 extension GroupListViewController {
     
-    func signOut() {
-        Login().signOut()
-        dismiss(animated: true, completion: nil)
-    }
-    
-    func goSetting() {
+    @objc private func goSetting() {
         let destinationVC = SettingTableViewController()
-        self.navigationController?.pushViewController(destinationVC, animated: true)
+        destinationVC.modalPresentationStyle = .formSheet
+        present(destinationVC, animated: true, completion: nil)
     }
     
     @objc private func showActionSheet() {
-        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        for action in alertActions {
-            alert.addAction(action)
+        alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        for action in alertAddGroupActions {
+            alert?.addAction(action)
         }
-        self.present(alert, animated: true, completion: nil)
+        self.present(alert!, animated: true, completion: nil)
     }
     
     @objc func addGroup() {
         let destinationVC = SetGroupNameViewController()
         self.navigationController?.pushViewController(destinationVC, animated: true)
+    }
+    
+    @objc func joinGroup() {
+        alert = UIAlertController(title: "Join a Group", message: "Add a key.", preferredStyle: .alert)
+        let join = UIAlertAction(title: "Join".localized, style: .default) { [self] _ in
+            guard let key = self.alert?.textFields![0].text else {
+                return
+            }
+            //TODO: Join group API
+            print(key)
+        }
+        let cancel = UIAlertAction(title: "Cancel".localized, style: .cancel)
+        alert?.addTextField { [weak self] textField in
+            textField.placeholder = "Key"
+            textField.addTarget(self, action: #selector(self?.alertTextFieldDidChange), for: UIControl.Event.editingChanged)
+        }
+        alert?.addAction(join)
+        alert?.addAction(cancel)
+        join.isEnabled = false
+        self.present(alert!, animated: true, completion: nil)
+    }
+    
+    @objc func alertTextFieldDidChange(_ sender: UITextField) {
+           alert?.actions[0].isEnabled = sender.text!.count > 0
+    }
+    
+    @objc func setProfile() {
+        let destinationVC = ProfileViewController()
+        destinationVC.modalPresentationStyle = .pageSheet
+        present(destinationVC, animated: true, completion: nil)
     }
 }
 
@@ -147,7 +186,7 @@ extension GroupListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         let destinationVC = DetailViewController(viewModel: Detail(group: viewModel.groups![indexPath.row]))
-        destinationVC.modalPresentationStyle = .formSheet
+        destinationVC.modalPresentationStyle = .currentContext
         showDetailViewController(destinationVC, sender: self)
     }
     
