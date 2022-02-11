@@ -8,6 +8,7 @@
 import UIKit
 import MapKit
 import SnapKit
+import CoreLocation
 
 protocol ShowResultMap {
     func markAreaOverlay(result: MKLocalSearchCompletion)
@@ -18,7 +19,7 @@ class SetLocationViewController: UIViewController {
 
     var viewModel = UsersGroups.shared
     var destinationVC: UIViewController!
-    let gradientLayer = CAGradientLayer()
+    let locationManager = CLLocationManager()
     
     private var suggestionController: SearchedLocationTableViewController!
     private var searchController: UISearchController!
@@ -34,6 +35,7 @@ class SetLocationViewController: UIViewController {
         self.view.backgroundColor = .systemBackground
         self.view.addSubview(titleLabel)
         self.view.addSubview(descriptionLabel)
+        self.view.addSubview(currentLocationButton)
         self.view.addSubview(mapView)
         self.view.addSubview(nextButton)
         self.view.addSubview(skipButton)
@@ -46,6 +48,11 @@ class SetLocationViewController: UIViewController {
         descriptionLabel.snp.makeConstraints { make in
             make.top.equalTo(titleLabel.snp.bottom).offset(20)
             make.leading.equalToSuperview().offset(20)
+            make.trailing.equalTo(currentLocationButton.snp.leading).offset(-20)
+            make.bottom.equalTo(mapView.snp.top).offset(-20)
+        }
+        currentLocationButton.snp.makeConstraints { make in
+            make.top.equalTo(descriptionLabel.snp.top)
             make.trailing.equalToSuperview().offset(-20)
             make.bottom.equalTo(mapView.snp.top).offset(-20)
         }
@@ -74,12 +81,17 @@ class SetLocationViewController: UIViewController {
         loadUI()
         self.navigationItem.searchController = searchController
         navigationItem.hidesSearchBarWhenScrolling = false
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "chevron.backward"), style: .plain, target: self, action: #selector(back))
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: SystemImage.back.name), style: .plain, target: self, action: #selector(back))
         searchController.searchBar.delegate = self
         mapView.delegate = self
+        locationManager.delegate = self
         suggestionController.showResultMapDelegate = self
         definesPresentationContext = true
         showResultMapDelegate = self
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        clearOverlay()
     }
     
     lazy var titleLabel: UILabel = {
@@ -98,6 +110,14 @@ class SetLocationViewController: UIViewController {
         label.textAlignment = .center
         label.numberOfLines = 0
         return label
+    }()
+    
+    private lazy var currentLocationButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.tintColor = .themeGreen
+        button.setImage(UIImage(systemName: SystemImage.loction.name), for: .normal)
+        button.addTarget(self, action: #selector(requestCurrentLocation), for: .touchUpInside)
+        return button
     }()
     
     private lazy var mapView: MKMapView = {
@@ -158,6 +178,11 @@ extension SetLocationViewController {
             viewModel.place = nil
         }
         self.navigationController?.popViewController(animated: true)
+    }
+    
+    @objc func requestCurrentLocation() {
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.requestLocation()
     }
 }
 
@@ -231,6 +256,28 @@ extension SetLocationViewController: MKMapViewDelegate {
         circleRenderer.fillColor = .systemBlue
         circleRenderer.alpha = 0.7
         return circleRenderer
+    }
+}
+
+extension SetLocationViewController: CLLocationManagerDelegate {
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        if let location = locations.last {
+            locationManager.stopUpdatingLocation()
+            clearOverlay()
+            let latitude = location.coordinate.latitude
+            let longitude = location.coordinate.longitude
+            self.setLocation(latitude: latitude, longitude: longitude)
+            let loc = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+            let circle = MKCircle(center: loc, radius: 200)
+            let span = MKCoordinateSpan(latitudeDelta: 0.005, longitudeDelta: 0.005)
+            self.mapView.setRegion(MKCoordinateRegion(center: loc, span: span), animated: true)
+            self.mapView.addOverlay(circle)
+            self.nextButton.enableStatus(true)
+        }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print("Error: \(error.localizedDescription)")
     }
 }
 
