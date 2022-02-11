@@ -21,15 +21,14 @@
 		7F4837C1279515440066AC24 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F4837C0279515440066AC24 /* UIColor+Extension.swift */; };
 		7F78FA0927882DB500613EFE /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7F78FA0B27882DB500613EFE /* Localizable.strings */; };
 		7F78FA0E27882E6600613EFE /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F78FA0D27882E6600613EFE /* String+Extension.swift */; };
-		7F7FCD19276C37D1005ADD27 /* SetGroupTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F7FCD18276C37D1005ADD27 /* SetGroupTableViewController.swift */; };
 		7F7FCD1B276C3BA7005ADD27 /* SettingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F7FCD1A276C3BA7005ADD27 /* SettingTableViewCell.swift */; };
 		7F7FCD1D276C3CD8005ADD27 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F7FCD1C276C3CD8005ADD27 /* ProfileViewController.swift */; };
 		7F7FCD1F276C3D58005ADD27 /* NotificationsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F7FCD1E276C3D58005ADD27 /* NotificationsTableViewController.swift */; };
 		7F7FCD21276C41FB005ADD27 /* EditPlaceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F7FCD20276C41FB005ADD27 /* EditPlaceViewController.swift */; };
 		7F7FCD24276D6AD1005ADD27 /* GroupListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F7FCD23276D6AD1005ADD27 /* GroupListViewController.swift */; };
-		7F7FCD26276D84B3005ADD27 /* lf30_editor_lqe82iao.json in Resources */ = {isa = PBXBuildFile; fileRef = 7F7FCD25276D84B3005ADD27 /* lf30_editor_lqe82iao.json */; };
 		7F7FCD38276EC2A0005ADD27 /* UIButton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F7FCD37276EC2A0005ADD27 /* UIButton+Extension.swift */; };
 		7F7FCD3A27717C3B005ADD27 /* LoginAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F7FCD3927717C3A005ADD27 /* LoginAPIService.swift */; };
+		7F87138527A8CAC100176C2B /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F87138427A8CAC100176C2B /* Constants.swift */; };
 		7F8A4FCE272FA8A900656E0A /* NeedleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F8A4FCD272FA8A900656E0A /* NeedleView.swift */; };
 		7F8A4FD0272FB0F600656E0A /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F8A4FCF272FB0F600656E0A /* UIView+Extension.swift */; };
 		7F8A4FD22730C3F300656E0A /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F8A4FD12730C3F300656E0A /* User.swift */; };
@@ -72,15 +71,14 @@
 		7F78FA0A27882DB500613EFE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		7F78FA0C27882DCF00613EFE /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Localizable.strings; sourceTree = "<group>"; };
 		7F78FA0D27882E6600613EFE /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
-		7F7FCD18276C37D1005ADD27 /* SetGroupTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetGroupTableViewController.swift; sourceTree = "<group>"; };
 		7F7FCD1A276C3BA7005ADD27 /* SettingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableViewCell.swift; sourceTree = "<group>"; };
 		7F7FCD1C276C3CD8005ADD27 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		7F7FCD1E276C3D58005ADD27 /* NotificationsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsTableViewController.swift; sourceTree = "<group>"; };
 		7F7FCD20276C41FB005ADD27 /* EditPlaceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = EditPlaceViewController.swift; path = Weasley/SettingView/EditPlaceViewController.swift; sourceTree = SOURCE_ROOT; };
 		7F7FCD23276D6AD1005ADD27 /* GroupListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupListViewController.swift; sourceTree = "<group>"; };
-		7F7FCD25276D84B3005ADD27 /* lf30_editor_lqe82iao.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = lf30_editor_lqe82iao.json; path = ../../../../../../../Downloads/Lottie/lf30_editor_lqe82iao.json; sourceTree = "<group>"; };
 		7F7FCD37276EC2A0005ADD27 /* UIButton+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extension.swift"; sourceTree = "<group>"; };
 		7F7FCD3927717C3A005ADD27 /* LoginAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginAPIService.swift; sourceTree = "<group>"; };
+		7F87138427A8CAC100176C2B /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		7F8A4FCD272FA8A900656E0A /* NeedleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NeedleView.swift; sourceTree = "<group>"; };
 		7F8A4FCF272FB0F600656E0A /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		7F8A4FD12730C3F300656E0A /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -209,6 +207,7 @@
 				7FC1ACB92769CC14007C7F0B /* MKPlacemark+Extension.swift */,
 				7F78FA0D27882E6600613EFE /* String+Extension.swift */,
 				7F4837C0279515440066AC24 /* UIColor+Extension.swift */,
+				7F87138427A8CAC100176C2B /* Constants.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -230,7 +229,6 @@
 				7F7FCD23276D6AD1005ADD27 /* GroupListViewController.swift */,
 				7FC1ACAB27686B44007C7F0B /* SetGroupNameViewController.swift */,
 				7F7FCD16276B2704005ADD27 /* SetLocationView */,
-				7F7FCD25276D84B3005ADD27 /* lf30_editor_lqe82iao.json */,
 			);
 			path = InitialView;
 			sourceTree = "<group>";
@@ -262,7 +260,6 @@
 				7F7FCD20276C41FB005ADD27 /* EditPlaceViewController.swift */,
 				7F7FCD1A276C3BA7005ADD27 /* SettingTableViewCell.swift */,
 				7FF5C8CB275F42FD00DE24DE /* SettingTableViewController.swift */,
-				7F7FCD18276C37D1005ADD27 /* SetGroupTableViewController.swift */,
 				7F7FCD1C276C3CD8005ADD27 /* ProfileViewController.swift */,
 				7F7FCD1E276C3D58005ADD27 /* NotificationsTableViewController.swift */,
 			);
@@ -334,7 +331,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				7F78FA0927882DB500613EFE /* Localizable.strings in Resources */,
-				7F7FCD26276D84B3005ADD27 /* lf30_editor_lqe82iao.json in Resources */,
 				7F43026D2726D89900FA594F /* LaunchScreen.storyboard in Resources */,
 				7FE0D9CE273F9BE200512B07 /* GoogleService-Info.plist in Resources */,
 				7F43026A2726D89900FA594F /* Assets.xcassets in Resources */,
@@ -391,6 +387,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7F8A50102734D65D00656E0A /* DegreesToRadians.swift in Sources */,
+				7F87138527A8CAC100176C2B /* Constants.swift in Sources */,
 				7F4837C1279515440066AC24 /* UIColor+Extension.swift in Sources */,
 				7F7FCD1F276C3D58005ADD27 /* NotificationsTableViewController.swift in Sources */,
 				7FC1ACB02769AD53007C7F0B /* SetSchoolViewController.swift in Sources */,
@@ -409,7 +406,6 @@
 				7F7FCD1D276C3CD8005ADD27 /* ProfileViewController.swift in Sources */,
 				7F46B8E027280C1E002B2E78 /* LoginViewController.swift in Sources */,
 				7FF5C8CC275F42FD00DE24DE /* SettingTableViewController.swift in Sources */,
-				7F7FCD19276C37D1005ADD27 /* SetGroupTableViewController.swift in Sources */,
 				7FA1C8AA272B83E800D2B4E0 /* APIManager.swift in Sources */,
 				7F8A4FD0272FB0F600656E0A /* UIView+Extension.swift in Sources */,
 				7FC1ACBE276AD8C8007C7F0B /* SetLocationViewController.swift in Sources */,
