@@ -22,18 +22,38 @@ enum APIError: LocalizedError {
 }
 
 extension URLSession {
+    
      func load<T>(_ resource: Resource<T>, completion: @escaping (T?, Bool) -> Void) {
          dataTask(with: resource.urlRequest) { data, response, error in
-             print("Response: \(response)")
              guard error == nil else {
                  print(error?.localizedDescription ?? "Unknown Error")
+                 completion(nil, false)
                  return
+             }
+             guard let response = response as? HTTPURLResponse else {
+                 return
+             }
+             switch response.statusCode {
+             case 200..<300:
+                 completion(data.flatMap(resource.parseData), true)
+             default:
+                 guard let data = data else { return }
+                 if let failedData = try? JSONSerialization.jsonObject(with: data, options: []) as? [String : Any] {
+                     if let code = failedData["code"] as? String {
+                         if code == "S001" || code == "j003" {
+                             completion(nil, true)
+                             print("do refresh token")
+                         }
+                     }
+                 }
+                 break
              }
              let resData = String(data: data!, encoding: String.Encoding.utf8) as String?
              print("Data: \(resData)")
-             completion(data.flatMap(resource.parseData), true)
          }.resume()
      }
+    
+    
 }
 
 struct Resource<T> {
