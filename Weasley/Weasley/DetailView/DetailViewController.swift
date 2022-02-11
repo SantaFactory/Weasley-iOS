@@ -168,7 +168,7 @@ class DetailViewController: UIViewController {
         let button = UIButton(type: .system)
         button.addTarget(self, action: #selector(back), for: .touchUpInside)
         let configuration = UIImage.SymbolConfiguration(pointSize: 20)
-        button.setImage(UIImage(systemName: "chevron.backward.circle.fill", withConfiguration: configuration), for: .normal)
+        button.setImage(UIImage(systemName: SystemImage.backFill.name, withConfiguration: configuration), for: .normal)
         button.tintColor = .themeGreen
         return button
     }()
@@ -180,17 +180,17 @@ class DetailViewController: UIViewController {
             button.configuration = .filled()
         }
         button.setTitle("Invite friends", for: .normal)
-        button.setImage(UIImage(systemName: "paperplane.fill"), for: .normal)
+        button.setImage(UIImage(systemName: SystemImage.invite.name), for: .normal)
         button.tintColor = .themeGreen
         return button
     }()
     
     private func setMemberMenu(index: Int) -> UIMenu {
         let items = [
-            UIAction(title: "Request Location", image: UIImage(systemName: "exclamationmark.bubble"), handler: { _ in
+            UIAction(title: "Request Location", image: UIImage(systemName: SystemImage.requestMessage.name), handler: { _ in
                 //TODO: Send Push
             }),
-            UIAction(title: "Show Current Location", image: UIImage(systemName: "binoculars.fill"), handler: { _ in
+            UIAction(title: "Show Current Location", image: UIImage(systemName: SystemImage.show.name), handler: { _ in
                 let mapView = self.userLocationMapView
                 mapView.removeOverlays(mapView.overlays)
                 let member = self.viewModel.members![index]

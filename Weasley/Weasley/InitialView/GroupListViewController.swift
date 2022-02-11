@@ -65,10 +65,10 @@ class GroupListViewController: UIViewController {
     
     private lazy var menuItems: [UIAction] = {
         return [
-            UIAction(title: "Create a new group".localized, image: UIImage(systemName: "plus"), handler: { _ in
+            UIAction(title: "Create a new group".localized, image: UIImage(systemName: SystemImage.add.name), handler: { _ in
                 self.addGroup()
             }),
-            UIAction(title: "Join a group with key".localized, image: UIImage(systemName: "key"), handler: { _ in
+            UIAction(title: "Join a group with key".localized, image: UIImage(systemName: SystemImage.key.name), handler: { _ in
                 self.joinGroup()
             })
         ]
@@ -103,14 +103,14 @@ class GroupListViewController: UIViewController {
     
     private lazy var addButton: UIBarButtonItem = {
         if #available(iOS 14.0, *) {
-            return UIBarButtonItem(image: UIImage(systemName: "plus.circle"), menu: menu)
+            return UIBarButtonItem(image: UIImage(systemName: SystemImage.addFill.name), menu: menu)
         } else {
-            return UIBarButtonItem(image: UIImage(systemName: "plus.circle"), style: .plain, target: self, action: #selector(showActionSheet))
+            return UIBarButtonItem(image: UIImage(systemName: SystemImage.addFill.name), style: .plain, target: self, action: #selector(showActionSheet))
         }
     }()
     
     private lazy var flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
-    private lazy var profileButton = UIBarButtonItem(image: UIImage(systemName: "person.crop.circle"), style: .plain, target: self, action: #selector(setProfile))
+    private lazy var profileButton = UIBarButtonItem(image: UIImage(systemName: SystemImage.profile.name), style: .plain, target: self, action: #selector(setProfile))
     private lazy var activityIndicatorView = UIActivityIndicatorView()
 }
 
@@ -208,7 +208,7 @@ extension GroupListViewController: UITableViewDelegate {
             alert.addAction(cancel)
             self.present(alert, animated: true, completion: nil)
         }
-        delete.image = UIImage(systemName: "trash")?.withTintColor(.white)
+        delete.image = UIImage(systemName: SystemImage.delete.name)?.withTintColor(.white)
         
         return UISwipeActionsConfiguration(actions: [delete])
     }
