@@ -7,6 +7,7 @@
 
 import Foundation
 
+/// - Tag: System image constants
 enum SystemImage {
     case add
     case key
@@ -44,6 +45,27 @@ enum SystemImage {
             return "exclamationmark.bubble"
         case .show:
             return "binoculars.fill"
+        }
+    }
+}
+
+/// - Tag: URL constants
+enum WeasleyURL {
+    case login
+    case refreshToken
+    case location
+    case group
+    
+    var urlString: String {
+        switch self {
+        case .login:
+            return "\(url)/login-process"
+        case .refreshToken:
+            return "\(url)/refresh-token"
+        case .location:
+            return "\(url)/api/weasley"
+        case .group:
+            return "\(url)/api/band"
         }
     }
 }
