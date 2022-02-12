@@ -13,10 +13,12 @@ var refreshToken: [String: String]?
 enum APIError: LocalizedError {
     case urlNotSupport
     case noData
+    case expirationToken
     var errorDescription: String? {
         switch self {
         case .urlNotSupport: return "URL NOT Supported"
         case .noData: return "No Data"
+        case .expirationToken: return "Token is expirated"
         }
     }
 }
@@ -37,7 +39,10 @@ extension URLSession {
              case 200..<300:
                  completion(data.flatMap(resource.parseData), true)
              default:
-                 guard let data = data else { return }
+                 guard let data = data else {
+                     completion(nil, false)
+                     return
+                 }
                  if let failedData = try? JSONSerialization.jsonObject(with: data, options: []) as? [String : Any] {
                      if let code = failedData["code"] as? String {
                          if code == "S001" || code == "j003" {
