@@ -156,7 +156,7 @@
 				7F78FA0B27882DB500613EFE /* Localizable.strings */,
 				7F4302602726D89400FA594F /* AppDelegate.swift */,
 				7F4302622726D89400FA594F /* SceneDelegate.swift */,
-				7F8C19D127B6709000DC526C /* Repository */,
+				7F8C19D127B6709000DC526C /* Domain */,
 				7F8A4FD62730D69200656E0A /* Util */,
 				7FE87A12273B91B700301A94 /* Model */,
 				7FE87A13273B91CA00301A94 /* ViewModel */,
@@ -217,12 +217,12 @@
 			path = DetailView;
 			sourceTree = "<group>";
 		};
-		7F8C19D127B6709000DC526C /* Repository */ = {
+		7F8C19D127B6709000DC526C /* Domain */ = {
 			isa = PBXGroup;
 			children = (
 				7F8C19D227B670E900DC526C /* APIService.swift */,
 			);
-			path = Repository;
+			path = Domain;
 			sourceTree = "<group>";
 		};
 		7FC1ACAA27686422007C7F0B /* InitialView */ = {

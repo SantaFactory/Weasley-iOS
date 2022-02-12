@@ -25,7 +25,7 @@ class APIService {
         URLSession(configuration: .default).load(resource) { resultData, isSuccess in
             if isSuccess {
                 guard let data = resultData else {
-                    completion(.failure(.expirationToke))
+                    completion(.failure(.expirationToken))
                     return
                 }
                 completion(.success(data))
@@ -83,7 +83,7 @@ class APIService {
         URLSession(configuration: .default).load(resource) { resultData, isSuccess in
             if isSuccess {
                 guard let data = resultData else {
-                    completion(.failure(.expirationToke))
+                    completion(.failure(.expirationToken))
                     return
                 }
                 completion(.success(data))
@@ -109,7 +109,7 @@ class APIService {
         URLSession(configuration: .default).load(resource) { resultData, isSuccess in
             if isSuccess {
                 guard let data = resultData else {
-                    completion(.failure(.expirationToke))
+                    completion(.failure(.expirationToken))
                     return
                 }
                 completion(.success(data))
@@ -155,7 +155,7 @@ class APIService {
         URLSession(configuration: .default).load(resource) { resultData, isSuccess in
             if isSuccess {
                 guard let data = resultData else {
-                    completion(.failure(.expirationToke))
+                    completion(.failure(.expirationToken))
                     return
                 }
                 completion(.success(data))
