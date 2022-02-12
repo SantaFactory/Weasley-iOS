@@ -6,7 +6,7 @@
 //
 
 import UIKit
-import Hero
+
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
