@@ -25,7 +25,7 @@ enum APIError: LocalizedError {
 
 extension URLSession {
     
-     func load<T>(_ resource: Resource<T>, completion: @escaping (T?, Bool) -> Void) {
+     func load(_ resource: Resource, completion: @escaping (Data?, Bool) -> Void) {
          dataTask(with: resource.urlRequest) { data, response, error in
              guard error == nil else {
                  print(error?.localizedDescription ?? "Unknown Error")
@@ -37,7 +37,7 @@ extension URLSession {
              }
              switch response.statusCode {
              case 200..<300:
-                 completion(data.flatMap(resource.parseData), true)
+                 completion(data, true)
              default:
                  guard let data = data else {
                      completion(nil, false)
@@ -61,9 +61,8 @@ extension URLSession {
     
 }
 
-struct Resource<T> {
+struct Resource {
     var urlRequest: URLRequest
-    let parseData: (Data) -> T?
 }
 
 enum HttpMethod<Body> {
@@ -88,7 +87,7 @@ extension HttpMethod {
     }
 }
 
-extension Resource where T: Decodable {
+extension Resource {
     
     /**
      Default GET Request
@@ -103,9 +102,6 @@ extension Resource where T: Decodable {
             for (key, value) in header {
                 self.urlRequest.setValue(value, forHTTPHeaderField: key)
             }
-        }
-        self.parseData = { data in
-            try? JSONDecoder().decode(T.self, from: data)
         }
     }
     
@@ -138,9 +134,6 @@ extension Resource where T: Decodable {
                 self.urlRequest.setValue(value, forHTTPHeaderField: key)
             }
         }
-        self.parseData = { data in
-            try? JSONDecoder().decode(T.self, from: data)
-        }
     }
     
     /**
@@ -166,9 +159,6 @@ extension Resource where T: Decodable {
             for (key, value) in header {
                 self.urlRequest.setValue(value, forHTTPHeaderField: key)
             }
-        }
-        self.parseData = { data in
-            try? JSONDecoder().decode(T.self, from: data)
         }
     }
 }
