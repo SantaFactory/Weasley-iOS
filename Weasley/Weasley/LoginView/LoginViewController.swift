@@ -7,6 +7,8 @@
 
 import UIKit
 import SnapKit
+import Firebase
+import GoogleSignIn
 import AuthenticationServices
 
 class LoginViewController: UIViewController {
@@ -34,9 +36,9 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        viewModel.autoLogin {
-            self.successLogin()
-        }
+//        viewModel.autoLogin {
+//            self.successLogin()
+//        }
     }
     
     private lazy var googleLoginButton: UIButton = {
@@ -57,15 +59,34 @@ class LoginViewController: UIViewController {
     }()
     
     @objc private func googleLogin() {
-        viewModel.googleLogin(vc: self) {
-            self.successLogin()
+        guard let clientID = FirebaseApp.app()?.options.clientID else { return }
+        let config = GIDConfiguration(clientID: clientID)
+        GIDSignIn.sharedInstance.signIn(with: config, presenting: self) { user, error in
+            guard error == nil else {
+                print("Error\(error?.localizedDescription ?? "Can't find error")")
+                return
+            }
+            guard let user = user else { return }
+            user.authentication.do { authentication, error in
+                guard error == nil else { return }
+                guard let authentication = authentication else { return }
+                
+                guard let idToken = authentication.idToken else {
+                    print("Control idToken is nil")
+                    return
+                }
+                let token = Token(token: idToken)
+                self.viewModel.login(token: token) {
+                    self.successLogin()
+                }
+            }
         }
     }
     
     @objc private func appleLogin() {
         let appleIDProvider = ASAuthorizationAppleIDProvider()
         let request = appleIDProvider.createRequest()
-        request.requestedScopes = [.fullName, .email]
+        request.requestedScopes = [.fullName]
         let authorizationController = ASAuthorizationController(authorizationRequests: [request])
         authorizationController.delegate = self
         authorizationController.presentationContextProvider = self
@@ -86,8 +107,9 @@ extension LoginViewController: ASAuthorizationControllerDelegate, ASAuthorizatio
         switch authorization.credential {
         case let appleIDCredential as ASAuthorizationAppleIDCredential:
             let accessToken = String(data: appleIDCredential.identityToken!, encoding: .ascii) ?? ""
-            //TODO: Send ID token to backend.
-            print("Token: \(accessToken)")
+            viewModel.login(token: Token(token: accessToken)) {
+                self.successLogin()
+            }
         default:
             break
         }
