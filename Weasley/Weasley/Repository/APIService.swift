@@ -16,22 +16,18 @@ class APIService {
       - parameters:
          - token: 소셜로부터 받은 토큰
      */
-    static func performLogin(token: Token, completion: @escaping (Result<ResultToken, APIError>) -> Void) {
+    static func performLogin(token: Token, completion: @escaping (Result<Data, APIError>) -> Void) {
         guard let url = URL(string: WeasleyURL.login.urlString) else {
             completion(.failure(.urlNotSupport))
             return
         }
-        let resource = Resource<ResultToken>(url: url, method: .post(token), header: nil)
+        let resource = Resource(url: url, method: .post(token), header: nil)
         URLSession(configuration: .default).load(resource) { resultData, isSuccess in
-            if isSuccess {
-                guard let data = resultData else {
-                    completion(.failure(.expirationToken))
-                    return
-                }
-                completion(.success(data))
-            } else {
-                completion(.failure(.urlNotSupport))
+            guard let data = resultData else {
+                completion(.failure(.noData))
+                return
             }
+            completion(.success(data))
         }
     }
     
@@ -42,11 +38,11 @@ class APIService {
      - parameters:
         - token: refresh token
      */
-    static func performRefreshToken(token: [String: String], completion: @escaping (Result<String, APIError>) -> Void) {
+    static func performRefreshToken(token: [String: String], completion: @escaping (Result<Data, APIError>) -> Void) {
         guard let url = URL(string: WeasleyURL.refreshToken.urlString) else {
             return
         }
-        let resource = Resource<String>(url: url, method: .post(token), header: nil)
+        let resource = Resource(url: url, method: .post(token), header: nil)
         URLSession(configuration: .default).load(resource) { resultData, _ in
             guard let data = resultData else {
                 completion(.failure(.noData))
@@ -61,7 +57,7 @@ class APIService {
         guard let url = URL(string: WeasleyURL.location.urlString) else {
             return
         }
-        let resource = Resource<String>(url: url, method: .put(currentLocation), header: authToken)
+        let resource = Resource(url: url, method: .put(currentLocation), header: authToken)
         URLSession(configuration: .default).load(resource) { resultData, isSuccess in
             guard let data = resultData else {
                 return
@@ -74,12 +70,12 @@ class APIService {
       
       - 현재 가입된 그룹 리스트를 불러옵니다.
      */
-    static func performLoadGroups(completion: @escaping(Result<GroupsList, APIError>) -> Void) {
+    static func performLoadGroups(completion: @escaping(Result<Data, APIError>) -> Void) {
         guard let url = URL(string: "\(WeasleyURL.group.urlString)/self") else {
             completion(.failure(.urlNotSupport))
             return
         }
-        let resource = Resource<GroupsList>(url: url, method: .get, header: authToken)
+        let resource = Resource(url: url, method: .get, header: authToken)
         URLSession(configuration: .default).load(resource) { resultData, isSuccess in
             if isSuccess {
                 guard let data = resultData else {
@@ -100,12 +96,12 @@ class APIService {
       - parameters:
          - group: 그룹
      */
-    static func performAddGroup(group: Group, completion: @escaping(Result<Group?, APIError>) -> Void) {
+    static func performAddGroup(group: Group, completion: @escaping(Result<Data, APIError>) -> Void) {
         guard let url = URL(string: WeasleyURL.group.urlString) else {
             completion(.failure(.urlNotSupport))
             return
         }
-        let resource = Resource<Group>(url: url, method: .post(group), header: authToken)
+        let resource = Resource(url: url, method: .post(group), header: authToken)
         URLSession(configuration: .default).load(resource) { resultData, isSuccess in
             if isSuccess {
                 guard let data = resultData else {
@@ -119,13 +115,16 @@ class APIService {
         }
     }
     
-    static func performDeleteGroup(id group: Int, completion: @escaping() -> Void) {
+    static func performDeleteGroup(id group: Int, completion: @escaping(Result<Data, APIError>) -> Void) {
         guard let url = URL(string: "\(WeasleyURL.group.urlString)/\(group)") else {
             return
         }
-        let resource = Resource<String>(url: url, method: .delete, header: authToken)
+        let resource = Resource(url: url, method: .delete, header: authToken)
         URLSession(configuration: .default).load(resource) { resultData, isSuccess in
-            completion()
+            guard let resultData = resultData else {
+                return
+            }
+            completion(.success(resultData))
         }
     }
     
@@ -134,7 +133,7 @@ class APIService {
         guard let url = URL(string: "\(WeasleyURL.group.urlString)/\(group)/users") else {
             return
         }
-        let resource = Resource<String>(url: url, method: .get, header: authToken)
+        let resource = Resource(url: url, method: .get, header: authToken)
         URLSession(configuration: .default).load(resource) { resultData, isSuccess in
             completion()
         }
@@ -147,11 +146,11 @@ class APIService {
       - parameters:
          - id: 그룹 아이디, GroupData.id
      */
-    static func performLoadGroupDetail(id group: Int, completion: @escaping(Result<GroupDetail, APIError>) -> Void) {
+    static func performLoadGroupDetail(id group: Int, completion: @escaping(Result<Data?, APIError>) -> Void) {
         guard let url = URL(string: "\(WeasleyURL.group.urlString)/\(group)") else {
             return
         }
-        let resource = Resource<GroupDetail>(url: url, method: .get, header: authToken)
+        let resource = Resource(url: url, method: .get, header: authToken)
         URLSession(configuration: .default).load(resource) { resultData, isSuccess in
             if isSuccess {
                 guard let data = resultData else {
