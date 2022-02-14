@@ -6,77 +6,44 @@
 //
 
 import Foundation
-import Firebase
-import GoogleSignIn
-import UIKit
 
 class Login {
     
+    let domain: TokenFetchable = TokenStore()
+
     let userDefault = UserDefaults.standard
     
-    func autoLogin(completion: @escaping () -> Void) {
-        GIDSignIn.sharedInstance.restorePreviousSignIn { user, error in
-            if error == nil || user != nil {
-                guard let sub = UserDefaults.standard.string(forKey: "userLogin") else {
-                    GIDSignIn.sharedInstance.signOut()
-                    return
-                }
-                //TODO: Request user data
-            } else {
-                print("Signed-Out State")
-            }
-        }
-    }
+//    func autoLogin(completion: @escaping () -> Void) {
+//        GIDSignIn.sharedInstance.restorePreviousSignIn { user, error in
+//            if error == nil || user != nil {
+//                guard let sub = UserDefaults.standard.string(forKey: "userLogin") else {
+//                    GIDSignIn.sharedInstance.signOut()
+//                    return
+//                }
+//                //TODO: Request user data
+//            } else {
+//                print("Signed-Out State")
+//            }
+//        }
+//    }
     
-    func googleLogin(vc: UIViewController, completion: @escaping () -> Void) {
-        guard let clientID = FirebaseApp.app()?.options.clientID else { return }
-        let config = GIDConfiguration(clientID: clientID)
-        GIDSignIn.sharedInstance.signIn(with: config, presenting: vc) { user, error in
-            guard error == nil else {
-                print("Error\(error?.localizedDescription ?? "Can't find error")")
+    func login(token: Token, completion: @escaping() -> Void) {
+        domain.fetchLoginToken(token: token) { resultToken in
+            guard let resultToken = resultToken else {
                 return
             }
-            guard let user = user else { return }
-            user.authentication.do { authentication, error in
-                guard error == nil else { return }
-                guard let authentication = authentication else { return }
-                
-                guard let idToken = authentication.idToken else {
-                    print("Control idToken is nil")
-                    return
-                }
-                let token = Token(token: idToken)
-                LoginService().performLogin(token: token) { tokenData in
-                    switch tokenData {
-                    case .failure:
-                        print(error?.localizedDescription ?? "Fail")
-                        GIDSignIn.sharedInstance.signOut()
-                    case .success:
-                        do {
-                            let value = try tokenData.get()
-                            let accessToken = value.loginData.accessToken
-                            authToken = ["Authorization": "Bearer \(accessToken)"]
-                            refreshToken = ["refreshToken": value.loginData.refreshToken]
-                            DispatchQueue.main.async {
-                                completion()
-                            }
-                        } catch {
-                            GIDSignIn.sharedInstance.signOut()
-                            print("Error retrieving the value: \(error)")
-                        }
-                    }
-                }
+            authToken = ["Authorization": "Bearer \(resultToken.loginData.accessToken)"]
+            refreshToken = ["refreshToken": resultToken.loginData.refreshToken]
+            DispatchQueue.main.async {
+                completion()
             }
         }
     }
     
-    func appleLogin() {
-        
-    }
     //TODO: Apple Login
     
-    func signOut() {
-        userDefault.removeObject(forKey: "userLogin")
-        GIDSignIn.sharedInstance.signOut()
-    }
+//    func signOut() {
+//        userDefault.removeObject(forKey: "userLogin")
+//        GIDSignIn.sharedInstance.signOut()
+//    }
 }
