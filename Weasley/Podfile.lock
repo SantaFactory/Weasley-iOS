@@ -4,6 +4,8 @@ PODS:
     - AppAuth/ExternalUserAgent (= 1.4.0)
   - AppAuth/Core (1.4.0)
   - AppAuth/ExternalUserAgent (1.4.0)
+  - Firebase (8.5.0):
+    - Firebase/Core (= 8.5.0)
   - Firebase/Analytics (8.5.0):
     - Firebase/Core
   - Firebase/Auth (8.5.0):
@@ -104,6 +106,7 @@ PODS:
   - SnapKit (5.0.1)
 
 DEPENDENCIES:
+  - Firebase
   - Firebase/Analytics
   - Firebase/Auth
   - GoogleSignIn
@@ -146,6 +149,6 @@ SPEC CHECKSUMS:
   PromisesObjC: 68159ce6952d93e17b2dfe273b8c40907db5ba58
   SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
 
-PODFILE CHECKSUM: a425910231ff030b9e0b223107a053a24929a65f
+PODFILE CHECKSUM: 2086e859cffcc3715098966d821d9768ad587aaa
 
 COCOAPODS: 1.11.2

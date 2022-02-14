@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		34FE0896BD468F80965870D0 /* Pods_WeasleyTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60262070E886C2C1B9BF0A8E /* Pods_WeasleyTests.framework */; };
 		7D99C284FC90961B3821D0C0 /* Pods_Weasley.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9873566C8D513FA6A965F78 /* Pods_Weasley.framework */; };
 		7F28654F2771989800DAF9D2 /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F28654E2771989800DAF9D2 /* Group.swift */; };
 		7F2865512771A4F400DAF9D2 /* AWSUrl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F2865502771A4F400DAF9D2 /* AWSUrl.swift */; };
@@ -18,6 +19,7 @@
 		7F43026D2726D89900FA594F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7F43026B2726D89900FA594F /* LaunchScreen.storyboard */; };
 		7F46B8E027280C1E002B2E78 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F46B8DF27280C1E002B2E78 /* LoginViewController.swift */; };
 		7F4837C1279515440066AC24 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F4837C0279515440066AC24 /* UIColor+Extension.swift */; };
+		7F55DE1627B9D69700E0C162 /* WeasleyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F55DE1527B9D69700E0C162 /* WeasleyTests.swift */; };
 		7F78FA0927882DB500613EFE /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7F78FA0B27882DB500613EFE /* Localizable.strings */; };
 		7F78FA0E27882E6600613EFE /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F78FA0D27882E6600613EFE /* String+Extension.swift */; };
 		7F7FCD1B276C3BA7005ADD27 /* SettingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F7FCD1A276C3BA7005ADD27 /* SettingTableViewCell.swift */; };
@@ -34,6 +36,8 @@
 		7F8A500E2734D5F700656E0A /* LocationLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F8A500D2734D5F700656E0A /* LocationLabel.swift */; };
 		7F8A50102734D65D00656E0A /* DegreesToRadians.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F8A500F2734D65D00656E0A /* DegreesToRadians.swift */; };
 		7F8C19D327B670E900DC526C /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F8C19D227B670E900DC526C /* APIService.swift */; };
+		7F8C1A4927B904FF00DC526C /* TokenStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F8C1A4827B904FF00DC526C /* TokenStore.swift */; };
+		7F8C1A4B27B9066F00DC526C /* GroupsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F8C1A4A27B9066F00DC526C /* GroupsStore.swift */; };
 		7FA1C8AA272B83E800D2B4E0 /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FA1C8A9272B83E800D2B4E0 /* APIManager.swift */; };
 		7FA1C8AC272CF46500D2B4E0 /* ClockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FA1C8AB272CF46500D2B4E0 /* ClockView.swift */; };
 		7FC1ACAC27686B44007C7F0B /* SetGroupNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FC1ACAB27686B44007C7F0B /* SetGroupNameViewController.swift */; };
@@ -50,8 +54,20 @@
 		7FF5C8CC275F42FD00DE24DE /* SettingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FF5C8CB275F42FD00DE24DE /* SettingTableViewController.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		7F55DE1727B9D69700E0C162 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7F4302552726D89400FA594F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7F43025C2726D89400FA594F;
+			remoteInfo = Weasley;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		31A6EE2BD28567E020F854D6 /* Pods-Weasley.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Weasley.release.xcconfig"; path = "Target Support Files/Pods-Weasley/Pods-Weasley.release.xcconfig"; sourceTree = "<group>"; };
+		4E8CB41F4F1DF9CDA296BF4F /* Pods-WeasleyTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeasleyTests.debug.xcconfig"; path = "Target Support Files/Pods-WeasleyTests/Pods-WeasleyTests.debug.xcconfig"; sourceTree = "<group>"; };
+		60262070E886C2C1B9BF0A8E /* Pods_WeasleyTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WeasleyTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		61E91CCD83AB5938431ABBC1 /* Pods-Weasley.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Weasley.debug.xcconfig"; path = "Target Support Files/Pods-Weasley/Pods-Weasley.debug.xcconfig"; sourceTree = "<group>"; };
 		7F28654E2771989800DAF9D2 /* Group.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
 		7F2865502771A4F400DAF9D2 /* AWSUrl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AWSUrl.swift; sourceTree = "<group>"; };
@@ -65,6 +81,8 @@
 		7F43026E2726D89900FA594F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7F46B8DF27280C1E002B2E78 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		7F4837C0279515440066AC24 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
+		7F55DE1327B9D69700E0C162 /* WeasleyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WeasleyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		7F55DE1527B9D69700E0C162 /* WeasleyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeasleyTests.swift; sourceTree = "<group>"; };
 		7F78FA0A27882DB500613EFE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		7F78FA0C27882DCF00613EFE /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Localizable.strings; sourceTree = "<group>"; };
 		7F78FA0D27882E6600613EFE /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
@@ -82,6 +100,8 @@
 		7F8A500D2734D5F700656E0A /* LocationLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationLabel.swift; sourceTree = "<group>"; };
 		7F8A500F2734D65D00656E0A /* DegreesToRadians.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DegreesToRadians.swift; sourceTree = "<group>"; };
 		7F8C19D227B670E900DC526C /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
+		7F8C1A4827B904FF00DC526C /* TokenStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenStore.swift; sourceTree = "<group>"; };
+		7F8C1A4A27B9066F00DC526C /* GroupsStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupsStore.swift; sourceTree = "<group>"; };
 		7F8FE96E27799547006F3723 /* Weasley.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Weasley.entitlements; sourceTree = "<group>"; };
 		7FA1C8A9272B83E800D2B4E0 /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
 		7FA1C8AB272CF46500D2B4E0 /* ClockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClockView.swift; sourceTree = "<group>"; };
@@ -98,6 +118,7 @@
 		7FE9F32627756649003560BD /* UsersGroups.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersGroups.swift; sourceTree = "<group>"; };
 		7FF5C8CB275F42FD00DE24DE /* SettingTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableViewController.swift; sourceTree = "<group>"; };
 		A9873566C8D513FA6A965F78 /* Pods_Weasley.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Weasley.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D008259995A5720A4A181678 /* Pods-WeasleyTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeasleyTests.release.xcconfig"; path = "Target Support Files/Pods-WeasleyTests/Pods-WeasleyTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +130,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		7F55DE1027B9D69700E0C162 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				34FE0896BD468F80965870D0 /* Pods_WeasleyTests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -116,6 +145,7 @@
 			isa = PBXGroup;
 			children = (
 				A9873566C8D513FA6A965F78 /* Pods_Weasley.framework */,
+				60262070E886C2C1B9BF0A8E /* Pods_WeasleyTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -125,6 +155,8 @@
 			children = (
 				61E91CCD83AB5938431ABBC1 /* Pods-Weasley.debug.xcconfig */,
 				31A6EE2BD28567E020F854D6 /* Pods-Weasley.release.xcconfig */,
+				4E8CB41F4F1DF9CDA296BF4F /* Pods-WeasleyTests.debug.xcconfig */,
+				D008259995A5720A4A181678 /* Pods-WeasleyTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -133,6 +165,7 @@
 			isa = PBXGroup;
 			children = (
 				7F43025F2726D89400FA594F /* Weasley */,
+				7F55DE1427B9D69700E0C162 /* WeasleyTests */,
 				7F43025E2726D89400FA594F /* Products */,
 				56FC77E4152E6DBC16FFB373 /* Pods */,
 				2F0C45785DD55915B116D344 /* Frameworks */,
@@ -143,6 +176,7 @@
 			isa = PBXGroup;
 			children = (
 				7F43025D2726D89400FA594F /* Weasley.app */,
+				7F55DE1327B9D69700E0C162 /* WeasleyTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -156,8 +190,9 @@
 				7F78FA0B27882DB500613EFE /* Localizable.strings */,
 				7F4302602726D89400FA594F /* AppDelegate.swift */,
 				7F4302622726D89400FA594F /* SceneDelegate.swift */,
-				7F8C19D127B6709000DC526C /* Domain */,
 				7F8A4FD62730D69200656E0A /* Util */,
+				7F8C19D127B6709000DC526C /* Repository */,
+				7F8C1A4727B903E200DC526C /* Domain */,
 				7FE87A12273B91B700301A94 /* Model */,
 				7FE87A13273B91CA00301A94 /* ViewModel */,
 				7F8A4FD52730D60F00656E0A /* LoginView */,
@@ -168,6 +203,14 @@
 				7FE0D9CD273F9BE200512B07 /* GoogleService-Info.plist */,
 			);
 			path = Weasley;
+			sourceTree = "<group>";
+		};
+		7F55DE1427B9D69700E0C162 /* WeasleyTests */ = {
+			isa = PBXGroup;
+			children = (
+				7F55DE1527B9D69700E0C162 /* WeasleyTests.swift */,
+			);
+			path = WeasleyTests;
 			sourceTree = "<group>";
 		};
 		7F7FCD16276B2704005ADD27 /* SetLocationView */ = {
@@ -217,10 +260,19 @@
 			path = DetailView;
 			sourceTree = "<group>";
 		};
-		7F8C19D127B6709000DC526C /* Domain */ = {
+		7F8C19D127B6709000DC526C /* Repository */ = {
 			isa = PBXGroup;
 			children = (
 				7F8C19D227B670E900DC526C /* APIService.swift */,
+			);
+			path = Repository;
+			sourceTree = "<group>";
+		};
+		7F8C1A4727B903E200DC526C /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				7F8C1A4827B904FF00DC526C /* TokenStore.swift */,
+				7F8C1A4A27B9066F00DC526C /* GroupsStore.swift */,
 			);
 			path = Domain;
 			sourceTree = "<group>";
@@ -286,11 +338,29 @@
 			dependencies = (
 			);
 			name = Weasley;
-			packageProductDependencies = (
-			);
 			productName = Weasley;
 			productReference = 7F43025D2726D89400FA594F /* Weasley.app */;
 			productType = "com.apple.product-type.application";
+		};
+		7F55DE1227B9D69700E0C162 /* WeasleyTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7F55DE1927B9D69700E0C162 /* Build configuration list for PBXNativeTarget "WeasleyTests" */;
+			buildPhases = (
+				EF7137B99616ECAC4743691C /* [CP] Check Pods Manifest.lock */,
+				7F55DE0F27B9D69700E0C162 /* Sources */,
+				7F55DE1027B9D69700E0C162 /* Frameworks */,
+				7F55DE1127B9D69700E0C162 /* Resources */,
+				D7AF28E3D76076000F85043C /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				7F55DE1827B9D69700E0C162 /* PBXTargetDependency */,
+			);
+			name = WeasleyTests;
+			productName = WeasleyTests;
+			productReference = 7F55DE1327B9D69700E0C162 /* WeasleyTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
 
@@ -298,11 +368,15 @@
 		7F4302552726D89400FA594F /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1250;
+				LastSwiftUpdateCheck = 1310;
 				LastUpgradeCheck = 1250;
 				TargetAttributes = {
 					7F43025C2726D89400FA594F = {
 						CreatedOnToolsVersion = 12.5.1;
+					};
+					7F55DE1227B9D69700E0C162 = {
+						CreatedOnToolsVersion = 13.1;
+						TestTargetID = 7F43025C2726D89400FA594F;
 					};
 				};
 			};
@@ -316,13 +390,12 @@
 				ko,
 			);
 			mainGroup = 7F4302542726D89400FA594F;
-			packageReferences = (
-			);
 			productRefGroup = 7F43025E2726D89400FA594F /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
 				7F43025C2726D89400FA594F /* Weasley */,
+				7F55DE1227B9D69700E0C162 /* WeasleyTests */,
 			);
 		};
 /* End PBXProject section */
@@ -336,6 +409,13 @@
 				7F43026D2726D89900FA594F /* LaunchScreen.storyboard in Resources */,
 				7FE0D9CE273F9BE200512B07 /* GoogleService-Info.plist in Resources */,
 				7F43026A2726D89900FA594F /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7F55DE1127B9D69700E0C162 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -364,6 +444,23 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		D7AF28E3D76076000F85043C /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-WeasleyTests/Pods-WeasleyTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-WeasleyTests/Pods-WeasleyTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-WeasleyTests/Pods-WeasleyTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		E13084B82F86B5A045188503 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -381,6 +478,28 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Weasley/Pods-Weasley-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		EF7137B99616ECAC4743691C /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-WeasleyTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -388,10 +507,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7F8C1A4927B904FF00DC526C /* TokenStore.swift in Sources */,
 				7F8A50102734D65D00656E0A /* DegreesToRadians.swift in Sources */,
 				7F87138527A8CAC100176C2B /* Constants.swift in Sources */,
 				7F4837C1279515440066AC24 /* UIColor+Extension.swift in Sources */,
 				7F7FCD1F276C3D58005ADD27 /* NotificationsTableViewController.swift in Sources */,
+				7F8C1A4B27B9066F00DC526C /* GroupsStore.swift in Sources */,
 				7FC1ACB02769AD53007C7F0B /* SetSchoolViewController.swift in Sources */,
 				7F7FCD38276EC2A0005ADD27 /* UIButton+Extension.swift in Sources */,
 				7F7FCD24276D6AD1005ADD27 /* GroupListViewController.swift in Sources */,
@@ -427,7 +548,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		7F55DE0F27B9D69700E0C162 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7F55DE1627B9D69700E0C162 /* WeasleyTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		7F55DE1827B9D69700E0C162 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 7F43025C2726D89400FA594F /* Weasley */;
+			targetProxy = 7F55DE1727B9D69700E0C162 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		7F43026B2726D89900FA594F /* LaunchScreen.storyboard */ = {
@@ -610,6 +747,58 @@
 			};
 			name = Release;
 		};
+		7F55DE1A27B9D69700E0C162 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4E8CB41F4F1DF9CDA296BF4F /* Pods-WeasleyTests.debug.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 3XVAQ6DRC4;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ido.WeasleyTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Weasley.app/Weasley";
+			};
+			name = Debug;
+		};
+		7F55DE1B27B9D69700E0C162 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = D008259995A5720A4A181678 /* Pods-WeasleyTests.release.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 3XVAQ6DRC4;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ido.WeasleyTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Weasley.app/Weasley";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -627,6 +816,15 @@
 			buildConfigurations = (
 				7F4302722726D89900FA594F /* Debug */,
 				7F4302732726D89900FA594F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7F55DE1927B9D69700E0C162 /* Build configuration list for PBXNativeTarget "WeasleyTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7F55DE1A27B9D69700E0C162 /* Debug */,
+				7F55DE1B27B9D69700E0C162 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

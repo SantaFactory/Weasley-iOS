@@ -10,4 +10,9 @@ target 'Weasley' do
 	pod 'Firebase/Analytics'
 	pod 'Firebase/Auth'
 	pod 'GoogleSignIn'
+  
+  target 'WeasleyTests' do
+    inherit! :search_paths
+    pod 'Firebase'
+  end
 end
